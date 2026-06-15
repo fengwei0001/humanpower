@@ -505,6 +505,81 @@
             color: var(--text-tertiary);
         }
 
+        /* Flywheel */
+        .flywheel {
+            margin: 1.5rem 0;
+            padding: 2.5rem;
+            border: 1px solid var(--border-heavy);
+            border-radius: 8px;
+            background: var(--bg-gray);
+        }
+
+        .flywheel-loop {
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .flywheel-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-tertiary);
+            margin-bottom: 1.2rem;
+        }
+
+        .flywheel-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .fw-node {
+            padding: 0.55rem 1.1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .fw-start {
+            background: var(--bg-purple);
+            color: var(--color-purple);
+            border: 1px solid #e0d4f0;
+        }
+
+        .fw-action {
+            background: var(--bg-orange);
+            color: var(--color-orange);
+            border: 1px solid #f5deb3;
+        }
+
+        .fw-result {
+            background: var(--bg-green);
+            color: var(--color-green);
+            border: 1px solid #b4dfc4;
+            font-weight: 600;
+        }
+
+        .fw-arrow {
+            font-size: 1.1rem;
+            color: var(--text-tertiary);
+        }
+
+        .flywheel-note {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .flywheel-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 1rem 3rem;
+        }
+
         /* Large centered text */
         .hero-text {
             text-align: center;
@@ -617,11 +692,33 @@
 
     <h3 class="block-heading">双飞轮模型</h3>
 
-    <div class="callout callout-purple">
-        <span class="callout-icon">🔄</span>
-        <div class="callout-content">
-            <strong>消费侧</strong>：我遇到职业问题 → 找 Skill → 虾学会 → 帮我搞定 ✓ → 下一个问题<br>
-            <strong>供给侧</strong>：我蒸馏经验 → 发布 Skill → 被人安装引用 → 声望↑ 成为头号玩家 → 继续蒸馏
+    <div class="flywheel">
+        <div class="flywheel-loop">
+            <div class="flywheel-label">消费侧闭环</div>
+            <div class="flywheel-steps">
+                <span class="fw-node fw-start">我遇到职业问题</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-action">找 Skill</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-action">虾学会</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-result">帮我搞定 ✓</span>
+            </div>
+            <div class="flywheel-note">↑ 循环：搞定了 → 下一个问题 → 继续找</div>
+        </div>
+        <div class="flywheel-divider"></div>
+        <div class="flywheel-loop">
+            <div class="flywheel-label">供给侧闭环</div>
+            <div class="flywheel-steps">
+                <span class="fw-node fw-start">我蒸馏经验</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-action">发布 Skill</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-action">被人安装引用</span>
+                <span class="fw-arrow">→</span>
+                <span class="fw-node fw-result">声望 ↑ 头号玩家</span>
+            </div>
+            <div class="flywheel-note">↑ 循环：声望涨 → 更有动力蒸馏 → 继续发布</div>
         </div>
     </div>
 
