@@ -421,78 +421,105 @@
             margin-bottom: 0;
         }
 
-        /* Timeline */
-        .timeline {
+        /* Roadmap Phases */
+        .roadmap-phases {
             margin: 1.5rem 0;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--border-heavy);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            padding-left: 1.5rem;
+        .phase-block {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .timeline-item:last-child { padding-bottom: 0; }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 0.45rem;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 2px solid var(--color-blue);
-            background: white;
-            margin-left: -4px;
+        .phase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1.4rem;
         }
 
-        .timeline-item:nth-child(2)::before { border-color: var(--color-orange); }
-        .timeline-item:nth-child(3)::before { border-color: var(--color-green); }
+        .phase-header.phase-1 { background: var(--bg-blue); }
+        .phase-header.phase-2 { background: var(--bg-orange); }
+        .phase-header.phase-3 { background: var(--bg-green); }
 
-        .timeline-item .tl-phase {
+        .phase-tag {
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--color-blue);
-            margin-bottom: 0.2rem;
         }
 
-        .timeline-item:nth-child(2) .tl-phase { color: var(--color-orange); }
-        .timeline-item:nth-child(3) .tl-phase { color: var(--color-green); }
+        .phase-1 .phase-tag { color: var(--color-blue); }
+        .phase-2 .phase-tag { color: var(--color-orange); }
+        .phase-3 .phase-tag { color: var(--color-green); }
 
-        .timeline-item h4 {
-            font-size: 1rem;
+        .phase-time {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .phase-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 0.2rem;
+            padding: 1.2rem 1.4rem 0;
+            margin: 0;
         }
 
-        .timeline-item > p {
+        .phase-goal {
             font-size: 0.85rem;
             color: var(--text-tertiary);
-            margin-bottom: 0.5rem;
+            padding: 0.2rem 1.4rem 0;
+            margin: 0;
         }
 
-        .timeline-item ul {
-            list-style: none;
+        .phase-actions {
+            padding: 1rem 1.4rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
-        .timeline-item ul li {
-            font-size: 0.85rem;
+        .action-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .action-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .action-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .action-body {
+            flex: 1;
+        }
+
+        .action-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.15rem;
+        }
+
+        .action-desc {
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            padding: 0.2rem 0 0.2rem 1rem;
-            position: relative;
-        }
-
-        .timeline-item ul li::before {
-            content: '◦';
-            position: absolute;
-            left: 0;
-            color: var(--text-tertiary);
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -875,40 +902,125 @@
         <p>不需要推倒重来。现有技术资产大部分可复用，核心是改叙事、改组织方式。</p>
     </div>
 
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="tl-phase">Phase 1 · 换皮换骨（2-3 周）</div>
-            <h4>叙事翻转 + 赛道化重组</h4>
-            <p>最小代价验证新模型的用户感知</p>
-            <ul>
-                <li>首页改为「职业进化」叙事（选赛道入口）</li>
-                <li>技能广场按职业赛道重新分类</li>
-                <li>团队自建每个赛道的种子 Skill（3-5 个/赛道）</li>
-                <li>Boss Profile 替代虾 Profile（视角翻转）</li>
-            </ul>
+    <div class="roadmap-phases">
+
+        <div class="phase-block">
+            <div class="phase-header phase-1">
+                <span class="phase-tag">Phase 1</span>
+                <span class="phase-time">2-3 周</span>
+            </div>
+            <h4 class="phase-title">叙事翻转 + 赛道化重组</h4>
+            <p class="phase-goal">最小代价验证新模型的用户感知</p>
+            <div class="phase-actions">
+                <div class="action-item">
+                    <div class="action-icon">🏠</div>
+                    <div class="action-body">
+                        <div class="action-title">首页改为「职业进化」叙事</div>
+                        <div class="action-desc">入口即选赛道 —— 用户第一眼看到的不是「虾的动态」而是「你想成为什么」</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🏷️</div>
+                    <div class="action-body">
+                        <div class="action-title">技能广场按职业赛道重新分类</div>
+                        <div class="action-desc">产品经理 / 工程师 / 设计师 / HR / 运营… 用户一进来就知道「我该去哪变强」</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🌱</div>
+                    <div class="action-body">
+                        <div class="action-title">团队自建种子 Skill</div>
+                        <div class="action-desc">每个赛道 3-5 个高质量 Skill，确保用户进来不是空城</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">👤</div>
+                    <div class="action-body">
+                        <div class="action-title">Boss Profile 替代虾 Profile</div>
+                        <div class="action-desc">视角翻转：从「虾的主页」变成「我的作战指挥面板」</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="timeline-item">
-            <div class="tl-phase">Phase 2 · 体验闭环（4-6 周）</div>
-            <h4>对话式蒸馏 + 声望系统</h4>
-            <p>打通供给侧飞轮</p>
-            <ul>
-                <li>对话式 Skill 蒸馏（跟虾聊 → 自动生成 Skill）</li>
-                <li>声望系统上线（引用数排行、赛道 Top 榜）</li>
-                <li>创作者 Profile（热力图 + 代表作 + 职业故事）</li>
-                <li>Skill 质量信号体系（安装率、执行成功率、评分）</li>
-            </ul>
+
+        <div class="phase-block">
+            <div class="phase-header phase-2">
+                <span class="phase-tag">Phase 2</span>
+                <span class="phase-time">4-6 周</span>
+            </div>
+            <h4 class="phase-title">对话式蒸馏 + 声望系统</h4>
+            <p class="phase-goal">打通供给侧飞轮</p>
+            <div class="phase-actions">
+                <div class="action-item">
+                    <div class="action-icon">💬</div>
+                    <div class="action-body">
+                        <div class="action-title">对话式 Skill 蒸馏</div>
+                        <div class="action-desc">跟虾聊你的方法论 → 虾自动生成 Skill —— 创作门槛降到零</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🏆</div>
+                    <div class="action-body">
+                        <div class="action-title">声望系统上线</div>
+                        <div class="action-desc">引用数排行、赛道 Top 榜 —— 让贡献者看到回报</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">📊</div>
+                    <div class="action-body">
+                        <div class="action-title">创作者 Profile</div>
+                        <div class="action-desc">贡献热力图 + 代表作置顶 + 职业故事 —— GitHub Profile 的职业版</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">✅</div>
+                    <div class="action-body">
+                        <div class="action-title">Skill 质量信号体系</div>
+                        <div class="action-desc">安装率 × 执行成功率 × 用户评分 —— 好 Skill 自然浮上来</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="timeline-item">
-            <div class="tl-phase">Phase 3 · 生态开放（6-8 周）</div>
-            <h4>开放赛道 + 外部集成</h4>
-            <p>让飞轮自转</p>
-            <ul>
-                <li>用户自建赛道</li>
-                <li>Skill Fork / 衍生 / 组合机制</li>
-                <li>外部工作环境深度集成（飞书/IDE 插件）</li>
-                <li>进修路径智能推荐（基于用户职业目标 + 差距分析）</li>
-            </ul>
+
+        <div class="phase-block">
+            <div class="phase-header phase-3">
+                <span class="phase-tag">Phase 3</span>
+                <span class="phase-time">6-8 周</span>
+            </div>
+            <h4 class="phase-title">开放赛道 + 外部集成</h4>
+            <p class="phase-goal">让飞轮自转</p>
+            <div class="phase-actions">
+                <div class="action-item">
+                    <div class="action-icon">🔓</div>
+                    <div class="action-body">
+                        <div class="action-title">用户自建赛道</div>
+                        <div class="action-desc">平台定义不了所有职业 —— 开放让用户定义自己的战场</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🍴</div>
+                    <div class="action-body">
+                        <div class="action-title">Skill Fork / 衍生 / 组合</div>
+                        <div class="action-desc">别人的 Skill 好？Fork 一份改成我的版本 —— 生态自我进化</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🔌</div>
+                    <div class="action-body">
+                        <div class="action-title">外部工作环境深度集成</div>
+                        <div class="action-desc">飞书 / IDE / 浏览器插件 —— 虾在你的工作台直接上阵</div>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <div class="action-icon">🧭</div>
+                    <div class="action-body">
+                        <div class="action-title">进修路径智能推荐</div>
+                        <div class="action-desc">基于职业目标 + 差距分析 → 告诉你下一步该学什么</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <div class="block-divider"></div>
