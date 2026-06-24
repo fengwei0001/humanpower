@@ -1,10 +1,9 @@
 [build]
-builder = "nixpacks"
-buildCommand = "npm run build"
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
 watchPatterns = ["demo/**"]
 
 [deploy]
-startCommand = "npm start"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
 
