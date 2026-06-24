@@ -3,7 +3,7 @@ builder = "nixpacks"
 watchPatterns = ["demo/**"]
 
 [deploy]
-startCommand = "serve dist -s -l ${PORT:-3000}"
+startCommand = "node server.js"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
 
