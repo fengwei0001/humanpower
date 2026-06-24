@@ -3,7 +3,7 @@ builder = "nixpacks"
 watchPatterns = ["demo/**"]
 
 [deploy]
-startCommand = "npx serve dist -s -l 3000"
+startCommand = "serve dist -s -l ${PORT:-3000}"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
 
