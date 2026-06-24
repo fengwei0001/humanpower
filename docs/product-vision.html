@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒸馏 — 产品愿景文档</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #21B443;
+            --green-dark: #119530;
+            --green-light: #E9FBED;
+            --purple: #882EFF;
+            --purple-light: #F4F0F7;
+            --gold: #F5C800;
+            --gold-light: #FFF6B8;
+            --blue: #468DFB;
+            --blue-light: #EBF4FF;
+            --orange: #E46509;
+            --orange-light: #FFF4EB;
+            --red: #E03E3E;
+            --red-light: #FBE4E4;
+            --text: #111925;
+            --text-2: rgba(17,25,37,0.6);
+            --text-3: rgba(17,25,37,0.4);
+            --bg: #FAFBFC;
+            --card: #FFFFFF;
+            --border: rgba(17,25,37,0.06);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+        }
+        .hero-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .hero .slogan {
+            font-size: 1.1rem;
+            color: var(--text-2);
+            font-weight: 300;
+        }
+        .hero .meta {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-3);
+        }
+        .hero .meta .tag {
+            background: var(--green-light);
+            color: var(--green);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        /* Section */
+        .section { margin-top: 4rem; }
+        .section-number {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .section h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+        .section p {
+            color: var(--text-2);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .section p strong { color: var(--text); }
+
+        /* Highlight box */
+        .highlight-box {
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        .highlight-green { background: var(--green-light); border-left: 4px solid var(--green); }
+        .highlight-purple { background: var(--purple-light); border-left: 4px solid var(--purple); }
+        .highlight-orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
+        .highlight-blue { background: var(--blue-light); border-left: 4px solid var(--blue); }
+        .highlight-red { background: var(--red-light); border-left: 4px solid var(--red); }
+        .highlight-box p { margin-bottom: 0.5rem; color: var(--text); font-size: 0.9rem; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        /* Philosophy cards */
+        .phil-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .phil-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .phil-card .icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+        .phil-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .phil-card p { font-size: 0.82rem; color: var(--text-2); margin: 0; line-height: 1.6; }
+
+        /* Architecture diagram */
+        .arch-diagram {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            line-height: 2.2;
+            color: var(--text-2);
+            white-space: pre-line;
+        }
+        .arch-diagram .layer {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            margin: 0.3rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.82rem;
+        }
+        .arch-diagram .layer-user { background: var(--purple-light); color: var(--purple); }
+        .arch-diagram .layer-agent { background: var(--green-light); color: var(--green-dark); }
+        .arch-diagram .layer-api { background: var(--orange-light); color: var(--orange); }
+        .arch-diagram .layer-cloud { background: var(--blue-light); color: var(--blue); }
+        .arch-diagram .arrow { color: var(--text-3); font-size: 1.2rem; display: block; margin: 0.3rem 0; }
+
+        /* Roles table */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .role-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .role-card .icon { font-size: 2rem; margin-bottom: 0.6rem; }
+        .role-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .role-card p { font-size: 0.78rem; color: var(--text-2); margin: 0; line-height: 1.5; }
+
+        /* Flow */
+        .flow {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        .flow-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .flow-steps {
+            list-style: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .flow-steps::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--green), var(--purple));
+            border-radius: 2px;
+        }
+        .flow-steps li {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-2);
+        }
+        .flow-steps li::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.9rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            border: 2px solid var(--green-light);
+        }
+        .flow-steps li:last-child::before { background: var(--purple); border-color: var(--purple-light); }
+        .flow-steps li strong { color: var(--text); }
+
+        /* Key design callout */
+        .key-design {
+            background: var(--gold-light);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* Table */
+        .table-wrap {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th, td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            font-weight: 600;
+            font-size: 0.78rem;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--bg);
+        }
+        td { color: var(--text-2); }
+        td strong { color: var(--text); }
+
+        /* Quote */
+        .quote {
+            border-left: 3px solid var(--purple);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-2);
+            font-size: 0.9rem;
+            background: var(--purple-light);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Todo list */
+        .todo-section { margin-top: 1.5rem; }
+        .todo-priority {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+        .todo-p0 { background: var(--red-light); color: var(--red); }
+        .todo-p1 { background: var(--orange-light); color: var(--orange); }
+        .todo-p2 { background: var(--blue-light); color: var(--blue); }
+        .todo-p3 { background: var(--green-light); color: var(--green); }
+        .todo-list {
+            list-style: none;
+            margin: 0.8rem 0;
+        }
+        .todo-list li {
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-2);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .todo-list li::before {
+            content: '○';
+            color: var(--text-3);
+            font-size: 0.9rem;
+        }
+
+        /* Divider */
+        hr {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0 1rem;
+            color: var(--text-3);
+            font-size: 0.8rem;
+        }
+        .footer .slogan {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            color: var(--text-2);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .phil-grid, .roles-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.8rem; }
+            .page { padding: 2rem 1.2rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-icon">⚗️</div>
+        <h1>蒸馏 — 产品愿景</h1>
+        <div class="slogan">蒸馏世界，成就自己！蒸馏自己，成就世界！</div>
+        <div class="meta">
+            <span>2026 年 6 月</span>
+            <span class="tag">方向确定，待落地</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 一、核心定位 -->
+    <div class="section">
+        <div class="section-number">一</div>
+        <h2>核心定位</h2>
+        <div class="highlight-box highlight-green">
+            <p><strong>蒸馏不是一个网站，是一个 Agent 网络的能力后端。</strong></p>
+            <p>传统社区让用户来逛。蒸馏让 Agent 替用户干活。</p>
+            <p>网站只是仓库和交易市场，真正的产品体验发生在用户自己的 Agent 里。</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 二、产品哲学 -->
+    <div class="section">
+        <div class="section-number">二</div>
+        <h2>产品哲学</h2>
+
+        <div class="phil-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="phil-card">
+                <div class="icon">😴</div>
+                <h4>人都是懒的</h4>
+                <p>主动蒸馏自己的人永远是少数。Agent 观察用户 → 主动发现模式 → 自己蒸馏 → 拿给用户确认。</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">⚡</div>
+                <h4>Skill 是活的</h4>
+                <p>不是文章，不是用来看的。能被 Agent 直接执行，用户可能无感就享受到了好处。效果可度量。</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">🎁</div>
+                <h4>分享是零成本的</h4>
+                <p>Agent 帮你蒸馏好了、跑验证了、写好描述了。你只需要点一下「好，分享」。</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">🧠</div>
+                <h4>智能发生在边缘</h4>
+                <p>所有推理、匹配、打分、观察都发生在用户自己的 Agent 里。平台是仓库和交易市场，真正的智能跑在离用户最近的地方。</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 三、系统架构 -->
+    <div class="section">
+        <div class="section-number">三</div>
+        <h2>系统架构</h2>
+
+        <div class="arch-diagram">
+            <span class="layer layer-user">👤 用户的日常工作环境</span>
+            <span class="arrow">↕</span>
+            <span class="layer layer-agent">🦐 本地 Agent（OpenClaw / Hermes / Claude Code / 浏览器插件）</span>
+            <span class="arrow">↕ 心跳 + 事件驱动 + 定时任务</span>
+            <span class="layer layer-api">🔌 蒸馏社区 API</span>
+            <span class="arrow">↕</span>
+            <span class="layer layer-cloud">☁️ Skill 仓库 + AI 推荐引擎 + 声望网络</span>
+        </div>
+
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="icon">🦐</div>
+                <h4>本地 Agent</h4>
+                <p>观察用户、发现模式、蒸馏 Skill、执行 Skill、场景推送</p>
+            </div>
+            <div class="role-card">
+                <div class="icon">☁️</div>
+                <h4>蒸馏社区</h4>
+                <p>存储 Skill、匹配推荐、声望计算、质量评估</p>
+            </div>
+            <div class="role-card">
+                <div class="icon">👤</div>
+                <h4>用户</h4>
+                <p>确认/微调结果、决定是否分享、享受 Agent 帮忙干活</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 四、核心链路 -->
+    <div class="section">
+        <div class="section-number">四</div>
+        <h2>四条核心链路</h2>
+
+        <!-- 链路1 -->
+        <div class="flow">
+            <div class="flow-title">🔄 链路 1：Agent 主动蒸馏（供给侧）</div>
+            <ul class="flow-steps">
+                <li><strong>Agent 持续观察</strong>用户工作（对话历史 / 浏览行为 / 工作节奏）</li>
+                <li>发现重复模式 → <strong>自主蒸馏</strong>成 Skill 草稿</li>
+                <li>先自己拿来<strong>帮用户干活</strong>（悄悄验证好不好用）</li>
+                <li>跑了 N 次、用户没改过 → <strong>确认好用</strong></li>
+                <li>Agent 问：「这个已经帮你用了 8 次了，社区有人需要，<strong>分享出去？</strong>」</li>
+                <li>用户确认 → 发布到社区 → <strong>声望 ↑</strong></li>
+            </ul>
+        </div>
+        <div class="key-design">
+            ⭐ 关键设计：不是蒸馏完就问「要不要公开」，而是<strong>验证好用之后</strong>再问。
+        </div>
+
+        <!-- 链路2 -->
+        <div class="flow">
+            <div class="flow-title">🔍 链路 2：Agent 主动找 Skill（消费侧）</div>
+            <ul class="flow-steps">
+                <li>Agent 在帮用户干活时，意识到<strong>「这个事有更好的方法」</strong></li>
+                <li>实时 ping 蒸馏社区 API</li>
+                <li>社区返回匹配的 Skill（或多个 Skill 的<strong>组合方案</strong>）</li>
+                <li>Agent 直接装上就用 — <strong>用户甚至可以无感</strong></li>
+            </ul>
+        </div>
+
+        <!-- 链路3 -->
+        <div class="flow">
+            <div class="flow-title">⏰ 链路 3：定时任务 → 场景预判</div>
+            <ul class="flow-steps">
+                <li>Agent 的定时任务触发（如：周五 14:00）</li>
+                <li>Agent 知道「用户每周五写周报」</li>
+                <li>去社区拉取「周报生成」Skill + 基于本周对话历史预生成草稿</li>
+                <li>直接推送：<strong>「周报写好了初稿，你看看改改？」</strong></li>
+            </ul>
+        </div>
+        <div class="key-design">
+            ⭐ 用户收到的不是「推荐你一个 Skill」，而是<strong>活已经干完了</strong>。推送通过本地 Agent（OpenClaw/Hermes）的心跳机制直达用户。
+        </div>
+
+        <!-- 链路4 -->
+        <div class="flow">
+            <div class="flow-title">🧩 链路 4：AI 搜索 + Skill 组合（问题驱动）</div>
+            <ul class="flow-steps">
+                <li>用户对 Agent 说：<strong>「我下周要做新产品立项评审」</strong></li>
+                <li>Agent 调用社区 AI 推荐 API → 返回组合方案</li>
+                <li>① 「先写新闻稿」理清价值 → ② 「市场规模测算」算清盘子 → ③ 「惊艳演示」包装成 Deck</li>
+                <li>Agent：「我帮你按这个顺序走一遍？」→ 用户：「好」→ <strong>自动依次执行</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 五、分享机制 -->
+    <div class="section">
+        <div class="section-number">五</div>
+        <h2>分享机制设计</h2>
+
+        <h3>为什么用户会愿意分享？</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>动力</th><th>设计</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>零成本</strong></td><td>Agent 已经帮你蒸馏好了，你只需点「确认」</td></tr>
+                    <tr><td><strong>已验证</strong></td><td>不是「可能有用」，是「确实帮我用了 N 次」</td></tr>
+                    <tr><td><strong>有人需要</strong></td><td>Agent 会告诉你「社区有 X 人在找类似的」</td></tr>
+                    <tr><td><strong>声望正反馈</strong></td><td>分享后被引用 → 排名升 → 更有动力</td></tr>
+                    <tr><td><strong>反哺自己</strong></td><td>别人 Fork 你的 Skill 改进了 → 你也能受益</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>分享确认时机</h3>
+        <p>Agent 在以下条件<strong>同时满足</strong>时询问：</p>
+        <div class="highlight-box highlight-green">
+            <p>✅ Skill 已被自动执行 ≥ 3 次</p>
+            <p>✅ 用户未对执行结果做过修改（说明质量稳定）</p>
+            <p>✅ 社区中存在相关需求（有人搜索过类似问题）</p>
+        </div>
+        <div class="quote">
+            「这个'客户投诉处理三步法'我已经帮你跑了 5 次了，每次你都没改直接用了。社区里有 12 个人在找类似的 Skill，分享出去帮帮他们？你的声望会 +50。」
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 六、核心指标 -->
+    <div class="section">
+        <div class="section-number">六</div>
+        <h2>核心指标</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>❌ 传统指标</th><th>✅ 蒸馏指标</th></tr></thead>
+                <tbody>
+                    <tr><td>DAU/MAU</td><td><strong>Agent 日活跃调用次数</strong></td></tr>
+                    <tr><td>用户发帖数</td><td><strong>Agent 自动蒸馏的 Skill 数</strong></td></tr>
+                    <tr><td>浏览量</td><td><strong>Skill 被执行次数</strong></td></tr>
+                    <tr><td>点赞数</td><td><strong>引用数（多少 Agent 在用我的 Skill）</strong></td></tr>
+                    <tr><td>用户停留时长</td><td><strong>帮用户节省的时间</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="highlight-box highlight-purple">
+            <p><strong>🌟 北极星指标</strong></p>
+            <p>每周帮用户自动完成的任务数 × 用户确认满意率</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 七、信息采集 -->
+    <div class="section">
+        <div class="section-number">七</div>
+        <h2>信息采集渠道</h2>
+        <p>Agent 如何观察用户？</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>渠道</th><th>采集方式</th><th>能发现什么</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>对话历史</strong></td><td>本地 Agent 的 memory</td><td>重复的提问模式、相似的任务</td></tr>
+                    <tr><td><strong>浏览器插件</strong></td><td>页面行为追踪</td><td>每天重复操作的工作流</td></tr>
+                    <tr><td><strong>日历/飞书</strong></td><td>API 集成</td><td>周期性事件（周报、月会、复盘）</td></tr>
+                    <tr><td><strong>文件系统</strong></td><td>本地扫描</td><td>反复创建的相似文档模板</td></tr>
+                    <tr><td><strong>IDE 插件</strong></td><td>代码行为</td><td>重复的编码模式、Review 习惯</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="highlight-box highlight-orange">
+            <p><strong>🔒 隐私原则：</strong>所有观察数据留在本地，只有用户确认分享的 Skill 才上传社区。</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 八、虾兵蟹将叙事 -->
+    <div class="section">
+        <div class="section-number">八</div>
+        <h2>与「虾兵蟹将」叙事的结合</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>概念</th><th>在蒸馏中是</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>虾兵</strong></td><td>你的本地 Agent</td></tr>
+                    <tr><td><strong>蒸馏</strong></td><td>虾兵观察你工作后，自己学会了你的方法论</td></tr>
+                    <tr><td><strong>分享到社区</strong></td><td>你的虾兵教会了别人的虾兵</td></tr>
+                    <tr><td><strong>声望</strong></td><td>你的虾兵培养了多少「徒弟」</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quote">
+            「你的虾兵小P 观察你做了 3 次竞品分析后，自己学会了你的套路。现在它可以独立帮你做了。要不要让它去社区教其他虾兵？」
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 八点五、歌单 -->
+    <div class="section">
+        <div class="section-number">八·五</div>
+        <h2>Skill 歌单（收藏集）</h2>
+        <p>除了按职业赛道聚合，Skill 还可以像<strong>网易云音乐歌单</strong>一样被自由组合成收藏集。</p>
+
+        <h3>为什么要做歌单</h3>
+        <div class="phil-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="phil-card">
+                <div class="icon">🎯</div>
+                <h4>降低新人门槛</h4>
+                <p>不用自己一个个挑，「新手产品经理必备 10 个 Skill」一键安装</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">👑</div>
+                <h4>社交货币</h4>
+                <p>「看看大佬的 Skill 配置」本身就有传播力</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">🧩</div>
+                <h4>场景组合</h4>
+                <p>「从 0 到 1 做一次完整的产品立项」— 一个歌单搞定全流程</p>
+            </div>
+            <div class="phil-card">
+                <div class="icon">🤖</div>
+                <h4>AI 生成歌单</h4>
+                <p>Agent 基于你的能力缺口自动生成个性化推荐歌单</p>
+            </div>
+        </div>
+
+        <h3>歌单类型</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>类型</th><th>示例</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>新手入门包</strong></td><td>「新手产品经理必备 10 个 Skill」「前端工程师不能没有的 10 个 Skill」</td></tr>
+                    <tr><td><strong>场景组合包</strong></td><td>「从 0 到 1 做一次完整的产品立项」「搞定季度 OKR 全流程」</td></tr>
+                    <tr><td><strong>大佬配置单</strong></td><td>「张三（产品赛道 Top 1）的虾兵装备清单」</td></tr>
+                    <tr><td><strong>公司/团队包</strong></td><td>「XX 团队新人 Onboarding 必装」</td></tr>
+                    <tr><td><strong>AI 智能推荐包</strong></td><td>Agent 基于你的赛道 + 能力缺口自动生成</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>歌单互动</h3>
+        <div class="highlight-box highlight-blue">
+            <p>📥 <strong>一键安装全部</strong> — 批量给虾兵装上</p>
+            <p>🍴 <strong>Fork 歌单</strong> — 复制一份改成我的版本</p>
+            <p>🔔 <strong>订阅歌单</strong> — 创建者更新时我也自动更新</p>
+            <p>🔗 <strong>歌单引用数</strong> — 跟单个 Skill 一样计入声望</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 九、Demo 改造 -->
+    <div class="section">
+        <div class="section-number">九</div>
+        <h2>Demo 改造方向</h2>
+
+        <h3>当前 Demo 的问题</h3>
+        <div class="highlight-box highlight-red">
+            <p>❌ 蒸馏工坊 = 一个聊天框（等用户主动来）</p>
+            <p>❌ 首页 = 静态 Dashboard（展示数据）</p>
+            <p>❌ Skill 广场 = 传统列表浏览</p>
+        </div>
+
+        <h3>改造后</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>页面</th><th>当前</th><th>改造后</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>首页</strong></td><td>Boss 作战室</td><td>Agent 日报：今天帮你做了什么 + 待确认蒸馏草稿</td></tr>
+                    <tr><td><strong>蒸馏</strong></td><td>用户主动发起对话</td><td>Agent 推上来的草稿：确认/微调/分享</td></tr>
+                    <tr><td><strong>广场</strong></td><td>列表 + 筛选</td><td>AI 对话式搜索 + Skill 组合推荐</td></tr>
+                    <tr><td><strong>推送</strong></td><td>无</td><td>通过本地 Agent 心跳直推（不是网页通知）</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 九点五、Plugin 范畴升级 -->
+    <div class="section">
+        <div class="section-number">九·五</div>
+        <h2>从 Skill 到 Plugin：蒸馏的范畴升级</h2>
+        <p>蒸馏是一个独立的职业能力平台。Plugin 格式极大拓展了「蒸馏」的范畴和水平——从蒸馏单个方法论，升级到蒸馏<strong>完整的工作系统</strong>。</p>
+
+        <div class="highlight-box highlight-green">
+            <p><strong>🎯 定位：</strong>蒸馏是平台，Plugin 是载体，各种 Agent 生态是分发渠道。</p>
+        </div>
+
+        <h3>蒸馏的两个层级</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>层级</th><th>蒸馏什么</th><th>产物</th><th>类比</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Skill</strong></td><td>一个方法论/能力</td><td>一段可执行的经验</td><td>一首歌</td></tr>
+                    <tr><td><strong>Plugin</strong></td><td>一套完整工作系统</td><td>方法论 + Agent 人格 + 自动化规则 + 外部集成</td><td>一整套装备</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>为什么需要 Plugin 这一层</h3>
+        <p>单个 Skill 能教会虾兵「怎么写 PRD」。但真实工作中你需要的是：</p>
+        <div class="highlight-box highlight-purple">
+            <p>📝 写完 PRD <strong>自动触发评审</strong>（hooks）</p>
+            <p>🧠 一个<strong>懂 PM 思维的 Agent 人格</strong>帮你把关（agents）</p>
+            <p>👁️ <strong>后台观察</strong>你的工作模式持续优化建议（monitors）</p>
+            <p>🔌 <strong>连接飞书/GitHub</strong>把产出直接送到该去的地方（mcp）</p>
+            <p>🧩 好几个 Skill <strong>组合在一起</strong>才能完成一个完整任务（skills/）</p>
+        </div>
+        <p>这些加在一起，才是一个真正的「<strong>工作系统蒸馏物</strong>」。</p>
+
+        <h3>Plugin 能包含的能力</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>组件</th><th>作用</th><th>蒸馏场景</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>skills/</strong></td><td>多个 Skill 组合</td><td>一个歌单解决一类问题</td></tr>
+                    <tr><td><strong>agents/</strong></td><td>自定义 Agent 人格</td><td>带特定领域思维的专属助手</td></tr>
+                    <tr><td><strong>hooks/</strong></td><td>事件钩子</td><td>保存 PRD 后自动触发评审</td></tr>
+                    <tr><td><strong>monitors/</strong></td><td>后台监控</td><td>持续观察对话模式，发现新的蒸馏机会</td></tr>
+                    <tr><td><strong>.mcp.json</strong></td><td>外部服务连接</td><td>飞书/GitHub/Slack 集成</td></tr>
+                    <tr><td><strong>bin/</strong></td><td>可执行工具</td><td>蒸馏 CLI 工具</td></tr>
+                    <tr><td><strong>settings.json</strong></td><td>默认配置</td><td>一键切换工作模式</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Agent 蒸馏出的 Plugin 示例</h3>
+        <p>当 Agent 观察到你每周五写周报时，它蒸馏出来的不只是一个 Skill，而是一个完整的「每周自动写周报」系统：</p>
+        <div class="arch-diagram" style="text-align: left; font-size: 0.78rem; line-height: 1.8;">my-weekly-report/
+├── .claude-plugin/plugin.json    ← 元数据
+├── skills/
+│   └── generate-report/
+│       └── SKILL.md              ← 周报生成方法论
+├── hooks/
+│   └── hooks.json                ← 周五自动触发
+└── monitors/
+    └── monitors.json             ← 后台监控本周对话积累素材</div>
+
+        <h3>分发兼容性</h3>
+        <p>蒸馏产物采用 Plugin 格式，天然兼容主流 Agent 生态（但蒸馏是平台，它们是渠道）：</p>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>分发渠道</th><th>方式</th><th>意义</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>蒸馏社区（自有）</strong></td><td>社区 Web + API</td><td>核心阵地：AI 推荐 + 声望 + 歌单</td></tr>
+                    <tr><td><strong>Claude Code</strong></td><td>Plugin Marketplace 格式兼容</td><td>触达 Claude 用户</td></tr>
+                    <tr><td><strong>OpenClaw / Hermes</strong></td><td>Skill 格式适配</td><td>触达本地 Agent 用户</td></tr>
+                    <tr><td><strong>GitHub</strong></td><td>标准 Git 仓库</td><td>开发者社区分发</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="key-design">
+            ⭐ <strong>蒸馏是独立平台。</strong>Plugin 拓展了蒸馏的深度（从方法论到工作系统），各种 Agent 生态只是分发渠道之一。
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 十、竞争优势 -->
+    <div class="section">
+        <div class="section-number">十</div>
+        <h2>竞争优势</h2>
+        <p>为什么别人做不了？</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>壁垒</th><th>解释</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>隐性知识</strong></td><td>用户肚子里的经验无法被爬虫抓取，只有本地 Agent 能观察到</td></tr>
+                    <tr><td><strong>验证过的质量</strong></td><td>每个 Skill 都是 Agent 跑过 N 次确认好用的，不是未验证的「攻略」</td></tr>
+                    <tr><td><strong>可执行</strong></td><td>不是文章要人看，是代码能直接跑</td></tr>
+                    <tr><td><strong>网络效应</strong></td><td>越多人用 → 越多 Agent 蒸馏 → 越多好 Skill → 越多人用</td></tr>
+                    <tr><td><strong>场景绑定</strong></td><td>通过本地 Agent 渗透到用户工作流，迁移成本极高</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 十一、技术可行性 -->
+    <div class="section">
+        <div class="section-number">十一</div>
+        <h2>技术可行性分析</h2>
+        <p>Agent 主动蒸馏不是空想——OpenClaw 已有的基础设施覆盖了 80% 的需求。</p>
+
+        <div class="highlight-box highlight-green">
+            <p><strong>🎯 核心发现：</strong>OpenClaw 已经有了「Agent 自动做梦巩固记忆」的完整管线。我们要做的只是让它做梦时除了巩固记忆，还学会蒸馏 Skill。</p>
+        </div>
+
+        <h3>关键发现：OpenClaw 的「做梦」机制</h3>
+        <p>OpenClaw 实现了多阶段记忆巩固系统（Memory Dreaming），跟我们的自动蒸馏在概念上完全同构：</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>阶段</th><th>频率</th><th>做什么</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Light Dreaming</strong></td><td>每 6 小时</td><td>扫描当天笔记和对话，做短期整合</td></tr>
+                    <tr><td><strong>Deep Dreaming</strong></td><td>每天凌晨 3 点</td><td>把高频被调用的内容提升为持久记忆</td></tr>
+                    <tr><td><strong>REM Dreaming</strong></td><td>每周</td><td>跨记忆交叉分析，发现模式强度</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>提升条件：<code>最少被回忆 3 次</code> + <code>至少 3 个不同查询触发过</code> + <code>得分 ≥ 0.8</code></p>
+
+        <div class="key-design">
+            ⭐ <strong>同构映射：</strong><br>
+            Memory Dreaming：观察回忆模式 → 按频率/多样性/相关性打分 → 提升为持久记忆<br>
+            Skill Distillation：观察工作模式 → 按重复/相似/价值打分 → 提升为可执行 Skill
+        </div>
+
+        <h3>已经存在的基础设施</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>能力</th><th>位置</th><th>状态</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>对话后自动扫描模式</strong></td><td>skills/research/autocapture.ts</td><td>✅ 生产可用</td></tr>
+                    <tr><td><strong>正则检测用户规律性指令</strong></td><td>skills/research/signals.ts</td><td>✅ 生产可用</td></tr>
+                    <tr><td><strong>自动提议创建 Skill</strong></td><td>skills/workshop/service.ts</td><td>✅ 生产可用</td></tr>
+                    <tr><td><strong>定时心跳唤醒 Agent</strong></td><td>infra/heartbeat-runner.ts</td><td>✅ 30 分钟间隔</td></tr>
+                    <tr><td><strong>Cron 定时任务</strong></td><td>cron/schedule.ts</td><td>✅ 生产可用</td></tr>
+                    <tr><td><strong>回忆频率追踪</strong></td><td>short-term-promotion.ts</td><td>✅ 含 recallCount/queryHashes</td></tr>
+                    <tr><td><strong>Embedding 向量化接口</strong></td><td>plugins/embedding-provider-types.ts</td><td>✅ 接口就绪</td></tr>
+                    <tr><td><strong>Skill 审批流程</strong></td><td>skills/workshop/policy.ts</td><td>✅ pending→review→applied</td></tr>
+                    <tr><td><strong>Agent 间通信</strong></td><td>Mars WebSocket 协议</td><td>✅ 协议已定</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>需要新做的部分</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>需要新做的</th><th>工作量</th><th>说明</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>跨对话相似度聚类</strong></td><td>~2 周</td><td>对 history.jsonl 做 embedding → 聚类 → 发现重复模式</td></tr>
+                    <tr><td><strong>Claude Code ↔ OpenClaw 桥接</strong></td><td>~1 周</td><td>让两个系统的 Skill 互通</td></tr>
+                    <tr><td><strong>浏览器插件</strong></td><td>~3-4 周</td><td>观察重复操作 → Native Messaging → 本地 Agent</td></tr>
+                    <tr><td><strong>跨会话模式累积数据库</strong></td><td>~1 周</td><td>SQLite（OpenClaw 已在用）</td></tr>
+                    <tr><td><strong>自动应用的安全策略</strong></td><td>~1 周</td><td>autonomous.enabled 开关已存在，需细化约束</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="highlight-box highlight-purple">
+            <p><strong>📊 总工作量：约 8-10 周</strong>，不是从零开始，是在已有框架上添砖加瓦。</p>
+        </div>
+
+        <h3>最小可行路径（最快验证方案）</h3>
+        <div class="flow">
+            <div class="flow-title">🚀 4 周跑通核心循环</div>
+            <ul class="flow-steps">
+                <li><strong>第 1 周：</strong>开启 OpenClaw autonomous.enabled + HEARTBEAT.md 加「每 6 小时扫描对话找重复模式」→ 已有 autocapture 开始工作</li>
+                <li><strong>第 2-3 周：</strong>加上 embedding 聚类 → 从正则匹配进化到语义相似度发现</li>
+                <li><strong>第 4 周：</strong>做分享确认 UI → Agent 提议的 Skill 推到用户面前，确认后发布社区</li>
+            </ul>
+        </div>
+
+        <h3>浏览器插件可行性</h3>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>观察内容</th><th>Chrome API</th><th>限制</th></tr></thead>
+                <tbody>
+                    <tr><td>页面访问</td><td>chrome.webNavigation</td><td>无</td></tr>
+                    <tr><td>DOM 操作/表单填写</td><td>Content Script</td><td>需声明权限</td></tr>
+                    <tr><td>标签切换</td><td>chrome.tabs</td><td>无</td></tr>
+                    <tr><td>定时上报</td><td>chrome.alarms</td><td>最短 1 分钟</td></tr>
+                    <tr><td>与本地 Agent 通信</td><td>Native Messaging / localhost HTTP</td><td>需 host manifest</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>通信路径：<strong>插件 → localhost:port → OpenClaw Agent → 蒸馏社区 API</strong></p>
+    </div>
+
+    <hr>
+
+    <!-- 十二、TODO -->
+    <div class="section">
+        <div class="section-number">十二</div>
+        <h2>TODO</h2>
+
+        <div class="todo-section">
+            <h3><span class="todo-priority todo-p0">P0</span> Demo 改造（体现核心理念）</h3>
+            <ul class="todo-list">
+                <li>首页改为「Agent 日报」— 展示 Agent 今天帮你做了什么</li>
+                <li>新增「待确认蒸馏」卡片 — Agent 观察到模式后推上来的草稿</li>
+                <li>Skill 广场增加 AI 对话搜索 — 描述问题 → 推荐 Skill 组合</li>
+                <li>蒸馏工坊改为「确认式」— Agent 预填好内容，用户确认即发布</li>
+                <li>新增「分享确认」弹窗 — 展示被使用次数 + 社区需求 + 声望预估</li>
+            </ul>
+        </div>
+
+        <div class="todo-section">
+            <h3><span class="todo-priority todo-p1">P1</span> 产品设计深化</h3>
+            <ul class="todo-list">
+                <li>设计 Agent 观察 → 蒸馏的具体触发规则</li>
+                <li>设计 Skill 组合推荐的 AI 编排逻辑</li>
+                <li>设计定时任务 → 场景推送的机制</li>
+                <li>设计隐私保护方案（什么留本地、什么上云）</li>
+                <li>设计 Skill 版本管理 + Fork 机制</li>
+            </ul>
+        </div>
+
+        <div class="todo-section">
+            <h3><span class="todo-priority todo-p2">P2</span> 技术验证</h3>
+            <ul class="todo-list">
+                <li>本地 Agent 对话历史分析 → 模式发现的 PoC</li>
+                <li>浏览器插件行为追踪 → 工作流蒸馏的 PoC</li>
+                <li>Skill 组合编排引擎的 PoC</li>
+                <li>社区 API 设计（供 Agent 调用）</li>
+            </ul>
+        </div>
+
+        <div class="todo-section">
+            <h3><span class="todo-priority todo-p3">P3</span> 生态建设</h3>
+            <ul class="todo-list">
+                <li>OpenClaw 插件适配</li>
+                <li>Hermes 插件适配</li>
+                <li>Claude Code skill 格式兼容</li>
+                <li>浏览器插件开发</li>
+                <li>IDE 插件开发</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="slogan">蒸馏世界，成就自己。蒸馏自己，成就世界。</div>
+        <p>觅游 MEYO · 蒸馏 Distill · 2026.06</p>
+    </div>
+
+</div>
+</body>
+</html>
