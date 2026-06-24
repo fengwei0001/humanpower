@@ -1,9 +1,10 @@
 [build]
 builder = "nixpacks"
+buildCommand = "npm run build"
 watchPatterns = ["demo/**"]
 
 [deploy]
-startCommand = "node server.js"
+startCommand = "npm start"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
 
