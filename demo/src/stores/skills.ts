@@ -1,14 +1,22 @@
 import { create } from 'zustand'
-import { skills, type Skill } from '../data/skills'
+import { skills as localSkills, type Skill } from '../data/skills'
+import { fetchSkills } from '../services/skills-api'
 
 interface SkillsState {
   skills: Skill[]
+  total: number
+  page: number
+  hasMore: boolean
+  loading: boolean
+  initialized: boolean
   filterTrack: string | null
   filterSort: 'hot' | 'new' | 'rating'
   searchQuery: string
   setFilterTrack: (track: string | null) => void
   setFilterSort: (sort: 'hot' | 'new' | 'rating') => void
   setSearchQuery: (query: string) => void
+  loadSkills: () => Promise<void>
+  loadMore: () => Promise<void>
   getFilteredSkills: () => Skill[]
   getSkillById: (id: string) => Skill | undefined
   getSkillsByTrack: (trackId: string) => Skill[]
@@ -17,17 +25,88 @@ interface SkillsState {
 }
 
 export const useSkillsStore = create<SkillsState>((set, get) => ({
-  skills,
+  skills: localSkills,
+  total: localSkills.length,
+  page: 1,
+  hasMore: false,
+  loading: false,
+  initialized: false,
   filterTrack: null,
   filterSort: 'hot',
   searchQuery: '',
 
-  setFilterTrack: (track) => set({ filterTrack: track }),
-  setFilterSort: (sort) => set({ filterSort: sort }),
+  setFilterTrack: (track) => {
+    set({ filterTrack: track, page: 1 })
+    get().loadSkills()
+  },
+
+  setFilterSort: (sort) => {
+    set({ filterSort: sort, page: 1 })
+    get().loadSkills()
+  },
+
   setSearchQuery: (query) => set({ searchQuery: query }),
 
+  loadSkills: async () => {
+    const { filterTrack, filterSort, searchQuery } = get()
+    set({ loading: true })
+
+    try {
+      const result = await fetchSkills({
+        page: 1,
+        pageSize: 20,
+        track: filterTrack || undefined,
+        search: searchQuery || undefined,
+        sort: filterSort,
+      })
+
+      set({
+        skills: result.skills,
+        total: result.total,
+        page: 1,
+        hasMore: result.pageSize < result.total,
+        loading: false,
+        initialized: true,
+      })
+    } catch {
+      // API 不可用，保持本地数据
+      set({ loading: false, initialized: true })
+    }
+  },
+
+  loadMore: async () => {
+    const { page, hasMore, loading, filterTrack, filterSort, searchQuery, skills } = get()
+    if (!hasMore || loading) return
+
+    set({ loading: true })
+
+    try {
+      const result = await fetchSkills({
+        page: page + 1,
+        pageSize: 20,
+        track: filterTrack || undefined,
+        search: searchQuery || undefined,
+        sort: filterSort,
+      })
+
+      set({
+        skills: [...skills, ...result.skills],
+        page: page + 1,
+        hasMore: (page + 1) * result.pageSize < result.total,
+        loading: false,
+      })
+    } catch {
+      set({ loading: false })
+    }
+  },
+
   getFilteredSkills: () => {
-    const { skills, filterTrack, filterSort, searchQuery } = get()
+    const { skills, filterTrack, filterSort, searchQuery, initialized } = get()
+
+    // 数据已从 API 加载（服务端已做筛选排序），直接返回
+    if (initialized && !searchQuery) return skills
+
+    // 本地过滤（fallback 或客户端搜索）
     let filtered = [...skills]
 
     if (filterTrack) {
