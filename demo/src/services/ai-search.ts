@@ -1,17 +1,9 @@
 import { skills } from '../data/skills'
-import { getApiKey, hasApiKey } from './ai'
 
 // 构建 skills 摘要给 AI 做匹配
 function buildSkillsContext(): string {
-  return skills.map(s => ({
-    id: s.id,
-    name: s.name,
-    description: s.description,
-    scenario: s.scenario || '',
-    tags: s.tags,
-    trackId: s.trackId,
-  })).map(s =>
-    `[${s.id}] ${s.name} — ${s.description} 场景: ${s.scenario} 标签: ${s.tags.join(',')}`
+  return skills.map(s =>
+    `[${s.id}] ${s.name} — ${s.description} 场景: ${s.scenario || ''} 标签: ${s.tags.join(',')}`
   ).join('\n')
 }
 
@@ -48,30 +40,18 @@ export interface SearchResult {
 }
 
 export async function aiSearchSkills(query: string): Promise<SearchResult> {
-  if (!hasApiKey()) {
-    throw new Error('NO_API_KEY')
-  }
-
-  const response = await fetch('https://api.deepseek.com/chat/completions', {
+  const response = await fetch('/api/ai-search', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${getApiKey()}`,
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'deepseek-chat',
-      messages: [
-        { role: 'system', content: SEARCH_SYSTEM_PROMPT },
-        { role: 'user', content: query },
-      ],
-      temperature: 0.3,
-      max_tokens: 1000,
+      query,
+      systemPrompt: SEARCH_SYSTEM_PROMPT,
     }),
   })
 
   if (!response.ok) {
-    const error = await response.text()
-    throw new Error(`API 调用失败: ${response.status} - ${error}`)
+    const err = await response.json().catch(() => ({ error: 'unknown' }))
+    throw new Error(err.error || `API error: ${response.status}`)
   }
 
   const data = await response.json()

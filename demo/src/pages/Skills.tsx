@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useSkillsStore } from '../stores/skills'
 import { tracks } from '../data/tracks'
 import { sampleCombos } from '../data/agent-activity'
-import { hasApiKey, setApiKey } from '../services/ai'
 import { aiSearchSkills, localSearchSkills, type SearchResult } from '../services/ai-search'
 import SkillCard from '../components/SkillCard'
 
@@ -21,9 +20,6 @@ export default function Skills() {
   const [aiQuery, setAiQuery] = useState('')
   const [searching, setSearching] = useState(false)
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null)
-  const [searchError, setSearchError] = useState<string | null>(null)
-  const [showKeyInput, setShowKeyInput] = useState(false)
-  const [tempKey, setTempKey] = useState('')
 
   const filteredSkills = getFilteredSkills()
 
@@ -31,44 +27,19 @@ export default function Skills() {
     const q = (query || aiQuery).trim()
     if (!q) return
 
-    setSearchError(null)
     setSearchResult(null)
-
-    // 检查 API Key
-    if (!hasApiKey()) {
-      setShowKeyInput(true)
-      return
-    }
-
     setSearching(true)
 
     try {
       const result = await aiSearchSkills(q)
       setSearchResult(result)
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : '搜索失败'
-      if (message === 'NO_API_KEY') {
-        setShowKeyInput(true)
-      } else {
-        // Fallback 到本地搜索（静默降级，不提示用户）
-        console.warn('AI 搜索失败，使用本地匹配:', message)
-        const fallback = localSearchSkills(q)
-        setSearchResult(fallback)
-      }
+      // Fallback 到本地搜索（静默降级）
+      console.warn('AI 搜索失败，使用本地匹配:', err instanceof Error ? err.message : err)
+      const fallback = localSearchSkills(q)
+      setSearchResult(fallback)
     } finally {
       setSearching(false)
-    }
-  }
-
-  const handleSaveKey = () => {
-    if (tempKey.trim()) {
-      setApiKey(tempKey.trim())
-      setShowKeyInput(false)
-      setTempKey('')
-      // 保存后自动搜索
-      if (aiQuery.trim()) {
-        setTimeout(() => handleAiSearch(), 100)
-      }
     }
   }
 
@@ -96,7 +67,7 @@ export default function Skills() {
               <input
                 type="text"
                 value={aiQuery}
-                onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) { setSearchResult(null); setSearchError(null) } }}
+                onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setSearchResult(null) }}
                 onKeyDown={(e) => e.key === 'Enter' && handleAiSearch()}
                 placeholder="比如：「我要做新产品立项评审」「新功能上线后数据不好怎么办」"
                 className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-purple/20 focus:border-brand-purple"
@@ -124,43 +95,6 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* API Key Input Modal */}
-          <AnimatePresence>
-            {showKeyInput && (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                className="bg-white rounded-card p-5 border border-amber-200 shadow-card-hover mb-5"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg">🔑</span>
-                  <h3 className="text-sm font-bold text-text-primary">需要 DeepSeek API Key</h3>
-                  <button onClick={() => setShowKeyInput(false)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕</button>
-                </div>
-                <p className="text-xs text-text-secondary mb-3">
-                  AI 推荐需要调用 DeepSeek API。你的 Key 只存在浏览器本地，不会上传到任何服务器。
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="password"
-                    value={tempKey}
-                    onChange={(e) => setTempKey(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSaveKey()}
-                    placeholder="sk-..."
-                    className="flex-1 px-3 py-2 bg-surface border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/20"
-                  />
-                  <button onClick={handleSaveKey} className="btn-primary text-sm px-4 py-2">
-                    保存
-                  </button>
-                </div>
-                <p className="text-[11px] text-text-tertiary mt-2">
-                  前往 <a href="https://platform.deepseek.com" target="_blank" rel="noreferrer" className="text-brand-purple hover:underline">platform.deepseek.com</a> 获取 API Key
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* Search Loading */}
           <AnimatePresence>
             {searching && (
@@ -183,13 +117,6 @@ export default function Skills() {
               </motion.div>
             )}
           </AnimatePresence>
-
-          {/* Search Error Notice */}
-          {searchError && (
-            <div className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mb-4">
-              ⚠️ {searchError}
-            </div>
-          )}
 
           {/* Search Result */}
           <AnimatePresence>
