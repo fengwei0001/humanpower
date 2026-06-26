@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useSkillsStore } from '../stores/skills'
@@ -15,7 +15,17 @@ export default function Skills() {
     setFilterTrack,
     setFilterSort,
     getFilteredSkills,
+    loadSkills,
+    loadMore,
+    hasMore,
+    loading,
+    total,
   } = useSkillsStore()
+
+  // 页面挂载时从 API 加载数据
+  useEffect(() => {
+    loadSkills()
+  }, [])
 
   const [aiQuery, setAiQuery] = useState('')
   const [searching, setSearching] = useState(false)
@@ -202,7 +212,7 @@ export default function Skills() {
           {/* Count + Sort */}
           <div className="flex items-center justify-between mb-4">
             <div className="text-xs text-text-tertiary">
-              共 {filteredSkills.length} 个蒸馏物
+              共 {total} 个蒸馏物{filteredSkills.length < total ? `，已加载 ${filteredSkills.length} 个` : ''}
             </div>
             <div className="flex items-center gap-1 bg-white border border-border rounded-btn p-1">
               {[
@@ -232,7 +242,28 @@ export default function Skills() {
             ))}
           </div>
 
-          {filteredSkills.length === 0 && (
+          {/* Load More */}
+          {hasMore && (
+            <div className="text-center mt-6">
+              <button
+                onClick={() => loadMore()}
+                disabled={loading}
+                className="px-6 py-2.5 rounded-xl bg-white border border-border text-sm text-text-secondary hover:text-text-primary hover:border-brand-purple/30 transition-all disabled:opacity-50"
+              >
+                {loading ? '加载中...' : '加载更多'}
+              </button>
+            </div>
+          )}
+
+          {/* Loading State */}
+          {loading && filteredSkills.length === 0 && (
+            <div className="text-center py-20">
+              <div className="inline-block w-8 h-8 rounded-full border-2 border-brand-purple/20 border-t-brand-purple animate-spin mb-4" />
+              <p className="text-text-secondary">加载中...</p>
+            </div>
+          )}
+
+          {!loading && filteredSkills.length === 0 && (
             <div className="text-center py-20">
               <span className="text-4xl mb-4 block">🔍</span>
               <p className="text-text-secondary">没有找到匹配的蒸馏物</p>

@@ -36,7 +36,7 @@ export default function SkillDetail() {
   }
 
   return (
-    <div className="p-8 max-w-[900px] mx-auto">
+    <div className="p-8 max-w-[960px] mx-auto">
       {/* Back */}
       <button
         onClick={() => navigate(-1)}
@@ -62,7 +62,7 @@ export default function SkillDetail() {
               </div>
               <div className="flex-1">
                 <h1 className="text-xl font-bold text-text-primary">{skill.name}</h1>
-                <p className="text-sm text-text-secondary mt-1">{skill.description}</p>
+                <p className="text-sm text-text-secondary mt-1 leading-relaxed">{skill.description}</p>
                 <div className="flex items-center gap-2 mt-3 flex-wrap">
                   {(skill.trackIds || [skill.trackId]).map((tid) => {
                     const t = tracks.find((tr) => tr.id === tid)
@@ -73,18 +73,15 @@ export default function SkillDetail() {
                     ) : null
                   })}
                   <span className="tag bg-gray-50 text-text-secondary">{skill.subDomain}</span>
-                  {skill.tags.map((tag) => (
-                    <span key={tag} className="tag bg-gray-50 text-text-secondary">{tag}</span>
-                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Scenario */}
+            {/* Scenario — 画面感 */}
             {skill.scenario && (
-              <div className="mb-6 p-4 bg-brand-purple-surface rounded-xl">
-                <div className="text-xs font-semibold text-brand-purple mb-1">💼 适用场景</div>
-                <div className="text-sm text-text-primary">{skill.scenario}</div>
+              <div className="mb-6 p-4 bg-gradient-to-r from-brand-purple-surface to-white rounded-xl border border-brand-purple/10">
+                <div className="text-xs font-semibold text-brand-purple mb-1.5">💼 什么时候用</div>
+                <div className="text-sm text-text-primary leading-relaxed">{skill.scenario}</div>
               </div>
             )}
 
@@ -92,17 +89,28 @@ export default function SkillDetail() {
             <div className="grid grid-cols-2 gap-4 mb-6">
               {skill.input && (
                 <div className="p-4 bg-surface rounded-xl border border-border">
-                  <div className="text-xs font-semibold text-text-tertiary mb-2">📥 输入</div>
-                  <div className="text-sm text-text-primary">{skill.input}</div>
+                  <div className="text-xs font-semibold text-brand-green mb-2">📥 你给什么</div>
+                  <div className="text-sm text-text-primary leading-relaxed">{skill.input}</div>
                 </div>
               )}
               {skill.output && (
                 <div className="p-4 bg-surface rounded-xl border border-border">
-                  <div className="text-xs font-semibold text-text-tertiary mb-2">📤 输出</div>
-                  <div className="text-sm text-text-primary">{skill.output}</div>
+                  <div className="text-xs font-semibold text-brand-green mb-2">📤 你得到什么</div>
+                  <div className="text-sm text-text-primary leading-relaxed">{skill.output}</div>
                 </div>
               )}
             </div>
+
+            {/* Methodology — 核心方法论 */}
+            {skill.methodology && (
+              <div className="mb-6 p-5 bg-white rounded-xl border border-border">
+                <h3 className="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-brand-purple-surface text-brand-purple text-xs flex items-center justify-center">🧬</span>
+                  核心方法论
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed">{skill.methodology}</p>
+              </div>
+            )}
 
             {/* Steps */}
             {skill.steps && skill.steps.length > 0 && (
@@ -120,12 +128,61 @@ export default function SkillDetail() {
                       <span className="w-6 h-6 rounded-full bg-brand-green-surface text-brand-green text-xs font-bold flex items-center justify-center shrink-0">
                         {i + 1}
                       </span>
-                      <span className="text-sm text-text-primary">{step}</span>
+                      <span className="text-sm text-text-primary leading-relaxed">{step}</span>
                     </motion.div>
                   ))}
                 </div>
               </div>
             )}
+
+            {/* Highlights — 为什么比裸 AI 强 */}
+            {skill.highlights && skill.highlights.length > 0 && (
+              <div className="mb-6 p-5 bg-gradient-to-br from-brand-green-surface/50 to-white rounded-xl border border-brand-green/10">
+                <h3 className="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
+                  <span>✨</span> 为什么比直接问 AI 强
+                </h3>
+                <ul className="space-y-2">
+                  {skill.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <span className="text-brand-green mt-0.5 shrink-0">●</span>
+                      <span className="leading-relaxed">{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Pitfalls — 血泪教训 */}
+            {skill.pitfalls && skill.pitfalls.length > 0 && (
+              <div className="mb-6 p-5 bg-white rounded-xl border border-red-100">
+                <h3 className="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
+                  <span>⚠️</span> 这些坑它帮你避了
+                </h3>
+                <ul className="space-y-2.5">
+                  {skill.pitfalls.map((p, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <span className="text-red-400 mt-0.5 shrink-0 text-xs">✗</span>
+                      <span className="leading-relaxed">{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Output Example */}
+            {skill.outputExample && (
+              <div className="mb-6 p-4 bg-gray-900 rounded-xl">
+                <div className="text-xs text-gray-400 mb-2">📦 输出示例</div>
+                <div className="text-sm text-gray-200 leading-relaxed font-mono">{skill.outputExample}</div>
+              </div>
+            )}
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {skill.tags.map((tag) => (
+                <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-surface border border-border text-text-secondary">{tag}</span>
+              ))}
+            </div>
           </motion.div>
         </div>
 
@@ -136,7 +193,7 @@ export default function SkillDetail() {
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-card p-5 border border-border"
+            className="bg-white rounded-card p-5 border border-border sticky top-8"
           >
             <button
               onClick={handleInstall}
@@ -150,7 +207,7 @@ export default function SkillDetail() {
               {isInstalled ? '✓ 已安装' : '📥 安装到我的虾'}
             </button>
             <button className="w-full btn-secondary flex items-center justify-center gap-2 text-sm mb-3">
-              🍴 Fork
+              🍴 Fork 改成我的
             </button>
             <button className="w-full btn-secondary flex items-center justify-center gap-2 text-sm mb-3">
               ⭐ 收藏
@@ -160,62 +217,51 @@ export default function SkillDetail() {
                 href={skill.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full btn-secondary flex items-center justify-center gap-2 text-sm"
+                className="w-full btn-secondary flex items-center justify-center gap-2 text-sm block"
               >
                 🔗 查看源码
               </a>
             )}
-          </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-white rounded-card p-5 border border-border"
-          >
-            <h3 className="text-xs font-semibold text-text-tertiary mb-3">数据</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="stat-number">{skill.installs.toLocaleString()}</div>
-                <div className="stat-label">安装数</div>
-              </div>
-              <div>
-                <div className="stat-number">{skill.citations}</div>
-                <div className="stat-label">引用数</div>
-              </div>
-              <div>
-                <div className="stat-number">{skill.rating}</div>
-                <div className="stat-label">评分</div>
-              </div>
-              <div>
-                <div className="stat-number">{skill.successRate}%</div>
-                <div className="stat-label">成功率</div>
+            {/* Stats */}
+            <div className="mt-5 pt-4 border-t border-border">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="text-center">
+                  <div className="text-lg font-bold text-text-primary">{skill.installs.toLocaleString()}</div>
+                  <div className="text-[11px] text-text-tertiary">安装</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-bold text-text-primary">{skill.citations}</div>
+                  <div className="text-[11px] text-text-tertiary">引用</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-bold text-text-primary">{skill.rating}</div>
+                  <div className="text-[11px] text-text-tertiary">评分</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-bold text-text-primary">{skill.successRate}%</div>
+                  <div className="text-[11px] text-text-tertiary">成功率</div>
+                </div>
               </div>
             </div>
-          </motion.div>
 
-          {/* Creator */}
-          <motion.div
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-white rounded-card p-5 border border-border"
-          >
-            <h3 className="text-xs font-semibold text-text-tertiary mb-3">创作者</h3>
-            <div
-              className="flex items-center gap-3 cursor-pointer hover:bg-surface-hover rounded-lg p-2 -m-2 transition-colors"
-              onClick={() => {
-                const creator = creators.find((c) => c.name === skill.creator.name)
-                if (creator) navigate(`/creators/${creator.id}`)
-              }}
-            >
-              <div className="w-10 h-10 rounded-full bg-brand-green-surface flex items-center justify-center text-xl">
-                {skill.creator.avatar}
-              </div>
-              <div>
-                <div className="text-sm font-medium text-text-primary hover:text-brand-green transition-colors">{skill.creator.name}</div>
-                <div className="text-xs text-text-tertiary">{track?.name}赛道创作者</div>
+            {/* Creator */}
+            <div className="mt-5 pt-4 border-t border-border">
+              <div className="text-[11px] text-text-tertiary mb-2">创作者</div>
+              <div
+                className="flex items-center gap-3 cursor-pointer hover:bg-surface-hover rounded-lg p-2 -m-2 transition-colors"
+                onClick={() => {
+                  const creator = creators.find((c) => c.name === skill.creator.name)
+                  if (creator) navigate(`/creators/${creator.id}`)
+                }}
+              >
+                <div className="w-9 h-9 rounded-full bg-brand-green-surface flex items-center justify-center text-lg">
+                  {skill.creator.avatar}
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-text-primary hover:text-brand-green transition-colors">{skill.creator.name}</div>
+                  <div className="text-[11px] text-text-tertiary">{track?.name}赛道创作者</div>
+                </div>
               </div>
             </div>
           </motion.div>
