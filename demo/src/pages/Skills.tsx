@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useSkillsStore } from '../stores/skills'
 import { tracks } from '../data/tracks'
 import { sampleCombos } from '../data/agent-activity'
+import { hasApiKey, setApiKey } from '../services/ai'
+import { aiSearchSkills, localSearchSkills, type SearchResult } from '../services/ai-search'
 import SkillCard from '../components/SkillCard'
 
 export default function Skills() {
@@ -11,30 +13,64 @@ export default function Skills() {
   const {
     filterTrack,
     filterSort,
-    searchQuery,
     setFilterTrack,
     setFilterSort,
-    setSearchQuery,
     getFilteredSkills,
-    getTopSkills,
   } = useSkillsStore()
 
   const [aiQuery, setAiQuery] = useState('')
-  const [showCombo, setShowCombo] = useState<typeof sampleCombos[0] | null>(null)
+  const [searching, setSearching] = useState(false)
+  const [searchResult, setSearchResult] = useState<SearchResult | null>(null)
+  const [searchError, setSearchError] = useState<string | null>(null)
+  const [showKeyInput, setShowKeyInput] = useState(false)
+  const [tempKey, setTempKey] = useState('')
 
   const filteredSkills = getFilteredSkills()
-  const topSkills = getTopSkills(5)
 
-  const handleAiSearch = () => {
-    if (!aiQuery.trim()) return
-    const match = sampleCombos.find((c) =>
-      aiQuery.includes('立项') || aiQuery.includes('评审')
-        ? c.id === 'combo-1'
-        : aiQuery.includes('数据') || aiQuery.includes('上线')
-        ? c.id === 'combo-2'
-        : c.id === 'combo-3'
-    )
-    setShowCombo(match || sampleCombos[0])
+  const handleAiSearch = async (query?: string) => {
+    const q = (query || aiQuery).trim()
+    if (!q) return
+
+    setSearchError(null)
+    setSearchResult(null)
+
+    // 检查 API Key
+    if (!hasApiKey()) {
+      setShowKeyInput(true)
+      return
+    }
+
+    setSearching(true)
+
+    try {
+      const result = await aiSearchSkills(q)
+      setSearchResult(result)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : '搜索失败'
+      if (message === 'NO_API_KEY') {
+        setShowKeyInput(true)
+      } else {
+        // Fallback 到本地搜索
+        console.warn('AI 搜索失败，使用本地匹配:', message)
+        const fallback = localSearchSkills(q)
+        setSearchResult(fallback)
+        setSearchError('AI 服务暂时不可用，已用本地匹配')
+      }
+    } finally {
+      setSearching(false)
+    }
+  }
+
+  const handleSaveKey = () => {
+    if (tempKey.trim()) {
+      setApiKey(tempKey.trim())
+      setShowKeyInput(false)
+      setTempKey('')
+      // 保存后自动搜索
+      if (aiQuery.trim()) {
+        setTimeout(() => handleAiSearch(), 100)
+      }
+    }
   }
 
   return (
@@ -61,21 +97,27 @@ export default function Skills() {
               <input
                 type="text"
                 value={aiQuery}
-                onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setShowCombo(null) }}
+                onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) { setSearchResult(null); setSearchError(null) } }}
                 onKeyDown={(e) => e.key === 'Enter' && handleAiSearch()}
                 placeholder="比如：「我要做新产品立项评审」「新功能上线后数据不好怎么办」"
                 className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-purple/20 focus:border-brand-purple"
+                disabled={searching}
               />
-              <button onClick={handleAiSearch} className="btn-purple px-5 py-3">
-                推荐方案
+              <button
+                onClick={() => handleAiSearch()}
+                disabled={searching || !aiQuery.trim()}
+                className="btn-purple px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {searching ? '搜索中...' : '推荐方案'}
               </button>
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
               {sampleCombos.map((combo) => (
                 <button
                   key={combo.id}
-                  onClick={() => { setAiQuery(combo.question); setShowCombo(combo) }}
+                  onClick={() => { setAiQuery(combo.question); handleAiSearch(combo.question) }}
                   className="text-xs px-3 py-1.5 rounded-full bg-brand-purple-surface text-brand-purple hover:bg-brand-purple/10 transition-colors"
+                  disabled={searching}
                 >
                   {combo.question}
                 </button>
@@ -83,9 +125,76 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Combo Result */}
+          {/* API Key Input Modal */}
           <AnimatePresence>
-            {showCombo && (
+            {showKeyInput && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                className="bg-white rounded-card p-5 border border-amber-200 shadow-card-hover mb-5"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg">🔑</span>
+                  <h3 className="text-sm font-bold text-text-primary">需要 DeepSeek API Key</h3>
+                  <button onClick={() => setShowKeyInput(false)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕</button>
+                </div>
+                <p className="text-xs text-text-secondary mb-3">
+                  AI 推荐需要调用 DeepSeek API。你的 Key 只存在浏览器本地，不会上传到任何服务器。
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    type="password"
+                    value={tempKey}
+                    onChange={(e) => setTempKey(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSaveKey()}
+                    placeholder="sk-..."
+                    className="flex-1 px-3 py-2 bg-surface border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/20"
+                  />
+                  <button onClick={handleSaveKey} className="btn-primary text-sm px-4 py-2">
+                    保存
+                  </button>
+                </div>
+                <p className="text-[11px] text-text-tertiary mt-2">
+                  前往 <a href="https://platform.deepseek.com" target="_blank" rel="noreferrer" className="text-brand-purple hover:underline">platform.deepseek.com</a> 获取 API Key
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Search Loading */}
+          <AnimatePresence>
+            {searching && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-5"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="relative w-8 h-8">
+                    <div className="absolute inset-0 rounded-full border-2 border-brand-purple/20" />
+                    <div className="absolute inset-0 rounded-full border-2 border-brand-purple border-t-transparent animate-spin" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-text-primary">🧠 正在为你分析...</p>
+                    <p className="text-xs text-text-tertiary mt-0.5">从 {filteredSkills.length} 个蒸馏物中匹配最佳方案</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Search Error Notice */}
+          {searchError && (
+            <div className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mb-4">
+              ⚠️ {searchError}
+            </div>
+          )}
+
+          {/* Search Result */}
+          <AnimatePresence>
+            {searchResult && searchResult.skills.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -95,13 +204,13 @@ export default function Skills() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">🧩</span>
                   <h3 className="text-base font-bold text-text-primary">推荐方案</h3>
-                  <button onClick={() => setShowCombo(null)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕ 关闭</button>
+                  <button onClick={() => setSearchResult(null)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕ 关闭</button>
                 </div>
-                <p className="text-sm text-text-secondary mb-5">{showCombo.description}</p>
+                <p className="text-sm text-text-secondary mb-5">{searchResult.description}</p>
                 <div className="relative">
                   <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-brand-purple to-brand-green rounded" />
                   <div className="space-y-4">
-                    {showCombo.skills.map((skill, i) => (
+                    {searchResult.skills.map((skill, i) => (
                       <motion.div key={skill.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.15 }} className="flex items-center gap-4 relative">
                         <div className="w-12 h-12 rounded-full bg-brand-purple-surface flex items-center justify-center text-sm font-bold text-brand-purple z-10 border-2 border-white">{i + 1}</div>
                         <div className="flex-1 p-4 bg-surface rounded-xl border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/30 transition-all cursor-pointer" onClick={() => navigate(`/skills/${skill.id}`)}>
@@ -116,6 +225,22 @@ export default function Skills() {
                   <span className="text-xs text-text-tertiary">Agent 可以按这个顺序自动执行</span>
                   <button className="btn-primary text-sm px-4 py-2">🚀 一键执行全部</button>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* No Result */}
+          <AnimatePresence>
+            {searchResult && searchResult.skills.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                className="bg-white rounded-card p-5 border border-border mb-5 text-center"
+              >
+                <span className="text-2xl">🤔</span>
+                <p className="text-sm text-text-secondary mt-2">{searchResult.description}</p>
+                <p className="text-xs text-text-tertiary mt-1">试试描述得更具体一些，比如「我需要做竞品分析报告」</p>
               </motion.div>
             )}
           </AnimatePresence>
