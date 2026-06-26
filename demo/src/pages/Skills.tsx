@@ -140,18 +140,35 @@ export default function Skills() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">🧩</span>
                   <h3 className="text-base font-bold text-text-primary">推荐方案</h3>
+                  {searchResult.confidence && (
+                    <span className={`text-[11px] px-2 py-0.5 rounded-full ${
+                      searchResult.confidence === 'high' ? 'bg-brand-green-surface text-brand-green' :
+                      searchResult.confidence === 'medium' ? 'bg-amber-50 text-amber-600' :
+                      'bg-gray-100 text-text-tertiary'
+                    }`}>
+                      {searchResult.confidence === 'high' ? '高匹配' : searchResult.confidence === 'medium' ? '部分匹配' : '仅供参考'}
+                    </span>
+                  )}
                   <button onClick={() => setSearchResult(null)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕ 关闭</button>
                 </div>
-                <p className="text-sm text-text-secondary mb-5">{searchResult.description}</p>
-                <div className="relative">
+                <p className="text-sm text-text-secondary">{searchResult.description}</p>
+                {searchResult.reasoning && (
+                  <p className="text-xs text-text-tertiary mt-1 italic">💡 {searchResult.reasoning}</p>
+                )}
+                <div className="relative mt-5">
                   <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-brand-purple to-brand-green rounded" />
                   <div className="space-y-4">
                     {searchResult.skills.map((skill, i) => (
                       <motion.div key={skill.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.15 }} className="flex items-center gap-4 relative">
                         <div className="w-12 h-12 rounded-full bg-brand-purple-surface flex items-center justify-center text-sm font-bold text-brand-purple z-10 border-2 border-white">{i + 1}</div>
                         <div className="flex-1 p-4 bg-surface rounded-xl border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/30 transition-all cursor-pointer" onClick={() => navigate(`/skills/${skill.id}`)}>
-                          <div className="text-sm font-semibold text-text-primary">{skill.name}</div>
-                          <div className="text-xs text-text-secondary mt-0.5">{skill.role}</div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-semibold text-text-primary">{skill.name}</span>
+                            <span className="text-[11px] text-brand-purple bg-brand-purple-surface px-1.5 py-0.5 rounded">{skill.role}</span>
+                          </div>
+                          {skill.why && (
+                            <div className="text-xs text-text-tertiary mt-1">→ {skill.why}</div>
+                          )}
                         </div>
                       </motion.div>
                     ))}
@@ -176,6 +193,7 @@ export default function Skills() {
               >
                 <span className="text-2xl">🤔</span>
                 <p className="text-sm text-text-secondary mt-2">{searchResult.description}</p>
+                {searchResult.reasoning && <p className="text-xs text-text-tertiary mt-1 italic">{searchResult.reasoning}</p>}
                 <p className="text-xs text-text-tertiary mt-1">试试描述得更具体一些，比如「我需要做竞品分析报告」</p>
               </motion.div>
             )}
