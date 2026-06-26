@@ -142,12 +142,15 @@ export function localSearchSkills(query: string): SearchResult {
     return { description: '暂时没找到匹配的蒸馏物，试试换个描述？', skills: [] }
   }
 
+  // 用 skill 自身的 scenario 或 subDomain 生成更有意义的 role
+  const roles = ['先用这个切入', '再用这个深挖', '然后量化验证', '最后收尾总结']
+
   return {
-    description: `为你找到 ${scored.length} 个相关蒸馏物`,
+    description: `为你找到 ${scored.length} 个相关蒸馏物，组合使用效果更佳`,
     skills: scored.map((s, i) => ({
       id: s.skill.id,
       name: s.skill.name,
-      role: i === 0 ? '核心方案' : '辅助参考',
+      role: roles[i] || s.skill.subDomain,
     })),
   }
 }

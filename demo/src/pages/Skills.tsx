@@ -50,11 +50,10 @@ export default function Skills() {
       if (message === 'NO_API_KEY') {
         setShowKeyInput(true)
       } else {
-        // Fallback 到本地搜索
+        // Fallback 到本地搜索（静默降级，不提示用户）
         console.warn('AI 搜索失败，使用本地匹配:', message)
         const fallback = localSearchSkills(q)
         setSearchResult(fallback)
-        setSearchError('AI 服务暂时不可用，已用本地匹配')
       }
     } finally {
       setSearching(false)
