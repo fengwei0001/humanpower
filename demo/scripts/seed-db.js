@@ -6,8 +6,7 @@
  *
  * 前置:
  *   1. 确保数据库已创建: createdb humanpower
- *   2. 已执行 migration: psql $DATABASE_URL -f scripts/migrations/001_create_skills.sql
- *   3. 已拉取数据: node scripts/fetch-skills.js
+ *   2. 已拉取数据: node scripts/fetch-skills.js
  */
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -25,19 +24,19 @@ const __dirname = dirname(__filename);
 
 const TAG_TO_TRACK = {
   'dev': 'engineer',
-  'tools': 'engineer',       // 大部分工具类是开发相关
+  'tools': 'engineer',
   'ai-lab': 'engineer',
   'content': 'ops',
   'marketing': 'ops',
   'office': 'pm',
   'finance': 'ops',
-  'learning': null,          // 需要按内容细分
+  'learning': null,
   'lifestyle': null,
   'gaming': null,
   'fantasy': null,
 };
 
-// 基于关键词的二次分类（对 tools 类做细分）
+// 基于关键词的二次分类
 const KEYWORD_TRACK_RULES = [
   // PM 相关
   { keywords: ['prd', '产品', 'product', '需求', 'requirement', '评审', 'review board', '原型', 'prototype'], track: 'pm', subDomain: 'PRD写作' },
@@ -45,29 +44,34 @@ const KEYWORD_TRACK_RULES = [
   { keywords: ['用户研究', 'user research', '用户洞察', '用户画像'], track: 'pm', subDomain: '用户洞察' },
   { keywords: ['增长', 'growth', '留存', 'retention', '转化', 'conversion'], track: 'pm', subDomain: '用户增长' },
   { keywords: ['汇报', '演示', 'presentation', 'ppt', 'slide'], track: 'pm', subDomain: '汇报演示' },
+  { keywords: ['项目管理', 'project manage', 'jira', 'sprint', 'agile'], track: 'pm', subDomain: '项目管理' },
 
   // 工程师相关
-  { keywords: ['code review', '代码审查', 'review'], track: 'engineer', subDomain: 'Code Review' },
-  { keywords: ['debug', '调试', 'bug', 'fix', '排查'], track: 'engineer', subDomain: 'Debug' },
-  { keywords: ['架构', 'architecture', 'system design', '设计模式'], track: 'engineer', subDomain: '架构设计' },
-  { keywords: ['前端', 'frontend', 'react', 'vue', 'css', 'html', 'nextjs', 'next.js', 'tailwind'], track: 'engineer', subDomain: '前端开发' },
-  { keywords: ['test', '测试', 'tdd', 'unit test', 'jest'], track: 'engineer', subDomain: 'TDD' },
-  { keywords: ['git', 'cli', 'docker', 'deploy', '部署', 'devops', 'ci/cd'], track: 'engineer', subDomain: '项目管理' },
+  { keywords: ['code review', '代码审查', 'review code'], track: 'engineer', subDomain: 'Code Review' },
+  { keywords: ['debug', '调试', 'bug', 'fix', '排查', 'troubleshoot'], track: 'engineer', subDomain: 'Debug' },
+  { keywords: ['架构', 'architecture', 'system design', '设计模式', 'microservice'], track: 'engineer', subDomain: '架构设计' },
+  { keywords: ['前端', 'frontend', 'react', 'vue', 'css', 'html', 'nextjs', 'next.js', 'tailwind', 'svelte'], track: 'engineer', subDomain: '前端开发' },
+  { keywords: ['test', '测试', 'tdd', 'unit test', 'jest', 'vitest', 'cypress'], track: 'engineer', subDomain: 'TDD' },
+  { keywords: ['git', 'cli', 'docker', 'deploy', '部署', 'devops', 'ci/cd', 'kubernetes', 'k8s'], track: 'engineer', subDomain: '项目管理' },
+  { keywords: ['python', 'javascript', 'typescript', 'rust', 'golang', 'java', 'swift', 'kotlin'], track: 'engineer', subDomain: '前端开发' },
+  { keywords: ['api', 'rest', 'graphql', 'backend', '后端', 'database', '数据库', 'sql', 'redis'], track: 'engineer', subDomain: '架构设计' },
 
   // 设计师相关
   { keywords: ['设计', 'design', 'ui', 'ux', '视觉', 'figma', 'sketch'], track: 'designer', subDomain: '视觉设计' },
-  { keywords: ['交互', 'interaction', '原型', 'wireframe'], track: 'designer', subDomain: '交互设计' },
+  { keywords: ['交互', 'interaction', 'wireframe', 'prototype'], track: 'designer', subDomain: '交互设计' },
   { keywords: ['品牌', 'brand', 'logo', '标识'], track: 'designer', subDomain: '品牌设计' },
+  { keywords: ['动效', 'animation', 'motion', 'lottie'], track: 'designer', subDomain: '动效设计' },
 
   // 运营相关
   { keywords: ['运营', 'operation', '社群', 'community', '社区'], track: 'ops', subDomain: '社群运营' },
   { keywords: ['活动', 'campaign', '策划', 'event'], track: 'ops', subDomain: '活动策划' },
-  { keywords: ['内容', 'content', '文案', 'copy', '写作', 'writing', 'blog', 'seo'], track: 'ops', subDomain: '内容策略' },
+  { keywords: ['内容', 'content', '文案', 'copy', '写作', 'writing', 'blog', 'seo', 'article'], track: 'ops', subDomain: '内容策略' },
+  { keywords: ['数据运营', '报表', 'dashboard', '看板'], track: 'ops', subDomain: '数据运营' },
 
   // HR 相关
-  { keywords: ['招聘', 'recruit', '面试', 'interview', '简历', 'resume', 'hr'], track: 'hr', subDomain: '面试评估' },
+  { keywords: ['招聘', 'recruit', '面试', 'interview', '简历', 'resume', 'hr', '人才'], track: 'hr', subDomain: '面试评估' },
   { keywords: ['绩效', 'performance', 'okr', 'kpi'], track: 'hr', subDomain: '绩效设计' },
-  { keywords: ['团队', 'team', '文化', 'culture'], track: 'hr', subDomain: '团队文化' },
+  { keywords: ['团队', 'team', '文化', 'culture', '组织'], track: 'hr', subDomain: '团队文化' },
 ];
 
 function classifySkill(skill) {
@@ -89,7 +93,7 @@ function classifySkill(skill) {
     }
   }
 
-  // 默认归入 engineer（大部分 tools 类的 skill 是开发工具）
+  // 默认归入 engineer
   return { trackId: 'engineer', subDomain: null };
 }
 

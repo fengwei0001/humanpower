@@ -40,7 +40,6 @@ async function main() {
       if (page < TOTAL_PAGES) await sleep(DELAY_MS);
     } catch (err) {
       console.error(`  ✗ page ${page} failed: ${err.message}`);
-      // 重试一次
       await sleep(1000);
       try {
         const data = await fetchPage(page);

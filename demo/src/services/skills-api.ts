@@ -52,7 +52,6 @@ export interface FetchSkillsResponse {
 const AVATARS = ['👨‍💻', '👩‍💻', '🧑‍💼', '👨‍🎨', '👩‍🔬', '🧑‍🏫', '👨‍🚀', '🤖', '🦊', '🐱']
 
 function getAvatar(creator: string): string {
-  // 根据 creator 名字稳定映射一个头像
   let hash = 0
   for (let i = 0; i < creator.length; i++) {
     hash = ((hash << 5) - hash) + creator.charCodeAt(i)

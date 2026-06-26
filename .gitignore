@@ -3,3 +3,7 @@ dist/
 .DS_Store
 *.local
 .claude/
+
+# 数据文件（通过脚本生成，不入库）
+demo/scripts/raw_*.json
+demo/.env
