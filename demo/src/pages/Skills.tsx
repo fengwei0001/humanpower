@@ -121,7 +121,7 @@ export default function Skills() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-text-primary">🧠 正在为你分析...</p>
-                    <p className="text-xs text-text-tertiary mt-0.5">从 {filteredSkills.length} 个蒸馏物中匹配最佳方案</p>
+                    <p className="text-xs text-text-tertiary mt-0.5">从 {total} 个蒸馏物中匹配最佳方案</p>
                   </div>
                 </div>
               </motion.div>
