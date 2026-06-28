@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useSkillsStore } from '../stores/skills'
 import { useUserStore } from '../stores/user'
 import { tracks } from '../data/tracks'
 import { creators } from '../data/creators'
+import { fetchSkillById } from '../services/skills-api'
+import type { Skill } from '../data/skills'
 
 export default function SkillDetail() {
   const { id } = useParams()
@@ -11,7 +14,33 @@ export default function SkillDetail() {
   const getSkillById = useSkillsStore((s) => s.getSkillById)
   const { installedSkills, installSkill, user } = useUserStore()
 
-  const skill = getSkillById(id || '')
+  const [remoteSkill, setRemoteSkill] = useState<Skill | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  // 先从 store 找，找不到从 API 拉
+  const localSkill = getSkillById(id || '')
+
+  useEffect(() => {
+    if (!localSkill && id?.startsWith('db-')) {
+      setLoading(true)
+      const dbId = parseInt(id.replace('db-', ''))
+      fetchSkillById(dbId).then(s => {
+        setRemoteSkill(s)
+        setLoading(false)
+      }).catch(() => setLoading(false))
+    }
+  }, [id, localSkill])
+
+  const skill = localSkill || remoteSkill
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="inline-block w-8 h-8 rounded-full border-2 border-brand-purple/20 border-t-brand-purple animate-spin" />
+      </div>
+    )
+  }
+
   if (!skill) {
     return (
       <div className="flex items-center justify-center h-full">
