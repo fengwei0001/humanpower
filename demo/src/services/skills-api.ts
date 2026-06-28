@@ -143,3 +143,29 @@ export async function fetchTrackStats(): Promise<Array<{
   const json = await resp.json()
   return json.data
 }
+
+/**
+ * 获取 AI 搜索上下文（所有有优化内容的 skill 摘要）
+ */
+export interface SearchContextSkill {
+  id: number
+  name: string
+  display_name: string
+  display_desc: string
+  scenario: string | null
+  input: string | null
+  output: string | null
+  tags: string[]
+  track_id: string | null
+  track_ids: string[]
+  sub_domain: string | null
+  download_count: number
+}
+
+export async function fetchSearchContext(): Promise<SearchContextSkill[]> {
+  const resp = await fetch('/api/skills/search-context')
+  if (!resp.ok) return []
+
+  const json = await resp.json()
+  return json.data || []
+}

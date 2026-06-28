@@ -48,8 +48,30 @@ export const useSkillsStore = create<SkillsState>((set, get) => ({
   setSearchQuery: (query) => set({ searchQuery: query }),
 
   loadSkills: async () => {
-    // 暂时只展示本地精品 skill，等线上数据按 content-standard 优化完再切换
-    set({ loading: false, initialized: true })
+    const { filterTrack, filterSort, searchQuery } = get()
+    set({ loading: true })
+
+    try {
+      const result = await fetchSkills({
+        page: 1,
+        pageSize: 20,
+        track: filterTrack || undefined,
+        search: searchQuery || undefined,
+        sort: filterSort,
+      })
+
+      set({
+        skills: result.skills,
+        total: result.total,
+        page: 1,
+        hasMore: result.pageSize < result.total,
+        loading: false,
+        initialized: true,
+      })
+    } catch {
+      // API 不可用，保持本地数据
+      set({ loading: false, initialized: true })
+    }
   },
 
   loadMore: async () => {

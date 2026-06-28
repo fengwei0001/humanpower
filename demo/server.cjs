@@ -162,7 +162,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // ─── API: 技能列表 ───
+    // ─── API: 技能列表（只返回有优化内容的） ───
     if (req.method === 'GET' && pathname === '/api/skills') {
       if (!pool) {
         sendJSON(res, 503, { error: 'Database not configured' });
@@ -176,7 +176,8 @@ const server = http.createServer(async (req, res) => {
       const search = params.search || null;
       const sort = params.sort || 'hot';
 
-      let where = [];
+      // 只展示有优化内容的 skill
+      let where = ["display_name IS NOT NULL AND display_name != ''"];
       let queryParams = [];
       let paramIdx = 1;
 
@@ -187,12 +188,12 @@ const server = http.createServer(async (req, res) => {
       }
 
       if (search) {
-        where.push(`(name ILIKE $${paramIdx} OR alias ILIKE $${paramIdx} OR description ILIKE $${paramIdx})`);
+        where.push(`(display_name ILIKE $${paramIdx} OR display_desc ILIKE $${paramIdx} OR alias ILIKE $${paramIdx} OR name ILIKE $${paramIdx})`);
         queryParams.push(`%${search}%`);
         paramIdx++;
       }
 
-      const whereClause = where.length > 0 ? `WHERE ${where.join(' AND ')}` : '';
+      const whereClause = `WHERE ${where.join(' AND ')}`;
 
       let orderBy;
       switch (sort) {
@@ -217,6 +218,26 @@ const server = http.createServer(async (req, res) => {
         code: 200,
         data: { total: parseInt(total), page, pageSize, list: rows },
       });
+      return;
+    }
+
+    // ─── API: AI 搜索上下文（返回所有有优化内容的 skill 摘要） ───
+    if (req.method === 'GET' && pathname === '/api/skills/search-context') {
+      if (!pool) {
+        sendJSON(res, 503, { error: 'Database not configured' });
+        return;
+      }
+
+      const { rows } = await pool.query(`
+        SELECT id, name, display_name, display_desc, scenario, input, output,
+               tags, track_id, track_ids, sub_domain, download_count
+        FROM skills
+        WHERE display_name IS NOT NULL AND display_name != ''
+        ORDER BY download_count DESC
+        LIMIT 500
+      `);
+
+      sendJSON(res, 200, { code: 200, data: rows });
       return;
     }
 
