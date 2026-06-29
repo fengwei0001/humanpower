@@ -1,0 +1,12 @@
+{
+  "name": "distill",
+  "description": "从蒸馏社区自动发现更好的方法论。你的 Agent 干活时，会自动搜索社区里经过验证的 Skill，帮你用更好的方法完成任务。",
+  "version": "1.0.0",
+  "author": {
+    "name": "Distill Community",
+    "url": "https://humanpower-production.up.railway.app"
+  },
+  "homepage": "https://humanpower-production.up.railway.app",
+  "repository": "https://github.com/fengwei0001/humanpower",
+  "license": "MIT"
+}

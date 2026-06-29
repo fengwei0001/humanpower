@@ -1,0 +1,15 @@
+{
+  "name": "distill-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Distill Community - search and recommend skills",
+  "type": "module",
+  "bin": {
+    "distill-mcp-server": "./src/server.js"
+  },
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  }
+}

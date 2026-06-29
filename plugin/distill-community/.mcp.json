@@ -1,0 +1,7 @@
+{
+  "distill-community": {
+    "command": "node",
+    "args": ["src/server.js"],
+    "cwd": "."
+  }
+}
