@@ -47,13 +47,14 @@ export default function SkillDetail() {
 
   const skill = localSkill || remoteSkill
 
-  // 加载实战帖（用 tags 中的核心中文词搜索，更精准）
+  // 加载实战帖（用 skill 的原始英文名搜索，最精准）
   const [feeds, setFeeds] = useState<FeedItem[]>([])
   useEffect(() => {
     if (!skill) return
-    // 优先用 tags 里的中文词，过滤掉英文系统标签
-    const chineseTags = skill.tags.filter(t => /[一-鿿]/.test(t) && !['featured'].includes(t))
-    const keyword = chineseTags[0] || skill.name.replace(/[?？！!，。「」]/g, '').slice(0, 8)
+    // 从 sourceUrl 提取原始 skill name（如 clawhub.ai/user/skill-name → skill-name）
+    const slug = skill.sourceUrl?.split('/').pop() || ''
+    // 用原始 slug 搜索，如果没有就用 alias 或 tags
+    const keyword = slug || skill.tags.find(t => /[一-鿿]/.test(t)) || skill.name.slice(0, 8)
     fetch(`/api/feeds/search?keyword=${encodeURIComponent(keyword)}`)
       .then(r => r.json())
       .then(d => { if (d.data?.list) setFeeds(d.data.list.slice(0, 3)) })
