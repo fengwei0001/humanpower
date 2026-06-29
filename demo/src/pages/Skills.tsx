@@ -151,9 +151,9 @@ export default function Skills() {
                   )}
                   <button onClick={() => setSearchResult(null)} className="ml-auto text-xs text-text-tertiary hover:text-text-primary">✕ 关闭</button>
                 </div>
-                <p className="text-sm text-text-secondary">{searchResult.description}</p>
+                <p className="text-[15px] text-text-primary leading-relaxed font-medium">{searchResult.description}</p>
                 {searchResult.reasoning && (
-                  <p className="text-xs text-text-tertiary mt-1 italic">💡 {searchResult.reasoning}</p>
+                  <p className="text-sm text-text-secondary mt-2 leading-relaxed">💡 {searchResult.reasoning}</p>
                 )}
                 <div className="relative mt-5">
                   <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-brand-purple to-brand-green rounded" />
@@ -162,12 +162,12 @@ export default function Skills() {
                       <motion.div key={skill.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.15 }} className="flex items-center gap-4 relative">
                         <div className="w-12 h-12 rounded-full bg-brand-purple-surface flex items-center justify-center text-sm font-bold text-brand-purple z-10 border-2 border-white">{i + 1}</div>
                         <div className="flex-1 p-4 bg-surface rounded-xl border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/30 transition-all cursor-pointer" onClick={() => navigate(`/skills/${skill.id}`)}>
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-text-primary">{skill.name}</span>
-                            <span className="text-[11px] text-brand-purple bg-brand-purple-surface px-1.5 py-0.5 rounded">{skill.role}</span>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[15px] font-bold text-text-primary">{skill.name}</span>
+                            <span className="text-xs text-brand-purple bg-brand-purple-surface px-2 py-0.5 rounded-full font-medium">{skill.role}</span>
                           </div>
                           {skill.why && (
-                            <div className="text-xs text-text-tertiary mt-1">→ {skill.why}</div>
+                            <div className="text-[13px] text-text-secondary mt-1.5 leading-relaxed">→ {skill.why}</div>
                           )}
                         </div>
                       </motion.div>
