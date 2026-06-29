@@ -315,7 +315,7 @@ export default function SkillDetail() {
                       rel="noopener noreferrer"
                       className="block p-3 bg-surface rounded-lg border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/20 transition-all"
                     >
-                      <div className="text-sm text-text-primary font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: feed.title.replace(/<em class="highlight">/g, '<mark class="bg-yellow-100 text-text-primary rounded px-0.5">').replace(/<\/em>/g, '</mark>') }} />
+                      <div className="text-sm text-text-primary font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: feed.title.replace(/<em class="highlight">/g, '').replace(/<\/em>/g, '') }} />
                       <div className="flex items-center gap-3 mt-2 text-xs text-text-tertiary">
                         <span>👍 {feed.upvotes}</span>
                         <span>💬 {feed.commentCount}</span>
