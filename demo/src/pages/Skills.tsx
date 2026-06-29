@@ -30,6 +30,9 @@ export default function Skills() {
   const [aiQuery, setAiQuery] = useState('')
   const [searching, setSearching] = useState(false)
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null)
+  const [showInstallModal, setShowInstallModal] = useState(false)
+  const [installPlatform, setInstallPlatform] = useState<'claude' | 'hermes' | 'openclaw'>('claude')
+  const [copied, setCopied] = useState(false)
 
   const filteredSkills = getFilteredSkills()
 
@@ -175,9 +178,109 @@ export default function Skills() {
                   </div>
                 </div>
                 <div className="mt-5 pt-4 border-t border-border flex items-center justify-between">
-                  <span className="text-xs text-text-tertiary">Agent 可以按这个顺序自动执行</span>
-                  <button className="btn-primary text-sm px-4 py-2">🚀 一键执行全部</button>
+                  <span className="text-xs text-text-tertiary">安装后，跟你的 Agent 一起按这个顺序完成任务</span>
+                  <button
+                    className="btn-primary text-sm px-4 py-2"
+                    onClick={() => setShowInstallModal(true)}
+                  >
+                    📦 一键安装全部
+                  </button>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Install Modal */}
+          <AnimatePresence>
+            {showInstallModal && searchResult && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+                onClick={() => setShowInstallModal(false)}
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className="bg-white rounded-2xl p-6 w-full max-w-lg shadow-xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-text-primary">📦 安装推荐的技能</h3>
+                    <button onClick={() => setShowInstallModal(false)} className="text-text-tertiary hover:text-text-primary text-xl">×</button>
+                  </div>
+
+                  <p className="text-sm text-text-secondary mb-4">
+                    复制以下命令到你的 Agent 终端中执行，即可安装全部推荐技能。
+                  </p>
+
+                  {/* Platform Tabs */}
+                  <div className="flex gap-1 bg-surface rounded-lg p-1 mb-4">
+                    {([
+                      { key: 'claude' as const, label: 'Claude Code' },
+                      { key: 'hermes' as const, label: 'Hermes' },
+                      { key: 'openclaw' as const, label: 'OpenClaw' },
+                    ]).map(p => (
+                      <button
+                        key={p.key}
+                        onClick={() => setInstallPlatform(p.key)}
+                        className={`flex-1 text-xs font-medium py-2 rounded-md transition-all ${
+                          installPlatform === p.key
+                            ? 'bg-white text-text-primary shadow-sm'
+                            : 'text-text-tertiary hover:text-text-secondary'
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Commands */}
+                  <div className="bg-gray-900 rounded-xl p-4 font-mono text-sm leading-relaxed overflow-x-auto">
+                    {searchResult.skills.map((skill, i) => {
+                      const slug = skill.id.replace('db-', '')
+                      const cmd = installPlatform === 'claude'
+                        ? `/skill install distill/${skill.name}`
+                        : installPlatform === 'hermes'
+                        ? `hermes skills install distill/${skill.name}`
+                        : `openclaw skills install distill/${skill.name}`
+                      return (
+                        <div key={skill.id} className="text-green-400">
+                          <span className="text-gray-500"># {i + 1}. {skill.name}</span>
+                          {'\n'}
+                          {cmd}
+                          {i < searchResult.skills.length - 1 && '\n\n'}
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Copy Button */}
+                  <button
+                    className="w-full btn-primary mt-4 py-3"
+                    onClick={() => {
+                      const commands = searchResult.skills.map((skill, i) => {
+                        const prefix = installPlatform === 'claude'
+                          ? '/skill install'
+                          : installPlatform === 'hermes'
+                          ? 'hermes skills install'
+                          : 'openclaw skills install'
+                        return `${prefix} distill/${skill.name}`
+                      }).join('\n')
+                      navigator.clipboard.writeText(commands)
+                      setCopied(true)
+                      setTimeout(() => setCopied(false), 2000)
+                    }}
+                  >
+                    {copied ? '✓ 已复制！' : '复制安装命令'}
+                  </button>
+
+                  <p className="text-xs text-text-tertiary mt-3 text-center">
+                    安装完成后，跟你的 Agent 说你想完成的任务，它会自动使用这些技能
+                  </p>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
