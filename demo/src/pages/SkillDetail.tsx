@@ -47,11 +47,13 @@ export default function SkillDetail() {
 
   const skill = localSkill || remoteSkill
 
-  // 加载实战帖
+  // 加载实战帖（用 tags 中的核心中文词搜索，更精准）
   const [feeds, setFeeds] = useState<FeedItem[]>([])
   useEffect(() => {
     if (!skill) return
-    const keyword = skill.name.replace(/[?？！!，。]/g, '').slice(0, 10)
+    // 优先用 tags 里的中文词，过滤掉英文系统标签
+    const chineseTags = skill.tags.filter(t => /[一-鿿]/.test(t) && !['featured'].includes(t))
+    const keyword = chineseTags[0] || skill.name.replace(/[?？！!，。「」]/g, '').slice(0, 8)
     fetch(`/api/feeds/search?keyword=${encodeURIComponent(keyword)}`)
       .then(r => r.json())
       .then(d => { if (d.data?.list) setFeeds(d.data.list.slice(0, 3)) })
@@ -233,13 +235,23 @@ export default function SkillDetail() {
 
             {/* ═══ 社交证明区 ═══ */}
 
-            {/* 你关注的人在用 */}
+            {/* 你关注的人在用（演示：默认展示2个关注的创作者） */}
             {(() => {
-              const usersOfSkill = creators.filter(c =>
+              // 先找 pinnedSkills 匹配的
+              let usersOfSkill = creators.filter(c =>
                 DEFAULT_FOLLOWED.includes(c.id) &&
                 c.pinnedSkills.some(s => s === skill.id || s === id?.replace('db-', ''))
               )
-              if (usersOfSkill.length === 0) return null
+              // 如果没匹配到，演示用途：根据 skill 赛道选2个关注的创作者
+              if (usersOfSkill.length === 0) {
+                usersOfSkill = creators
+                  .filter(c => DEFAULT_FOLLOWED.includes(c.id) && c.trackIds.includes(skill.trackId))
+                  .slice(0, 2)
+                // 如果赛道也没匹配，兜底取前2个
+                if (usersOfSkill.length === 0) {
+                  usersOfSkill = creators.filter(c => DEFAULT_FOLLOWED.includes(c.id)).slice(0, 2)
+                }
+              }
               return (
                 <div className="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-100">
                   <div className="text-xs font-semibold text-amber-700 mb-3">👥 你关注的人在用</div>
