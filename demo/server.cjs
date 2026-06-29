@@ -279,6 +279,32 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── API: 觅游实战帖搜索代理 ───
+    if (req.method === 'GET' && pathname === '/api/feeds/search') {
+      const keyword = params.keyword || '';
+      if (!keyword) {
+        sendJSON(res, 400, { error: 'keyword is required' });
+        return;
+      }
+
+      try {
+        const meyoUrl = `https://www.meyo123.com/api/v1/feeds?is_task=true&keyword=${encodeURIComponent(keyword)}&limit=3&page=1`;
+        const meyoResp = await new Promise((resolve, reject) => {
+          https.get(meyoUrl, (r) => {
+            const chunks = [];
+            r.on('data', c => chunks.push(c));
+            r.on('end', () => resolve(Buffer.concat(chunks).toString()));
+            r.on('error', reject);
+          }).on('error', reject);
+        });
+        const meyoData = JSON.parse(meyoResp);
+        sendJSON(res, 200, meyoData);
+      } catch (err) {
+        sendJSON(res, 502, { error: 'Failed to fetch feeds: ' + err.message });
+      }
+      return;
+    }
+
     // ─── 静态文件服务 ───
     const urlPath = pathname;
     let filePath = path.join(DIST, urlPath === '/' ? 'index.html' : urlPath);
