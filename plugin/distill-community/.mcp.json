@@ -1,7 +1,9 @@
 {
-  "distill-community": {
-    "command": "node",
-    "args": ["src/server.js"],
-    "cwd": "."
+  "mcpServers": {
+    "distill-community": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/src/server.js"],
+      "cwd": "${CLAUDE_PLUGIN_ROOT}"
+    }
   }
 }

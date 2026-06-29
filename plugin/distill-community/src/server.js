@@ -47,44 +47,50 @@ const server = new McpServer({
   version: '1.0.0',
 });
 
-// Tool 1: 搜索社区 Skill
+// Tool 1: AI 智能推荐社区 Skill（语义理解，非关键词匹配）
 server.tool(
   'distill_search',
-  '从蒸馏社区搜索与当前任务相关的 Skill（方法论）。当你要做一个复杂任务时先搜一下，可能有更好的方法。',
+  '从蒸馏社区搜索与当前任务相关的 Skill（方法论）。使用 AI 语义理解匹配，会推荐 3-5 个最相关的 Skill 并说明执行顺序和理由。',
   {
-    query: z.string().describe('任务描述，比如"写PRD"、"做竞品分析"、"设计AB实验"'),
-    track: z.enum(['pm', 'engineer', 'designer', 'ops', 'hr', '']).optional()
-      .describe('可选，限定赛道筛选：pm=产品经理, engineer=工程师, designer=设计师, ops=运营, hr=HR'),
+    query: z.string().describe('任务描述，比如"写PRD"、"做竞品分析"、"设计AB实验"、"新功能上线后数据不好怎么办"'),
   },
-  async ({ query, track }) => {
+  async ({ query }) => {
     try {
-      const results = await searchSkills(query + (track ? `&track=${track}` : ''));
+      const url = `${API_BASE}/skills/ai-recommend?query=${encodeURIComponent(query)}`;
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`API error: ${resp.status}`);
+      const json = await resp.json();
+      const data = json.data;
 
-      if (results.length === 0) {
+      if (!data || !data.skills || data.skills.length === 0) {
         return {
           content: [{ type: 'text', text: '社区暂时没有找到匹配的 Skill，用你自己的方法继续吧。' }],
         };
       }
 
-      const formatted = results.slice(0, 5).map((s, i) => {
-        const name = s.display_name || s.alias || s.name;
-        const desc = s.display_desc || s.description || '';
+      const formatted = data.skills.map((s, i) => {
+        const name = s.display_name || s.name || '';
+        const desc = s.display_desc || '';
         const downloads = s.download_count || 0;
         const score = s.llm_score || 0;
         const steps = (s.steps || []).map((step, j) => `  ${j + 1}. ${step}`).join('\n');
         const sourceUrl = s.source_url || '';
 
-        let detail = `${i + 1}. 📦 ${name} (${downloads.toLocaleString()} 人安装, 质量 ${score}分)\n`;
-        detail += `   ${desc}\n`;
-        if (s.input) detail += `   📥 输入: ${s.input}\n`;
-        if (s.output) detail += `   📤 输出: ${s.output}\n`;
-        if (s.scenario) detail += `   🎬 场景: ${s.scenario}\n`;
-        if (steps) detail += `   📋 步骤:\n${steps}\n`;
-        if (sourceUrl) detail += `   🔗 来源: ${sourceUrl}\n`;
+        let detail = `${i + 1}. 📦 ${name} (${downloads.toLocaleString()} 人安装, 质量 ${score}分)`;
+        if (s.role) detail += ` — ${s.role}`;
+        detail += `\n   ${desc}`;
+        if (s.why) detail += `\n   💡 推荐理由: ${s.why}`;
+        if (s.input) detail += `\n   📥 输入: ${s.input}`;
+        if (s.output) detail += `\n   📤 输出: ${s.output}`;
+        if (s.scenario) detail += `\n   🎬 场景: ${s.scenario}`;
+        if (steps) detail += `\n   📋 步骤:\n${steps}`;
+        if (sourceUrl) detail += `\n   🔗 安装来源: ${sourceUrl}`;
         return detail;
       });
 
-      const text = `🔍 从社区找到 ${results.length} 个相关 Skill，以下是最匹配的：\n\n${formatted.join('\n')}\n\n💡 如果用户觉得某个方法不错，可以按照它的步骤来执行任务。安装命令：告诉用户 "帮我安装 [skill名字]" + 来源链接。`;
+      let text = `🔍 ${data.description || '从社区找到相关 Skill'}\n\n`;
+      text += formatted.join('\n\n');
+      text += `\n\n💡 建议按以上顺序执行。如果用户想安装，告诉他来源链接即可。`;
 
       return { content: [{ type: 'text', text }] };
     } catch (err) {

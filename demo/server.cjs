@@ -162,6 +162,111 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── API: AI 推荐（MCP 工具 + 外部调用） ───
+    if (req.method === 'GET' && pathname === '/api/skills/ai-recommend') {
+      if (!DEEPSEEK_API_KEY) {
+        sendJSON(res, 500, { error: 'DEEPSEEK_API_KEY not configured' });
+        return;
+      }
+      if (!pool) {
+        sendJSON(res, 503, { error: 'Database not configured' });
+        return;
+      }
+
+      const query = params.query || '';
+      if (!query) {
+        sendJSON(res, 400, { error: 'query is required' });
+        return;
+      }
+
+      // 拉搜索上下文（精品优先）
+      const { rows: contextSkills } = await pool.query(`
+        SELECT id, name, display_name, display_desc, scenario, input, output,
+               tags, track_id, sub_domain, download_count, source_url
+        FROM skills
+        WHERE display_name IS NOT NULL AND display_name != ''
+        ORDER BY verified DESC, download_count DESC
+        LIMIT 300
+      `);
+
+      // 构建上下文
+      const skillsContext = contextSkills.map(s => {
+        const parts = [`[${s.id}] ${s.display_name}`];
+        parts.push(`  描述: ${s.display_desc}`);
+        if (s.scenario) parts.push(`  场景: ${s.scenario}`);
+        if (s.input) parts.push(`  输入: ${s.input}`);
+        if (s.output) parts.push(`  输出: ${s.output}`);
+        if (s.source_url) parts.push(`  来源: ${s.source_url}`);
+        parts.push(`  赛道: ${s.track_id || ''} | 标签: ${(s.tags || []).slice(0, 4).join(',')}`);
+        return parts.join('\n');
+      }).join('\n\n');
+
+      const systemPrompt = `你是蒸馏社区的 Skill 推荐引擎。用户描述一个任务或问题，你从库里选出最相关的 3-5 个 Skill，组成有逻辑的方案。
+
+## Skill 库
+${skillsContext}
+
+## 输出要求（严格 JSON）
+{
+  "description": "一句话整体方案描述",
+  "skills": [
+    {
+      "id": 数字ID,
+      "name": "Skill 名字",
+      "role": "在方案中的角色",
+      "why": "为什么选它"
+    }
+  ]
+}
+
+## 规则
+- id 必须是库中真实存在的（方括号里的数字）
+- 按执行顺序排列
+- 如果没有匹配的，skills 返回空数组
+- 只输出 JSON，不要其他文字`;
+
+      const aiResult = await callDeepSeek({
+        model: 'deepseek-chat',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: query },
+        ],
+        temperature: 0.3,
+        max_tokens: 1000,
+      });
+
+      // 解析 AI 返回
+      const content = aiResult.choices?.[0]?.message?.content || '';
+      let parsed = { description: '', skills: [] };
+      try {
+        const jsonMatch = content.match(/```json\s*\n?([\s\S]*?)\n?```/) || content.match(/\{[\s\S]*\}/);
+        const jsonStr = jsonMatch?.[1] || jsonMatch?.[0] || content;
+        parsed = JSON.parse(jsonStr);
+      } catch {}
+
+      // 补全 skill 详情（source_url 等）
+      if (parsed.skills && parsed.skills.length > 0) {
+        const ids = parsed.skills.map(s => s.id).filter(Boolean);
+        if (ids.length > 0) {
+          const { rows: details } = await pool.query(
+            `SELECT id, display_name, display_desc, source_url, input, output, scenario, steps, download_count, llm_score
+             FROM skills WHERE id = ANY($1)`, [ids]
+          );
+          const detailMap = Object.fromEntries(details.map(d => [d.id, d]));
+          parsed.skills = parsed.skills.map(s => {
+            const d = detailMap[s.id];
+            if (d) {
+              return { ...s, ...d, name: s.name || d.display_name };
+            }
+            return s;
+          });
+        }
+      }
+
+      sendJSON(res, 200, { code: 200, data: parsed });
+      return;
+    }
+
     // ─── API: 技能列表（只返回有优化内容的） ───
     if (req.method === 'GET' && pathname === '/api/skills') {
       if (!pool) {
