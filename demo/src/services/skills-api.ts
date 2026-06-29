@@ -160,6 +160,7 @@ export interface SearchContextSkill {
   track_ids: string[]
   sub_domain: string | null
   download_count: number
+  source_url: string | null
 }
 
 export async function fetchSearchContext(): Promise<SearchContextSkill[]> {

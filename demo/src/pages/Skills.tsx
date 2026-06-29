@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSkillsStore } from '../stores/skills'
 import { tracks } from '../data/tracks'
 import { sampleCombos } from '../data/agent-activity'
-import { aiSearchSkills, localSearchSkills, type SearchResult } from '../services/ai-search'
+import { aiSearchSkills, localSearchSkills, getSearchContext, type SearchResult } from '../services/ai-search'
 import SkillCard from '../components/SkillCard'
 
 export default function Skills() {
@@ -31,7 +31,6 @@ export default function Skills() {
   const [searching, setSearching] = useState(false)
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null)
   const [showInstallModal, setShowInstallModal] = useState(false)
-  const [installPlatform, setInstallPlatform] = useState<'claude' | 'hermes' | 'openclaw'>('claude')
   const [copied, setCopied] = useState(false)
 
   const filteredSkills = getFilteredSkills()
@@ -213,72 +212,47 @@ export default function Skills() {
                   </div>
 
                   <p className="text-sm text-text-secondary mb-4">
-                    复制以下命令到你的 Agent 终端中执行，即可安装全部推荐技能。
+                    复制下面这段话发给你的 Agent（Claude Code / Hermes / OpenClaw 都行），它会帮你装好。
                   </p>
 
-                  {/* Platform Tabs */}
-                  <div className="flex gap-1 bg-surface rounded-lg p-1 mb-4">
-                    {([
-                      { key: 'claude' as const, label: 'Claude Code' },
-                      { key: 'hermes' as const, label: 'Hermes' },
-                      { key: 'openclaw' as const, label: 'OpenClaw' },
-                    ]).map(p => (
-                      <button
-                        key={p.key}
-                        onClick={() => setInstallPlatform(p.key)}
-                        className={`flex-1 text-xs font-medium py-2 rounded-md transition-all ${
-                          installPlatform === p.key
-                            ? 'bg-white text-text-primary shadow-sm'
-                            : 'text-text-tertiary hover:text-text-secondary'
-                        }`}
-                      >
-                        {p.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Commands */}
-                  <div className="bg-gray-900 rounded-xl p-4 font-mono text-sm leading-relaxed overflow-x-auto">
-                    {searchResult.skills.map((skill, i) => {
-                      const slug = skill.id.replace('db-', '')
-                      const cmd = installPlatform === 'claude'
-                        ? `/skill install distill/${skill.name}`
-                        : installPlatform === 'hermes'
-                        ? `hermes skills install distill/${skill.name}`
-                        : `openclaw skills install distill/${skill.name}`
-                      return (
-                        <div key={skill.id} className="text-green-400">
-                          <span className="text-gray-500"># {i + 1}. {skill.name}</span>
-                          {'\n'}
-                          {cmd}
-                          {i < searchResult.skills.length - 1 && '\n\n'}
-                        </div>
-                      )
-                    })}
+                  {/* Natural language install instruction */}
+                  <div className="bg-gray-900 rounded-xl p-5 text-sm leading-relaxed overflow-x-auto">
+                    <div className="text-gray-200 whitespace-pre-wrap">{(() => {
+                      const lines = ['帮我安装以下技能：']
+                      searchResult.skills.forEach((skill, i) => {
+                        lines.push(`${i + 1}. ${skill.name}`)
+                        if ((skill as any).sourceUrl) {
+                          lines.push(`   ${(skill as any).sourceUrl}`)
+                        }
+                      })
+                      return lines.join('\n')
+                    })()}</div>
                   </div>
 
                   {/* Copy Button */}
                   <button
                     className="w-full btn-primary mt-4 py-3"
-                    onClick={() => {
-                      const commands = searchResult.skills.map((skill, i) => {
-                        const prefix = installPlatform === 'claude'
-                          ? '/skill install'
-                          : installPlatform === 'hermes'
-                          ? 'hermes skills install'
-                          : 'openclaw skills install'
-                        return `${prefix} distill/${skill.name}`
-                      }).join('\n')
-                      navigator.clipboard.writeText(commands)
+                    onClick={async () => {
+                      // 从 search context 缓存中查找 sourceUrl
+                      const context = await getSearchContext()
+                      const lines = ['帮我安装以下技能：']
+                      searchResult.skills.forEach((skill, i) => {
+                        const dbId = parseInt(skill.id.replace('db-', ''))
+                        const ctx = context.find(s => s.id === dbId)
+                        const url = ctx?.source_url || ''
+                        lines.push(`${i + 1}. ${skill.name}`)
+                        if (url) lines.push(`   ${url}`)
+                      })
+                      navigator.clipboard.writeText(lines.join('\n'))
                       setCopied(true)
                       setTimeout(() => setCopied(false), 2000)
                     }}
                   >
-                    {copied ? '✓ 已复制！' : '复制安装命令'}
+                    {copied ? '✓ 已复制到剪贴板！' : '📋 复制，发给我的 Agent'}
                   </button>
 
                   <p className="text-xs text-text-tertiary mt-3 text-center">
-                    安装完成后，跟你的 Agent 说你想完成的任务，它会自动使用这些技能
+                    粘贴到你的 Agent 对话中，它会自动帮你安装这些技能
                   </p>
                 </motion.div>
               </motion.div>

@@ -231,7 +231,7 @@ const server = http.createServer(async (req, res) => {
       // 精品 skill（verified）永远排在前面，其余按下载量排
       const { rows } = await pool.query(`
         SELECT id, name, display_name, display_desc, scenario, input, output,
-               tags, track_id, track_ids, sub_domain, download_count
+               tags, track_id, track_ids, sub_domain, download_count, source_url
         FROM skills
         WHERE display_name IS NOT NULL AND display_name != ''
         ORDER BY verified DESC, download_count DESC

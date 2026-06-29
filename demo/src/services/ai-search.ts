@@ -5,7 +5,7 @@ let cachedContext: SearchContextSkill[] | null = null
 let cacheTime = 0
 const CACHE_TTL = 5 * 60 * 1000 // 5 分钟缓存
 
-async function getSearchContext(): Promise<SearchContextSkill[]> {
+export async function getSearchContext(): Promise<SearchContextSkill[]> {
   const now = Date.now()
   if (cachedContext && now - cacheTime < CACHE_TTL) {
     return cachedContext
