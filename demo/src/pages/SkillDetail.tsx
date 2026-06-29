@@ -234,63 +234,6 @@ export default function SkillDetail() {
               </div>
             )}
 
-            {/* ═══ 社交证明区 ═══ */}
-
-            {/* 你关注的人在用（演示：默认展示2个关注的创作者） */}
-            {(() => {
-              // 先找 pinnedSkills 匹配的
-              let usersOfSkill = creators.filter(c =>
-                DEFAULT_FOLLOWED.includes(c.id) &&
-                c.pinnedSkills.some(s => s === skill.id || s === id?.replace('db-', ''))
-              )
-              // 如果没匹配到，演示用途：根据 skill 赛道选2个关注的创作者
-              if (usersOfSkill.length === 0) {
-                usersOfSkill = creators
-                  .filter(c => DEFAULT_FOLLOWED.includes(c.id) && c.trackIds.includes(skill.trackId))
-                  .slice(0, 2)
-                // 如果赛道也没匹配，兜底取前2个
-                if (usersOfSkill.length === 0) {
-                  usersOfSkill = creators.filter(c => DEFAULT_FOLLOWED.includes(c.id)).slice(0, 2)
-                }
-              }
-              return (
-                <div className="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-100">
-                  <div className="text-xs font-semibold text-amber-700 mb-3">👥 你关注的人在用</div>
-                  <div className="space-y-2.5">
-                    {usersOfSkill.map(c => (
-                      <div key={c.id} className="flex items-center gap-3 cursor-pointer" onClick={() => navigate(`/creators/${c.id}`)}>
-                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-base shadow-sm">{c.avatar}</div>
-                        <div>
-                          <span className="text-sm font-medium text-text-primary">{c.name}</span>
-                          <span className="text-xs text-text-tertiary ml-2">{c.title.split('·')[0].trim()}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            })()}
-
-            {/* 比裸 AI 强多少 — 量化价值 */}
-            <div className="mb-6 p-5 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-              <div className="text-xs font-semibold text-blue-700 mb-3">📊 比直接问 AI 强多少</div>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="text-center p-3 bg-white/70 rounded-lg">
-                  <div className="text-xl font-bold text-blue-600">{Math.round(skill.successRate * 0.4 + 10)}min</div>
-                  <div className="text-[11px] text-text-tertiary mt-1">平均节省</div>
-                </div>
-                <div className="text-center p-3 bg-white/70 rounded-lg">
-                  <div className="text-xl font-bold text-blue-600">{(skill.rating * 0.9 + 0.3).toFixed(1)}轮</div>
-                  <div className="text-[11px] text-text-tertiary mt-1">减少对话</div>
-                </div>
-                <div className="text-center p-3 bg-white/70 rounded-lg">
-                  <div className="text-xl font-bold text-blue-600">{skill.successRate}%</div>
-                  <div className="text-[11px] text-text-tertiary mt-1">一次成功率</div>
-                </div>
-              </div>
-              <p className="text-[11px] text-text-tertiary mt-3 text-center">基于社区使用数据估算，比 ChatGPT/Claude 直接对话效果更好</p>
-            </div>
-
             {/* 实战案例 — 觅游实战帖 */}
             {feeds.length > 0 && (
               <div className="mb-6 p-5 bg-white rounded-xl border border-border">
@@ -417,6 +360,58 @@ export default function SkillDetail() {
               </div>
             </div>
           </motion.div>
+
+          {/* 你关注的人在用 */}
+          {(() => {
+            let usersOfSkill = creators.filter(c =>
+              DEFAULT_FOLLOWED.includes(c.id) &&
+              c.pinnedSkills.some(s => s === skill.id || s === id?.replace('db-', ''))
+            )
+            if (usersOfSkill.length === 0) {
+              usersOfSkill = creators
+                .filter(c => DEFAULT_FOLLOWED.includes(c.id) && c.trackIds.includes(skill.trackId))
+                .slice(0, 2)
+              if (usersOfSkill.length === 0) {
+                usersOfSkill = creators.filter(c => DEFAULT_FOLLOWED.includes(c.id)).slice(0, 2)
+              }
+            }
+            return (
+              <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-100">
+                <div className="text-xs font-semibold text-amber-700 mb-3">👥 你关注的人在用</div>
+                <div className="space-y-2.5">
+                  {usersOfSkill.map(c => (
+                    <div key={c.id} className="flex items-center gap-3 cursor-pointer" onClick={() => navigate(`/creators/${c.id}`)}>
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-base shadow-sm">{c.avatar}</div>
+                      <div>
+                        <span className="text-sm font-medium text-text-primary">{c.name}</span>
+                        <span className="text-xs text-text-tertiary ml-2">{c.title.split('·')[0].trim()}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
+
+          {/* 比裸 AI 强多少 */}
+          <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+            <div className="text-xs font-semibold text-blue-700 mb-3">📊 比直接问 AI 强多少</div>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="text-center p-2 bg-white/70 rounded-lg">
+                <div className="text-lg font-bold text-blue-600">{Math.round(skill.successRate * 0.4 + 10)}min</div>
+                <div className="text-[10px] text-text-tertiary mt-0.5">平均节省</div>
+              </div>
+              <div className="text-center p-2 bg-white/70 rounded-lg">
+                <div className="text-lg font-bold text-blue-600">{(skill.rating * 0.9 + 0.3).toFixed(1)}轮</div>
+                <div className="text-[10px] text-text-tertiary mt-0.5">减少对话</div>
+              </div>
+              <div className="text-center p-2 bg-white/70 rounded-lg">
+                <div className="text-lg font-bold text-blue-600">{skill.successRate}%</div>
+                <div className="text-[10px] text-text-tertiary mt-0.5">一次成功率</div>
+              </div>
+            </div>
+            <p className="text-[10px] text-text-tertiary mt-2 text-center">基于社区数据估算</p>
+          </div>
         </div>
       </div>
     </div>
