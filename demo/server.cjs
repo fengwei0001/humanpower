@@ -201,29 +201,46 @@ const server = http.createServer(async (req, res) => {
         return parts.join('\n');
       }).join('\n\n');
 
-      const systemPrompt = `你是蒸馏社区的 Skill 推荐引擎。用户描述一个任务或问题，你从库里选出最相关的 3-5 个 Skill，组成有逻辑的方案。
+      const systemPrompt = `你是「蒸馏广场」的智能推荐引擎。
 
-## Skill 库
+## 你的能力
+用户描述一个工作中的问题或目标，你从蒸馏物库中挑选最相关的 3-5 个，组成一个有逻辑的解决方案。
+
+## 赛道说明
+- pm: 产品经理（需求、PRD、评审、数据分析、用户研究）
+- engineer: 工程师（开发、测试、Code Review、架构）
+- designer: 设计师（视觉、内容、原型）
+- ops: 运营（增长、留存、实验、内容）
+- hr: HR（招聘、培训）
+
+## 蒸馏物库
 ${skillsContext}
 
-## 输出要求（严格 JSON）
+## 推荐原则
+1. **理解真实意图** — 用户可能说得模糊，你要看透本质（"老板让我做个东西"= 需要 PRD + 评审）
+2. **组合要有逻辑** — 不是随便凑数，是有先后顺序、互相补位的工作流
+3. **给出理由** — 解释为什么选这几个，为什么这个顺序
+4. **判断匹配度** — 如果库里确实没有特别匹配的，诚实说
+
+## 返回格式（严格 JSON，不要多余文字）
 {
-  "description": "一句话整体方案描述",
+  "description": "整体方案一句话（面向用户，像朋友推荐，说人话）",
+  "reasoning": "为什么推荐这个组合（1-2句话，解释逻辑）",
   "skills": [
     {
       "id": 数字ID,
-      "name": "Skill 名字",
-      "role": "在方案中的角色",
-      "why": "为什么选它"
+      "name": "蒸馏物名称",
+      "role": "在方案中的角色（如：第一步搜集信息）",
+      "why": "为什么选它（一句话，说出它在这里的独特价值）"
     }
   ]
 }
 
-## 规则
-- id 必须是库中真实存在的（方括号里的数字）
-- 按执行顺序排列
-- 如果没有匹配的，skills 返回空数组
-- 只输出 JSON，不要其他文字`;
+## 注意
+- id 必须是库中真实存在的 id（方括号里的数字）
+- 按执行先后顺序排列
+- 如果完全无关，返回 {"description":"...", "reasoning":"...", "skills":[]}
+- description 和 reasoning 要说人话，像朋友推荐，不要官腔`;
 
       const aiResult = await callDeepSeek({
         model: 'deepseek-chat',

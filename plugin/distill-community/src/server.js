@@ -76,21 +76,25 @@ server.tool(
         const steps = (s.steps || []).map((step, j) => `  ${j + 1}. ${step}`).join('\n');
         const sourceUrl = s.source_url || '';
 
-        let detail = `${i + 1}. 📦 ${name} (${downloads.toLocaleString()} 人安装, 质量 ${score}分)`;
+        let detail = `${i + 1}. 📦 ${name}`;
         if (s.role) detail += ` — ${s.role}`;
         detail += `\n   ${desc}`;
-        if (s.why) detail += `\n   💡 推荐理由: ${s.why}`;
+        if (s.why) detail += `\n   💡 ${s.why}`;
+        detail += `\n   📊 ${downloads.toLocaleString()} 人安装 · 质量 ${score}分`;
         if (s.input) detail += `\n   📥 输入: ${s.input}`;
         if (s.output) detail += `\n   📤 输出: ${s.output}`;
-        if (s.scenario) detail += `\n   🎬 场景: ${s.scenario}`;
         if (steps) detail += `\n   📋 步骤:\n${steps}`;
-        if (sourceUrl) detail += `\n   🔗 安装来源: ${sourceUrl}`;
+        if (sourceUrl) detail += `\n   🔗 安装: ${sourceUrl}`;
         return detail;
       });
 
-      let text = `🔍 ${data.description || '从社区找到相关 Skill'}\n\n`;
+      let text = '';
+      if (data.description) text += `💬 ${data.description}\n`;
+      if (data.reasoning) text += `💡 ${data.reasoning}\n`;
+      text += `\n`;
       text += formatted.join('\n\n');
-      text += `\n\n💡 建议按以上顺序执行。如果用户想安装，告诉他来源链接即可。`;
+      text += `\n\n────────────────\n`;
+      text += `安装方式：把上面的🔗链接告诉用户，让他跟 Agent 说「帮我安装 [名字] [链接]」即可。`;
 
       return { content: [{ type: 'text', text }] };
     } catch (err) {
