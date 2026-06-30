@@ -372,30 +372,39 @@ export default function Skills() {
           <div className="sticky top-8 space-y-5">
             {/* Agent Auto-Find Plugin */}
             <div className="bg-gradient-to-br from-brand-green-surface to-white rounded-2xl p-5 border border-brand-green/10">
-              <h3 className="text-sm font-bold text-text-primary mb-2">🦐 让 Agent 帮你找</h3>
+              <h3 className="text-sm font-bold text-text-primary mb-2">🧪 让 Agent 帮你找</h3>
               <p className="text-[13px] text-text-secondary leading-relaxed mb-4">
                 不用自己逛广场。装上 Plugin 后，Agent 在帮你干活时会<strong className="text-text-primary">自动从社区找到更好的方法</strong>，装上就用，你甚至不用知道。
               </p>
 
               {/* Simulated scenario */}
               <div className="bg-gray-900 rounded-lg p-3 mb-4 font-mono text-[12px] leading-relaxed">
-                <div className="text-gray-500">// 你让 Agent 做竞品分析</div>
-                <div className="text-gray-300 mt-1">🦐 发现社区有更好的方法...</div>
-                <div className="text-green-400 mt-1">✓ 已安装「竞品五维分析」</div>
-                <div className="text-green-400">✓ 用新方法帮你完成 ✨</div>
-                <div className="text-gray-500 mt-1">// 比你之前的方法快了 4x</div>
+                <div className="text-gray-500">// 你：帮我做竞品分析</div>
+                <div className="text-gray-300 mt-1">🧪 搜索社区更好的方法...</div>
+                <div className="text-green-400 mt-1">✓ 找到「搜遍全网不遗漏」15万人用过</div>
+                <div className="text-green-400">✓ 找到「一键深度研究」3万人用过</div>
+                <div className="text-gray-300 mt-1">要用这套方法来做吗？</div>
               </div>
 
-              {/* Install */}
+              {/* Install command */}
               <div className="bg-gray-900 rounded-lg p-3 mb-3">
-                <code className="text-[11px] text-green-400 font-mono">/plugin install distill@distill-community</code>
+                <div className="text-[11px] text-gray-400 mb-1">Claude Code 安装：</div>
+                <code className="text-[11px] text-green-400 font-mono">claude --plugin-dir distill-community</code>
               </div>
               <button
-                onClick={() => navigator.clipboard.writeText('/plugin install distill@distill-community')}
+                onClick={() => navigator.clipboard.writeText('claude --plugin-dir distill-community')}
                 className="w-full btn-primary text-sm"
               >
                 复制安装命令
               </button>
+              <a
+                href="https://github.com/fengwei0001/humanpower/tree/main/plugin/distill-community"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center text-xs text-text-tertiary mt-2 hover:text-brand-purple"
+              >
+                查看 Plugin 源码 →
+              </a>
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {['Claude Code', 'OpenClaw', 'Hermes'].map((a) => (
                   <span key={a} className="text-[11px] px-2 py-0.5 rounded-full bg-white border border-border text-text-tertiary">{a}</span>
