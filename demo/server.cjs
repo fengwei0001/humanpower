@@ -196,7 +196,7 @@ const server = http.createServer(async (req, res) => {
         if (s.scenario) parts.push(`  场景: ${s.scenario}`);
         if (s.input) parts.push(`  输入: ${s.input}`);
         if (s.output) parts.push(`  输出: ${s.output}`);
-        if (s.source_url) parts.push(`  来源: ${s.source_url}`);
+        parts.push(`  链接: https://humanpower-production.up.railway.app/skills/db-${s.id}`);
         parts.push(`  赛道: ${s.track_id || ''} | 标签: ${(s.tags || []).slice(0, 4).join(',')}`);
         return parts.join('\n');
       }).join('\n\n');

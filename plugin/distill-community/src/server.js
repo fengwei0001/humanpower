@@ -84,7 +84,7 @@ server.tool(
         if (s.input) detail += `\n   📥 输入: ${s.input}`;
         if (s.output) detail += `\n   📤 输出: ${s.output}`;
         if (steps) detail += `\n   📋 步骤:\n${steps}`;
-        if (sourceUrl) detail += `\n   🔗 安装: ${sourceUrl}`;
+        detail += `\n   🔗 安装: https://humanpower-production.up.railway.app/skills/db-${s.id}`;
         return detail;
       });
 
