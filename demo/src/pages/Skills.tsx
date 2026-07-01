@@ -31,6 +31,7 @@ export default function Skills() {
   const [searching, setSearching] = useState(false)
   const [searchResult, setSearchResult] = useState<SearchResult | null>(null)
   const [showInstallModal, setShowInstallModal] = useState(false)
+  const [showPluginGuide, setShowPluginGuide] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const filteredSkills = getFilteredSkills()
@@ -404,8 +405,7 @@ export default function Skills() {
                     document.execCommand('copy')
                     document.body.removeChild(ta)
                   }
-                  const btn = document.activeElement as HTMLButtonElement
-                  if (btn) { btn.textContent = '✓ 已复制'; setTimeout(() => { btn.textContent = '复制安装命令' }, 2000) }
+                  setShowPluginGuide(true)
                 }}
                 className="w-full btn-primary text-sm"
               >
@@ -428,6 +428,71 @@ export default function Skills() {
           </div>
         </div>
       </div>
+
+      {/* Plugin Guide Modal */}
+      <AnimatePresence>
+        {showPluginGuide && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowPluginGuide(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-brand-green-surface flex items-center justify-center text-xl">✓</div>
+                <div>
+                  <h3 className="text-base font-bold text-text-primary">已复制安装命令</h3>
+                  <p className="text-xs text-text-tertiary">按以下步骤安装 Plugin</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-brand-purple-surface text-brand-purple text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <p className="text-sm font-medium text-text-primary">打开终端</p>
+                    <p className="text-xs text-text-secondary mt-0.5">新开一个终端窗口</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-brand-purple-surface text-brand-purple text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <p className="text-sm font-medium text-text-primary">粘贴命令启动 Claude Code</p>
+                    <div className="bg-gray-900 rounded-lg p-2.5 mt-1.5">
+                      <code className="text-xs text-green-400 font-mono">claude --plugin-dir distill-community</code>
+                    </div>
+                    <p className="text-xs text-text-tertiary mt-1">这会启动一个加载了 Plugin 的新会话</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-brand-purple-surface text-brand-purple text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <p className="text-sm font-medium text-text-primary">正常对话就行</p>
+                    <p className="text-xs text-text-secondary mt-0.5">跟 Agent 说你要做什么（比如"帮我做竞品分析"），它会自动从社区搜索更好的方法推荐给你。</p>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowPluginGuide(false)}
+                className="w-full btn-primary mt-5 py-2.5"
+              >
+                知道了
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
