@@ -392,7 +392,21 @@ export default function Skills() {
                 <code className="text-[11px] text-green-400 font-mono">claude --plugin-dir distill-community</code>
               </div>
               <button
-                onClick={() => navigator.clipboard.writeText('claude --plugin-dir distill-community')}
+                onClick={() => {
+                  const text = 'claude --plugin-dir distill-community'
+                  if (navigator.clipboard?.writeText) {
+                    navigator.clipboard.writeText(text)
+                  } else {
+                    const ta = document.createElement('textarea')
+                    ta.value = text
+                    document.body.appendChild(ta)
+                    ta.select()
+                    document.execCommand('copy')
+                    document.body.removeChild(ta)
+                  }
+                  const btn = document.activeElement as HTMLButtonElement
+                  if (btn) { btn.textContent = '✓ 已复制'; setTimeout(() => { btn.textContent = '复制安装命令' }, 2000) }
+                }}
                 className="w-full btn-primary text-sm"
               >
                 复制安装命令
