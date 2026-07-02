@@ -108,6 +108,7 @@ export default function SkillDetail() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-card p-6 border border-border"
           >
             {/* Header */}
             <div className="flex items-start gap-4 mb-6">

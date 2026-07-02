@@ -277,7 +277,7 @@ function SkillCardLarge({ skill, index, onClick }: SkillCardLargeProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.3) }}
       onClick={onClick}
-      className="bg-white rounded-card p-5 shadow-card cursor-pointer transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 border border-border"
+      className="bg-white rounded-card p-5 cursor-pointer transition-all duration-200 hover:border-brand-green/30 hover:-translate-y-0.5 border border-border"
     >
       {/* 标题 */}
       <h3 className="text-[15px] font-bold text-text-primary leading-snug mb-2">

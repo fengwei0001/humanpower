@@ -294,8 +294,8 @@ export default function Skills() {
               <button
                 key={track.id}
                 onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
-                className={`p-4 rounded-card bg-white text-left transition-all shadow-card ${
-                  filterTrack === track.id ? 'shadow-card-hover' : 'hover:shadow-card-hover'
+                className={`p-4 rounded-card bg-white text-left transition-all border border-border ${
+                  filterTrack === track.id ? 'border-brand-green' : 'hover:border-brand-green/40'
                 }`}
               >
                 <div className="text-xl mb-1">{track.icon}</div>
