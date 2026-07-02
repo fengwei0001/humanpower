@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { tracks } from '../data/tracks'
-import { fetchSkills, fetchTags, type TagItem, type FetchSkillsResponse } from '../services/skills-api'
+import { fetchSkills, fetchTags, type TagItem } from '../services/skills-api'
 import type { Skill } from '../data/skills'
 
 export default function Square() {
@@ -20,42 +20,24 @@ export default function Square() {
   const [hasMore, setHasMore] = useState(false)
   const [loading, setLoading] = useState(false)
   const [tags, setTags] = useState<TagItem[]>([])
-  const [tagsLoading, setTagsLoading] = useState(false)
 
-  // 加载标签
-  const loadTags = async (track?: string) => {
-    setTagsLoading(true)
-    try {
-      const result = await fetchTags(track || undefined)
-      setTags(result)
-    } catch {
-      setTags([])
-    } finally {
-      setTagsLoading(false)
-    }
-  }
-
-  // 加载技能列表
-  const loadSkills = async (p = 1, append = false) => {
+  // 加载更多（追加模式）
+  const loadMoreSkills = async () => {
+    const nextPage = page + 1
     setLoading(true)
     try {
-      const result: FetchSkillsResponse = await fetchSkills({
-        page: p,
+      const result = await fetchSkills({
+        page: nextPage,
         pageSize: 20,
         track: activeTrack || undefined,
         tag: activeTag || undefined,
         sort,
       })
-      if (append) {
-        setSkills(prev => [...prev, ...result.skills])
-      } else {
-        setSkills(result.skills)
-      }
-      setTotal(result.total)
-      setPage(p)
-      setHasMore(p * result.pageSize < result.total)
+      setSkills(prev => [...prev, ...result.skills])
+      setPage(nextPage)
+      setHasMore(nextPage * result.pageSize < result.total)
     } catch {
-      if (!append) setSkills([])
+      // ignore
     } finally {
       setLoading(false)
     }
@@ -63,20 +45,55 @@ export default function Square() {
 
   // 筛选变更时重新加载
   useEffect(() => {
-    loadSkills(1)
-    loadTags(activeTrack || undefined)
-  }, [activeTrack, activeTag, sort]) // eslint-disable-line react-hooks/exhaustive-deps
+    let cancelled = false
+
+    const load = async () => {
+      setLoading(true)
+      try {
+        const result = await fetchSkills({
+          page: 1,
+          pageSize: 20,
+          track: activeTrack || undefined,
+          tag: activeTag || undefined,
+          sort,
+        })
+        if (!cancelled) {
+          setSkills(result.skills)
+          setTotal(result.total)
+          setPage(1)
+          setHasMore(result.pageSize < result.total)
+        }
+      } catch {
+        if (!cancelled) setSkills([])
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    const loadTagsAsync = async () => {
+      try {
+        const result = await fetchTags(activeTrack || undefined)
+        if (!cancelled) setTags(result)
+      } catch {
+        if (!cancelled) setTags([])
+      }
+    }
+
+    load()
+    loadTagsAsync()
+
+    return () => { cancelled = true }
+  }, [activeTrack, activeTag, sort])
 
   // 切换赛道
   const handleTrackChange = (trackId: string | null) => {
     setActiveTrack(trackId)
     setActiveTag(null) // 切赛道时重置标签
-    loadTags(trackId || undefined)
   }
 
   // 加载更多
   const handleLoadMore = () => {
-    loadSkills(page + 1, true)
+    loadMoreSkills()
   }
 
   return (
@@ -117,39 +134,32 @@ export default function Square() {
       </div>
 
       {/* 标签筛选 */}
-      <AnimatePresence mode="wait">
-        {tags.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="flex gap-2 mb-6 flex-wrap"
-          >
-            {tags.map(t => (
-              <button
-                key={t.tag}
-                onClick={() => setActiveTag(activeTag === t.tag ? null : t.tag)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  activeTag === t.tag
-                    ? 'bg-brand-green text-white'
-                    : 'bg-white border border-border text-text-secondary hover:border-brand-green/50 hover:text-brand-green'
-                }`}
-              >
-                {t.tag}
-                <span className="ml-1 opacity-60">{t.cnt}</span>
-              </button>
-            ))}
-            {activeTag && (
-              <button
-                onClick={() => setActiveTag(null)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium text-text-tertiary hover:text-text-primary transition-colors"
-              >
-                ✕ 清除
-              </button>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {tags.length > 0 && (
+        <div className="flex gap-2 mb-6 flex-wrap">
+          {tags.map(t => (
+            <button
+              key={t.tag}
+              onClick={() => setActiveTag(activeTag === t.tag ? null : t.tag)}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                activeTag === t.tag
+                  ? 'bg-brand-green text-white'
+                  : 'bg-white border border-border text-text-secondary hover:border-brand-green/50 hover:text-brand-green'
+              }`}
+            >
+              {t.tag}
+              <span className="ml-1 opacity-60">{t.cnt}</span>
+            </button>
+          ))}
+          {activeTag && (
+            <button
+              onClick={() => setActiveTag(null)}
+              className="px-3 py-1.5 rounded-full text-xs font-medium text-text-tertiary hover:text-text-primary transition-colors"
+            >
+              ✕ 清除
+            </button>
+          )}
+        </div>
+      )}
 
       {/* 排序 + 计数 */}
       <div className="flex items-center justify-between mb-5">
@@ -275,7 +285,7 @@ function SkillCardLarge({ skill, index, onClick }: SkillCardLargeProps) {
             🔗 {skill.citations}
           </span>
           <span className="flex items-center gap-1">
-            ⭐ {skill.rating.toFixed(2)}
+            ⭐ {(skill.rating || 0).toFixed(2)}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
