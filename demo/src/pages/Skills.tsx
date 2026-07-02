@@ -77,38 +77,41 @@ export default function Skills() {
           找到同行验证过的 AI 方法，一键让虾执行。
         </p>
 
-        {/* Search */}
-        <div className="max-w-2xl mx-auto mb-6">
+        {/* Search — textarea style (2 lines) */}
+        <div className="max-w-2xl mx-auto mb-4">
           <div className="relative">
-            <input
-              type="text"
+            <textarea
               value={aiQuery}
               onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setSearchResult(null) }}
-              onKeyDown={(e) => e.key === 'Enter' && handleAiSearch()}
+              onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleAiSearch() } }}
               placeholder="搜你的工作问题：「竞品分析怎么做」「周报怎么自动化」..."
-              className="w-full px-5 py-4 pr-24 rounded-btn bg-white border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 transition-all shadow-card"
+              className="w-full px-5 py-4 pr-24 rounded-[20px] bg-white border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 transition-all shadow-card resize-none"
+              rows={2}
               disabled={searching}
             />
             <button
               onClick={() => handleAiSearch()}
               disabled={searching || !aiQuery.trim()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-[38px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40"
+              className="absolute right-3 bottom-3 h-[38px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40"
             >
               {searching ? '找方法中...' : '找方法'}
             </button>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 mt-3">
-            {sampleCombos.map((combo) => (
-              <button
-                key={combo.id}
-                onClick={() => { setAiQuery(combo.question); handleAiSearch(combo.question) }}
-                className="text-xs px-3 py-1.5 rounded-full bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green transition-colors shadow-sm"
-                disabled={searching}
-              >
-                {combo.question}
-              </button>
-            ))}
-          </div>
+          {/* 示例选项 — 有搜索结果时隐藏 */}
+          {!searchResult && !searching && (
+            <div className="flex flex-wrap justify-center gap-2 mt-3">
+              {sampleCombos.map((combo) => (
+                <button
+                  key={combo.id}
+                  onClick={() => { setAiQuery(combo.question); handleAiSearch(combo.question) }}
+                  className="text-xs px-3 py-1.5 rounded-full bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green transition-colors shadow-sm"
+                  disabled={searching}
+                >
+                  {combo.question}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </motion.section>
 
@@ -123,7 +126,7 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-5"
+                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-3"
               >
                 <div className="flex items-center gap-3">
                   <div className="relative w-8 h-8">
@@ -146,7 +149,7 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-5"
+                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-3"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">🧩</span>
@@ -285,8 +288,8 @@ export default function Skills() {
             )}
           </AnimatePresence>
 
-          {/* Role Grid */}
-          <div className="grid grid-cols-4 gap-3 mb-6">
+          {/* Role Grid — separated from search results */}
+          <div className="grid grid-cols-4 gap-3 mb-6 mt-10">
             {tracks.map((track) => (
               <button
                 key={track.id}
