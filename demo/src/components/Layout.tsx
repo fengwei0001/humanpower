@@ -49,10 +49,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </nav>
 
         {/* Publish skill — bottom entry */}
-        <div className="flex justify-center px-4 mt-4">
-          <NavLink to="/publish" className="w-11 h-11 rounded-full bg-brand-green flex items-center justify-center text-xl shadow-btn hover:bg-brand-green-dark transition-all hover:scale-105" title="发布技能">
+        <div className="flex items-center justify-center px-4 mt-4">
+          <NavLink to="/publish" className="w-11 h-11 rounded-full bg-brand-green flex items-center justify-center text-xl shadow-btn hover:bg-brand-green-dark transition-all hover:scale-105 shrink-0" title="发布技能">
             <span className="text-white text-lg font-bold">＋</span>
           </NavLink>
+          <span className="ml-2.5 text-sm font-medium text-brand-green overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
+            发布技能
+          </span>
         </div>
       </aside>
 
