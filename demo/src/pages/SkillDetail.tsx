@@ -282,13 +282,13 @@ export default function SkillDetail() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-4">
+        <div className="sticky top-8 space-y-4 self-start">
           {/* Actions */}
           <motion.div
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-card p-5 border border-border sticky top-8"
+            className="bg-white rounded-card p-5 border border-border"
           >
             <button
               onClick={handleInstall}
