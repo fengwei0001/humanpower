@@ -12,9 +12,12 @@ function getNewMethods(skills: Skill[]): Skill[] {
 
 // 模拟"有人分享了新方法"动态
 const socialUpdates = [
-  { user: 'Zephyr Wang', avatar: '🧑‍💼', action: '分享了一个新方法', skill: '30 分钟搞定 PRD', time: '2小时前' },
-  { user: 'Jesse Vincent', avatar: '👨‍💻', action: '更新了技能', skill: '让 AI 帮你写出生产级代码', time: '5小时前' },
-  { user: 'Zara Zhang', avatar: '👩‍💼', action: '分享了一个新方法', skill: '做一份惊艳的演示', time: '昨天' },
+  { user: 'Zephyr Wang', avatar: '🧑‍💼', action: '分享了新方法', skill: '30 分钟搞定 PRD', time: '2小时前' },
+  { user: '二哲', avatar: '👨‍💻', action: '验证有效', skill: '不再重复犯错', time: '3小时前', extra: '执行3次，全部成功' },
+  { user: 'Jesse Vincent', avatar: '👨‍💻', action: '更新了方法', skill: '让 AI 帮你写出生产级代码', time: '5小时前' },
+  { user: 'Zara Zhang', avatar: '👩‍💼', action: '分享了新方法', skill: '做一份惊艳的演示', time: '昨天' },
+  { user: '花花', avatar: '🧑‍💻', action: '安装了', skill: '装前扫一遍，别中招', time: '昨天', extra: '第1892位安装者' },
+  { user: 'Dean Peters', avatar: '🎯', action: '分享了新方法', skill: '搞懂用户到底想要什么', time: '2天前' },
 ]
 
 export default function Square() {
@@ -27,9 +30,11 @@ export default function Square() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const allSkills = getFilteredSkills()
+  // 先尝试按赛道过滤，数据不够就用全局热门兜底
   const trackSkills = allSkills.filter(s => s.trackIds?.includes(activeTrack) || s.trackId === activeTrack)
-  const hotSkills = [...trackSkills].sort((a, b) => b.installs - a.installs).slice(0, 5)
-  const newMethods = getNewMethods(allSkills)
+  const hotSource = trackSkills.length >= 5 ? trackSkills : allSkills
+  const hotSkills = [...hotSource].sort((a, b) => b.installs - a.installs).slice(0, 8)
+  const newMethods = getNewMethods(allSkills).slice(0, 5)
   const activeTrackData = tracks.find(t => t.id === activeTrack)
 
   return (
@@ -62,9 +67,12 @@ export default function Square() {
         <div className="flex-1 min-w-0">
           {/* 本周热门 */}
           <section className="mb-8">
-            <h2 className="text-base font-bold text-text-primary mb-4">
-              🔥 本周{activeTrackData?.name}圈热门
-            </h2>
+            <div className="flex items-baseline gap-2 mb-4">
+              <h2 className="text-base font-bold text-text-primary">
+                🔥 本周{activeTrackData?.name}圈热门
+              </h2>
+              <span className="text-xs text-text-tertiary">共 {hotSkills.length} 个方法被频繁使用</span>
+            </div>
             <div className="space-y-3">
               {hotSkills.map((skill, i) => (
                 <motion.div
@@ -134,6 +142,7 @@ export default function Square() {
                         <span className="text-text-secondary"> {update.action}</span>
                       </p>
                       <p className="text-xs text-brand-green font-medium mt-0.5">「{update.skill}」</p>
+                      {update.extra && <p className="text-[10px] text-text-secondary mt-0.5">{update.extra}</p>}
                       <p className="text-[10px] text-text-tertiary mt-0.5">{update.time}</p>
                     </div>
                   </div>
