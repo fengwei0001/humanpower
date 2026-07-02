@@ -93,7 +93,7 @@ export default function SkillDetail() {
   }
 
   return (
-    <div className="p-8 max-w-[960px] mx-auto">
+    <div className="p-8 max-w-[1100px] mx-auto">
       {/* Back — pill style */}
       <button
         onClick={() => navigate(-1)}
@@ -102,9 +102,9 @@ export default function SkillDetail() {
         ← 返回
       </button>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="flex gap-8">
         {/* Main Content */}
-        <div className="col-span-2">
+        <div className="flex-1 min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -342,7 +342,7 @@ export default function SkillDetail() {
         </div>
 
         {/* Sidebar */}
-        <div className="sticky top-8 space-y-4 self-start">
+        <div className="w-[320px] shrink-0 sticky top-8 space-y-4 self-start">
           {/* Actions */}
           <motion.div
             initial={{ opacity: 0, x: 12 }}
