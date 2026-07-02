@@ -2,15 +2,71 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tracks } from '../data/tracks'
-import { fetchSkills, fetchTags, type TagItem } from '../services/skills-api'
+import { fetchSkills } from '../services/skills-api'
 import type { Skill } from '../data/skills'
+
+// ─── 场景/痛点分类（按赛道） ───
+const scenariosByTrack: Record<string, { label: string; icon: string }[]> = {
+  pm: [
+    { label: '写 PRD', icon: '📝' },
+    { label: '做竞品分析', icon: '🔍' },
+    { label: '数据洞察', icon: '📊' },
+    { label: '汇报演示', icon: '🎤' },
+    { label: '用户调研', icon: '🎯' },
+    { label: '项目推进', icon: '🚀' },
+    { label: '需求评审', icon: '⚖️' },
+    { label: '增长实验', icon: '📈' },
+  ],
+  engineer: [
+    { label: '写代码', icon: '💻' },
+    { label: 'Debug', icon: '🐛' },
+    { label: 'Code Review', icon: '👀' },
+    { label: '写技术文档', icon: '📖' },
+    { label: '架构设计', icon: '🏗️' },
+    { label: '自动化测试', icon: '🧪' },
+    { label: '性能优化', icon: '⚡' },
+    { label: 'CI/CD', icon: '🔄' },
+  ],
+  creator: [
+    { label: '写爆款标题', icon: '✍️' },
+    { label: '拍视频脚本', icon: '🎬' },
+    { label: '做小红书', icon: '📕' },
+    { label: '涨粉策略', icon: '📈' },
+    { label: '热点追踪', icon: '🔥' },
+    { label: '数据复盘', icon: '📊' },
+    { label: '商务合作', icon: '🤝' },
+    { label: '内容排期', icon: '📅' },
+  ],
+  opc: [
+    { label: '从 0 到 1 做产品', icon: '🛠️' },
+    { label: '获客增长', icon: '📈' },
+    { label: '商业化变现', icon: '💰' },
+    { label: '搭建自动化', icon: '🤖' },
+    { label: '技术选型', icon: '🧩' },
+    { label: '落地页转化', icon: '🎯' },
+    { label: '一人搞定运维', icon: '🖥️' },
+    { label: '用户反馈闭环', icon: '🔁' },
+  ],
+}
+
+// 全部赛道时的场景
+const allScenarios = [
+  { label: '写文档', icon: '📝' },
+  { label: '搞数据', icon: '📊' },
+  { label: '做汇报', icon: '🎤' },
+  { label: '自动化', icon: '🤖' },
+  { label: '涨粉获客', icon: '📈' },
+  { label: '写代码', icon: '💻' },
+  { label: '做竞品分析', icon: '🔍' },
+  { label: '商业化', icon: '💰' },
+]
 
 export default function Square() {
   const navigate = useNavigate()
 
   // 筛选状态
   const [activeTrack, setActiveTrack] = useState<string | null>(null)
-  const [activeTag, setActiveTag] = useState<string | null>(null)
+  const [activeScenario, setActiveScenario] = useState<string | null>(null)
   const [sort, setSort] = useState<'hot' | 'new' | 'rating'>('hot')
 
   // 数据状态
@@ -19,29 +75,9 @@ export default function Square() {
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [tags, setTags] = useState<TagItem[]>([])
 
-  // 加载更多（追加模式）
-  const loadMoreSkills = async () => {
-    const nextPage = page + 1
-    setLoading(true)
-    try {
-      const result = await fetchSkills({
-        page: nextPage,
-        pageSize: 20,
-        track: activeTrack || undefined,
-        tag: activeTag || undefined,
-        sort,
-      })
-      setSkills(prev => [...prev, ...result.skills])
-      setPage(nextPage)
-      setHasMore(nextPage * result.pageSize < result.total)
-    } catch {
-      // ignore
-    } finally {
-      setLoading(false)
-    }
-  }
+  // 当前场景列表
+  const scenarios = activeTrack ? (scenariosByTrack[activeTrack] || []) : allScenarios
 
   // 筛选变更时重新加载
   useEffect(() => {
@@ -54,7 +90,6 @@ export default function Square() {
           page: 1,
           pageSize: 20,
           track: activeTrack || undefined,
-          tag: activeTag || undefined,
           sort,
         })
         if (!cancelled) {
@@ -70,30 +105,35 @@ export default function Square() {
       }
     }
 
-    const loadTagsAsync = async () => {
-      try {
-        const result = await fetchTags(activeTrack || undefined)
-        if (!cancelled) setTags(result)
-      } catch {
-        if (!cancelled) setTags([])
-      }
-    }
-
     load()
-    loadTagsAsync()
-
     return () => { cancelled = true }
-  }, [activeTrack, activeTag, sort])
+  }, [activeTrack, activeScenario, sort])
 
   // 切换赛道
   const handleTrackChange = (trackId: string | null) => {
     setActiveTrack(trackId)
-    setActiveTag(null) // 切赛道时重置标签
+    setActiveScenario(null)
   }
 
   // 加载更多
-  const handleLoadMore = () => {
-    loadMoreSkills()
+  const handleLoadMore = async () => {
+    const nextPage = page + 1
+    setLoading(true)
+    try {
+      const result = await fetchSkills({
+        page: nextPage,
+        pageSize: 20,
+        track: activeTrack || undefined,
+        sort,
+      })
+      setSkills(prev => [...prev, ...result.skills])
+      setPage(nextPage)
+      setHasMore(nextPage * result.pageSize < result.total)
+    } catch {
+      // ignore
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -102,17 +142,17 @@ export default function Square() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-text-primary mb-1">技能广场</h1>
         <p className="text-sm text-text-secondary">
-          {total} 个方法，同行都在用。按场景找，更快找到你要的。
+          {total} 个方法，同行都在用。找到你的场景，一键用起来。
         </p>
       </div>
 
-      {/* 赛道 Tabs — 全部 + 4赛道 */}
-      <div className="flex gap-2 mb-4 flex-wrap">
+      {/* 赛道 Tabs */}
+      <div className="flex gap-2 mb-5 flex-wrap">
         <button
           onClick={() => handleTrackChange(null)}
           className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
             !activeTrack
-              ? 'bg-brand-green text-white'
+              ? 'bg-brand-green text-white shadow-sm'
               : 'bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green'
           }`}
         >
@@ -124,7 +164,7 @@ export default function Square() {
             onClick={() => handleTrackChange(track.id)}
             className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
               activeTrack === track.id
-                ? 'bg-brand-green text-white'
+                ? 'bg-brand-green text-white shadow-sm'
                 : 'bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green'
             }`}
           >
@@ -133,40 +173,29 @@ export default function Square() {
         ))}
       </div>
 
-      {/* 标签筛选 */}
-      {tags.length > 0 && (
-        <div className="flex gap-2 mb-6 flex-wrap">
-          {tags.map(t => (
-            <button
-              key={t.tag}
-              onClick={() => setActiveTag(activeTag === t.tag ? null : t.tag)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                activeTag === t.tag
-                  ? 'bg-brand-green text-white'
-                  : 'bg-white border border-border text-text-secondary hover:border-brand-green/50 hover:text-brand-green'
-              }`}
-            >
-              {t.tag}
-              <span className="ml-1 opacity-60">{t.cnt}</span>
-            </button>
-          ))}
-          {activeTag && (
-            <button
-              onClick={() => setActiveTag(null)}
-              className="px-3 py-1.5 rounded-full text-xs font-medium text-text-tertiary hover:text-text-primary transition-colors"
-            >
-              ✕ 清除
-            </button>
-          )}
-        </div>
-      )}
+      {/* 场景/痛点分类 */}
+      <div className="flex gap-2 mb-6 flex-wrap">
+        {scenarios.map(s => (
+          <button
+            key={s.label}
+            onClick={() => setActiveScenario(activeScenario === s.label ? null : s.label)}
+            className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all ${
+              activeScenario === s.label
+                ? 'bg-brand-green text-white shadow-sm'
+                : 'bg-white border border-border text-text-secondary hover:border-brand-green/50 hover:text-brand-green'
+            }`}
+          >
+            {s.icon} {s.label}
+          </button>
+        ))}
+      </div>
 
       {/* 排序 + 计数 */}
       <div className="flex items-center justify-between mb-5">
         <div className="text-xs text-text-tertiary">
           {activeTrack && `${tracks.find(t => t.id === activeTrack)?.icon} `}
-          {activeTag ? `「${activeTag}」` : ''}
-          共 {total} 个方法
+          {activeScenario ? `「${activeScenario}」相关` : ''}
+          {' '}共 {total} 个方法
         </div>
         <div className="flex items-center gap-1 bg-white border border-border rounded-btn p-1">
           {[
@@ -209,7 +238,7 @@ export default function Square() {
         <div className="text-center py-20">
           <span className="text-4xl mb-4 block">🔍</span>
           <p className="text-text-secondary">该分类下暂无方法</p>
-          <p className="text-xs text-text-tertiary mt-1">试试其他赛道或标签</p>
+          <p className="text-xs text-text-tertiary mt-1">试试其他赛道或场景</p>
         </div>
       )}
 
@@ -229,7 +258,7 @@ export default function Square() {
   )
 }
 
-// ─── 大卡片组件（对标觅游截图样式） ───
+// ─── 大卡片组件 ───
 
 interface SkillCardLargeProps {
   skill: Skill
@@ -285,7 +314,7 @@ function SkillCardLarge({ skill, index, onClick }: SkillCardLargeProps) {
             🔗 {skill.citations}
           </span>
           <span className="flex items-center gap-1">
-            ⭐ {(skill.rating || 0).toFixed(2)}
+            ⭐ {(Number(skill.rating) || 0).toFixed(2)}
           </span>
         </div>
         <div className="flex items-center gap-1.5">
