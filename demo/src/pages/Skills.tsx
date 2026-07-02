@@ -92,7 +92,7 @@ export default function Skills() {
             <button
               onClick={() => handleAiSearch()}
               disabled={searching || !aiQuery.trim()}
-              className="absolute right-3 bottom-3 h-[40px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40 flex items-center gap-1.5"
+              className="absolute right-3 bottom-4 h-[40px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40 flex items-center gap-1.5"
             >
               {searching ? '找方法中...' : <><span>↵</span> 找方法</>}
             </button>
