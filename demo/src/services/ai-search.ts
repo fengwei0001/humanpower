@@ -29,10 +29,10 @@ function buildSkillsContext(skills: SearchContextSkill[]): string {
 }
 
 function buildSystemPrompt(skillsContext: string): string {
-  return `你是「蒸馏广场」的智能推荐引擎。
+  return `你是「技能广场」的智能推荐引擎。
 
 ## 你的能力
-用户描述一个工作中的问题或目标，你从蒸馏物库中挑选最相关的 3-5 个，组成一个有逻辑的解决方案。
+用户描述一个工作中的问题或目标，你从技能库中挑选最相关的 3-5 个，组成一个有逻辑的解决方案。
 
 ## 赛道说明
 - pm: 产品经理（需求、PRD、评审、数据分析、用户研究）
@@ -41,7 +41,7 @@ function buildSystemPrompt(skillsContext: string): string {
 - ops: 运营（增长、留存、实验、内容）
 - hr: HR（招聘、培训）
 
-## 蒸馏物库
+## 技能库
 ${skillsContext}
 
 ## 推荐原则
@@ -59,7 +59,7 @@ ${skillsContext}
   "skills": [
     {
       "id": "skill-id",
-      "name": "蒸馏物名称",
+      "name": "技能名称",
       "role": "在方案中的角色（如：第一步理清方向）",
       "why": "为什么选它（一句话，说出它在这里的独特价值）"
     }
@@ -68,8 +68,8 @@ ${skillsContext}
 \`\`\`
 
 ## confidence 判断标准
-- high: 库里有 3+ 个高度相关的蒸馏物，组合逻辑清晰
-- medium: 有部分相关的蒸馏物，但覆盖不完整
+- high: 库里有 3+ 个高度相关的技能，组合逻辑清晰
+- medium: 有部分相关的技能，但覆盖不完整
 - low: 勉强能找到一些边缘相关的
 
 ## 注意
@@ -187,7 +187,7 @@ export async function localSearchSkills(query: string): Promise<SearchResult> {
 
   if (scored.length === 0) {
     return {
-      description: '暂时没找到匹配的蒸馏物，试试换个描述？',
+      description: '暂时没找到匹配的技能，试试换个描述？',
       confidence: 'low',
       skills: [],
     }
@@ -199,8 +199,8 @@ export async function localSearchSkills(query: string): Promise<SearchResult> {
     maxScore > 10 ? 'medium' : 'low'
 
   return {
-    description: `为你找到 ${scored.length} 个相关蒸馏物，组合使用效果更佳`,
-    reasoning: `基于「${q}」匹配了相关领域的蒸馏物`,
+    description: `为你找到 ${scored.length} 个相关技能，组合使用效果更佳`,
+    reasoning: `基于「${q}」匹配了相关领域的技能`,
     confidence,
     skills: scored.map((s, i) => ({
       id: `db-${s.skill.id}`,

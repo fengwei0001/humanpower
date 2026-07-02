@@ -94,8 +94,8 @@ export const currentUser: User = {
   milestones: [
     { date: '2026-06', title: '声望突破 8000', description: '产品赛道排名升至 Top 3' },
     { date: '2026-05', title: '「PRD结构化写作」被引用 400+', description: '成为赛道最热门 Skill' },
-    { date: '2026-04', title: '创建第 15 个 Skill', description: '解锁「蒸馏大师」称号' },
-    { date: '2026-03', title: '加入蒸馏平台', description: '选择产品经理赛道，开始蒸馏之旅' },
+    { date: '2026-04', title: '创建第 15 个 Skill', description: '解锁「技能大师」称号' },
+    { date: '2026-03', title: '加入觅游', description: '选择产品经理赛道，开始觅游之旅' },
   ],
 }
 

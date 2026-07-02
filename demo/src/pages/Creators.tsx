@@ -79,7 +79,7 @@ export default function Creators() {
                         >
                           {creator.name}
                         </span>
-                        <span className="text-[11px] text-text-tertiary">更新了蒸馏物</span>
+                        <span className="text-[11px] text-text-tertiary">更新了技能</span>
                       </div>
                       <div className="text-[11px] text-text-tertiary">{item.time}</div>
                     </div>
@@ -172,7 +172,7 @@ export default function Creators() {
                       </div>
                       <div className="ml-[52px] mt-1 flex items-center gap-3 text-[11px] text-text-tertiary">
                         <span>{creator.followers.toLocaleString()} followers</span>
-                        <span>{creator.skillsCreated} 蒸馏物</span>
+                        <span>{creator.skillsCreated} 技能</span>
                       </div>
                     </div>
                   )

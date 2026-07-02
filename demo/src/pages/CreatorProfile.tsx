@@ -167,7 +167,7 @@ export default function CreatorProfile() {
             className="bg-white rounded-card p-5 border border-border"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-bold text-text-primary">📊 蒸馏贡献</h2>
+              <h2 className="text-base font-bold text-text-primary">📊 技能贡献</h2>
               <span className="text-xs text-text-tertiary">过去 52 周</span>
             </div>
             <HeatMap data={heatmap} />
@@ -211,7 +211,7 @@ export default function CreatorProfile() {
               transition={{ delay: 0.4 }}
               className="bg-white rounded-card p-5 border border-border"
             >
-              <h2 className="text-base font-bold text-text-primary mb-4">⚡ 全部蒸馏物 ({allCreatorSkills.length})</h2>
+              <h2 className="text-base font-bold text-text-primary mb-4">⚡ 全部技能 ({allCreatorSkills.length})</h2>
               <div className="space-y-2">
                 {allCreatorSkills.map((skill) => (
                   <div
@@ -246,7 +246,7 @@ export default function CreatorProfile() {
             <h3 className="text-sm font-bold text-text-primary mb-3">数据概览</h3>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-text-secondary">蒸馏物总数</span>
+                <span className="text-xs text-text-secondary">技能总数</span>
                 <span className="text-sm font-bold text-text-primary">{creator.skillsCreated}</span>
               </div>
               <div className="flex justify-between items-center">
@@ -293,7 +293,7 @@ export default function CreatorProfile() {
             className="bg-gradient-to-br from-brand-green-surface to-white rounded-card p-5 border border-brand-green/10"
           >
             <p className="text-xs text-text-secondary mb-3">
-              Follow {creator.name}，你的 Agent 会优先获取 TA 新发布的蒸馏物。
+              Follow {creator.name}，你的 Agent 会优先获取 TA 新发布的技能。
             </p>
             <button
               onClick={() => setIsFollowed(!isFollowed)}

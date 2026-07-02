@@ -64,9 +64,9 @@ export default function Skills() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h1 className="text-2xl font-bold text-text-primary">蒸馏广场</h1>
+        <h1 className="text-2xl font-bold text-text-primary">技能广场</h1>
         <p className="text-sm text-text-secondary mt-1">
-          发现优质蒸馏物，或直接描述问题让 AI 帮你推荐组合方案。
+          找到同行验证过的 AI 方法，直接描述问题让 AI 帮你推荐。
         </p>
       </motion.div>
 
@@ -75,7 +75,7 @@ export default function Skills() {
         <div className="flex-1 min-w-0">
           {/* AI Search */}
           <div className="bg-white rounded-card p-5 border border-border mb-5">
-            <h3 className="text-sm font-bold text-text-primary mb-3">描述你要解决的问题，AI 帮你推荐蒸馏物组合</h3>
+            <h3 className="text-sm font-bold text-text-primary mb-3">搜你的工作问题，AI 帮你推荐方法组合</h3>
             <div className="flex items-center gap-3">
               <input
                 type="text"
@@ -124,7 +124,7 @@ export default function Skills() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-text-primary">🧠 正在为你分析...</p>
-                    <p className="text-xs text-text-tertiary mt-0.5">从 {total} 个蒸馏物中匹配最佳方案</p>
+                    <p className="text-xs text-text-tertiary mt-0.5">从 {total} 个技能中匹配最佳方案</p>
                   </div>
                 </div>
               </motion.div>
@@ -308,7 +308,7 @@ export default function Skills() {
           {/* Count + Sort */}
           <div className="flex items-center justify-between mb-4">
             <div className="text-xs text-text-tertiary">
-              共 {total} 个蒸馏物{filteredSkills.length < total ? `，已加载 ${filteredSkills.length} 个` : ''}
+              共 {total} 个技能{filteredSkills.length < total ? `，已加载 ${filteredSkills.length} 个` : ''}
             </div>
             <div className="flex items-center gap-1 bg-white border border-border rounded-btn p-1">
               {[
@@ -362,7 +362,7 @@ export default function Skills() {
           {!loading && filteredSkills.length === 0 && (
             <div className="text-center py-20">
               <span className="text-4xl mb-4 block">🔍</span>
-              <p className="text-text-secondary">没有找到匹配的蒸馏物</p>
+              <p className="text-text-secondary">没有找到匹配的技能</p>
               <p className="text-xs text-text-tertiary mt-1">试试其他赛道筛选</p>
             </div>
           )}

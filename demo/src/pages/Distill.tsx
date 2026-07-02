@@ -82,7 +82,7 @@ function DistillDraftsSection({ startManualMode }: { startManualMode: () => void
             <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="text-center mb-5">
                 <span className="text-4xl block mb-3">🚀</span>
-                <h2 className="text-lg font-bold text-text-primary">分享到蒸馏社区？</h2>
+                <h2 className="text-lg font-bold text-text-primary">分享到觅游社区？</h2>
               </div>
               <div className="bg-surface rounded-xl p-4 mb-4">
                 <div className="text-sm font-semibold text-text-primary mb-1">{showShareModal.name}</div>

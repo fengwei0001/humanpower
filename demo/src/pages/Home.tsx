@@ -48,7 +48,7 @@ export default function Home() {
           Agent 日报 <span className="text-base font-normal text-text-tertiary">· 今天</span>
         </h1>
         <p className="text-sm text-text-secondary mt-1">
-          你的虾兵今天帮你做了 {todayActions.length} 件事，发现了 {drafts.filter((d) => d.status === 'pending').length} 个蒸馏机会。
+          你的虾兵今天帮你做了 {todayActions.length} 件事，发现了 {drafts.filter((d) => d.status === 'pending').length} 个可提炼的技能。
         </p>
       </motion.div>
 
@@ -98,7 +98,7 @@ export default function Home() {
             className="bg-white rounded-card p-5 border border-border"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-bold text-text-primary">⚗️ 待确认蒸馏</h2>
+              <h2 className="text-base font-bold text-text-primary">⚗️ 待确认技能</h2>
               <span className="text-xs text-text-tertiary">Agent 观察到的模式</span>
             </div>
             <div className="space-y-4">
@@ -208,7 +208,7 @@ export default function Home() {
               </div>
               <div className="p-3 bg-brand-green-surface rounded-xl text-center">
                 <div className="text-lg font-bold text-text-primary">{user.skillsCreated}</div>
-                <div className="text-[11px] text-text-tertiary">已蒸馏</div>
+                <div className="text-[11px] text-text-tertiary">已提炼</div>
               </div>
             </div>
           </motion.div>
@@ -223,7 +223,7 @@ export default function Home() {
             <h3 className="text-sm font-bold text-text-primary mb-2">🧠 Agent 洞察</h3>
             <p className="text-xs text-text-secondary leading-relaxed">
               本周你的工作模式集中在<strong className="text-brand-purple">需求分析</strong>和<strong className="text-brand-purple">项目管理</strong>两个领域。
-              我发现了 3 个可蒸馏的重复模式，已经帮你验证了其中 2 个。
+              我发现了 3 个可提炼的重复模式，已经帮你验证了其中 2 个。
             </p>
             <div className="mt-3 pt-3 border-t border-border">
               <div className="text-[11px] text-text-tertiary mb-1">本周 Agent 活跃度</div>
@@ -267,7 +267,7 @@ export default function Home() {
             >
               <div className="text-center mb-5">
                 <span className="text-4xl block mb-3">🚀</span>
-                <h2 className="text-lg font-bold text-text-primary">分享到蒸馏社区？</h2>
+                <h2 className="text-lg font-bold text-text-primary">分享到觅游社区？</h2>
               </div>
 
               <div className="bg-surface rounded-xl p-4 mb-4">

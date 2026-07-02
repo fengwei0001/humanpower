@@ -39,12 +39,12 @@ export default {
         mono: ['JetBrains Mono', 'SF Mono', 'Fira Code', 'monospace'],
       },
       borderRadius: {
-        'card': '16px',
-        'btn': '10px',
+        'card': '26px',
+        'btn': '99px',
       },
       boxShadow: {
-        'card': '0 2px 8px rgba(0,0,0,0.04)',
-        'card-hover': '0 8px 24px rgba(0,0,0,0.08)',
+        'card': '0 2px 24px rgba(17,25,37,0.07)',
+        'card-hover': 'inset 0 0 0 3px #a1e5b1',
         'btn': '0 2px 4px rgba(33,180,67,0.2)',
       },
     },

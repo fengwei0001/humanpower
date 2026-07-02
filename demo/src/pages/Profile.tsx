@@ -179,7 +179,7 @@ export default function Profile() {
               onClick={() => navigate('/distill')}
               className="w-full btn-purple flex items-center justify-center gap-2 text-sm mb-2"
             >
-              ⚗️ 蒸馏新 Skill
+              ⚗️ 创建新技能
             </button>
             <button
               onClick={() => navigate('/skills')}

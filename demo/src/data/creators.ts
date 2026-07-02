@@ -31,11 +31,11 @@ export interface Badge {
 }
 
 export const badges: Record<string, Badge> = {
-  'distill-master': { id: 'distill-master', name: '蒸馏大师', icon: '⚗️', description: '创建 10+ 高质量蒸馏物' },
+  'distill-master': { id: 'distill-master', name: '技能大师', icon: '⚗️', description: '创建 10+ 高质量技能' },
   'citation-king': { id: 'citation-king', name: '引用之王', icon: '🔗', description: '被引用超过 1000 次' },
   'community-star': { id: 'community-star', name: '社区之星', icon: '⭐', description: '连续 30 天活跃贡献' },
   'pioneer': { id: 'pioneer', name: '开拓者', icon: '🚀', description: '最早一批创作者' },
-  'mentor': { id: 'mentor', name: '导师', icon: '🎓', description: '帮助 100+ 人装备了你的蒸馏物' },
+  'mentor': { id: 'mentor', name: '导师', icon: '🎓', description: '帮助 100+ 人装备了你的技能' },
   'plugin-architect': { id: 'plugin-architect', name: '架构师', icon: '🏗️', description: '发布 3+ 完整 Plugin' },
   'top-track': { id: 'top-track', name: '赛道霸主', icon: '👑', description: '赛道排名 Top 3', level: 1 },
 }
@@ -64,7 +64,7 @@ export const creators: Creator[] = [
       { type: 'twitter', url: '#', label: '@zephyr_pm' },
       { type: 'blog', url: '#', label: 'zephyr.pm' },
     ],
-    story: '我做了 10 年产品，最大的感悟是：好的方法论不应该锁在个人脑子里。蒸馏让我把这些年踩过的坑、总结的套路变成了所有人都能用的工具。',
+    story: '我做了 10 年产品，最大的感悟是：好的方法论不应该锁在个人脑子里。觅游让我把这些年踩过的坑、总结的套路变成了所有人都能用的工具。',
   },
   {
     id: 'creator-jesse',
@@ -113,14 +113,14 @@ export const creators: Creator[] = [
       { type: 'twitter', url: '#', label: '@zarazhangrui' },
       { type: 'website', url: '#', label: 'zarazhang.com' },
     ],
-    story: '我不写代码。但我让 coding agent 替我写了 22k star 的项目。蒸馏让每个有想法的人都能成为 builder。',
+    story: '我不写代码。但我让 coding agent 替我写了 22k star 的项目。觅游让每个有想法的人都能成为 builder。',
   },
   {
     id: 'creator-dean',
     name: 'Dean Peters',
     avatar: '🎯',
     title: 'PM 框架收藏家 · 54 个方法论',
-    bio: '把 20 年产品管理的每一个框架都蒸馏成了可执行工具。JTBD、OST、Journey Map... 全都可以让你的虾兵直接跑。',
+    bio: '把 20 年产品管理的每一个框架都变成了可执行工具。JTBD、OST、Journey Map... 全都可以让你的虾兵直接跑。',
     trackIds: ['pm'],
     followers: 2340,
     following: 56,

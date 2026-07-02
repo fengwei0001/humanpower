@@ -17,7 +17,7 @@
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
     color: #111925;
-    background: #F7F9FA;
+    background: #E8F8D7;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -50,7 +50,7 @@
   .skill-card {
     @apply bg-white border border-border rounded-card p-5 shadow-card
            transition-all duration-200 cursor-pointer
-           hover:shadow-card-hover hover:border-border-heavy hover:-translate-y-0.5;
+           hover:shadow-card-hover hover:-translate-y-0.5;
   }
 
   .btn-primary {

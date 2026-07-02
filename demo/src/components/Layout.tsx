@@ -4,7 +4,7 @@ import { useUserStore } from '../stores/user'
 
 const navItems = [
   { path: '/', label: '日报', icon: '📋', desc: 'Agent 今天帮你做了什么' },
-  { path: '/skills', label: '广场', icon: '🔍', desc: '发现蒸馏物' },
+  { path: '/skills', label: '广场', icon: '🔍', desc: '发现技能' },
   { path: '/creators', label: '创作者', icon: '👥', desc: 'Follow 牛人' },
   { path: '/distill', label: '蒸馏', icon: '⚗️', desc: '主动蒸馏经验' },
   { path: '/profile', label: '我的', icon: '👤', desc: '个人主页' },
@@ -25,8 +25,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ⚗️
             </div>
             <div>
-              <h1 className="text-base font-bold text-text-primary leading-tight">蒸馏</h1>
-              <p className="text-[11px] text-text-tertiary">蒸馏世界，成就自己</p>
+              <h1 className="text-base font-bold text-text-primary leading-tight">觅游</h1>
+              <p className="text-[11px] text-text-tertiary">来觅游，用方法解决问题</p>
             </div>
           </div>
         </div>
