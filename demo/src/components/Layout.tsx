@@ -39,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   }`
                 }
               >
-                <span className="text-xl shrink-0">{item.icon}</span>
+                <span className="text-2xl shrink-0">{item.icon}</span>
                 <span className="ml-2.5 text-sm font-medium text-text-primary overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
                   {item.label}
                 </span>

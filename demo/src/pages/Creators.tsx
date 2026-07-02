@@ -5,16 +5,60 @@ import { creators } from '../data/creators'
 import { tracks } from '../data/tracks'
 import { useSkillsStore } from '../stores/skills'
 
-// Feed data — linked to real skills in the data store
-const feedItems = [
-  { id: 'f1', creatorId: 'creator-zara', skillId: 'pm-slides', time: '2 小时前', note: '更新了演示模板库，新增 5 套暗色系风格' },
-  { id: 'f2', creatorId: 'creator-zephyr', skillId: 'pm-prd-writer', time: '5 小时前', note: '优化了异常处理的自动补全，现在能识别更多边界情况' },
-  { id: 'f3', creatorId: 'creator-jesse', skillId: 'eng-superpowers', time: '昨天', note: '新增并行子 Agent 调度，大任务拆解速度提升 3x' },
-  { id: 'f4', creatorId: 'creator-dean', skillId: 'pm-ost', time: '昨天', note: '补充了「如何判断机会是否值得投入」的评估框架' },
-  { id: 'f5', creatorId: 'creator-corey', skillId: 'ops-ab-testing', time: '2 天前', note: '增加了多变量实验的样本量速查表' },
-  { id: 'f6', creatorId: 'creator-matt', skillId: 'eng-debugging', time: '3 天前', note: '新增「并发 Bug 诊断」专项路径，适合多线程场景' },
-  { id: 'f7', creatorId: 'creator-zara', skillId: 'ops-lark-minutes', time: '3 天前', note: '支持识别会议中的隐含承诺（不只是显式 TODO）' },
-  { id: 'f8', creatorId: 'creator-zephyr', skillId: 'pm-review-board', time: '4 天前', note: '法务角色审查能力增强，现在能检测 GDPR 合规问题' },
+// 动作类型
+type FeedAction = 'published' | 'updated' | 'used' | 'favorited' | 'reviewed'
+
+interface FeedItem {
+  id: string
+  creatorId: string
+  skillId: string
+  action: FeedAction
+  time: string
+  note: string // 更新说明 / 评价原文 / 使用感受
+}
+
+const actionLabels: Record<FeedAction, { text: string; icon: string; color: string }> = {
+  published: { text: '发布了技能', icon: '🎉', color: 'text-brand-green' },
+  updated:   { text: '更新了技能', icon: '⚡', color: 'text-blue-600' },
+  used:      { text: '使用了技能', icon: '▶️', color: 'text-amber-600' },
+  favorited: { text: '收藏了技能', icon: '⭐', color: 'text-purple-600' },
+  reviewed:  { text: '评价了技能', icon: '💬', color: 'text-pink-600' },
+}
+
+// Feed data — 丰富的动态类型
+const feedItems: FeedItem[] = [
+  {
+    id: 'f1', creatorId: 'creator-zara', skillId: 'pm-slides', action: 'updated', time: '2 小时前',
+    note: '更新了演示模板库，新增 5 套暗色系风格。现在支持一键切换主题，适合深色背景的场合。',
+  },
+  {
+    id: 'f2', creatorId: 'creator-zephyr', skillId: 'pm-prd-writer', action: 'updated', time: '5 小时前',
+    note: '优化了异常处理的自动补全，现在能识别更多边界情况。再也不会漏掉「如果用户取消操作」这类 case 了。',
+  },
+  {
+    id: 'f3', creatorId: 'creator-jesse', skillId: 'eng-superpowers', action: 'published', time: '昨天',
+    note: '全新技能上线！让 AI 从设计讨论到 TDD 到自动 Code Review，出来的代码你敢直接合到 main。',
+  },
+  {
+    id: 'f4', creatorId: 'creator-dean', skillId: 'pm-ost', action: 'reviewed', time: '昨天',
+    note: '用了一个月，帮我砍掉了 3 个伪需求。以前每次老板说「做个XX」我就开干，现在会先问「这解决什么问题」。强烈推荐给每个产品经理。',
+  },
+  {
+    id: 'f5', creatorId: 'creator-corey', skillId: 'ops-ab-testing', action: 'updated', time: '2 天前',
+    note: '增加了多变量实验的样本量速查表，不用再手算了。直接输入变量数量和预期效果大小就行。',
+  },
+  {
+    id: 'f6', creatorId: 'creator-matt', skillId: 'eng-debugging', action: 'used', time: '3 天前',
+    note: '昨晚线上出了个并发 Bug，用这个方法 15 分钟就定位到了。以前这种问题至少排查 2 小时。',
+  },
+  {
+    id: 'f7', creatorId: 'creator-zara', skillId: 'ops-lark-minutes', action: 'favorited', time: '3 天前',
+    note: '终于有人把会议纪要自动化做好了。能识别隐含承诺，不只是显式 TODO，太需要了。',
+  },
+  {
+    id: 'f8', creatorId: 'creator-zephyr', skillId: 'pm-review-board', action: 'updated', time: '4 天前',
+    note: '法务角色审查能力增强，现在能检测 GDPR 合规问题。跨国产品必备。',
+  },
 ]
 
 export default function Creators() {
@@ -55,6 +99,8 @@ export default function Creators() {
               const creator = creators.find(c => c.id === item.creatorId)
               const skill = skills.find(s => s.id === item.skillId)
               if (!creator || !skill) return null
+              const actionMeta = actionLabels[item.action]
+
               return (
                 <motion.div
                   key={item.id}
@@ -63,10 +109,10 @@ export default function Creators() {
                   transition={{ delay: i * 0.06 }}
                   className="bg-white rounded-card p-5 border border-border hover:shadow-card transition-all"
                 >
-                  {/* Creator header */}
+                  {/* Creator header + action */}
                   <div className="flex items-center gap-3 mb-3">
                     <div
-                      className="w-9 h-9 rounded-full bg-brand-green-surface flex items-center justify-center text-lg cursor-pointer"
+                      className="w-10 h-10 rounded-full bg-brand-green-surface flex items-center justify-center text-xl cursor-pointer hover:scale-105 transition-transform"
                       onClick={() => navigate(`/creators/${creator.id}`)}
                     >
                       {creator.avatar}
@@ -79,25 +125,42 @@ export default function Creators() {
                         >
                           {creator.name}
                         </span>
-                        <span className="text-[11px] text-text-tertiary">更新了技能</span>
+                        <span className={`text-xs font-medium ${actionMeta.color}`}>
+                          {actionMeta.text}
+                        </span>
                       </div>
                       <div className="text-[11px] text-text-tertiary">{item.time}</div>
                     </div>
                   </div>
 
-                  {/* Content — links to real skill */}
-                  <div className="ml-12">
-                    <div
-                      className="flex items-center gap-2 mb-1 cursor-pointer group"
-                      onClick={() => navigate(`/skills/${skill.id}`)}
-                    >
-                      <span className="text-sm">⚡</span>
-                      <h3 className="text-[15px] font-semibold text-text-primary group-hover:text-brand-green transition-colors">{skill.name}</h3>
+                  {/* Skill 引用卡片 */}
+                  <div
+                    className="ml-[52px] bg-[#F8FDF4] border border-brand-green/15 rounded-2xl p-4 cursor-pointer hover:border-brand-green/30 transition-all group"
+                    onClick={() => navigate(`/skills/${skill.id}`)}
+                  >
+                    {/* Skill 名称 */}
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-base">{actionMeta.icon}</span>
+                      <h3 className="text-[15px] font-bold text-text-primary group-hover:text-brand-green transition-colors">
+                        {skill.name}
+                      </h3>
                     </div>
-                    <p className="text-sm text-text-secondary leading-relaxed mb-2">{item.note}</p>
-                    <p className="text-xs text-text-tertiary mb-3 line-clamp-1">{skill.description}</p>
-                    <div className="flex items-center gap-4">
-                      <span className="text-xs text-text-tertiary">📥 {skill.installs.toLocaleString()} · 🔗 {skill.citations} · ⭐ {skill.rating}</span>
+
+                    {/* 动作附带文字（更新说明/评价原文/使用感受） */}
+                    <p className="text-sm text-text-primary leading-relaxed mb-3">
+                      {item.note}
+                    </p>
+
+                    {/* Skill 描述（灰色补充） */}
+                    <p className="text-xs text-text-tertiary line-clamp-1 mb-3">
+                      {skill.description}
+                    </p>
+
+                    {/* Stats */}
+                    <div className="flex items-center gap-4 text-xs text-text-tertiary">
+                      <span>🔥 {skill.installs.toLocaleString()}</span>
+                      <span>🔗 {skill.citations}</span>
+                      <span>⭐ {skill.rating}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -113,7 +176,7 @@ export default function Creators() {
             <div className="flex flex-wrap gap-1.5">
               <button
                 onClick={() => setFilterTrack(null)}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                   !filterTrack ? 'bg-text-primary text-white' : 'bg-white border border-border text-text-secondary'
                 }`}
               >
@@ -123,7 +186,7 @@ export default function Creators() {
                 <button
                   key={track.id}
                   onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
-                  className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                     filterTrack === track.id ? 'text-white' : 'bg-white border border-border text-text-secondary'
                   }`}
                   style={filterTrack === track.id ? { backgroundColor: track.color } : undefined}
@@ -145,7 +208,7 @@ export default function Creators() {
                     <div key={creator.id} className="px-4 py-3 hover:bg-surface-hover transition-colors">
                       <div className="flex items-center gap-3">
                         <div
-                          className="w-10 h-10 rounded-full bg-brand-green-surface flex items-center justify-center text-xl cursor-pointer"
+                          className="w-11 h-11 rounded-full bg-brand-green-surface flex items-center justify-center text-2xl cursor-pointer hover:scale-105 transition-transform"
                           onClick={() => navigate(`/creators/${creator.id}`)}
                         >
                           {creator.avatar}
@@ -161,7 +224,7 @@ export default function Creators() {
                         </div>
                         <button
                           onClick={() => toggleFollow(creator.id)}
-                          className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-all shrink-0 ${
+                          className={`w-8 h-8 rounded-full flex items-center justify-center text-base font-medium transition-all shrink-0 ${
                             isFollowed
                               ? 'bg-brand-green-surface text-brand-green'
                               : 'bg-text-primary text-white hover:bg-text-primary/90'
@@ -170,7 +233,7 @@ export default function Creators() {
                           {isFollowed ? '✓' : '+'}
                         </button>
                       </div>
-                      <div className="ml-[52px] mt-1 flex items-center gap-3 text-[11px] text-text-tertiary">
+                      <div className="ml-[56px] mt-1 flex items-center gap-3 text-[11px] text-text-tertiary">
                         <span>{creator.followers.toLocaleString()} followers</span>
                         <span>{creator.skillsCreated} 技能</span>
                       </div>
