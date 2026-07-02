@@ -146,34 +146,36 @@ export default function Square() {
         </p>
       </div>
 
-      {/* 赛道 Tabs */}
-      <div className="flex gap-2 mb-5 flex-wrap">
+      {/* 赛道 Tabs — 大号、底部指示器风格 */}
+      <div className="flex gap-1 mb-5 border-b border-border">
         <button
           onClick={() => handleTrackChange(null)}
-          className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
+          className={`px-5 py-2.5 text-sm font-semibold transition-all relative ${
             !activeTrack
-              ? 'bg-brand-green text-white shadow-sm'
-              : 'bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green'
+              ? 'text-brand-green'
+              : 'text-text-secondary hover:text-text-primary'
           }`}
         >
           全部
+          {!activeTrack && <span className="absolute bottom-0 left-2 right-2 h-[3px] rounded-full bg-brand-green" />}
         </button>
         {tracks.map(track => (
           <button
             key={track.id}
             onClick={() => handleTrackChange(track.id)}
-            className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
+            className={`px-5 py-2.5 text-sm font-semibold transition-all relative ${
               activeTrack === track.id
-                ? 'bg-brand-green text-white shadow-sm'
-                : 'bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green'
+                ? 'text-brand-green'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             {track.icon} {track.name}
+            {activeTrack === track.id && <span className="absolute bottom-0 left-2 right-2 h-[3px] rounded-full bg-brand-green" />}
           </button>
         ))}
       </div>
 
-      {/* 场景/痛点分类 */}
+      {/* 场景/痛点分类 — 小胶囊 */}
       <div className="flex gap-2 mb-6 flex-wrap">
         {scenarios.map(s => (
           <button
