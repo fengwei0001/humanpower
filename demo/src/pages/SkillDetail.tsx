@@ -332,6 +332,136 @@ export default function SkillDetail() {
               </p>
             </div>
 
+            {/* 💬 用户评价 */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
+                  <span>💬</span> 用户评价
+                </h3>
+                <span className="text-[11px] text-text-tertiary">{5} 条评价</span>
+              </div>
+
+              <div className="space-y-3">
+                {/* 评价 1 — 来自 Agent（带执行日志） */}
+                <div className="p-4 bg-white rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-8 h-8 rounded-full bg-brand-green-surface flex items-center justify-center text-sm">🧑‍💼</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-text-primary">张三</span>
+                        <span className="text-[11px] text-text-tertiary">产品经理</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400 text-xs">★★★★★</div>
+                    <span className="text-[11px] text-text-tertiary">3 小时前</span>
+                  </div>
+                  <p className="text-sm text-text-primary leading-relaxed mb-3">
+                    用了一个月，帮我砍掉了 3 个伪需求。以前每次老板说「做个XX」我就开干，现在会先问「这解决什么问题」。强烈推荐给每个产品经理。
+                  </p>
+                  {/* 虾的执行日志（附件） */}
+                  <div className="px-3 py-2.5 bg-[#F8FDF4] rounded-lg border border-brand-green/10 flex items-center gap-3">
+                    <span className="text-sm">🦐</span>
+                    <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
+                      <span className="font-medium text-brand-green">✓ 成功</span>
+                      <span>耗时 2.3min</span>
+                      <span>3 轮对话</span>
+                    </div>
+                    <span className="text-[10px] text-text-tertiary">via Agent</span>
+                  </div>
+                </div>
+
+                {/* 评价 2 — 来自 Agent（带日志） */}
+                <div className="p-4 bg-white rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-sm">👨‍💻</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-text-primary">李四</span>
+                        <span className="text-[11px] text-text-tertiary">工程师</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400 text-xs">★★★★☆</div>
+                    <span className="text-[11px] text-text-tertiary">昨天</span>
+                  </div>
+                  <p className="text-sm text-text-primary leading-relaxed mb-3">
+                    效果不错，但有时候对中文语境的理解还差点意思。英文场景下基本完美。
+                  </p>
+                  <div className="px-3 py-2.5 bg-[#F8FDF4] rounded-lg border border-brand-green/10 flex items-center gap-3">
+                    <span className="text-sm">🦐</span>
+                    <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
+                      <span className="font-medium text-brand-green">✓ 成功</span>
+                      <span>耗时 1.8min</span>
+                      <span>2 轮对话</span>
+                    </div>
+                    <span className="text-[10px] text-text-tertiary">via Agent</span>
+                  </div>
+                </div>
+
+                {/* 评价 3 — 来自网页（不带日志） */}
+                <div className="p-4 bg-white rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-sm">👩‍🎨</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-text-primary">王五</span>
+                        <span className="text-[11px] text-text-tertiary">设计师</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400 text-xs">★★★★★</div>
+                    <span className="text-[11px] text-text-tertiary">2 天前</span>
+                  </div>
+                  <p className="text-sm text-text-primary leading-relaxed">
+                    终于不用每次都从头教 AI 了。装上之后感觉它真的「记住」了我的习惯。
+                  </p>
+                </div>
+
+                {/* 评价 4 — 来自 Agent（执行失败的诚实反馈） */}
+                <div className="p-4 bg-white rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-sm">🧑‍🏫</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-text-primary">赵六</span>
+                        <span className="text-[11px] text-text-tertiary">产品经理</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400 text-xs">★★★☆☆</div>
+                    <span className="text-[11px] text-text-tertiary">3 天前</span>
+                  </div>
+                  <p className="text-sm text-text-primary leading-relaxed mb-3">
+                    试了两次，第一次没跑通，第二次成功了。可能我的场景比较复杂，需要更多上下文。
+                  </p>
+                  <div className="px-3 py-2.5 bg-red-50/50 rounded-lg border border-red-100 flex items-center gap-3">
+                    <span className="text-sm">🦐</span>
+                    <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
+                      <span className="font-medium text-red-500">✗ 失败 → ✓ 重试成功</span>
+                      <span>耗时 4.5min</span>
+                      <span>6 轮对话</span>
+                    </div>
+                    <span className="text-[10px] text-text-tertiary">via Agent</span>
+                  </div>
+                </div>
+
+                {/* 评价 5 — 来自网页（不带日志） */}
+                <div className="p-4 bg-white rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-sm">👨‍🚀</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-text-primary">孙七</span>
+                        <span className="text-[11px] text-text-tertiary">OPC</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-amber-400 text-xs">★★★★★</div>
+                    <span className="text-[11px] text-text-tertiary">5 天前</span>
+                  </div>
+                  <p className="text-sm text-text-primary leading-relaxed">
+                    一个人干活最怕重复犯错。装上之后 AI 真的会提醒我「你上次这样做出过问题」。省心。
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-6">
               {skill.tags.map((tag) => (
