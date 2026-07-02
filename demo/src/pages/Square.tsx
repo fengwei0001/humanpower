@@ -136,14 +136,65 @@ export default function Square() {
     }
   }
 
+  // 发布菜单
+  const [showPublishMenu, setShowPublishMenu] = useState(false)
+
   return (
     <div className="px-8 py-8 max-w-[960px] mx-auto">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-text-primary mb-1">技能广场</h1>
-        <p className="text-sm text-text-secondary">
-          {total} 个方法，同行都在用。找到你的场景，一键用起来。
-        </p>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-text-primary mb-1">技能广场</h1>
+          <p className="text-sm text-text-secondary">
+            {total} 个方法，同行都在用。找到你的场景，一键用起来。
+          </p>
+        </div>
+        {/* 发布入口 */}
+        <div className="relative">
+          <button
+            onClick={() => setShowPublishMenu(!showPublishMenu)}
+            className="px-4 py-2.5 rounded-btn bg-brand-green text-white text-sm font-medium hover:bg-brand-green-dark transition-all flex items-center gap-1.5 shadow-sm"
+          >
+            ＋ 发布技能
+          </button>
+          {showPublishMenu && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setShowPublishMenu(false)} />
+              <div className="absolute right-0 top-12 z-50 w-52 bg-white rounded-xl border border-border shadow-lg py-2 animate-in fade-in slide-in-from-top-2">
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/publish/create') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">📝</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">手动创建</div>
+                    <div className="text-[11px] text-text-tertiary">填写表单发布技能</div>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/publish/github') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">🐙</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">GitHub 导入</div>
+                    <div className="text-[11px] text-text-tertiary">从仓库导入 SKILL.md</div>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/distill') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">⚗️</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">自动蒸馏</div>
+                    <div className="text-[11px] text-text-tertiary">从对话记录提取方法论</div>
+                  </div>
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* 赛道 Tabs — 大号、底部指示器风格 */}
