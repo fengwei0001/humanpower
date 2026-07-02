@@ -306,20 +306,11 @@ function SkillCardLarge({ skill, index, onClick }: SkillCardLargeProps) {
         ))}
       </div>
 
-      {/* 比直接问 AI 强多少 — 三个指标 */}
-      <div className="flex items-center gap-2 mb-4">
-        <div className="flex-1 text-center py-1.5 bg-blue-50 rounded-lg">
-          <div className="text-xs font-bold text-blue-600">{Math.round((Number(skill.rating) || 4) * 10 + 7)}min</div>
-          <div className="text-[10px] text-text-tertiary">节省</div>
-        </div>
-        <div className="flex-1 text-center py-1.5 bg-blue-50 rounded-lg">
-          <div className="text-xs font-bold text-blue-600">{((Number(skill.rating) || 4) * 0.9 + 0.3).toFixed(1)}轮</div>
-          <div className="text-[10px] text-text-tertiary">少对话</div>
-        </div>
-        <div className="flex-1 text-center py-1.5 bg-blue-50 rounded-lg">
-          <div className="text-xs font-bold text-blue-600">{Math.min(99, Math.round((Number(skill.rating) || 4) * 18 + 5))}%</div>
-          <div className="text-[10px] text-text-tertiary">一次成功</div>
-        </div>
+      {/* 比直接问 AI 强多少 — 轻量inline */}
+      <div className="flex items-center gap-3 mb-4 text-[11px] text-text-tertiary">
+        <span>⏱ 省 {Math.round((Number(skill.rating) || 4) * 10 + 7)}min</span>
+        <span>💬 少 {((Number(skill.rating) || 4) * 0.9 + 0.3).toFixed(1)} 轮</span>
+        <span>✓ {Math.min(99, Math.round((Number(skill.rating) || 4) * 18 + 5))}% 一次成功</span>
       </div>
 
       {/* 底部统计 */}
