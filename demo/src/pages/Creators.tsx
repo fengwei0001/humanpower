@@ -136,6 +136,14 @@ export default function Creators() {
                       </div>
                       <div className="text-[11px] text-text-tertiary">{item.time}</div>
                     </div>
+                    {!followedIds.includes(creator.id) && (
+                      <button
+                        onClick={() => toggleFollow(creator.id)}
+                        className="px-3 py-1.5 rounded-full text-xs font-medium bg-brand-green text-white hover:bg-brand-green-dark transition-all shrink-0"
+                      >
+                        + 关注
+                      </button>
+                    )}
                   </div>
 
                   {item.note && (
