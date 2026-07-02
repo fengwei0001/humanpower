@@ -77,7 +77,7 @@ function dbSkillToFrontend(dbSkill: SkillFromDB): Skill {
     },
     installs: dbSkill.download_count,
     citations: dbSkill.comment_count * 10 + dbSkill.use_case_count * 50,
-    rating: dbSkill.rating || (dbSkill.llm_score ? dbSkill.llm_score / 20 : 4.0),
+    rating: parseFloat(String(dbSkill.rating)) || (dbSkill.llm_score ? dbSkill.llm_score / 20 : 4.0),
     successRate: dbSkill.llm_score || 80,
     tags: dbSkill.tags || [],
     createdAt: dbSkill.created_at?.split('T')[0] || '2026-01-01',
