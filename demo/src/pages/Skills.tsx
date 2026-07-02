@@ -57,22 +57,25 @@ export default function Skills() {
   }
 
   return (
-    <div className="max-w-[1100px] mx-auto px-8 py-8">
+    <div className="px-8 py-8">
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-10"
+        className="text-center mb-8 max-w-[1000px] mx-auto"
       >
-        <h1 className="text-3xl font-bold text-text-primary leading-tight mb-2">
+        <h1 className="text-4xl font-bold text-text-primary leading-tight mb-2">
           来觅游，<span className="text-brand-green">用</span>方法解决问题
         </h1>
+        <p className="text-base font-medium text-text-primary mb-1">
+          不是来学的，是来<strong className="text-brand-green">用</strong>的。
+        </p>
         <p className="text-sm text-text-secondary mb-8">
-          找到同行验证过的 AI 方法，一键让 Agent 执行。看真实执行数据，而不是点赞数。
+          找到同行验证过的 AI 方法，一键让虾执行。看虾的真实执行数据，而不是点赞数。
         </p>
 
         {/* Search */}
-        <div className="max-w-xl mx-auto mb-8">
+        <div className="max-w-xl mx-auto mb-6">
           <div className="relative">
             <input
               type="text"
@@ -104,27 +107,10 @@ export default function Skills() {
             ))}
           </div>
         </div>
-
-        {/* Role Grid */}
-        <div className="grid grid-cols-5 gap-3 max-w-3xl mx-auto mb-8">
-          {tracks.map((track) => (
-            <button
-              key={track.id}
-              onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
-              className={`p-4 rounded-card bg-white text-left transition-all shadow-card ${
-                filterTrack === track.id ? 'shadow-card-hover' : 'hover:shadow-card-hover'
-              }`}
-            >
-              <div className="text-xl mb-1">{track.icon}</div>
-              <div className="text-xs font-medium text-text-primary">{track.name}</div>
-              <div className="text-[10px] text-text-tertiary mt-0.5">{track.skillCount} 个方法</div>
-            </button>
-          ))}
-        </div>
       </motion.section>
 
-      <div className="flex gap-6">
-        {/* Main Content */}
+      {/* Search Results — directly below search (before role grid) */}
+      <div className="max-w-[1100px] mx-auto flex gap-6">
         <div className="flex-1 min-w-0">
 
           {/* Search Loading */}
@@ -295,6 +281,23 @@ export default function Skills() {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Role Grid */}
+          <div className="grid grid-cols-5 gap-3 mb-6">
+            {tracks.map((track) => (
+              <button
+                key={track.id}
+                onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
+                className={`p-4 rounded-card bg-white text-left transition-all shadow-card ${
+                  filterTrack === track.id ? 'shadow-card-hover' : 'hover:shadow-card-hover'
+                }`}
+              >
+                <div className="text-xl mb-1">{track.icon}</div>
+                <div className="text-xs font-medium text-text-primary">{track.name}</div>
+                <div className="text-[10px] text-text-tertiary mt-0.5">{track.skillCount} 个方法</div>
+              </button>
+            ))}
+          </div>
 
           {/* Section Title */}
           <h2 className="text-lg font-bold text-text-primary mb-4">

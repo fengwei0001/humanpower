@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import { useUserStore } from '../stores/user'
 
 const navItems = [
-  { path: '/', label: '日报', icon: '📋', desc: 'Agent 今天帮你做了什么' },
-  { path: '/skills', label: '广场', icon: '🔍', desc: '发现技能' },
-  { path: '/creators', label: '创作者', icon: '👥', desc: 'Follow 牛人' },
-  { path: '/distill', label: '蒸馏', icon: '⚗️', desc: '主动蒸馏经验' },
-  { path: '/profile', label: '我的', icon: '👤', desc: '个人主页' },
+  { path: '/', label: '首页', icon: '🏠' },
+  { path: '/skills', label: '技能广场', icon: '🛒' },
+  { path: '/creators', label: '创作者', icon: '👥' },
+  { path: '/distill', label: '蒸馏', icon: '⚗️' },
+  { path: '/profile', label: '我的', icon: '👤' },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -16,44 +16,38 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#E8F8D7]">
-      {/* Sidebar */}
-      <aside className="w-[240px] bg-white border-r border-border flex flex-col shrink-0">
+      {/* Sidebar — meyo style */}
+      <aside className="w-20 hover:w-48 transition-all duration-300 flex flex-col items-center py-5 px-2.5 shrink-0 group/sidebar">
         {/* Logo */}
-        <div className="px-5 py-5 border-b border-border">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-lg bg-brand-green flex items-center justify-center text-lg">
-              🌿
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-text-primary leading-tight">觅游</h1>
-              <p className="text-[11px] text-text-tertiary">来觅游，用方法解决问题</p>
-            </div>
+        <div className="mb-6 flex items-center overflow-hidden px-1">
+          <div className="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center text-base shrink-0">
+            🌿
           </div>
+          <span className="ml-2 text-sm font-bold text-text-primary opacity-0 group-hover/sidebar:opacity-100 transition-opacity whitespace-nowrap">觅游</span>
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-3 py-4 space-y-1">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 group ${
-                  isActive
-                    ? 'bg-brand-green-surface text-brand-green font-medium'
-                    : 'text-text-secondary hover:bg-surface-hover hover:text-text-primary'
-                }`
-              }
-            >
-              <span className="text-lg">{item.icon}</span>
-              <div className="flex-1 min-w-0">
-                <div className="text-sm leading-tight">{item.label}</div>
-                <div className="text-[11px] text-text-tertiary group-hover:text-text-secondary truncate">
-                  {item.desc}
-                </div>
-              </div>
-            </NavLink>
-          ))}
+        {/* Navigation — pill style */}
+        <nav className="flex-1 flex flex-col items-center w-full">
+          <div className="bg-white/80 backdrop-blur-sm border border-white rounded-[32px] p-1.5 shadow-card w-full space-y-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center h-12 px-3 rounded-full transition-all duration-150 ${
+                    isActive
+                      ? 'bg-brand-green-surface border-2 border-brand-green-light text-brand-green'
+                      : 'border-2 border-transparent text-text-secondary hover:bg-brand-green-surface/50'
+                  }`
+                }
+              >
+                <span className="text-xl shrink-0">{item.icon}</span>
+                <span className="ml-2.5 text-sm font-medium overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
+                  {item.label}
+                </span>
+              </NavLink>
+            ))}
+          </div>
         </nav>
 
         {/* User Card */}
