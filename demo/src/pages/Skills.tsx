@@ -60,7 +60,7 @@ export default function Skills() {
   }
 
   return (
-    <div className="px-8 py-6 relative">
+    <div className="px-8 py-6 relative pt-[54px]">
       {/* Hero Section — Google-style spacious */}
       <motion.section
         initial={{ opacity: 0, y: -10 }}
@@ -288,19 +288,19 @@ export default function Skills() {
             )}
           </AnimatePresence>
 
-          {/* Role Grid — separated from search results */}
+          {/* Role Grid — compact inline */}
           <div className="grid grid-cols-4 gap-3 mb-6 mt-10">
             {tracks.map((track) => (
               <button
                 key={track.id}
                 onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
-                className={`p-4 rounded-card bg-white text-left transition-all border border-border ${
+                className={`px-4 py-2.5 rounded-card bg-white text-left transition-all border border-border flex items-center gap-2 ${
                   filterTrack === track.id ? 'border-brand-green' : 'hover:border-brand-green/40'
                 }`}
               >
-                <div className="text-xl mb-1">{track.icon}</div>
-                <div className="text-xs font-medium text-text-primary">{track.name}</div>
-                <div className="text-[10px] text-text-tertiary mt-0.5">{track.skillCount} 个方法</div>
+                <span className="text-base">{track.icon}</span>
+                <span className="text-xs font-medium text-text-primary">{track.name}</span>
+                <span className="text-[10px] text-text-tertiary ml-auto">{track.skillCount}</span>
               </button>
             ))}
           </div>
