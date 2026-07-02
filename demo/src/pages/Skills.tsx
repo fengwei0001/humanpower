@@ -65,7 +65,7 @@ export default function Skills() {
       <motion.section
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center pt-12 pb-10 max-w-[800px] mx-auto"
+        className="text-center pt-12 pb-2 max-w-[800px] mx-auto"
       >
         <h1 className="text-5xl font-bold text-text-primary leading-tight mb-3">
           来觅游，<span className="text-brand-green">用</span>方法解决问题
@@ -77,24 +77,24 @@ export default function Skills() {
           找到同行验证过的 AI 方法，一键让虾执行。
         </p>
 
-        {/* Search — textarea style (2 lines) */}
-        <div className="max-w-2xl mx-auto mb-4">
+        {/* Search — textarea style */}
+        <div className="w-full mb-2">
           <div className="relative">
             <textarea
               value={aiQuery}
               onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setSearchResult(null) }}
               onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleAiSearch() } }}
               placeholder="搜你的工作问题：「竞品分析怎么做」「周报怎么自动化」..."
-              className="w-full px-5 py-4 pr-24 rounded-[20px] bg-white border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 transition-all shadow-card resize-none"
-              rows={2}
+              className="w-full px-5 py-5 pr-28 rounded-[20px] bg-white border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 transition-all shadow-card resize-none"
+              rows={3}
               disabled={searching}
             />
             <button
               onClick={() => handleAiSearch()}
               disabled={searching || !aiQuery.trim()}
-              className="absolute right-3 bottom-3 h-[38px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40"
+              className="absolute right-3 bottom-3 h-[40px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40 flex items-center gap-1.5"
             >
-              {searching ? '找方法中...' : '找方法'}
+              {searching ? '找方法中...' : <><span>↵</span> 找方法</>}
             </button>
           </div>
           {/* 示例选项 — 有搜索结果时隐藏 */}
@@ -306,7 +306,7 @@ export default function Skills() {
           </div>
 
           {/* Section Title */}
-          <h2 className="text-lg font-bold text-text-primary mb-4">
+          <h2 className="text-lg font-bold text-text-primary mb-4 mt-4">
             {filterTrack ? `${tracks.find(t => t.id === filterTrack)?.icon} ${tracks.find(t => t.id === filterTrack)?.name}` : '🔥 热门方法'}
             {filterTrack && <button onClick={() => setFilterTrack(null)} className="ml-2 text-xs text-text-tertiary font-normal hover:text-text-primary">× 清除筛选</button>}
           </h2>
