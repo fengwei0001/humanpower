@@ -51,14 +51,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
 
-        {/* Publish skill — capsule button with popup menu */}
-        <div className="relative px-2.5 mt-4">
+        {/* Publish skill — circle when collapsed, capsule on hover */}
+        <div className="relative flex justify-center px-2.5 mt-4">
           <button
             onClick={() => setShowPublishMenu(!showPublishMenu)}
-            className="w-full h-12 rounded-full bg-brand-green flex items-center px-3 shadow-btn hover:bg-brand-green-dark transition-all"
+            className="h-12 w-12 group-hover/sidebar:w-auto group-hover/sidebar:px-4 rounded-full bg-brand-green flex items-center justify-center shadow-btn hover:bg-brand-green-dark transition-all duration-300"
           >
             <span className="text-white text-lg font-bold shrink-0">＋</span>
-            <span className="ml-2.5 text-sm font-medium text-white overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
+            <span className="text-sm font-medium text-white overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] group-hover/sidebar:ml-2 opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
               发布技能
             </span>
           </button>

@@ -277,7 +277,7 @@ export default function SkillDetail() {
             <div className="mb-6 p-5 rounded-xl border border-brand-green/15 bg-[#F8FDF4]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
-                  <span>🦐</span> 虾的执行报告
+                  <span>🤖</span> 虾的执行报告
                 </h3>
                 <span className="text-[11px] text-text-tertiary">来自真实 Agent 运行数据</span>
               </div>
@@ -312,7 +312,7 @@ export default function SkillDetail() {
                   { user: '孙七的虾', time: '2 天前', status: 'success', duration: '1.5min' },
                 ].map((record, i) => (
                   <div key={i} className="flex items-center gap-3 px-3 py-2 bg-white rounded-lg border border-border">
-                    <span className="text-base">🦐</span>
+                    <span className="text-base">🤖</span>
                     <span className="text-xs font-medium text-text-primary flex-1">@{record.user}</span>
                     <span className="text-[11px] text-text-tertiary">{record.duration}</span>
                     <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${
@@ -341,6 +341,28 @@ export default function SkillDetail() {
                 <span className="text-[11px] text-text-tertiary">{5} 条评价</span>
               </div>
 
+              {/* 写评价入口 */}
+              <div className="mb-4 p-4 bg-white rounded-xl border border-border">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-brand-green-surface flex items-center justify-center text-sm shrink-0">
+                    {user.avatar}
+                  </div>
+                  <div className="flex-1">
+                    <textarea
+                      placeholder="用过这个技能吗？说说你的感受..."
+                      rows={2}
+                      className="w-full px-3 py-2 rounded-lg bg-surface border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green/20 resize-none"
+                    />
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-[11px] text-text-tertiary">💡 从 Agent 中评价可自动附带执行日志</span>
+                      <button className="px-4 py-1.5 rounded-full bg-brand-green text-white text-xs font-medium hover:bg-brand-green-dark transition-all">
+                        发布评价
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-3">
                 {/* 评价 1 — 来自 Agent（带执行日志） */}
                 <div className="p-4 bg-white rounded-xl border border-border">
@@ -360,7 +382,7 @@ export default function SkillDetail() {
                   </p>
                   {/* 虾的执行日志（附件） */}
                   <div className="px-3 py-2.5 bg-[#F8FDF4] rounded-lg border border-brand-green/10 flex items-center gap-3">
-                    <span className="text-sm">🦐</span>
+                    <span className="text-sm">🤖</span>
                     <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
                       <span className="font-medium text-brand-green">✓ 成功</span>
                       <span>耗时 2.3min</span>
@@ -387,7 +409,7 @@ export default function SkillDetail() {
                     效果不错，但有时候对中文语境的理解还差点意思。英文场景下基本完美。
                   </p>
                   <div className="px-3 py-2.5 bg-[#F8FDF4] rounded-lg border border-brand-green/10 flex items-center gap-3">
-                    <span className="text-sm">🦐</span>
+                    <span className="text-sm">🤖</span>
                     <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
                       <span className="font-medium text-brand-green">✓ 成功</span>
                       <span>耗时 1.8min</span>
@@ -432,7 +454,7 @@ export default function SkillDetail() {
                     试了两次，第一次没跑通，第二次成功了。可能我的场景比较复杂，需要更多上下文。
                   </p>
                   <div className="px-3 py-2.5 bg-red-50/50 rounded-lg border border-red-100 flex items-center gap-3">
-                    <span className="text-sm">🦐</span>
+                    <span className="text-sm">🤖</span>
                     <div className="flex-1 flex items-center gap-3 text-[11px] text-text-secondary">
                       <span className="font-medium text-red-500">✗ 失败 → ✓ 重试成功</span>
                       <span>耗时 4.5min</span>
