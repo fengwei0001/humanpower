@@ -48,10 +48,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
 
-        {/* User avatar at bottom */}
+        {/* Publish skill — bottom entry */}
         <div className="flex justify-center px-4 mt-4">
-          <NavLink to="/profile" className="w-10 h-10 rounded-full bg-brand-green-surface flex items-center justify-center text-xl" title={user.name}>
-            {user.avatar}
+          <NavLink to="/publish" className="w-11 h-11 rounded-full bg-brand-green flex items-center justify-center text-xl shadow-btn hover:bg-brand-green-dark transition-all hover:scale-105" title="发布技能">
+            <span className="text-white text-lg font-bold">＋</span>
           </NavLink>
         </div>
       </aside>
