@@ -15,14 +15,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const user = useUserStore((s) => s.user)
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface">
+    <div className="flex h-screen overflow-hidden bg-[#E8F8D7]">
       {/* Sidebar */}
       <aside className="w-[240px] bg-white border-r border-border flex flex-col shrink-0">
         {/* Logo */}
         <div className="px-5 py-5 border-b border-border">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-lg bg-brand-green flex items-center justify-center text-lg">
-              ⚗️
+              🌿
             </div>
             <div>
               <h1 className="text-base font-bold text-text-primary leading-tight">觅游</h1>

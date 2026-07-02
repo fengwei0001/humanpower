@@ -57,56 +57,75 @@ export default function Skills() {
   }
 
   return (
-    <div className="p-8 max-w-[1200px] mx-auto">
-      {/* Header */}
-      <motion.div
+    <div className="max-w-[1100px] mx-auto px-8 py-8">
+      {/* Hero Section */}
+      <motion.section
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="text-center mb-10"
       >
-        <h1 className="text-2xl font-bold text-text-primary">技能广场</h1>
-        <p className="text-sm text-text-secondary mt-1">
-          找到同行验证过的 AI 方法，直接描述问题让 AI 帮你推荐。
+        <h1 className="text-3xl font-bold text-text-primary leading-tight mb-2">
+          来觅游，<span className="text-brand-green">用</span>方法解决问题
+        </h1>
+        <p className="text-sm text-text-secondary mb-8">
+          找到同行验证过的 AI 方法，一键让 Agent 执行。看真实执行数据，而不是点赞数。
         </p>
-      </motion.div>
+
+        {/* Search */}
+        <div className="max-w-xl mx-auto mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              value={aiQuery}
+              onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setSearchResult(null) }}
+              onKeyDown={(e) => e.key === 'Enter' && handleAiSearch()}
+              placeholder="搜你的工作问题：「竞品分析怎么做」「周报怎么自动化」..."
+              className="w-full px-5 py-4 pr-24 rounded-btn bg-white border border-border text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 transition-all shadow-card"
+              disabled={searching}
+            />
+            <button
+              onClick={() => handleAiSearch()}
+              disabled={searching || !aiQuery.trim()}
+              className="absolute right-2 top-1/2 -translate-y-1/2 h-[38px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40"
+            >
+              {searching ? '搜索中...' : '搜索'}
+            </button>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2 mt-3">
+            {sampleCombos.map((combo) => (
+              <button
+                key={combo.id}
+                onClick={() => { setAiQuery(combo.question); handleAiSearch(combo.question) }}
+                className="text-xs px-3 py-1.5 rounded-full bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green transition-colors shadow-sm"
+                disabled={searching}
+              >
+                {combo.question}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Role Grid */}
+        <div className="grid grid-cols-5 gap-3 max-w-3xl mx-auto mb-8">
+          {tracks.map((track) => (
+            <button
+              key={track.id}
+              onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
+              className={`p-4 rounded-card bg-white text-left transition-all shadow-card ${
+                filterTrack === track.id ? 'shadow-card-hover' : 'hover:shadow-card-hover'
+              }`}
+            >
+              <div className="text-xl mb-1">{track.icon}</div>
+              <div className="text-xs font-medium text-text-primary">{track.name}</div>
+              <div className="text-[10px] text-text-tertiary mt-0.5">{track.skillCount} 个方法</div>
+            </button>
+          ))}
+        </div>
+      </motion.section>
 
       <div className="flex gap-6">
         {/* Main Content */}
         <div className="flex-1 min-w-0">
-          {/* AI Search */}
-          <div className="bg-white rounded-card p-5 border border-border mb-5">
-            <h3 className="text-sm font-bold text-text-primary mb-3">搜你的工作问题，AI 帮你推荐方法组合</h3>
-            <div className="flex items-center gap-3">
-              <input
-                type="text"
-                value={aiQuery}
-                onChange={(e) => { setAiQuery(e.target.value); if (!e.target.value) setSearchResult(null) }}
-                onKeyDown={(e) => e.key === 'Enter' && handleAiSearch()}
-                placeholder="比如：「我要做新产品立项评审」「新功能上线后数据不好怎么办」"
-                className="flex-1 px-4 py-3 bg-surface border border-border rounded-xl text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-purple/20 focus:border-brand-purple"
-                disabled={searching}
-              />
-              <button
-                onClick={() => handleAiSearch()}
-                disabled={searching || !aiQuery.trim()}
-                className="btn-purple px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {searching ? '搜索中...' : '推荐方案'}
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-3">
-              {sampleCombos.map((combo) => (
-                <button
-                  key={combo.id}
-                  onClick={() => { setAiQuery(combo.question); handleAiSearch(combo.question) }}
-                  className="text-xs px-3 py-1.5 rounded-full bg-brand-purple-surface text-brand-purple hover:bg-brand-purple/10 transition-colors"
-                  disabled={searching}
-                >
-                  {combo.question}
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Search Loading */}
           <AnimatePresence>
@@ -277,33 +296,11 @@ export default function Skills() {
             )}
           </AnimatePresence>
 
-          {/* Track Filter */}
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
-            <button
-              onClick={() => setFilterTrack(null)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                !filterTrack
-                  ? 'bg-text-primary text-white'
-                  : 'bg-white border border-border text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              全部
-            </button>
-            {tracks.map((track) => (
-              <button
-                key={track.id}
-                onClick={() => setFilterTrack(track.id === filterTrack ? null : track.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  filterTrack === track.id
-                    ? 'text-white'
-                    : 'bg-white border border-border text-text-secondary hover:text-text-primary'
-                }`}
-                style={filterTrack === track.id ? { backgroundColor: track.color } : undefined}
-              >
-                {track.icon} {track.name}
-              </button>
-            ))}
-          </div>
+          {/* Section Title */}
+          <h2 className="text-lg font-bold text-text-primary mb-4">
+            {filterTrack ? `${tracks.find(t => t.id === filterTrack)?.icon} ${tracks.find(t => t.id === filterTrack)?.name}` : '🔥 热门方法'}
+            {filterTrack && <button onClick={() => setFilterTrack(null)} className="ml-2 text-xs text-text-tertiary font-normal hover:text-text-primary">× 清除筛选</button>}
+          </h2>
 
           {/* Count + Sort */}
           <div className="flex items-center justify-between mb-4">
