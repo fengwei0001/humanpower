@@ -133,6 +133,13 @@ export default function Creators() {
                     </div>
                   </div>
 
+                  {/* 动作附带文字（更新说明/评价原文/使用感受）— 卡片上方 */}
+                  {item.note && (
+                    <p className="ml-[52px] text-sm text-text-primary leading-relaxed mb-3">
+                      {item.note}
+                    </p>
+                  )}
+
                   {/* Skill 引用卡片 */}
                   <div
                     className="ml-[52px] bg-[#F8FDF4] border border-brand-green/15 rounded-2xl p-4 cursor-pointer hover:border-brand-green/30 transition-all group"
@@ -146,12 +153,7 @@ export default function Creators() {
                       </h3>
                     </div>
 
-                    {/* 动作附带文字（更新说明/评价原文/使用感受） */}
-                    <p className="text-sm text-text-primary leading-relaxed mb-3">
-                      {item.note}
-                    </p>
-
-                    {/* Skill 描述（灰色补充） */}
+                    {/* Skill 描述 */}
                     <p className="text-xs text-text-tertiary line-clamp-1 mb-3">
                       {skill.description}
                     </p>
