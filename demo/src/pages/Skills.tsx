@@ -71,7 +71,7 @@ export default function Skills() {
           不是来学的，是来<strong className="text-brand-green">用</strong>的。
         </p>
         <p className="text-sm text-text-secondary mb-12">
-          找到同行验证过的 AI 方法，一键让虾执行。看虾的真实执行数据，而不是点赞数。
+          找到同行验证过的 AI 方法，一键让虾执行。
         </p>
 
         {/* Search */}
@@ -283,7 +283,7 @@ export default function Skills() {
           </AnimatePresence>
 
           {/* Role Grid */}
-          <div className="grid grid-cols-5 gap-3 mb-6">
+          <div className="grid grid-cols-4 gap-3 mb-6">
             {tracks.map((track) => (
               <button
                 key={track.id}
@@ -369,8 +369,8 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Sidebar — Plugin Install Guide (fixed right) */}
-      <div className="fixed right-6 top-24 w-[260px] hidden xl:block z-10">
+      {/* Sidebar — Plugin Install Guide (fixed right, vertically centered) */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 w-[260px] hidden xl:block z-10">
         <div className="space-y-5">
             {/* Agent Auto-Find Plugin */}
             <div className="bg-gradient-to-br from-brand-green-surface to-white rounded-2xl p-5 border border-brand-green/10">

@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import { useUserStore } from '../stores/user'
 
 const navItems = [
-  { path: '/', label: '首页', icon: '🏠' },
-  { path: '/skills', label: '技能广场', icon: '🛒' },
+  { path: '/skills', label: '首页', icon: '🏠' },
+  { path: '/square', label: '技能广场', icon: '🛒' },
   { path: '/creators', label: '创作者', icon: '👥' },
   { path: '/distill', label: '蒸馏', icon: '⚗️' },
   { path: '/profile', label: '我的', icon: '👤' },
