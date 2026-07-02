@@ -296,6 +296,7 @@ ${skillsContext}
       const offset = (page - 1) * pageSize;
       const track = params.track || null;
       const search = params.search || null;
+      const tag = params.tag || null;
       const sort = params.sort || 'hot';
 
       // 只展示有优化内容的 skill
@@ -306,6 +307,12 @@ ${skillsContext}
       if (track) {
         where.push(`(track_id = $${paramIdx} OR $${paramIdx} = ANY(track_ids))`);
         queryParams.push(track);
+        paramIdx++;
+      }
+
+      if (tag) {
+        where.push(`$${paramIdx} = ANY(tags)`);
+        queryParams.push(tag);
         paramIdx++;
       }
 
@@ -340,6 +347,46 @@ ${skillsContext}
         code: 200,
         data: { total: parseInt(total), page, pageSize, list: rows },
       });
+      return;
+    }
+
+    // ─── API: 标签聚合（按赛道统计高频 tags） ───
+    if (req.method === 'GET' && pathname === '/api/skills/tags') {
+      if (!pool) {
+        sendJSON(res, 503, { error: 'Database not configured' });
+        return;
+      }
+
+      const track = params.track || null;
+      let sql, sqlParams;
+
+      if (track) {
+        sql = `
+          SELECT unnest(tags) AS tag, COUNT(*) AS cnt
+          FROM skills
+          WHERE display_name IS NOT NULL AND display_name != ''
+            AND (track_id = $1 OR $1 = ANY(track_ids))
+          GROUP BY tag
+          HAVING COUNT(*) >= 2
+          ORDER BY cnt DESC
+          LIMIT 20
+        `;
+        sqlParams = [track];
+      } else {
+        sql = `
+          SELECT unnest(tags) AS tag, COUNT(*) AS cnt
+          FROM skills
+          WHERE display_name IS NOT NULL AND display_name != ''
+          GROUP BY tag
+          HAVING COUNT(*) >= 3
+          ORDER BY cnt DESC
+          LIMIT 20
+        `;
+        sqlParams = [];
+      }
+
+      const { rows } = await pool.query(sql, sqlParams);
+      sendJSON(res, 200, { code: 200, data: rows });
       return;
     }
 

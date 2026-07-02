@@ -2,55 +2,109 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { tracks } from '../data/tracks'
-import { useSkillsStore } from '../stores/skills'
+import { fetchSkills, fetchTags, type TagItem, type FetchSkillsResponse } from '../services/skills-api'
 import type { Skill } from '../data/skills'
-
-// 模拟"本周新上线"的方法
-function getNewMethods(skills: Skill[]): Skill[] {
-  return [...skills].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 3)
-}
-
-// 模拟"有人分享了新方法"动态
-const socialUpdates = [
-  { user: 'Zephyr Wang', avatar: '🧑‍💼', action: '分享了新方法', skill: '30 分钟搞定 PRD', time: '2小时前' },
-  { user: '二哲', avatar: '👨‍💻', action: '验证有效', skill: '不再重复犯错', time: '3小时前', extra: '执行3次，全部成功' },
-  { user: 'Jesse Vincent', avatar: '👨‍💻', action: '更新了方法', skill: '让 AI 帮你写出生产级代码', time: '5小时前' },
-  { user: 'Zara Zhang', avatar: '👩‍💼', action: '分享了新方法', skill: '做一份惊艳的演示', time: '昨天' },
-  { user: '花花', avatar: '🧑‍💻', action: '安装了', skill: '装前扫一遍，别中招', time: '昨天', extra: '第1892位安装者' },
-  { user: 'Dean Peters', avatar: '🎯', action: '分享了新方法', skill: '搞懂用户到底想要什么', time: '2天前' },
-]
 
 export default function Square() {
   const navigate = useNavigate()
-  const { skills, loadSkills, getFilteredSkills } = useSkillsStore()
-  const [activeTrack, setActiveTrack] = useState<string>(tracks[0].id)
 
+  // 筛选状态
+  const [activeTrack, setActiveTrack] = useState<string | null>(null)
+  const [activeTag, setActiveTag] = useState<string | null>(null)
+  const [sort, setSort] = useState<'hot' | 'new' | 'rating'>('hot')
+
+  // 数据状态
+  const [skills, setSkills] = useState<Skill[]>([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [tags, setTags] = useState<TagItem[]>([])
+  const [tagsLoading, setTagsLoading] = useState(false)
+
+  // 加载标签
+  const loadTags = async (track?: string) => {
+    setTagsLoading(true)
+    try {
+      const result = await fetchTags(track || undefined)
+      setTags(result)
+    } catch {
+      setTags([])
+    } finally {
+      setTagsLoading(false)
+    }
+  }
+
+  // 加载技能列表
+  const loadSkills = async (p = 1, append = false) => {
+    setLoading(true)
+    try {
+      const result: FetchSkillsResponse = await fetchSkills({
+        page: p,
+        pageSize: 20,
+        track: activeTrack || undefined,
+        tag: activeTag || undefined,
+        sort,
+      })
+      if (append) {
+        setSkills(prev => [...prev, ...result.skills])
+      } else {
+        setSkills(result.skills)
+      }
+      setTotal(result.total)
+      setPage(p)
+      setHasMore(p * result.pageSize < result.total)
+    } catch {
+      if (!append) setSkills([])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // 筛选变更时重新加载
   useEffect(() => {
-    loadSkills()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    loadSkills(1)
+    loadTags(activeTrack || undefined)
+  }, [activeTrack, activeTag, sort]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const allSkills = getFilteredSkills()
-  // 先尝试按赛道过滤，数据不够就用全局热门兜底
-  const trackSkills = allSkills.filter(s => s.trackIds?.includes(activeTrack) || s.trackId === activeTrack)
-  const hotSource = trackSkills.length >= 5 ? trackSkills : allSkills
-  const hotSkills = [...hotSource].sort((a, b) => b.installs - a.installs).slice(0, 8)
-  const newMethods = getNewMethods(allSkills).slice(0, 5)
-  const activeTrackData = tracks.find(t => t.id === activeTrack)
+  // 切换赛道
+  const handleTrackChange = (trackId: string | null) => {
+    setActiveTrack(trackId)
+    setActiveTag(null) // 切赛道时重置标签
+    loadTags(trackId || undefined)
+  }
+
+  // 加载更多
+  const handleLoadMore = () => {
+    loadSkills(page + 1, true)
+  }
 
   return (
-    <div className="px-8 py-8 max-w-[900px] mx-auto">
+    <div className="px-8 py-8 max-w-[960px] mx-auto">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold text-text-primary mb-1">技能广场</h1>
-        <p className="text-sm text-text-secondary">看看同行最近在用什么方法，别掉队了。</p>
+        <p className="text-sm text-text-secondary">
+          {total} 个方法，同行都在用。按场景找，更快找到你要的。
+        </p>
       </div>
 
-      {/* Track Tabs */}
-      <div className="flex gap-2 mb-8">
+      {/* 赛道 Tabs — 全部 + 4赛道 */}
+      <div className="flex gap-2 mb-4 flex-wrap">
+        <button
+          onClick={() => handleTrackChange(null)}
+          className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
+            !activeTrack
+              ? 'bg-brand-green text-white'
+              : 'bg-white border border-border text-text-secondary hover:border-brand-green hover:text-brand-green'
+          }`}
+        >
+          全部
+        </button>
         {tracks.map(track => (
           <button
             key={track.id}
-            onClick={() => setActiveTrack(track.id)}
+            onClick={() => handleTrackChange(track.id)}
             className={`px-4 py-2 rounded-btn text-sm font-medium transition-all ${
               activeTrack === track.id
                 ? 'bg-brand-green text-white'
@@ -62,123 +116,173 @@ export default function Square() {
         ))}
       </div>
 
-      <div className="flex gap-6">
-        {/* Main Feed */}
-        <div className="flex-1 min-w-0">
-          {/* 本周热门 */}
-          <section className="mb-8">
-            <div className="flex items-baseline gap-2 mb-4">
-              <h2 className="text-base font-bold text-text-primary">
-                🔥 本周{activeTrackData?.name}圈热门
-              </h2>
-              <span className="text-xs text-text-tertiary">共 {hotSkills.length} 个方法被频繁使用</span>
-            </div>
-            <div className="space-y-3">
-              {hotSkills.map((skill, i) => (
-                <motion.div
-                  key={skill.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => navigate(`/skills/${skill.id}`)}
-                  className="flex items-center gap-4 p-4 bg-white rounded-card shadow-card cursor-pointer transition-all hover:shadow-card-hover"
-                >
-                  <span className="text-lg font-bold text-text-tertiary w-6 text-center">{i + 1}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-text-primary truncate">{skill.name}</p>
-                    <p className="text-xs text-text-secondary mt-0.5 line-clamp-1">{skill.description}</p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <div className="text-sm font-medium text-brand-green">{skill.installs.toLocaleString()} 人用过</div>
-                    <div className="text-[11px] text-text-tertiary">成功率 {skill.successRate}%</div>
-                  </div>
-                </motion.div>
-              ))}
-              {hotSkills.length === 0 && (
-                <p className="text-sm text-text-tertiary text-center py-8">该赛道暂无数据</p>
-              )}
-            </div>
-          </section>
+      {/* 标签筛选 */}
+      <AnimatePresence mode="wait">
+        {tags.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="flex gap-2 mb-6 flex-wrap"
+          >
+            {tags.map(t => (
+              <button
+                key={t.tag}
+                onClick={() => setActiveTag(activeTag === t.tag ? null : t.tag)}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  activeTag === t.tag
+                    ? 'bg-brand-green text-white'
+                    : 'bg-white border border-border text-text-secondary hover:border-brand-green/50 hover:text-brand-green'
+                }`}
+              >
+                {t.tag}
+                <span className="ml-1 opacity-60">{t.cnt}</span>
+              </button>
+            ))}
+            {activeTag && (
+              <button
+                onClick={() => setActiveTag(null)}
+                className="px-3 py-1.5 rounded-full text-xs font-medium text-text-tertiary hover:text-text-primary transition-colors"
+              >
+                ✕ 清除
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          {/* 新上线 */}
-          <section className="mb-8">
-            <h2 className="text-base font-bold text-text-primary mb-4">
-              🆕 最近新上线
-            </h2>
-            <div className="space-y-3">
-              {newMethods.map((skill, i) => (
-                <div
-                  key={skill.id}
-                  onClick={() => navigate(`/skills/${skill.id}`)}
-                  className="flex items-center gap-4 p-4 bg-white rounded-card shadow-card cursor-pointer transition-all hover:shadow-card-hover"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-brand-green-surface flex items-center justify-center text-lg">🆕</div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-text-primary">{skill.name}</p>
-                    <p className="text-xs text-text-tertiary mt-0.5">{skill.creator.name} · {skill.createdAt}</p>
-                  </div>
-                  <button className="text-xs px-3 py-1.5 rounded-btn bg-brand-green-surface text-brand-green font-medium hover:bg-brand-green hover:text-white transition-colors">
-                    试试看
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
+      {/* 排序 + 计数 */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="text-xs text-text-tertiary">
+          {activeTrack && `${tracks.find(t => t.id === activeTrack)?.icon} `}
+          {activeTag ? `「${activeTag}」` : ''}
+          共 {total} 个方法
         </div>
-
-        {/* Right Sidebar */}
-        <div className="w-[260px] shrink-0 hidden lg:block">
-          <div className="sticky top-8 space-y-5">
-            {/* 社区动态 */}
-            <div className="bg-white rounded-card p-5 shadow-card">
-              <h3 className="text-sm font-bold text-text-primary mb-4">📢 社区动态</h3>
-              <div className="space-y-4">
-                {socialUpdates.map((update, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="text-lg">{update.avatar}</span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-text-primary">
-                        <span className="font-medium">{update.user}</span>
-                        <span className="text-text-secondary"> {update.action}</span>
-                      </p>
-                      <p className="text-xs text-brand-green font-medium mt-0.5">「{update.skill}」</p>
-                      {update.extra && <p className="text-[10px] text-text-secondary mt-0.5">{update.extra}</p>}
-                      <p className="text-[10px] text-text-tertiary mt-0.5">{update.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 赛道数据 */}
-            <div className="bg-white rounded-card p-5 shadow-card">
-              <h3 className="text-sm font-bold text-text-primary mb-3">📊 {activeTrackData?.name}赛道</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-text-secondary">总方法数</span>
-                  <span className="font-medium text-text-primary">{activeTrackData?.skillCount}</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-text-secondary">本周新增</span>
-                  <span className="font-medium text-brand-green">+3</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-text-secondary">总执行次数</span>
-                  <span className="font-medium text-text-primary">{(activeTrackData?.skillCount || 0) * 89}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* FOMO 提示 */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-card p-4 border border-amber-100">
-              <p className="text-xs text-amber-800 font-medium mb-1">💡 你知道吗</p>
-              <p className="text-[11px] text-amber-700 leading-relaxed">
-                本周有 <strong>38 位{activeTrackData?.name}</strong>使用了新方法，平均每人节省了 2.5 小时。你的同行正在用 AI 方法提效——别掉队了。
-              </p>
-            </div>
-          </div>
+        <div className="flex items-center gap-1 bg-white border border-border rounded-btn p-1">
+          {[
+            { key: 'hot' as const, label: '🔥 热门' },
+            { key: 'new' as const, label: '🆕 最新' },
+            { key: 'rating' as const, label: '⭐ 评分' },
+          ].map((s) => (
+            <button
+              key={s.key}
+              onClick={() => setSort(s.key)}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                sort === s.key
+                  ? 'bg-brand-green text-white'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+              }`}
+            >
+              {s.label}
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* 大卡片网格 — 2列 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {skills.map((skill, i) => (
+          <SkillCardLarge key={skill.id} skill={skill} index={i} onClick={() => navigate(`/skills/${skill.id}`)} />
+        ))}
+      </div>
+
+      {/* 加载中 */}
+      {loading && skills.length === 0 && (
+        <div className="text-center py-20">
+          <div className="inline-block w-8 h-8 rounded-full border-2 border-brand-green/20 border-t-brand-green animate-spin mb-4" />
+          <p className="text-text-secondary text-sm">加载中...</p>
+        </div>
+      )}
+
+      {/* 空状态 */}
+      {!loading && skills.length === 0 && (
+        <div className="text-center py-20">
+          <span className="text-4xl mb-4 block">🔍</span>
+          <p className="text-text-secondary">该分类下暂无方法</p>
+          <p className="text-xs text-text-tertiary mt-1">试试其他赛道或标签</p>
+        </div>
+      )}
+
+      {/* 加载更多 */}
+      {hasMore && (
+        <div className="text-center mt-8">
+          <button
+            onClick={handleLoadMore}
+            disabled={loading}
+            className="px-8 py-3 rounded-btn bg-white border border-border text-sm text-text-secondary hover:text-text-primary hover:border-brand-green/30 transition-all disabled:opacity-50 shadow-card"
+          >
+            {loading ? '加载中...' : `加载更多（还有 ${total - skills.length} 个）`}
+          </button>
+        </div>
+      )}
     </div>
+  )
+}
+
+// ─── 大卡片组件（对标觅游截图样式） ───
+
+interface SkillCardLargeProps {
+  skill: Skill
+  index: number
+  onClick: () => void
+}
+
+function SkillCardLarge({ skill, index, onClick }: SkillCardLargeProps) {
+  const track = tracks.find(t => t.id === skill.trackId)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.3) }}
+      onClick={onClick}
+      className="bg-white rounded-card p-5 shadow-card cursor-pointer transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 border border-border"
+    >
+      {/* 标题 */}
+      <h3 className="text-[15px] font-bold text-text-primary leading-snug mb-2">
+        {skill.name}
+      </h3>
+
+      {/* 描述 */}
+      <p className="text-[13px] text-text-secondary leading-relaxed line-clamp-2 mb-3 min-h-[2.6em]">
+        {skill.description}
+      </p>
+
+      {/* Tags */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {track && (
+          <span
+            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+            style={{ backgroundColor: track.bgColor, color: track.color }}
+          >
+            {track.icon} {track.name}
+          </span>
+        )}
+        {skill.tags.slice(0, 2).map(tag => (
+          <span key={tag} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-text-secondary">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* 底部统计 */}
+      <div className="flex items-center justify-between pt-3 border-t border-border">
+        <div className="flex items-center gap-4 text-xs text-text-secondary">
+          <span className="flex items-center gap-1">
+            🔥 {skill.installs.toLocaleString()}
+          </span>
+          <span className="flex items-center gap-1">
+            🔗 {skill.citations}
+          </span>
+          <span className="flex items-center gap-1">
+            ⭐ {skill.rating.toFixed(2)}
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="text-sm">{skill.creator.avatar}</span>
+          <span className="text-xs text-text-tertiary">{skill.creator.name}</span>
+        </div>
+      </div>
+    </motion.div>
   )
 }

@@ -37,6 +37,7 @@ export interface FetchSkillsParams {
   page?: number
   pageSize?: number
   track?: string
+  tag?: string
   search?: string
   sort?: 'hot' | 'new' | 'rating'
 }
@@ -96,6 +97,7 @@ export async function fetchSkills(params: FetchSkillsParams = {}): Promise<Fetch
   if (params.page) query.set('page', String(params.page))
   if (params.pageSize) query.set('pageSize', String(params.pageSize))
   if (params.track) query.set('track', params.track)
+  if (params.tag) query.set('tag', params.tag)
   if (params.search) query.set('search', params.search)
   if (params.sort) query.set('sort', params.sort)
 
@@ -165,6 +167,25 @@ export interface SearchContextSkill {
 
 export async function fetchSearchContext(): Promise<SearchContextSkill[]> {
   const resp = await fetch('/api/skills/search-context')
+  if (!resp.ok) return []
+
+  const json = await resp.json()
+  return json.data || []
+}
+
+/**
+ * 获取标签列表（按赛道聚合高频 tags）
+ */
+export interface TagItem {
+  tag: string
+  cnt: number
+}
+
+export async function fetchTags(track?: string): Promise<TagItem[]> {
+  const query = new URLSearchParams()
+  if (track) query.set('track', track)
+
+  const resp = await fetch(`/api/skills/tags?${query.toString()}`)
   if (!resp.ok) return []
 
   const json = await resp.json()
