@@ -94,10 +94,10 @@ export default function SkillDetail() {
 
   return (
     <div className="p-8 max-w-[960px] mx-auto">
-      {/* Back */}
+      {/* Back — pill style */}
       <button
         onClick={() => navigate(-1)}
-        className="text-sm text-text-secondary hover:text-text-primary transition-colors mb-6 flex items-center gap-1"
+        className="text-sm text-text-secondary hover:text-text-primary transition-colors mb-6 flex items-center gap-1 px-4 py-2 rounded-full bg-white border border-border hover:border-brand-green/30"
       >
         ← 返回
       </button>
@@ -344,20 +344,25 @@ export default function SkillDetail() {
             {/* Creator */}
             <div className="mt-5 pt-4 border-t border-border">
               <div className="text-[11px] text-text-tertiary mb-2">创作者</div>
-              <div
-                className="flex items-center gap-3 cursor-pointer hover:bg-surface-hover rounded-lg p-2 -m-2 transition-colors"
-                onClick={() => {
-                  const creator = creators.find((c) => c.name === skill.creator.name)
-                  if (creator) navigate(`/creators/${creator.id}`)
-                }}
-              >
-                <div className="w-9 h-9 rounded-full bg-brand-green-surface flex items-center justify-center text-lg">
-                  {skill.creator.avatar}
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex items-center gap-3 flex-1 cursor-pointer hover:bg-surface-hover rounded-lg p-2 -m-2 transition-colors"
+                  onClick={() => {
+                    const creator = creators.find((c) => c.name === skill.creator.name)
+                    if (creator) navigate(`/creators/${creator.id}`)
+                  }}
+                >
+                  <div className="w-9 h-9 rounded-full bg-brand-green-surface flex items-center justify-center text-lg">
+                    {skill.creator.avatar}
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary hover:text-brand-green transition-colors">{skill.creator.name}</div>
+                    <div className="text-[11px] text-text-tertiary">{track?.name}赛道创作者</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm font-medium text-text-primary hover:text-brand-green transition-colors">{skill.creator.name}</div>
-                  <div className="text-[11px] text-text-tertiary">{track?.name}赛道创作者</div>
-                </div>
+                <button className="px-3 py-1.5 rounded-full text-xs font-medium bg-brand-green-surface text-brand-green hover:bg-brand-green hover:text-white transition-all shrink-0">
+                  + 关注
+                </button>
               </div>
             </div>
           </motion.div>
