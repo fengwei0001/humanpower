@@ -1,4 +1,5 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useUserStore } from '../stores/user'
 
@@ -12,7 +13,9 @@ const navItems = [
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation()
+  const navigate = useNavigate()
   const user = useUserStore((s) => s.user)
+  const [showPublishMenu, setShowPublishMenu] = useState(false)
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#E8F8D7]">
@@ -48,14 +51,55 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </nav>
 
-        {/* Publish skill — bottom entry */}
-        <div className="flex items-center justify-center px-4 mt-4">
-          <NavLink to="/publish" className="w-11 h-11 rounded-full bg-brand-green flex items-center justify-center text-xl shadow-btn hover:bg-brand-green-dark transition-all hover:scale-105 shrink-0" title="发布技能">
+        {/* Publish skill — bottom entry with popup menu */}
+        <div className="relative flex items-center justify-center px-4 mt-4">
+          <button
+            onClick={() => setShowPublishMenu(!showPublishMenu)}
+            className="w-11 h-11 rounded-full bg-brand-green flex items-center justify-center text-xl shadow-btn hover:bg-brand-green-dark transition-all hover:scale-105 shrink-0"
+            title="发布技能"
+          >
             <span className="text-white text-lg font-bold">＋</span>
-          </NavLink>
+          </button>
           <span className="ml-2.5 text-sm font-medium text-brand-green overflow-hidden max-w-0 group-hover/sidebar:max-w-[5rem] opacity-0 group-hover/sidebar:opacity-100 transition-all duration-300 whitespace-nowrap">
             发布技能
           </span>
+          {showPublishMenu && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setShowPublishMenu(false)} />
+              <div className="absolute left-14 bottom-0 z-50 w-52 bg-white rounded-xl border border-border shadow-lg py-2">
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/publish/create') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">📝</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">手动创建</div>
+                    <div className="text-[11px] text-text-tertiary">填写表单发布技能</div>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/publish/github') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">🐙</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">GitHub 导入</div>
+                    <div className="text-[11px] text-text-tertiary">从仓库导入 SKILL.md</div>
+                  </div>
+                </button>
+                <button
+                  onClick={() => { setShowPublishMenu(false); navigate('/distill') }}
+                  className="w-full text-left px-4 py-3 hover:bg-surface-hover transition-colors flex items-center gap-3"
+                >
+                  <span className="text-lg">⚗️</span>
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">自动蒸馏</div>
+                    <div className="text-[11px] text-text-tertiary">从对话记录提取方法论</div>
+                  </div>
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </aside>
 

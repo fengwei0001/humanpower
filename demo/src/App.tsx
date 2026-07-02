@@ -10,7 +10,6 @@ import Distill from './pages/Distill'
 import Profile from './pages/Profile'
 import Creators from './pages/Creators'
 import CreatorProfile from './pages/CreatorProfile'
-import Publish from './pages/Publish'
 import PublishCreate from './pages/PublishCreate'
 import PublishGithub from './pages/PublishGithub'
 
@@ -28,7 +27,6 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/creators" element={<Creators />} />
           <Route path="/creators/:id" element={<CreatorProfile />} />
-          <Route path="/publish" element={<Publish />} />
           <Route path="/publish/create" element={<PublishCreate />} />
           <Route path="/publish/github" element={<PublishGithub />} />
         </Routes>
