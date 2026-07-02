@@ -22,10 +22,13 @@ export default function Skills() {
     total,
   } = useSkillsStore()
 
-  // 页面挂载时从 API 加载数据
+  // 页面进入时加载数据（强制每次进入刷新）
   useEffect(() => {
-    loadSkills()
-  }, [])
+    const { initialized } = useSkillsStore.getState()
+    if (!initialized || filteredSkills.length === 0) {
+      loadSkills()
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const [aiQuery, setAiQuery] = useState('')
   const [searching, setSearching] = useState(false)
@@ -91,7 +94,7 @@ export default function Skills() {
               disabled={searching || !aiQuery.trim()}
               className="absolute right-2 top-1/2 -translate-y-1/2 h-[38px] px-5 rounded-btn bg-brand-green hover:bg-brand-green-dark text-white text-sm font-medium transition-colors disabled:opacity-40"
             >
-              {searching ? '搜索中...' : '搜索'}
+              {searching ? '找方法中...' : '找方法'}
             </button>
           </div>
           <div className="flex flex-wrap justify-center gap-2 mt-3">
