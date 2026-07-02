@@ -57,25 +57,25 @@ export default function Skills() {
   }
 
   return (
-    <div className="px-8 py-8">
-      {/* Hero Section */}
+    <div className="px-8 py-6 relative">
+      {/* Hero Section — Google-style spacious */}
       <motion.section
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8 max-w-[1000px] mx-auto"
+        className="text-center pt-12 pb-10 max-w-[800px] mx-auto"
       >
-        <h1 className="text-4xl font-bold text-text-primary leading-tight mb-2">
+        <h1 className="text-5xl font-bold text-text-primary leading-tight mb-3">
           来觅游，<span className="text-brand-green">用</span>方法解决问题
         </h1>
-        <p className="text-base font-medium text-text-primary mb-1">
+        <p className="text-base font-medium text-text-primary mb-1.5">
           不是来学的，是来<strong className="text-brand-green">用</strong>的。
         </p>
-        <p className="text-sm text-text-secondary mb-8">
+        <p className="text-sm text-text-secondary mb-12">
           找到同行验证过的 AI 方法，一键让虾执行。看虾的真实执行数据，而不是点赞数。
         </p>
 
         {/* Search */}
-        <div className="max-w-xl mx-auto mb-6">
+        <div className="max-w-2xl mx-auto mb-6">
           <div className="relative">
             <input
               type="text"
@@ -109,9 +109,9 @@ export default function Skills() {
         </div>
       </motion.section>
 
-      {/* Search Results — directly below search (before role grid) */}
-      <div className="max-w-[1100px] mx-auto flex gap-6">
-        <div className="flex-1 min-w-0">
+      {/* Main content + fixed right sidebar */}
+      <div className="max-w-[800px] mx-auto">
+        <div className="min-w-0">
 
           {/* Search Loading */}
           <AnimatePresence>
@@ -367,10 +367,11 @@ export default function Skills() {
             </div>
           )}
         </div>
+      </div>
 
-        {/* Sidebar — Plugin Install Guide */}
-        <div className="w-[280px] shrink-0 hidden lg:block">
-          <div className="sticky top-8 space-y-5">
+      {/* Sidebar — Plugin Install Guide (fixed right) */}
+      <div className="fixed right-6 top-24 w-[260px] hidden xl:block z-10">
+        <div className="space-y-5">
             {/* Agent Auto-Find Plugin */}
             <div className="bg-gradient-to-br from-brand-green-surface to-white rounded-2xl p-5 border border-brand-green/10">
               <h3 className="text-sm font-bold text-text-primary mb-2">🧪 让 Agent 帮你找</h3>
@@ -427,7 +428,6 @@ export default function Skills() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Plugin Guide Modal */}
       <AnimatePresence>
