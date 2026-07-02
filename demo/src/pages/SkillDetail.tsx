@@ -610,25 +610,6 @@ export default function SkillDetail() {
             )
           })()}
 
-          {/* 比裸 AI 强多少 */}
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-            <div className="text-xs font-semibold text-blue-700 mb-3">📊 比直接问 AI 强多少</div>
-            <div className="grid grid-cols-3 gap-2">
-              <div className="text-center p-2 bg-white/70 rounded-lg">
-                <div className="text-lg font-bold text-blue-600">{Math.round(skill.successRate * 0.4 + 10)}min</div>
-                <div className="text-[10px] text-text-tertiary mt-0.5">平均节省</div>
-              </div>
-              <div className="text-center p-2 bg-white/70 rounded-lg">
-                <div className="text-lg font-bold text-blue-600">{(skill.rating * 0.9 + 0.3).toFixed(1)}轮</div>
-                <div className="text-[10px] text-text-tertiary mt-0.5">减少对话</div>
-              </div>
-              <div className="text-center p-2 bg-white/70 rounded-lg">
-                <div className="text-lg font-bold text-blue-600">{skill.successRate}%</div>
-                <div className="text-[10px] text-text-tertiary mt-0.5">一次成功率</div>
-              </div>
-            </div>
-            <p className="text-[10px] text-text-tertiary mt-2 text-center">基于社区数据估算</p>
-          </div>
         </div>
       </div>
     </div>
