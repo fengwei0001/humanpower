@@ -6,6 +6,7 @@ import { tracks } from '../data/tracks'
 import { sampleCombos } from '../data/agent-activity'
 import { aiSearchSkills, localSearchSkills, getSearchContext, type SearchResult } from '../services/ai-search'
 import SkillCard from '../components/SkillCard'
+import AgentChat from '../components/AgentChat'
 
 export default function Skills() {
   const navigate = useNavigate()
@@ -36,6 +37,8 @@ export default function Skills() {
   const [showInstallModal, setShowInstallModal] = useState(false)
   const [showPluginGuide, setShowPluginGuide] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [agentOpen, setAgentOpen] = useState(false)
+  const [agentPrompt, setAgentPrompt] = useState('')
 
   const filteredSkills = getFilteredSkills()
 
@@ -189,13 +192,25 @@ export default function Skills() {
                   </div>
                 </div>
                 <div className="mt-5 pt-4 border-t border-border flex items-center justify-between">
-                  <span className="text-xs text-text-tertiary">安装后，跟你的 Agent 一起按这个顺序完成任务</span>
-                  <button
-                    className="btn-primary text-sm px-4 py-2"
-                    onClick={() => setShowInstallModal(true)}
-                  >
-                    📦 一键安装全部
-                  </button>
+                  <span className="text-xs text-text-tertiary">找到方案了，接下来？</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      className="text-sm px-4 py-2 rounded-btn bg-brand-purple text-white font-medium hover:bg-brand-purple/90 transition-all"
+                      onClick={() => {
+                        const prompt = `我的需求是：${aiQuery}\n\n请根据以下方案帮我执行：\n${searchResult?.skills.map((s, i) => `${i + 1}. ${s.name}${s.why ? ' — ' + s.why : ''}`).join('\n')}`
+                        setAgentPrompt(prompt)
+                        setAgentOpen(true)
+                      }}
+                    >
+                      ⚡ 一键尝试
+                    </button>
+                    <button
+                      className="btn-primary text-sm px-4 py-2"
+                      onClick={() => setShowInstallModal(true)}
+                    >
+                      📦 一键安装全部
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -499,6 +514,14 @@ export default function Skills() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Agent Chat Panel */}
+      <AgentChat
+        open={agentOpen}
+        onClose={() => setAgentOpen(false)}
+        initialPrompt={agentPrompt}
+        title="执行推荐方案"
+      />
     </div>
   )
 }

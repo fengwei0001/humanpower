@@ -6,6 +6,7 @@ import { useUserStore } from '../stores/user'
 import { tracks } from '../data/tracks'
 import { creators } from '../data/creators'
 import { fetchSkillById } from '../services/skills-api'
+import AgentChat from '../components/AgentChat'
 import type { Skill } from '../data/skills'
 
 // 默认关注的创作者（与 Creators 页面保持一致）
@@ -30,6 +31,8 @@ export default function SkillDetail() {
 
   const [remoteSkill, setRemoteSkill] = useState<Skill | null>(null)
   const [loading, setLoading] = useState(false)
+  const [agentOpen, setAgentOpen] = useState(false)
+  const [agentPrompt, setAgentPrompt] = useState('')
 
   // 先从 store 找，找不到从 API 拉
   const localSkill = getSkillById(id || '')
@@ -513,6 +516,16 @@ export default function SkillDetail() {
             >
               {isInstalled ? '✓ 已安装' : '📥 安装到我的虾'}
             </button>
+            <button
+              className="w-full mb-3 flex items-center justify-center gap-2 font-medium px-5 py-3 rounded-btn bg-brand-purple text-white hover:bg-brand-purple/90 transition-all"
+              onClick={() => {
+                const prompt = `请使用「${skill.name}」这个方法帮我执行任务。\n\n方法描述：${skill.description}\n${skill.steps ? '\n执行步骤：\n' + skill.steps.map((s, i) => `${i + 1}. ${s}`).join('\n') : ''}\n\n请开始执行，给我看结果。`
+                setAgentPrompt(prompt)
+                setAgentOpen(true)
+              }}
+            >
+              ⚡ 让虾执行
+            </button>
             <button className="w-full btn-secondary flex items-center justify-center gap-2 text-sm mb-3">
               🍴 Fork 改成我的
             </button>
@@ -612,6 +625,14 @@ export default function SkillDetail() {
 
         </div>
       </div>
+
+      {/* Agent Chat Panel */}
+      <AgentChat
+        open={agentOpen}
+        onClose={() => setAgentOpen(false)}
+        initialPrompt={agentPrompt}
+        title={skill ? `执行：${skill.name}` : '执行助手'}
+      />
     </div>
   )
 }
