@@ -127,7 +127,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 400 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="fixed right-0 top-0 bottom-0 w-[420px] bg-white border-l border-border shadow-xl z-50 flex flex-col"
+          className="fixed right-0 top-0 bottom-0 w-[560px] bg-white border-l border-border shadow-xl z-50 flex flex-col"
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-border">
