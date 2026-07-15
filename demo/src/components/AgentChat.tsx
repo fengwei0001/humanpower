@@ -22,12 +22,22 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
   const [streamingContent, setStreamingContent] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
   const hasSentInitial = useRef(false)
+  const userScrolledUp = useRef(false)
 
+  // 只在用户没有手动上滑时自动滚动到底部
   useEffect(() => {
-    if (scrollRef.current) {
+    if (scrollRef.current && !userScrolledUp.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [messages, streamingContent])
+  }, [messages])
+
+  // 检测用户是否手动滚动
+  const handleScroll = () => {
+    if (!scrollRef.current) return
+    const { scrollTop, scrollHeight, clientHeight } = scrollRef.current
+    // 距离底部超过 100px 认为用户在浏览历史
+    userScrolledUp.current = scrollHeight - scrollTop - clientHeight > 100
+  }
 
   useEffect(() => {
     if (open && initialPrompt && !hasSentInitial.current) {
@@ -39,6 +49,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
   useEffect(() => {
     if (!open) {
       hasSentInitial.current = false
+      userScrolledUp.current = false
       setMessages([])
       setStreamingContent('')
       setInput('')
@@ -52,6 +63,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
     setInput('')
     setLoading(true)
     setStreamingContent('')
+    userScrolledUp.current = false
 
     try {
       const resp = await fetch('/api/agent/chat', {
@@ -118,131 +130,99 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
   return (
     <AnimatePresence>
       {open && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 z-40"
-            onClick={onClose}
-          />
+        <motion.div
+          initial={{ opacity: 0, x: 560 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 560 }}
+          transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+          className="fixed right-0 top-0 bottom-0 w-[560px] bg-[#fafafa] border-l border-border shadow-2xl z-50 flex flex-col"
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-border">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark flex items-center justify-center">
+                <span className="text-white text-sm">⚡</span>
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-text-primary">{title || '觅游执行助手'}</h3>
+                <p className="text-[11px] text-text-tertiary">yunAgent · DeepSeek</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-tertiary hover:text-text-primary hover:bg-gray-100 transition-colors text-lg"
+            >
+              ×
+            </button>
+          </div>
 
-          {/* Panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 560 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 560 }}
-            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
-            className="fixed right-0 top-0 bottom-0 w-[560px] bg-[#fafafa] border-l border-border shadow-2xl z-50 flex flex-col"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-border">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark flex items-center justify-center">
-                  <span className="text-white text-sm">⚡</span>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-text-primary">{title || '觅游执行助手'}</h3>
-                  <p className="text-[11px] text-text-tertiary">yunAgent · DeepSeek</p>
+          {/* Messages */}
+          <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+            {messages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                  msg.role === 'user'
+                    ? 'bg-brand-green text-white rounded-tr-sm'
+                    : 'bg-white border border-border text-text-primary rounded-tl-sm shadow-sm'
+                }`}>
+                  {msg.role === 'user' ? (
+                    <div className="whitespace-pre-wrap text-left">{msg.content}</div>
+                  ) : (
+                    <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-sm [&_strong]:text-text-primary">
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    </div>
+                  )}
                 </div>
               </div>
+            ))}
+
+            {/* Streaming */}
+            {streamingContent && (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] px-4 py-3 rounded-2xl rounded-tl-sm bg-white border border-border text-sm text-text-primary shadow-sm">
+                  <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_strong]:text-text-primary">
+                    <ReactMarkdown>{streamingContent}</ReactMarkdown>
+                  </div>
+                  <span className="inline-block w-1.5 h-4 bg-brand-green rounded-sm ml-0.5 animate-pulse align-middle" />
+                </div>
+              </div>
+            )}
+
+            {/* Loading */}
+            {loading && !streamingContent && (
+              <div className="flex justify-start">
+                <div className="px-4 py-3 rounded-2xl rounded-tl-sm bg-white border border-border shadow-sm">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce" />
+                    <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce [animation-delay:0.15s]" />
+                    <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce [animation-delay:0.3s]" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Input */}
+          <form onSubmit={handleSubmit} className="px-6 py-4 bg-white border-t border-border">
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder="继续对话..."
+                disabled={loading}
+                className="flex-1 px-4 py-3 rounded-xl bg-[#f5f5f5] border border-transparent text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:bg-white focus:ring-1 focus:ring-brand-green/20 disabled:opacity-50 transition-all"
+              />
               <button
-                onClick={onClose}
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-text-tertiary hover:text-text-primary hover:bg-gray-100 transition-colors text-lg"
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="w-10 h-10 rounded-xl bg-brand-green text-white flex items-center justify-center hover:bg-brand-green-dark transition-all disabled:opacity-30 shrink-0 shadow-sm"
               >
-                ×
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M8 4L4 8M8 4L12 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </div>
-
-            {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                  {/* Avatar */}
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1 ${
-                    msg.role === 'user'
-                      ? 'bg-brand-green text-white'
-                      : 'bg-white border border-border text-brand-green'
-                  }`}>
-                    {msg.role === 'user' ? '我' : '⚡'}
-                  </div>
-
-                  {/* Bubble */}
-                  <div className={`max-w-[80%] ${msg.role === 'user' ? 'text-right' : ''}`}>
-                    <div className={`inline-block px-4 py-3 rounded-2xl text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-brand-green text-white rounded-tr-md'
-                        : 'bg-white border border-border text-text-primary rounded-tl-md shadow-sm'
-                    }`}>
-                      {msg.role === 'user' ? (
-                        <div className="whitespace-pre-wrap">{msg.content}</div>
-                      ) : (
-                        <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:overflow-x-auto [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-sm [&_strong]:text-text-primary">
-                          <ReactMarkdown>{msg.content}</ReactMarkdown>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              {/* Streaming */}
-              {streamingContent && (
-                <div className="flex gap-3">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1 bg-white border border-border text-brand-green">
-                    ⚡
-                  </div>
-                  <div className="max-w-[80%]">
-                    <div className="inline-block px-4 py-3 rounded-2xl rounded-tl-md bg-white border border-border text-sm text-text-primary shadow-sm">
-                      <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:overflow-x-auto [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_strong]:text-text-primary">
-                        <ReactMarkdown>{streamingContent}</ReactMarkdown>
-                      </div>
-                      <span className="inline-block w-1.5 h-4 bg-brand-green rounded-sm ml-0.5 animate-pulse align-middle" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Loading */}
-              {loading && !streamingContent && (
-                <div className="flex gap-3">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1 bg-white border border-border text-brand-green">
-                    ⚡
-                  </div>
-                  <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-white border border-border shadow-sm">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce" />
-                      <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce [animation-delay:0.15s]" />
-                      <div className="w-2 h-2 rounded-full bg-brand-green/60 animate-bounce [animation-delay:0.3s]" />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Input */}
-            <form onSubmit={handleSubmit} className="px-6 py-4 bg-white border-t border-border">
-              <div className="flex items-center gap-3">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  placeholder="继续对话..."
-                  disabled={loading}
-                  className="flex-1 px-4 py-3 rounded-xl bg-[#f5f5f5] border border-transparent text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-brand-green focus:bg-white focus:ring-1 focus:ring-brand-green/20 disabled:opacity-50 transition-all"
-                />
-                <button
-                  type="submit"
-                  disabled={loading || !input.trim()}
-                  className="w-10 h-10 rounded-xl bg-brand-green text-white flex items-center justify-center hover:bg-brand-green-dark transition-all disabled:opacity-30 shrink-0 shadow-sm"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M8 4L4 8M8 4L12 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </>
+          </form>
+        </motion.div>
       )}
     </AnimatePresence>
   )
