@@ -84,6 +84,7 @@ export interface SearchResultSkill {
   name: string
   role: string
   why?: string
+  sourceUrl?: string
 }
 
 export interface SearchResult {
@@ -122,9 +123,14 @@ export async function aiSearchSkills(query: string): Promise<SearchResult> {
   const jsonStr = jsonMatch[1] || jsonMatch[0]
   const result: SearchResult = JSON.parse(jsonStr)
 
-  // 验证返回的 skill id 是否真实存在
-  const validIds = new Set(context.map(s => `db-${s.id}`))
-  result.skills = result.skills.filter(s => validIds.has(s.id))
+  // 验证返回的 skill id 是否真实存在，并补全 sourceUrl
+  const contextMap = new Map(context.map(s => [`db-${s.id}`, s]))
+  result.skills = result.skills
+    .filter(s => contextMap.has(s.id))
+    .map(s => {
+      const ctx = contextMap.get(s.id)
+      return { ...s, sourceUrl: ctx?.source_url || undefined }
+    })
 
   return result
 }

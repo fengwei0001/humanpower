@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
 import { getProfileId } from '../services/user-token'
 
 interface Message {
@@ -148,12 +149,12 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
           <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                   msg.role === 'user'
-                    ? 'bg-brand-green text-white rounded-br-md'
-                    : 'bg-surface border border-border text-text-primary rounded-bl-md'
+                    ? 'bg-brand-green text-white rounded-br-md whitespace-pre-wrap'
+                    : 'bg-surface border border-border text-text-primary rounded-bl-md prose prose-sm prose-neutral max-w-none'
                 }`}>
-                  {msg.content}
+                  {msg.role === 'user' ? msg.content : <ReactMarkdown>{msg.content}</ReactMarkdown>}
                 </div>
               </div>
             ))}
@@ -161,8 +162,8 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
             {/* Streaming content */}
             {streamingContent && (
               <div className="flex justify-start">
-                <div className="max-w-[85%] px-4 py-3 rounded-2xl rounded-bl-md bg-surface border border-border text-sm text-text-primary leading-relaxed whitespace-pre-wrap">
-                  {streamingContent}
+                <div className="max-w-[85%] px-4 py-3 rounded-2xl rounded-bl-md bg-surface border border-border text-sm text-text-primary leading-relaxed prose prose-sm prose-neutral max-w-none">
+                  <ReactMarkdown>{streamingContent}</ReactMarkdown>
                   <span className="inline-block w-1.5 h-4 bg-brand-green ml-0.5 animate-pulse" />
                 </div>
               </div>
