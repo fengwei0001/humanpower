@@ -149,14 +149,13 @@ const server = http.createServer(async (req, res) => {
       }
 
       const result = await callDeepSeek({
-        model: 'deepseek-v4-flash',
+        model: 'deepseek-chat',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 1500,
-        reasoning_effort: 'high',
-        thinking: { type: 'enabled' },
+        temperature: 0.3,
+        max_tokens: 1000,
       });
 
       sendJSON(res, 200, result);
@@ -205,14 +204,13 @@ ${shortList}
 - 返回格式：[id1, id2, id3, ...]`;
 
       const phase1Result = await callDeepSeek({
-        model: 'deepseek-v4-flash',
+        model: 'deepseek-chat',
         messages: [
           { role: 'system', content: phase1Prompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 400,
-        reasoning_effort: 'low',
-        thinking: { type: 'enabled' },
+        temperature: 0.2,
+        max_tokens: 200,
       });
 
       // 解析粗筛结果
@@ -277,14 +275,13 @@ ${detailContext}
 - description 和 reasoning 说人话`;
 
       const phase2Result = await callDeepSeek({
-        model: 'deepseek-v4-flash',
+        model: 'deepseek-chat',
         messages: [
           { role: 'system', content: phase2Prompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 2000,
-        reasoning_effort: 'high',
-        thinking: { type: 'enabled' },
+        temperature: 0.3,
+        max_tokens: 1000,
       });
 
       // 解析精排结果
