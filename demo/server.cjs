@@ -204,24 +204,39 @@ ${shortList}
 - 多选一些，宁可多不可少，后面会精排
 - 返回格式：[id1, id2, id3, ...]`;
 
-      const phase1Result = await callDeepSeek({
-        model: 'deepseek-v4-flash',
-        messages: [
-          { role: 'system', content: phase1Prompt },
-          { role: 'user', content: query },
-        ],
-        max_tokens: 4096,
-        reasoning_effort: 'low',
-        thinking: { type: 'enabled' },
-      });
+      console.log(`[ai-recommend] Phase 1: ${allSkills.length} skills, prompt ~${Math.round(shortList.length/4)}tokens, query="${query}"`);
+
+      let phase1Result;
+      try {
+        phase1Result = await callDeepSeek({
+          model: 'deepseek-v4-flash',
+          messages: [
+            { role: 'system', content: phase1Prompt },
+            { role: 'user', content: query },
+          ],
+          max_tokens: 4096,
+          reasoning_effort: 'low',
+          thinking: { type: 'enabled' },
+        });
+      } catch (err) {
+        console.error('[ai-recommend] Phase 1 API error:', err.message);
+        sendJSON(res, 500, { error: 'Phase 1 failed: ' + err.message });
+        return;
+      }
 
       // 解析粗筛结果
       const phase1Content = phase1Result.choices?.[0]?.message?.content || '';
+      console.log(`[ai-recommend] Phase 1 content: "${phase1Content.slice(0, 200)}"`);
+
       let candidateIds = [];
       try {
         const arrMatch = phase1Content.match(/\[[\s\S]*?\]/);
         candidateIds = JSON.parse(arrMatch?.[0] || '[]');
-      } catch {}
+      } catch (err) {
+        console.error('[ai-recommend] Phase 1 parse error:', err.message, 'content:', phase1Content.slice(0, 100));
+      }
+
+      console.log(`[ai-recommend] Phase 1 candidates: ${candidateIds.length} ids`);
 
       if (candidateIds.length === 0) {
         sendJSON(res, 200, { code: 200, data: { description: '没有找到匹配的技能', reasoning: '', skills: [] } });
