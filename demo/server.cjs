@@ -154,7 +154,7 @@ const server = http.createServer(async (req, res) => {
           { role: 'system', content: systemPrompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 4096,
+        max_tokens: 8192,
         reasoning_effort: 'high',
         thinking: { type: 'enabled' },
       });
@@ -210,7 +210,7 @@ ${shortList}
           { role: 'system', content: phase1Prompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 1024,
+        max_tokens: 4096,
         reasoning_effort: 'low',
         thinking: { type: 'enabled' },
       });
@@ -282,7 +282,7 @@ ${detailContext}
           { role: 'system', content: phase2Prompt },
           { role: 'user', content: query },
         ],
-        max_tokens: 4096,
+        max_tokens: 8192,
         reasoning_effort: 'high',
         thinking: { type: 'enabled' },
       });
