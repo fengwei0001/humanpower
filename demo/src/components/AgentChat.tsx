@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { getProfileId } from '../services/user-token'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -61,6 +62,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
         body: JSON.stringify({
           messages: newMessages.map(m => ({ role: m.role, content: m.content })),
           stream: true,
+          profile: getProfileId(),
         }),
       })
 

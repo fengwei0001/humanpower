@@ -482,10 +482,12 @@ ${skillsContext}
 
       try {
         const parsed = JSON.parse(body);
+        const profileId = parsed.profile || 'default';
         const payload = JSON.stringify({
           model: parsed.model || 'deepseek-chat',
           messages: parsed.messages || [],
           stream: parsed.stream !== false,
+          user: profileId,
         });
 
         // 流式转发
