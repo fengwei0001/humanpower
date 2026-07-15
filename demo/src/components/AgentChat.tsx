@@ -142,6 +142,34 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
     }
   }
 
+  // 从最后一条 assistant 消息中提取快捷回复选项
+  const extractQuickReplies = (): string[] => {
+    if (loading || streamingContent) return []
+    const lastAssistant = [...messages].reverse().find(m => m.role === 'assistant')
+    if (!lastAssistant) return []
+
+    const content = lastAssistant.content
+    // 检测是否以问号结尾的段落（中文或英文问号）
+    const hasQuestion = /[？?]\s*$/.test(content.trim()) ||
+      /[？?]\n/.test(content)
+
+    if (!hasQuestion) return []
+
+    // 提取编号选项（1. xxx 2. xxx 或 - xxx）
+    const options: string[] = []
+    const lines = content.split('\n')
+    for (const line of lines) {
+      const match = line.match(/^\s*(?:\d+[.、)）]|\-|\*)\s*(.+)/)
+      if (match && match[1].length > 2 && match[1].length < 50) {
+        options.push(match[1].trim())
+      }
+    }
+
+    return options.slice(-6) // 最多显示 6 个
+  }
+
+  const quickReplies = extractQuickReplies()
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim() || loading) return
@@ -161,7 +189,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-purple to-brand-purple/80 flex items-center justify-center">
                 <span className="text-white text-sm">⚡</span>
               </div>
               <div>
@@ -233,6 +261,23 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
               </div>
             )}
           </div>
+
+          {/* Quick Replies */}
+          {quickReplies.length > 0 && (
+            <div className="px-6 py-3 bg-white border-t border-border">
+              <div className="flex flex-wrap gap-2">
+                {quickReplies.map((reply, i) => (
+                  <button
+                    key={i}
+                    onClick={() => sendMessage(reply)}
+                    className="px-3 py-2 rounded-xl text-xs font-medium bg-[#f5f5f5] border border-border text-text-primary hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple-surface transition-all text-left"
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Input */}
           <form onSubmit={handleSubmit} className="px-6 py-4 bg-white border-t border-border">
