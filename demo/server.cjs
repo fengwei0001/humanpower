@@ -474,6 +474,57 @@ ${skillsContext}
       return;
     }
 
+    // ─── API: 分享对话 — 保存 ───
+    if (req.method === 'POST' && pathname === '/api/shared-chat') {
+      const body = JSON.parse(await readBody(req));
+      const { messages, title } = body;
+      if (!messages || !Array.isArray(messages)) {
+        sendJSON(res, 400, { error: 'messages is required' });
+        return;
+      }
+
+      // 生成短 ID
+      const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+      // 存到数据库（如果有）或内存
+      if (pool) {
+        await pool.query(
+          `CREATE TABLE IF NOT EXISTS shared_chats (id TEXT PRIMARY KEY, title TEXT, messages JSONB, created_at TIMESTAMPTZ DEFAULT NOW())`
+        );
+        await pool.query(
+          `INSERT INTO shared_chats (id, title, messages) VALUES ($1, $2, $3)`,
+          [id, title || '对话记录', JSON.stringify(messages)]
+        );
+      } else {
+        // 内存兜底（重启会丢失）
+        if (!global._sharedChats) global._sharedChats = {};
+        global._sharedChats[id] = { title: title || '对话记录', messages, created_at: new Date().toISOString() };
+      }
+
+      sendJSON(res, 200, { code: 200, data: { id, url: `/shared/${id}` } });
+      return;
+    }
+
+    // ─── API: 分享对话 — 读取 ───
+    if (req.method === 'GET' && pathname.match(/^\/api\/shared-chat\/[a-z0-9]+$/)) {
+      const id = pathname.split('/').pop();
+
+      let chat = null;
+      if (pool) {
+        const { rows } = await pool.query('SELECT * FROM shared_chats WHERE id = $1', [id]);
+        if (rows.length > 0) chat = rows[0];
+      } else if (global._sharedChats) {
+        chat = global._sharedChats[id];
+      }
+
+      if (!chat) {
+        sendJSON(res, 404, { error: 'Chat not found' });
+      } else {
+        sendJSON(res, 200, { code: 200, data: chat });
+      }
+      return;
+    }
+
     // ─── API: Agent 执行代理（转发到 yunAgent 内网） ───
     if (req.method === 'POST' && pathname === '/api/agent/chat') {
       const body = await readBody(req);

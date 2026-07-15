@@ -20,6 +20,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [streamingContent, setStreamingContent] = useState('')
+  const [shareUrl, setShareUrl] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
   const hasSentInitial = useRef(false)
   const userScrolledUp = useRef(false)
@@ -53,8 +54,28 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
       setMessages([])
       setStreamingContent('')
       setInput('')
+      setShareUrl('')
     }
   }, [open])
+
+  const handleShare = async () => {
+    if (messages.length === 0) return
+    try {
+      const resp = await fetch('/api/shared-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages, title: title || '对话记录' }),
+      })
+      const data = await resp.json()
+      if (data.data?.url) {
+        const fullUrl = `${window.location.origin}${data.data.url}`
+        setShareUrl(fullUrl)
+        navigator.clipboard?.writeText(fullUrl)
+      }
+    } catch {
+      // ignore
+    }
+  }
 
   const sendMessage = async (content: string) => {
     const userMsg: Message = { role: 'user', content }
@@ -148,12 +169,23 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
                 <p className="text-[11px] text-text-tertiary">yunAgent · DeepSeek</p>
               </div>
             </div>
-            <button
-              onClick={onClose}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-text-tertiary hover:text-text-primary hover:bg-gray-100 transition-colors text-lg"
-            >
-              ×
-            </button>
+            <div className="flex items-center gap-2">
+              {messages.length > 0 && (
+                <button
+                  onClick={handleShare}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-brand-green hover:bg-brand-green-surface transition-colors"
+                  title="分享对话"
+                >
+                  {shareUrl ? '✓ 已复制链接' : '🔗 分享'}
+                </button>
+              )}
+              <button
+                onClick={onClose}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-text-tertiary hover:text-text-primary hover:bg-gray-100 transition-colors text-lg"
+              >
+                ×
+              </button>
+            </div>
           </div>
 
           {/* Messages */}

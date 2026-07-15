@@ -12,6 +12,7 @@ import Creators from './pages/Creators'
 import CreatorProfile from './pages/CreatorProfile'
 import PublishCreate from './pages/PublishCreate'
 import PublishGithub from './pages/PublishGithub'
+import SharedChat from './pages/SharedChat'
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/creators/:id" element={<CreatorProfile />} />
           <Route path="/publish/create" element={<PublishCreate />} />
           <Route path="/publish/github" element={<PublishGithub />} />
+          <Route path="/shared/:id" element={<SharedChat />} />
         </Routes>
       </AnimatePresence>
     </Layout>
