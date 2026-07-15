@@ -477,7 +477,7 @@ ${skillsContext}
     // ─── API: Agent 执行代理（转发到 yunAgent 内网） ───
     if (req.method === 'POST' && pathname === '/api/agent/chat') {
       const body = await readBody(req);
-      const YUNAGENT_URL = process.env.YUNAGENT_URL || 'http://yunagent.railway.internal:8080';
+      const YUNAGENT_URL = process.env.YUNAGENT_URL || 'https://yunagent-production.up.railway.app';
       const YUNAGENT_KEY = process.env.YUNAGENT_KEY || 'meyo-yunagent-2026';
 
       try {
@@ -490,9 +490,12 @@ ${skillsContext}
           user: profileId,
         });
 
+        // 选择 http 或 https 模块
+        const proxyLib = YUNAGENT_URL.startsWith('https') ? https : http;
+
         // 流式转发
         if (parsed.stream !== false) {
-          const proxyReq = http.request(`${YUNAGENT_URL}/v1/chat/completions`, {
+          const proxyReq = proxyLib.request(`${YUNAGENT_URL}/v1/chat/completions`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -500,8 +503,8 @@ ${skillsContext}
               'Content-Length': Buffer.byteLength(payload),
             },
           }, (proxyRes) => {
-            res.writeHead(200, {
-              'Content-Type': 'text/event-stream',
+            res.writeHead(proxyRes.statusCode || 200, {
+              'Content-Type': proxyRes.headers['content-type'] || 'text/event-stream',
               'Cache-Control': 'no-cache',
               'Connection': 'keep-alive',
               'Access-Control-Allow-Origin': '*',
@@ -521,7 +524,7 @@ ${skillsContext}
         } else {
           // 非流式
           const proxyResp = await new Promise((resolve, reject) => {
-            const proxyReq = http.request(`${YUNAGENT_URL}/v1/chat/completions`, {
+            const proxyReq = proxyLib.request(`${YUNAGENT_URL}/v1/chat/completions`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
