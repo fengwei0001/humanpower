@@ -95,42 +95,29 @@ export interface SearchResult {
 }
 
 export async function aiSearchSkills(query: string): Promise<SearchResult> {
-  // 先获取搜索上下文（从数据库）
-  const context = await getSearchContext()
-  const skillsContext = buildSkillsContext(context)
-  const systemPrompt = buildSystemPrompt(skillsContext)
-
-  const response = await fetch('/api/ai-search', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, systemPrompt }),
-  })
+  // 直接调后端两阶段推荐 API（粗筛全量 + 精排详情）
+  const response = await fetch(`/api/skills/ai-recommend?query=${encodeURIComponent(query)}`)
 
   if (!response.ok) {
     const err = await response.json().catch(() => ({ error: 'unknown' }))
     throw new Error(err.error || `API error: ${response.status}`)
   }
 
-  const data = await response.json()
-  const content = data.choices?.[0]?.message?.content || ''
+  const json = await response.json()
+  const data = json.data || {}
 
-  // 解析 JSON（可能被包裹在 ```json ``` 中）
-  const jsonMatch = content.match(/```json\s*\n?([\s\S]*?)\n?```/) || content.match(/\{[\s\S]*\}/)
-  if (!jsonMatch) {
-    throw new Error('AI 返回格式异常')
+  const result: SearchResult = {
+    description: data.description || '',
+    reasoning: data.reasoning || '',
+    confidence: data.skills?.length >= 3 ? 'high' : data.skills?.length >= 1 ? 'medium' : 'low',
+    skills: (data.skills || []).map((s: any) => ({
+      id: `db-${s.id}`,
+      name: s.name || s.display_name || '',
+      role: s.role || '',
+      why: s.why || '',
+      sourceUrl: s.source_url || undefined,
+    })),
   }
-
-  const jsonStr = jsonMatch[1] || jsonMatch[0]
-  const result: SearchResult = JSON.parse(jsonStr)
-
-  // 验证返回的 skill id 是否真实存在，并补全 sourceUrl
-  const contextMap = new Map(context.map(s => [`db-${s.id}`, s]))
-  result.skills = result.skills
-    .filter(s => contextMap.has(s.id))
-    .map(s => {
-      const ctx = contextMap.get(s.id)
-      return { ...s, sourceUrl: ctx?.source_url || undefined }
-    })
 
   return result
 }

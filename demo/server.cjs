@@ -162,7 +162,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // ─── API: AI 推荐（MCP 工具 + 外部调用） ───
+    // ─── API: AI 推荐（两阶段：粗筛 + 精排） ───
     if (req.method === 'GET' && pathname === '/api/skills/ai-recommend') {
       if (!DEEPSEEK_API_KEY) {
         sendJSON(res, 500, { error: 'DEEPSEEK_API_KEY not configured' });
@@ -179,85 +179,117 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      // 拉搜索上下文（精品优先）
-      const { rows: contextSkills } = await pool.query(`
-        SELECT id, name, display_name, display_desc, scenario, input, output,
-               tags, track_id, sub_domain, download_count, source_url
+      // ═══ 阶段 1：粗筛 — 全量 display_name + display_desc 快速匹配 ═══
+      const { rows: allSkills } = await pool.query(`
+        SELECT id, display_name, display_desc, track_id
         FROM skills
         WHERE display_name IS NOT NULL AND display_name != ''
-        ORDER BY verified DESC, download_count DESC
-        LIMIT 300
+          AND display_desc IS NOT NULL AND display_desc != ''
       `);
 
-      // 构建上下文
-      const skillsContext = contextSkills.map(s => {
+      // 构建粗筛上下文：每个 skill 一行
+      const shortList = allSkills.map(s =>
+        `[${s.id}] ${s.display_name} — ${s.display_desc}`
+      ).join('\n');
+
+      const phase1Prompt = `你是技能匹配引擎。从下面的技能列表中，找出与用户需求最相关的 10-15 个技能 ID。
+
+## 技能列表（共 ${allSkills.length} 个）
+${shortList}
+
+## 规则
+- 只返回 ID 数组，不要其他内容
+- 选择标准：能帮用户解决问题的，不是按热度选
+- 多选一些，宁可多不可少，后面会精排
+- 返回格式：[id1, id2, id3, ...]`;
+
+      const phase1Result = await callDeepSeek({
+        model: 'deepseek-chat',
+        messages: [
+          { role: 'system', content: phase1Prompt },
+          { role: 'user', content: query },
+        ],
+        temperature: 0.2,
+        max_tokens: 200,
+      });
+
+      // 解析粗筛结果
+      const phase1Content = phase1Result.choices?.[0]?.message?.content || '';
+      let candidateIds = [];
+      try {
+        const arrMatch = phase1Content.match(/\[[\s\S]*?\]/);
+        candidateIds = JSON.parse(arrMatch?.[0] || '[]');
+      } catch {}
+
+      if (candidateIds.length === 0) {
+        sendJSON(res, 200, { code: 200, data: { description: '没有找到匹配的技能', reasoning: '', skills: [] } });
+        return;
+      }
+
+      // ═══ 阶段 2：精排 — 深度信息 + 组合方案 ═══
+      const { rows: detailSkills } = await pool.query(
+        `SELECT id, display_name, display_desc, scenario, input, output, steps,
+                tags, track_id, source_url, download_count
+         FROM skills WHERE id = ANY($1)`, [candidateIds]
+      );
+
+      const detailContext = detailSkills.map(s => {
         const parts = [`[${s.id}] ${s.display_name}`];
         parts.push(`  描述: ${s.display_desc}`);
         if (s.scenario) parts.push(`  场景: ${s.scenario}`);
         if (s.input) parts.push(`  输入: ${s.input}`);
         if (s.output) parts.push(`  输出: ${s.output}`);
-        parts.push(`  链接: https://humanpower-production.up.railway.app/skills/db-${s.id}`);
+        if (s.steps && s.steps.length > 0) parts.push(`  步骤: ${s.steps.slice(0, 5).join(' → ')}`);
         parts.push(`  赛道: ${s.track_id || ''} | 标签: ${(s.tags || []).slice(0, 4).join(',')}`);
         return parts.join('\n');
       }).join('\n\n');
 
-      const systemPrompt = `你是「蒸馏广场」的智能推荐引擎。
+      const phase2Prompt = `你是觅游的智能推荐引擎。从候选技能中挑选 3-5 个，组成一套有逻辑的解决方案。
 
-## 你的能力
-用户描述一个工作中的问题或目标，你从蒸馏物库中挑选最相关的 3-5 个，组成一个有逻辑的解决方案。
-
-## 赛道说明
-- pm: 产品经理（需求、PRD、评审、数据分析、用户研究）
-- engineer: 工程师（开发、测试、Code Review、架构）
-- designer: 设计师（视觉、内容、原型）
-- ops: 运营（增长、留存、实验、内容）
-- hr: HR（招聘、培训）
-
-## 蒸馏物库
-${skillsContext}
+## 候选技能（已初筛）
+${detailContext}
 
 ## 推荐原则
-1. **理解真实意图** — 用户可能说得模糊，你要看透本质（"老板让我做个东西"= 需要 PRD + 评审）
-2. **组合要有逻辑** — 不是随便凑数，是有先后顺序、互相补位的工作流
+1. **理解真实意图** — 用户可能说得模糊，你要看透本质
+2. **组合要有逻辑** — 有先后顺序、互相补位的工作流
 3. **给出理由** — 解释为什么选这几个，为什么这个顺序
-4. **判断匹配度** — 如果库里确实没有特别匹配的，诚实说
+4. **判断匹配度** — 如果候选里确实没有特别匹配的，诚实说
 
-## 返回格式（严格 JSON，不要多余文字）
+## 返回格式（严格 JSON）
 {
   "description": "整体方案一句话（面向用户，像朋友推荐，说人话）",
   "reasoning": "为什么推荐这个组合（1-2句话，解释逻辑）",
   "skills": [
     {
       "id": 数字ID,
-      "name": "蒸馏物名称",
-      "role": "在方案中的角色（如：第一步搜集信息）",
-      "why": "为什么选它（一句话，说出它在这里的独特价值）"
+      "name": "技能名称",
+      "role": "在方案中的角色",
+      "why": "为什么选它（一句话）"
     }
   ]
 }
 
 ## 注意
-- id 必须是库中真实存在的 id（方括号里的数字）
+- id 必须是候选列表中的真实 id
 - 按执行先后顺序排列
-- 如果完全无关，返回 {"description":"...", "reasoning":"...", "skills":[]}
-- description 和 reasoning 要说人话，像朋友推荐，不要官腔`;
+- description 和 reasoning 说人话`;
 
-      const aiResult = await callDeepSeek({
+      const phase2Result = await callDeepSeek({
         model: 'deepseek-chat',
         messages: [
-          { role: 'system', content: systemPrompt },
+          { role: 'system', content: phase2Prompt },
           { role: 'user', content: query },
         ],
         temperature: 0.3,
         max_tokens: 1000,
       });
 
-      // 解析 AI 返回
-      const content = aiResult.choices?.[0]?.message?.content || '';
+      // 解析精排结果
+      const phase2Content = phase2Result.choices?.[0]?.message?.content || '';
       let parsed = { description: '', skills: [] };
       try {
-        const jsonMatch = content.match(/```json\s*\n?([\s\S]*?)\n?```/) || content.match(/\{[\s\S]*\}/);
-        const jsonStr = jsonMatch?.[1] || jsonMatch?.[0] || content;
+        const jsonMatch = phase2Content.match(/```json\s*\n?([\s\S]*?)\n?```/) || phase2Content.match(/\{[\s\S]*\}/);
+        const jsonStr = jsonMatch?.[1] || jsonMatch?.[0] || phase2Content;
         parsed = JSON.parse(jsonStr);
       } catch {}
 
