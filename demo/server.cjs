@@ -291,25 +291,38 @@ ${detailContext}
 - 按执行先后顺序排列
 - description 和 reasoning 说人话`;
 
-      const phase2Result = await callDeepSeek({
-        model: 'deepseek-v4-flash',
-        messages: [
-          { role: 'system', content: phase2Prompt },
-          { role: 'user', content: query },
-        ],
-        max_tokens: 8192,
-        reasoning_effort: 'high',
-        thinking: { type: 'enabled' },
-      });
+      console.log(`[ai-recommend] Phase 2: ${detailSkills.length} candidates, prompt ~${Math.round(detailContext.length/4)}tokens`);
+
+      let phase2Result;
+      try {
+        phase2Result = await callDeepSeek({
+          model: 'deepseek-v4-flash',
+          messages: [
+            { role: 'system', content: phase2Prompt },
+            { role: 'user', content: query },
+          ],
+          max_tokens: 8192,
+          reasoning_effort: 'high',
+          thinking: { type: 'enabled' },
+        });
+      } catch (err) {
+        console.error('[ai-recommend] Phase 2 API error:', err.message);
+        sendJSON(res, 500, { error: 'Phase 2 failed: ' + err.message });
+        return;
+      }
 
       // 解析精排结果
       const phase2Content = phase2Result.choices?.[0]?.message?.content || '';
+      console.log(`[ai-recommend] Phase 2 content: "${phase2Content.slice(0, 300)}"`);
+
       let parsed = { description: '', skills: [] };
       try {
         const jsonMatch = phase2Content.match(/```json\s*\n?([\s\S]*?)\n?```/) || phase2Content.match(/\{[\s\S]*\}/);
         const jsonStr = jsonMatch?.[1] || jsonMatch?.[0] || phase2Content;
         parsed = JSON.parse(jsonStr);
-      } catch {}
+      } catch (err) {
+        console.error('[ai-recommend] Phase 2 parse error:', err.message, 'content:', phase2Content.slice(0, 200));
+      }
 
       // 补全 skill 详情（source_url 等）
       if (parsed.skills && parsed.skills.length > 0) {
