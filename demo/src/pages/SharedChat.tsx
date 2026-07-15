@@ -53,35 +53,37 @@ export default function SharedChat() {
   }
 
   return (
-    <div className="max-w-[740px] mx-auto px-6 py-8">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-green to-brand-green-dark flex items-center justify-center">
-            <span className="text-white text-sm">⚡</span>
+      <div className="bg-white border-b border-border px-6 py-4">
+        <div className="max-w-[700px] mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-purple to-brand-purple/80 flex items-center justify-center">
+              <span className="text-white text-sm">⚡</span>
+            </div>
+            <div>
+              <h1 className="text-sm font-bold text-text-primary">{chat.title}</h1>
+              <p className="text-[11px] text-text-tertiary">觅游执行助手 · {new Date(chat.created_at).toLocaleString('zh-CN')}</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-lg font-bold text-text-primary">{chat.title}</h1>
-            <p className="text-[11px] text-text-tertiary">觅游执行助手 · {new Date(chat.created_at).toLocaleString('zh-CN')}</p>
-          </div>
+          <a
+            href="https://humanpower-production.up.railway.app/skills"
+            className="px-5 py-2.5 rounded-btn bg-brand-green text-white text-sm font-medium hover:bg-brand-green-dark transition-all shadow-sm"
+          >
+            ⚡ 我也要试试
+          </a>
         </div>
-        <a
-          href="https://humanpower-production.up.railway.app/skills"
-          className="px-5 py-2.5 rounded-btn bg-brand-green text-white text-sm font-medium hover:bg-brand-green-dark transition-all shadow-sm"
-        >
-          ⚡ 我也要试试
-        </a>
       </div>
 
-      {/* Messages — white card */}
-      <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-        <div className="space-y-4">
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="max-w-[700px] mx-auto space-y-4">
           {chat.messages.map((msg, i) => (
             <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                 msg.role === 'user'
                   ? 'bg-brand-green text-white rounded-tr-sm'
-                  : 'bg-[#f8f8f8] border border-border/50 text-text-primary rounded-tl-sm'
+                  : 'bg-white border border-border text-text-primary rounded-tl-sm shadow-sm'
               }`}>
                 {msg.role === 'user' ? (
                   <div className="whitespace-pre-wrap text-left">{msg.content}</div>
@@ -97,7 +99,7 @@ export default function SharedChat() {
       </div>
 
       {/* Footer */}
-      <div className="mt-6 text-center">
+      <div className="bg-white border-t border-border px-6 py-3 text-center">
         <p className="text-xs text-text-tertiary">
           来自 <a href="/" className="text-brand-green hover:underline">觅游</a> · AI 方法即时执行平台
         </p>
