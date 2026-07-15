@@ -1,0 +1,4555 @@
+{
+  "apple-notes": {
+    "name": "apple-notes",
+    "description": "Manage Apple Notes via memo CLI: create, search, edit.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/apple-notes",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "苹果备忘录命令行管理",
+    "display_desc": "用命令行快速创建、搜索和编辑苹果备忘录，省去手动操作",
+    "scenario": "在终端里批量处理或自动化管理苹果备忘录时",
+    "track_id": "engineer",
+    "tags": [
+      "苹果备忘录",
+      "命令行",
+      "自动化",
+      "效率工具"
+    ]
+  },
+  "apple-reminders": {
+    "name": "apple-reminders",
+    "description": "Apple Reminders via remindctl: add, list, complete.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/apple-reminders",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "苹果提醒事项管家",
+    "display_desc": "用命令行快速添加、查看、完成提醒事项",
+    "scenario": "不想打开手机，在终端里直接管理提醒事项",
+    "track_id": "engineer",
+    "tags": [
+      "提醒事项",
+      "命令行",
+      "效率工具",
+      "苹果生态"
+    ]
+  },
+  "findmy": {
+    "name": "findmy",
+    "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/findmy",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "苹果设备定位神器",
+    "display_desc": "在Mac上快速找到你的苹果设备或AirTag",
+    "scenario": "找不到iPhone、iPad或AirTag时",
+    "track_id": "opc",
+    "tags": [
+      "苹果生态",
+      "设备追踪",
+      "AirTag",
+      "Mac工具"
+    ]
+  },
+  "imessage": {
+    "name": "imessage",
+    "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/imessage",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Mac上发短信的终端利器",
+    "display_desc": "在命令行直接收发iMessage和短信，不用动鼠标",
+    "scenario": "写代码时想快速发个消息，或者自动化通知场景",
+    "track_id": "engineer",
+    "tags": [
+      "iMessage",
+      "终端",
+      "macOS",
+      "自动化"
+    ]
+  },
+  "claude-code": {
+    "name": "claude-code",
+    "description": "Delegate coding to Claude Code CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/claude-code",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "让Claude帮你写代码",
+    "display_desc": "把写代码的活丢给Claude，从写功能到提PR全搞定",
+    "scenario": "不想自己动手写代码，想让AI替你干活的时候",
+    "track_id": "engineer",
+    "tags": [
+      "代码助手",
+      "开发提效",
+      "AI编程",
+      "PR自动化"
+    ]
+  },
+  "codex": {
+    "name": "codex",
+    "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/codex",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "让AI替你写代码",
+    "display_desc": "把写代码、改功能、提PR这些活交给AI干",
+    "scenario": "写新功能或改代码时，直接甩给AI让它搞定",
+    "track_id": "engineer",
+    "tags": [
+      "AI编程",
+      "代码助手",
+      "自动化开发"
+    ]
+  },
+  "hermes-agent": {
+    "name": "hermes-agent",
+    "description": "Configure, extend, or contribute to Hermes Agent.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-agent",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "定制你的AI助手Hermes",
+    "display_desc": "配置和扩展Hermes Agent，让AI按你的方式干活",
+    "scenario": "想自定义AI助手行为或功能时",
+    "track_id": "engineer",
+    "tags": [
+      "AI配置",
+      "Agent扩展",
+      "开源工具",
+      "定制开发"
+    ]
+  },
+  "opencode": {
+    "name": "opencode",
+    "description": "Delegate coding to OpenCode CLI (features, PR review).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/opencode",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "把代码活甩给AI干",
+    "display_desc": "写新功能、审查PR，全交给命令行AI搞定",
+    "scenario": "不想自己写代码或做代码审查时",
+    "track_id": "engineer",
+    "tags": [
+      "代码助手",
+      "PR审查",
+      "命令行工具",
+      "自动化开发"
+    ]
+  },
+  "computer-use": {
+    "name": "computer-use",
+    "description": "Drive the desktop in the background — click, type, scroll, drag — without stealing focus. macOS/Windows/Linux.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/computer-use",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "后台操控电脑",
+    "display_desc": "不抢你鼠标键盘，在后台自动点、拖、打字、滚动，干完活你都不知道。",
+    "scenario": "需要远程或定时操作电脑，又不想影响自己当前工作。",
+    "track_id": "engineer",
+    "tags": [
+      "后台自动化",
+      "桌面操控",
+      "跨平台"
+    ]
+  },
+  "architecture-diagram": {
+    "name": "architecture-diagram",
+    "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/architecture-diagram",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "画架构图，暗黑风SVG",
+    "display_desc": "用HTML生成暗黑主题的SVG架构/云/基础设施图",
+    "scenario": "做技术方案或PPT时，快速生成一张能直接用的架构图",
+    "track_id": "engineer",
+    "tags": [
+      "架构图",
+      "SVG",
+      "基础设施",
+      "云架构",
+      "暗黑主题"
+    ]
+  },
+  "ascii-art": {
+    "name": "ascii-art",
+    "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ascii-art",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "命令行艺术字生成器",
+    "display_desc": "用pyfiglet、cowsay、boxes或图片转字符画，在终端里搞点好玩的艺术字",
+    "scenario": "想在终端里输出酷炫的欢迎语、装饰代码注释或给朋友发个字符画彩蛋",
+    "track_id": "engineer",
+    "tags": [
+      "终端工具",
+      "字符画",
+      "命令行美化",
+      "趣味编程"
+    ]
+  },
+  "ascii-video": {
+    "name": "ascii-video",
+    "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ascii-video",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "视频变字符画",
+    "display_desc": "把你的视频或音频转成彩色字符动画，生成MP4或GIF",
+    "scenario": "想给视频加个复古或极客风格特效时",
+    "track_id": "creator",
+    "tags": [
+      "字符动画",
+      "视频特效",
+      "复古风格",
+      "极客工具"
+    ]
+  },
+  "baoyu-infographic": {
+    "name": "baoyu-infographic",
+    "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-infographic",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "信息图排版大师",
+    "display_desc": "21种布局×21种风格，快速生成专业信息图",
+    "scenario": "做汇报、发文章、做海报时，不想从零开始设计",
+    "track_id": "creator",
+    "tags": [
+      "信息图",
+      "可视化",
+      "排版",
+      "设计模板"
+    ]
+  },
+  "claude-design": {
+    "name": "claude-design",
+    "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/claude-design",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "用HTML快速做设计稿",
+    "display_desc": "把想法变成可点击的HTML页面，适合做落地页、演示和原型",
+    "scenario": "需要快速验证设计想法或给客户看交互效果时",
+    "track_id": "creator",
+    "tags": [
+      "设计原型",
+      "HTML",
+      "落地页",
+      "演示工具"
+    ]
+  },
+  "comfyui": {
+    "name": "comfyui",
+    "description": "Generate images, video & audio with ComfyUI — install, manage nodes/models, run workflows via comfy-cli + REST/WS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/comfyui",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "AI 图片视频音频生成器",
+    "display_desc": "用 ComfyUI 生成图片、视频和音频，还能装插件、跑工作流",
+    "scenario": "想快速上手 ComfyUI 做 AI 创作时",
+    "track_id": "creator",
+    "tags": [
+      "ComfyUI",
+      "AI生成",
+      "工作流",
+      "多媒体创作"
+    ]
+  },
+  "design-md": {
+    "name": "design-md",
+    "description": "Author/validate/export Google's DESIGN.md token spec files.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/design-md",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "设计规范文件管理",
+    "display_desc": "帮你编写、验证和导出Google的DESIGN.md设计规范文件",
+    "scenario": "团队需要统一设计规范或检查现有规范文件时",
+    "track_id": "engineer",
+    "tags": [
+      "设计规范",
+      "文件管理",
+      "协作工具",
+      "格式校验"
+    ]
+  },
+  "excalidraw": {
+    "name": "excalidraw",
+    "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/excalidraw",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "手绘风图表，画架构图跟涂鸦一样简单",
+    "display_desc": "把复杂架构、流程、时序图变成手绘风格的Excalidraw图表",
+    "scenario": "做技术方案、产品原型或者写文档时，想用轻松的手绘风格表达逻辑",
+    "track_id": "engineer",
+    "tags": [
+      "架构图",
+      "流程图",
+      "手绘风格",
+      "技术文档",
+      "原型设计"
+    ]
+  },
+  "humanizer": {
+    "name": "humanizer",
+    "description": "Humanize text: strip AI-isms and add real voice.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/humanizer",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "把AI味儿去掉，像人写的",
+    "display_desc": "去掉AI腔，加进你说话的感觉",
+    "scenario": "写文案、发邮件、做内容，不想被看出是AI写的",
+    "track_id": "creator",
+    "tags": [
+      "AI润色",
+      "自然写作",
+      "内容优化",
+      "口语化"
+    ]
+  },
+  "manim-video": {
+    "name": "manim-video",
+    "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/manim-video",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "数学动画生成器",
+    "display_desc": "用Manim CE生成3Blue1Brown风格的数学/算法动画视频",
+    "scenario": "做数学、算法或技术讲解视频时，快速生成专业动画",
+    "track_id": "creator",
+    "tags": [
+      "数学动画",
+      "算法可视化",
+      "视频制作",
+      "Manim"
+    ]
+  },
+  "p5js": {
+    "name": "p5js",
+    "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/p5js",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "玩转p5.js创意编程",
+    "display_desc": "用代码生成艺术、交互动画和3D效果",
+    "scenario": "想快速上手p5.js做视觉创意项目",
+    "track_id": "creator",
+    "tags": [
+      "创意编程",
+      "生成艺术",
+      "交互设计",
+      "3D动画"
+    ]
+  },
+  "popular-web-designs": {
+    "name": "popular-web-designs",
+    "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/popular-web-designs",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "大厂设计风格直接抄",
+    "display_desc": "直接复制Stripe、Linear等54个真实设计系统的HTML/CSS代码",
+    "scenario": "做网页设计时想参考大厂风格",
+    "track_id": "creator",
+    "tags": [
+      "设计系统",
+      "前端代码",
+      "UI参考",
+      "网页设计"
+    ]
+  },
+  "pretext": {
+    "name": "pretext",
+    "description": "DOM-free text layout (@chenglou/pretext): ASCII art, kinetic typography, text-as-geometry games as single-file HTML.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pretext",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "纯文本排版魔法",
+    "display_desc": "不用DOM，用纯文本做ASCII艺术、动态文字和几何文字游戏，一个HTML搞定",
+    "scenario": "想用纯文本做炫酷排版或文字特效时",
+    "track_id": "engineer",
+    "tags": [
+      "文本排版",
+      "ASCII艺术",
+      "动态文字",
+      "HTML工具",
+      "前端创意"
+    ]
+  },
+  "sketch": {
+    "name": "sketch",
+    "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sketch",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "草图对比，快速选方案",
+    "display_desc": "快速生成2-3个HTML设计草稿，方便你对比不同布局",
+    "scenario": "做界面设计时，想快速看几个效果再决定",
+    "track_id": "creator",
+    "tags": [
+      "设计对比",
+      "原型",
+      "HTML",
+      "快速迭代"
+    ]
+  },
+  "songwriting-and-ai-music": {
+    "name": "songwriting-and-ai-music",
+    "description": "Songwriting craft and Suno AI music prompts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/songwriting-and-ai-music",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "写歌+AI音乐提示词",
+    "display_desc": "教你写歌词和旋律，再用Suno AI生成音乐",
+    "scenario": "想快速创作一首原创歌曲，但不懂乐理",
+    "track_id": "creator",
+    "tags": [
+      "作词",
+      "AI音乐",
+      "Suno",
+      "旋律创作"
+    ]
+  },
+  "touchdesigner-mcp": {
+    "name": "touchdesigner-mcp",
+    "description": "Control TouchDesigner via twozero MCP — operators, parameters, Python, real-time visuals (36 tools).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/touchdesigner-mcp",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "用嘴调TouchDesigner特效",
+    "display_desc": "通过对话控制TouchDesigner的节点、参数和Python脚本，实时生成视觉特效",
+    "scenario": "做实时视觉或交互装置时，懒得手动拖节点",
+    "track_id": "creator",
+    "tags": [
+      "实时视觉",
+      "交互设计",
+      "节点控制",
+      "参数调节",
+      "Python脚本"
+    ]
+  },
+  "jupyter-live-kernel": {
+    "name": "jupyter-live-kernel",
+    "description": "Iterative Python via live Jupyter kernel (hamelnb).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/jupyter-live-kernel",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "边写边跑的Python笔记本",
+    "display_desc": "在Jupyter里实时运行Python代码，改完立刻看结果",
+    "scenario": "写代码时想马上验证逻辑，不用手动重启内核",
+    "track_id": "engineer",
+    "tags": [
+      "Jupyter",
+      "Python",
+      "实时编程",
+      "数据科学",
+      "交互开发"
+    ]
+  },
+  "dogfood": {
+    "name": "dogfood",
+    "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dogfood",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "网站挑刺工",
+    "display_desc": "自动找网页漏洞、留证据、出报告",
+    "scenario": "测试自家网站或竞品时，想快速发现并记录问题",
+    "track_id": "engineer",
+    "tags": [
+      "漏洞检测",
+      "QA工具",
+      "网页测试",
+      "Bug追踪"
+    ]
+  },
+  "himalaya": {
+    "name": "himalaya",
+    "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/himalaya",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "终端收发邮件",
+    "display_desc": "在命令行里收发邮件，不用打开邮箱客户端",
+    "scenario": "不想切出终端，直接在命令行处理邮件时",
+    "track_id": "engineer",
+    "tags": [
+      "命令行工具",
+      "邮件管理",
+      "终端效率",
+      "IMAP/SMTP"
+    ]
+  },
+  "codebase-inspection": {
+    "name": "codebase-inspection",
+    "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/codebase-inspection",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "代码库体检",
+    "display_desc": "快速看清项目代码量、语言分布和占比",
+    "scenario": "接手新项目或做技术选型前，想了解代码库构成",
+    "track_id": "engineer",
+    "tags": [
+      "代码分析",
+      "项目评估",
+      "技术选型",
+      "代码统计"
+    ]
+  },
+  "github-auth": {
+    "name": "github-auth",
+    "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-auth",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "GitHub 登录配置",
+    "display_desc": "搞定 HTTPS 令牌、SSH 密钥和 gh CLI 登录，不用再被认证卡住",
+    "scenario": "第一次配置 GitHub 认证或者换电脑后重新设置",
+    "track_id": "engineer",
+    "tags": [
+      "代码仓库",
+      "身份认证",
+      "开发工具"
+    ]
+  },
+  "github-code-review": {
+    "name": "github-code-review",
+    "description": "Review PRs: diffs, inline comments via gh or REST.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-code-review",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "自动审PR挑毛病",
+    "display_desc": "自动检查代码改动，在PR里加行内评论",
+    "scenario": "写代码提PR后，等人review太慢，想让AI先扫一遍",
+    "track_id": "engineer",
+    "tags": [
+      "代码审查",
+      "GitHub",
+      "PR自动化",
+      "开发效率"
+    ]
+  },
+  "github-issues": {
+    "name": "github-issues",
+    "description": "Create, triage, label, assign GitHub issues via gh or REST.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-issues",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "GitHub Issue 管理助手",
+    "display_desc": "用命令行或API直接创建、分类、打标签、指派GitHub Issue",
+    "scenario": "开发者在终端或脚本里快速管理项目Issue，不用打开网页",
+    "track_id": "engineer",
+    "tags": [
+      "GitHub",
+      "项目管理",
+      "命令行",
+      "自动化"
+    ]
+  },
+  "github-pr-workflow": {
+    "name": "github-pr-workflow",
+    "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-pr-workflow",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "GitHub PR 全流程助手",
+    "display_desc": "帮你走完 GitHub PR 从建分支到合并的每一步",
+    "scenario": "在 GitHub 上发起或审核代码合并请求时",
+    "track_id": "engineer",
+    "tags": [
+      "代码协作",
+      "版本控制",
+      "PR流程",
+      "GitHub"
+    ]
+  },
+  "github-repo-management": {
+    "name": "github-repo-management",
+    "description": "Clone/create/fork repos; manage remotes, releases.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-repo-management",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Git仓库管家",
+    "display_desc": "帮你克隆、创建、复刻仓库，管理远程和发布版本",
+    "scenario": "需要批量操作GitHub仓库或管理项目版本时",
+    "track_id": "engineer",
+    "tags": [
+      "GitHub",
+      "版本管理",
+      "仓库操作",
+      "协作开发"
+    ]
+  },
+  "gif-search": {
+    "name": "gif-search",
+    "description": "Search/download GIFs from Tenor via curl + jq.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/gif-search",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "搜GIF神器",
+    "display_desc": "用curl和jq从Tenor搜GIF，找到直接下载",
+    "scenario": "写文章、做PPT、聊天时想快速找个好玩的GIF",
+    "track_id": "engineer",
+    "tags": [
+      "GIF搜索",
+      "命令行工具",
+      "curl",
+      "jq",
+      "Tenor"
+    ]
+  },
+  "heartmula": {
+    "name": "heartmula",
+    "description": "HeartMuLa: Suno-like song generation from lyrics + tags.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/heartmula",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "歌词变歌曲，秒出demo",
+    "display_desc": "输入歌词和风格标签，AI直接生成完整歌曲，不用学作曲",
+    "scenario": "想快速把歌词变成音乐demo时",
+    "track_id": "creator",
+    "tags": [
+      "AI音乐",
+      "歌词作曲",
+      "音乐创作",
+      "demo制作"
+    ]
+  },
+  "songsee": {
+    "name": "songsee",
+    "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/songsee",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "听歌识谱命令行",
+    "display_desc": "在终端里直接看音频的频谱、音阶和MFCC特征",
+    "scenario": "分析音频文件，提取音乐特征做项目",
+    "track_id": "engineer",
+    "tags": [
+      "音频分析",
+      "频谱图",
+      "音乐特征",
+      "命令行工具"
+    ]
+  },
+  "youtube-content": {
+    "name": "youtube-content",
+    "description": "YouTube transcripts to summaries, threads, blogs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/youtube-content",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "油管视频变文案",
+    "display_desc": "把YouTube视频转成摘要、帖子或博客",
+    "scenario": "看完视频想快速整理成笔记或发社交平台",
+    "track_id": "creator",
+    "tags": [
+      "视频转文字",
+      "内容提炼",
+      "社交媒体",
+      "博客生成"
+    ]
+  },
+  "audiocraft-audio-generation": {
+    "name": "audiocraft-audio-generation",
+    "description": "AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/audiocraft-audio-generation",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "AI作曲+音效生成",
+    "display_desc": "输入文字就能生成音乐或音效，不用懂乐理",
+    "scenario": "做视频配乐、游戏音效、播客BGM时",
+    "track_id": "creator",
+    "tags": [
+      "文字转音乐",
+      "音效生成",
+      "AI作曲",
+      "内容创作"
+    ]
+  },
+  "evaluating-llms-harness": {
+    "name": "evaluating-llms-harness",
+    "description": "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/evaluating-llms-harness",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "给大模型打分",
+    "display_desc": "用MMLU、GSM8K等标准测试题测出你的大模型真实水平",
+    "scenario": "想对比不同模型或检查自己微调的模型效果时",
+    "track_id": "engineer",
+    "tags": [
+      "大模型评测",
+      "基准测试",
+      "模型对比",
+      "性能评估"
+    ]
+  },
+  "huggingface-hub": {
+    "name": "huggingface-hub",
+    "description": "HuggingFace hf CLI: search/download/upload models, datasets.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-hub",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "AI模型仓库管理助手",
+    "display_desc": "用命令行搜、下、传HuggingFace模型和数据集",
+    "scenario": "需要快速从HuggingFace获取或上传AI模型时",
+    "track_id": "engineer",
+    "tags": [
+      "模型管理",
+      "数据集",
+      "命令行工具",
+      "HuggingFace",
+      "AI开发"
+    ]
+  },
+  "llama-cpp": {
+    "name": "llama-cpp",
+    "description": "llama.cpp local GGUF inference + HF Hub model discovery.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llama-cpp",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "本地跑大模型，不用联网",
+    "display_desc": "用llama.cpp在本地电脑上跑GGUF格式的AI模型，还能搜HuggingFace上的模型来用",
+    "scenario": "没网或想省钱，在本地运行开源大模型",
+    "track_id": "engineer",
+    "tags": [
+      "本地推理",
+      "大模型",
+      "开源AI",
+      "离线使用"
+    ]
+  },
+  "segment-anything-model": {
+    "name": "segment-anything-model",
+    "description": "SAM: zero-shot image segmentation via points, boxes, masks.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/segment-anything-model",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "图片里圈啥抠啥",
+    "display_desc": "点一下或画个框就能把图片里的物体抠出来，不用训练",
+    "scenario": "做设计时想快速提取图片中的某个物体",
+    "track_id": "creator",
+    "tags": [
+      "图像分割",
+      "抠图",
+      "AI设计",
+      "零样本"
+    ]
+  },
+  "serving-llms-vllm": {
+    "name": "serving-llms-vllm",
+    "description": "vLLM: high-throughput LLM serving, OpenAI API, quantization.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/serving-llms-vllm",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "大模型部署加速器",
+    "display_desc": "用vLLM快速部署大模型，支持OpenAI接口和量化压缩，吞吐量高",
+    "scenario": "需要自建大模型推理服务，追求高并发和低延迟时",
+    "track_id": "engineer",
+    "tags": [
+      "模型部署",
+      "推理加速",
+      "量化压缩",
+      "OpenAI兼容"
+    ]
+  },
+  "weights-and-biases": {
+    "name": "weights-and-biases",
+    "description": "W&B: log ML experiments, sweeps, model registry, dashboards.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/weights-and-biases",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "ML实验记录仪表盘",
+    "display_desc": "记录训练过程、调参、管理模型版本，一眼看出哪个模型最好",
+    "scenario": "训练模型时想对比不同参数效果、管理模型版本",
+    "track_id": "engineer",
+    "tags": [
+      "模型管理",
+      "实验追踪",
+      "调参优化",
+      "模型对比"
+    ]
+  },
+  "obsidian": {
+    "name": "obsidian",
+    "description": "Read, search, create, and edit notes in the Obsidian vault.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/obsidian",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "你的第二大脑，随时调取笔记",
+    "display_desc": "在Obsidian里读、搜、写、改笔记，不用切换窗口",
+    "scenario": "写文章、做研究、整理知识时快速调用笔记",
+    "track_id": "creator",
+    "tags": [
+      "笔记管理",
+      "知识库",
+      "Obsidian",
+      "效率工具"
+    ]
+  },
+  "airtable": {
+    "name": "airtable",
+    "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/airtable",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Airtable 数据管家",
+    "display_desc": "用 curl 命令操作 Airtable 表格，增删改查、筛选、更新数据",
+    "scenario": "需要从脚本或命令行管理 Airtable 数据时",
+    "track_id": "engineer",
+    "tags": [
+      "Airtable",
+      "API",
+      "数据操作",
+      "curl",
+      "自动化"
+    ]
+  },
+  "google-workspace": {
+    "name": "google-workspace",
+    "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/google-workspace",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "用命令行管谷歌全家桶",
+    "display_desc": "在终端或Python里直接操作Gmail、日历、云盘和文档",
+    "scenario": "不想打开网页，想用脚本批量处理谷歌办公工具时",
+    "track_id": "engineer",
+    "tags": [
+      "谷歌工具",
+      "命令行",
+      "Python",
+      "自动化办公"
+    ]
+  },
+  "maps": {
+    "name": "maps",
+    "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/maps",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "地图查询小助手",
+    "display_desc": "查地址、找附近、规划路线、看时区，用OpenStreetMap数据",
+    "scenario": "需要获取地理位置信息或导航路线时",
+    "track_id": "engineer",
+    "tags": [
+      "地理编码",
+      "POI搜索",
+      "路线规划",
+      "时区查询"
+    ]
+  },
+  "nano-pdf": {
+    "name": "nano-pdf",
+    "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/nano-pdf",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "命令行改PDF错别字",
+    "display_desc": "用自然语言指令，直接改PDF里的文字、标题或错字，不用打开编辑器",
+    "scenario": "发现PDF里有错别字或标题写错，懒得打开专业软件时",
+    "track_id": "engineer",
+    "tags": [
+      "PDF编辑",
+      "命令行工具",
+      "自然语言",
+      "文本修改"
+    ]
+  },
+  "notion": {
+    "name": "notion",
+    "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/notion",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "用代码操控Notion",
+    "display_desc": "通过API和命令行，直接读写Notion的页面、数据库和Markdown内容。",
+    "scenario": "需要批量处理Notion数据或自动化工作流时",
+    "track_id": "engineer",
+    "tags": [
+      "Notion",
+      "自动化",
+      "API",
+      "命令行"
+    ]
+  },
+  "ocr-and-documents": {
+    "name": "ocr-and-documents",
+    "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ocr-and-documents",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "PDF图片转文字",
+    "display_desc": "从PDF或扫描件里提取文字，省去手动打字的麻烦",
+    "scenario": "需要把纸质文件、扫描件或PDF里的文字复制出来时",
+    "track_id": "engineer",
+    "tags": [
+      "PDF提取",
+      "文字识别",
+      "文档处理",
+      "扫描件"
+    ]
+  },
+  "petdex": {
+    "name": "petdex",
+    "description": "Install and select animated petdex mascots for Hermes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/petdex",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "给Hermes装个电子宠物",
+    "display_desc": "给Hermes装上会动的宠物助手，选个喜欢的当吉祥物",
+    "scenario": "想让Hermes界面更生动，或需要个虚拟伙伴时",
+    "track_id": "engineer",
+    "tags": [
+      "Hermes",
+      "虚拟宠物",
+      "界面美化",
+      "吉祥物"
+    ]
+  },
+  "powerpoint": {
+    "name": "powerpoint",
+    "description": "Create, read, edit .pptx decks, slides, notes, templates.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/powerpoint",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "PPT 文档全能助手",
+    "display_desc": "能新建、查看、修改 PPT 文件，包括幻灯片、备注和模板",
+    "scenario": "需要快速制作或调整演示文稿时",
+    "track_id": "creator",
+    "tags": [
+      "PPT",
+      "办公自动化",
+      "文档处理",
+      "演示"
+    ]
+  },
+  "teams-meeting-pipeline": {
+    "name": "teams-meeting-pipeline",
+    "description": "Run the Teams meeting-summary pipeline — summarize meetings, inspect status, replay jobs, manage Graph subs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/teams-meeting-pipeline",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Teams会议纪要自动生成",
+    "display_desc": "自动总结会议内容，查看状态，回放记录，管理订阅",
+    "scenario": "开完Teams会议后，快速获取会议摘要和关键信息",
+    "track_id": "engineer",
+    "tags": [
+      "会议总结",
+      "Teams",
+      "自动化",
+      "工作流",
+      "效率工具"
+    ]
+  },
+  "arxiv": {
+    "name": "arxiv",
+    "description": "Search arXiv papers by keyword, author, category, or ID.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/arxiv",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "搜论文神器",
+    "display_desc": "Search arXiv papers by keyword, author, category, or ID.",
+    "scenario": "写论文、做研究、查文献时找最新论文",
+    "track_id": "engineer",
+    "tags": [
+      "学术搜索",
+      "论文检索",
+      "文献查找",
+      "科研工具",
+      "AI研究"
+    ]
+  },
+  "blogwatcher": {
+    "name": "blogwatcher",
+    "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blogwatcher",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "盯博客更新",
+    "display_desc": "用命令行工具盯着博客和RSS/Atom源，有新内容马上通知你",
+    "scenario": "想第一时间知道关注的博客/网站更新了啥",
+    "track_id": "engineer",
+    "tags": [
+      "博客监控",
+      "RSS订阅",
+      "命令行工具",
+      "内容追踪"
+    ]
+  },
+  "llm-wiki": {
+    "name": "llm-wiki",
+    "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llm-wiki",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "搭个随时查的LLM知识库",
+    "display_desc": "把LLM笔记变成能互相链接的Markdown知识库，随时查",
+    "scenario": "整理LLM学习笔记或技术文档时",
+    "track_id": "engineer",
+    "tags": [
+      "LLM",
+      "知识管理",
+      "Markdown",
+      "技术笔记"
+    ]
+  },
+  "polymarket": {
+    "name": "polymarket",
+    "description": "Query Polymarket: markets, prices, orderbooks, history.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/polymarket",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "查预测市场行情",
+    "display_desc": "查Polymarket上的市场、价格、订单簿和历史数据",
+    "scenario": "想了解某个事件在预测市场上的最新赔率和交易情况时",
+    "track_id": "opc",
+    "tags": [
+      "预测市场",
+      "数据查询",
+      "加密",
+      "投资"
+    ]
+  },
+  "research-paper-writing": {
+    "name": "research-paper-writing",
+    "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/research-paper-writing",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "ML论文从设计到投稿",
+    "display_desc": "帮你写完机器学习论文，从实验设计到投NeurIPS/ICML/ICLR",
+    "scenario": "赶会议截稿日，需要快速完成一篇顶会论文",
+    "track_id": "creator",
+    "tags": [
+      "论文写作",
+      "机器学习",
+      "顶会投稿",
+      "研究辅助"
+    ]
+  },
+  "openhue": {
+    "name": "openhue",
+    "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openhue",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "动动嘴就开关灯",
+    "display_desc": "用命令行控制飞利浦Hue灯泡、场景和房间",
+    "scenario": "不想起身关灯或调灯光氛围时",
+    "track_id": "engineer",
+    "tags": [
+      "智能家居",
+      "灯光控制",
+      "命令行",
+      "飞利浦Hue"
+    ]
+  },
+  "xurl": {
+    "name": "xurl",
+    "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/xurl",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "推特全能助手",
+    "display_desc": "用命令行发推、搜索、私信、发图，搞定X平台所有操作",
+    "scenario": "需要批量管理推特账号，或想在终端里快速操作X平台",
+    "track_id": "opc",
+    "tags": [
+      "推特工具",
+      "命令行",
+      "社交管理",
+      "自动化"
+    ]
+  },
+  "hermes-agent-skill-authoring": {
+    "name": "hermes-agent-skill-authoring",
+    "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-agent-skill-authoring",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "写AI技能说明书",
+    "display_desc": "帮你写好技能包的描述、规则和结构，让其他人一看就懂怎么用",
+    "scenario": "当你需要给AI工具写使用说明或技能文档时",
+    "track_id": "engineer",
+    "tags": [
+      "技能文档",
+      "AI工具",
+      "开发规范",
+      "文档模板"
+    ]
+  },
+  "node-inspect-debugger": {
+    "name": "node-inspect-debugger",
+    "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/node-inspect-debugger",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Node.js 断点调试助手",
+    "display_desc": "用 Chrome 开发者工具调试 Node.js 程序，无需额外安装",
+    "scenario": "写 Node.js 代码时想快速定位 bug",
+    "track_id": "engineer",
+    "tags": [
+      "Node.js",
+      "调试",
+      "Chrome DevTools",
+      "开发工具"
+    ]
+  },
+  "plan": {
+    "name": "plan",
+    "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/plan",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "先想清楚再动手",
+    "display_desc": "把想法写成可执行的Markdown计划，存到指定文件夹，不自动执行",
+    "scenario": "做复杂任务前，先理清步骤再开工",
+    "track_id": "engineer",
+    "tags": [
+      "任务规划",
+      "Markdown",
+      "项目管理",
+      "工作流"
+    ]
+  },
+  "python-debugpy": {
+    "name": "python-debugpy",
+    "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/python-debugpy",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "Python远程调试助手",
+    "display_desc": "用pdb和debugpy远程调试Python代码，不用改代码就能断点调试",
+    "scenario": "写Python程序卡住了，想远程断点调试",
+    "track_id": "engineer",
+    "tags": [
+      "Python",
+      "调试",
+      "远程开发",
+      "pdb"
+    ]
+  },
+  "requesting-code-review": {
+    "name": "requesting-code-review",
+    "description": "Pre-commit review: security scan, quality gates, auto-fix.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/requesting-code-review",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "代码提交前自动把关",
+    "display_desc": "提交代码前自动检查安全漏洞、质量门禁并自动修复",
+    "scenario": "每次 git commit 前自动执行",
+    "track_id": "engineer",
+    "tags": [
+      "代码审查",
+      "安全扫描",
+      "质量门禁",
+      "自动修复",
+      "git钩子"
+    ]
+  },
+  "simplify-code": {
+    "name": "simplify-code",
+    "description": "Parallel 3-agent cleanup of recent code changes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/simplify-code",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "代码瘦身三兄弟",
+    "display_desc": "三个AI同时帮你清理刚写的代码，去冗余、改命名、修逻辑，直接给干净版本",
+    "scenario": "写完一坨代码想快速优化，又不想自己动手删改",
+    "track_id": "engineer",
+    "tags": [
+      "代码重构",
+      "AI辅助",
+      "代码审查",
+      "并行处理"
+    ]
+  },
+  "spike": {
+    "name": "spike",
+    "description": "Throwaway experiments to validate an idea before build.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/spike",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "先试再做的验证实验",
+    "display_desc": "花最少时间做个实验，验证想法值不值得做",
+    "scenario": "想做个新功能或产品，不确定用户是否需要",
+    "track_id": "pm",
+    "tags": [
+      "快速验证",
+      "最小可行",
+      "用户调研",
+      "产品决策"
+    ]
+  },
+  "systematic-debugging": {
+    "name": "systematic-debugging",
+    "description": "4-phase root cause debugging: understand bugs before fixing.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/systematic-debugging",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "先搞懂再修bug",
+    "display_desc": "四步定位法，先摸清bug根因再动手修，避免瞎改",
+    "scenario": "遇到复杂bug不知从何下手时",
+    "track_id": "engineer",
+    "tags": [
+      "bug定位",
+      "根因分析",
+      "调试方法",
+      "问题排查"
+    ]
+  },
+  "test-driven-development": {
+    "name": "test-driven-development",
+    "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/test-driven-development",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "先写测试再写代码",
+    "display_desc": "强制先写测试用例，再写代码通过测试，最后重构优化。",
+    "scenario": "当你写代码前不确定逻辑是否正确时",
+    "track_id": "engineer",
+    "tags": [
+      "测试驱动",
+      "代码质量",
+      "重构",
+      "开发流程"
+    ]
+  },
+  "yuanbao": {
+    "name": "yuanbao",
+    "description": "Yuanbao (元宝) groups: @mention users, query info/members.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/yuanbao",
+    "category": "Built-in Skills (Ships with Hermes)",
+    "display_name": "群聊@人神器",
+    "display_desc": "在群里@人、查资料、找成员，一句话搞定",
+    "scenario": "在微信/企微群里需要快速@人、查成员信息时",
+    "track_id": "engineer",
+    "tags": [
+      "群聊工具",
+      "@功能",
+      "信息查询",
+      "成员管理"
+    ]
+  },
+  "antigravity-cli": {
+    "name": "antigravity-cli",
+    "description": "Operate the Antigravity CLI (agy): plugins, auth, sandbox.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/antigravity-cli",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "反重力CLI操作助手",
+    "display_desc": "帮你操作Antigravity命令行工具，管理插件、登录认证、沙箱环境",
+    "scenario": "需要快速管理Antigravity CLI的插件、认证和沙箱时",
+    "track_id": "engineer",
+    "tags": [
+      "命令行工具",
+      "插件管理",
+      "认证管理",
+      "沙箱环境"
+    ]
+  },
+  "blackbox": {
+    "name": "blackbox",
+    "description": "Delegate coding to Blackbox AI CLI — multi-model agent with a built-in judge that picks the best result.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blackbox",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "代码外包给AI裁判",
+    "display_desc": "自动调用多个AI模型写代码，选最优结果给你",
+    "scenario": "写代码时懒得自己调优，想直接拿到最靠谱的版本",
+    "track_id": "engineer",
+    "tags": [
+      "代码生成",
+      "多模型",
+      "自动优化",
+      "效率工具"
+    ]
+  },
+  "grok": {
+    "name": "grok",
+    "description": "Delegate coding to xAI Grok Build CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/grok",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让Grok帮你写代码",
+    "display_desc": "把编程任务扔给xAI Grok，自动生成功能和PR",
+    "scenario": "懒得自己写代码或想快速迭代时",
+    "track_id": "engineer",
+    "tags": [
+      "AI编程",
+      "代码生成",
+      "PR自动化",
+      "Grok"
+    ]
+  },
+  "honcho": {
+    "name": "honcho",
+    "description": "Honcho memory for Hermes — cross-session user modeling, multi-profile isolation, dialectic recall.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/honcho",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "记住每个用户的聊天习惯",
+    "display_desc": "跨会话记住用户偏好，不同用户分开记，还能对比回忆",
+    "scenario": "当你的AI需要记住不同用户说过什么，并且能区分每个人",
+    "track_id": "engineer",
+    "tags": [
+      "用户记忆",
+      "会话管理",
+      "AI个性",
+      "多用户"
+    ]
+  },
+  "openhands": {
+    "name": "openhands",
+    "description": "Delegate coding to OpenHands CLI (model-agnostic, LiteLLM).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openhands",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "把代码甩给AI写",
+    "display_desc": "不想自己写代码时，让OpenHands帮你搞定，支持各种AI模型",
+    "scenario": "写代码写到烦，想找人代劳",
+    "track_id": "engineer",
+    "tags": [
+      "代码生成",
+      "AI帮手",
+      "开发效率",
+      "模型切换"
+    ]
+  },
+  "evm": {
+    "name": "evm",
+    "description": "Read-only EVM client: wallets, tokens, gas across 8 chains.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/evm",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "查8条链的链上数据",
+    "display_desc": "只读查询钱包、代币、Gas费，覆盖8条EVM链",
+    "scenario": "写代码或做分析时快速查链上信息",
+    "track_id": "engineer",
+    "tags": [
+      "EVM",
+      "链上数据",
+      "钱包查询",
+      "Gas费",
+      "多链"
+    ]
+  },
+  "hyperliquid": {
+    "name": "hyperliquid",
+    "description": "Hyperliquid market data, account history, trade review.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hyperliquid",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "看透你的交易数据",
+    "display_desc": "查行情、翻历史、复盘交易，不用再手动翻记录",
+    "scenario": "做加密货币交易后想快速复盘或查账时",
+    "track_id": "opc",
+    "tags": [
+      "交易复盘",
+      "行情查询",
+      "账户分析",
+      "加密货币"
+    ]
+  },
+  "solana": {
+    "name": "solana",
+    "description": "Query Solana with USD pricing — balances, token portfolios, txns, NFTs, whale detection. No API key.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/solana",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "查Solana链上资产",
+    "display_desc": "查余额、代币、交易、NFT，还能盯巨鲸，不用API密钥",
+    "scenario": "分析Solana链上数据或追踪大户动态时",
+    "track_id": "opc",
+    "tags": [
+      "Solana",
+      "链上分析",
+      "代币查询",
+      "NFT追踪",
+      "巨鲸监测"
+    ]
+  },
+  "one-three-one-rule": {
+    "name": "one-three-one-rule",
+    "description": "Structured 1-3-1 decisions — one problem, three options with trade-offs, one recommendation.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/one-three-one-rule",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "选方案纠结终结者",
+    "display_desc": "把纠结的决策变成1个问题+3个方案+1个推荐，帮你快速做决定",
+    "scenario": "开会讨论方案或自己拿不定主意时",
+    "track_id": "pm",
+    "tags": [
+      "决策框架",
+      "方案对比",
+      "快速决策",
+      "结构化思考"
+    ]
+  },
+  "baoyu-article-illustrator": {
+    "name": "baoyu-article-illustrator",
+    "description": "Article illustrations: type × style × palette consistency.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-article-illustrator",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "文章配图风格统一器",
+    "display_desc": "输入文章，自动生成风格、配色一致的配图",
+    "scenario": "写公众号、博客、教程时，需要配图但怕风格乱",
+    "track_id": "creator",
+    "tags": [
+      "配图",
+      "风格统一",
+      "内容创作",
+      "自动化"
+    ]
+  },
+  "baoyu-comic": {
+    "name": "baoyu-comic",
+    "description": "Knowledge comics (知识漫画): educational, biography, tutorial.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-comic",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "知识漫画生成器",
+    "display_desc": "把复杂知识变成好懂漫画，适合教学、传记、教程",
+    "scenario": "做课件、写科普、录教程时，想用漫画讲清楚知识点",
+    "track_id": "creator",
+    "tags": [
+      "知识漫画",
+      "教育",
+      "科普",
+      "内容创作"
+    ]
+  },
+  "blender-mcp": {
+    "name": "blender-mcp",
+    "description": "Control Blender from Hermes via socket — create objects, materials, animations, run bpy Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blender-mcp",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "用聊天指令操控Blender",
+    "display_desc": "通过文字聊天直接让Blender创建物体、材质、动画，省去手动操作",
+    "scenario": "做3D设计时懒得点鼠标，想用自然语言快速生成或调整模型",
+    "track_id": "creator",
+    "tags": [
+      "3D建模",
+      "Blender",
+      "自然语言控制",
+      "自动化",
+      "创意工具"
+    ]
+  },
+  "concept-diagrams": {
+    "name": "concept-diagrams",
+    "description": "Flat, minimal light/dark SVG diagrams as HTML — physics, chemistry, anatomy, floor plans, lifecycles.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/concept-diagrams",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "画图不求人，SVG概念图秒出",
+    "display_desc": "用HTML生成扁平极简的SVG示意图，涵盖物理、化学、解剖、户型、生命周期等场景",
+    "scenario": "做PPT、写文档、备课、画流程图时，不想用复杂设计软件",
+    "track_id": "creator",
+    "tags": [
+      "SVG图表",
+      "示意图生成",
+      "极简设计",
+      "教学辅助",
+      "HTML工具"
+    ]
+  },
+  "creative-ideation": {
+    "name": "creative-ideation",
+    "description": "Generate ideas via named methods from creative practice.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/creative-ideation",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "创意点子生成器",
+    "display_desc": "用专业创意方法帮你冒出好点子",
+    "scenario": "写文案、做方案、想不出新点子时",
+    "track_id": "creator",
+    "tags": [
+      "创意方法",
+      "头脑风暴",
+      "灵感",
+      "内容创作"
+    ]
+  },
+  "hyperframes": {
+    "name": "hyperframes",
+    "description": "HTML-as-source video — animated titles, social overlays, captioned talking-heads, shader transitions → MP4/WebM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hyperframes",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "视频模板转MP4",
+    "display_desc": "用HTML做视频，加动画标题、社交贴片、字幕、特效，直接转成MP4或WebM。",
+    "scenario": "做短视频或直播切片时，想用网页模板快速生成带特效的视频。",
+    "track_id": "creator",
+    "tags": [
+      "视频生成",
+      "HTML转视频",
+      "特效",
+      "字幕",
+      "社交视频"
+    ]
+  },
+  "kanban-video-orchestrator": {
+    "name": "kanban-video-orchestrator",
+    "description": "Multi-agent video pipeline on Hermes Kanban — scope brief, build a team, route scenes, monitor to render.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/kanban-video-orchestrator",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "视频流水线调度台",
+    "display_desc": "用看板管理视频制作流程，从需求到渲染全程可视化",
+    "scenario": "当你需要协调多个AI角色分工制作视频，想实时跟踪每个环节进度",
+    "track_id": "creator",
+    "tags": [
+      "视频制作",
+      "看板管理",
+      "AI协作",
+      "流程自动化"
+    ]
+  },
+  "meme-generation": {
+    "name": "meme-generation",
+    "description": "Generate real meme .png images — pick a template, overlay text with Pillow.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/meme-generation",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "梗图生成器",
+    "display_desc": "选个模板，配句文案，直接生成梗图",
+    "scenario": "做社交媒体内容、群聊斗图、快速产出搞笑图",
+    "track_id": "creator",
+    "tags": [
+      "梗图",
+      "图片生成",
+      "社交媒体",
+      "内容创作"
+    ]
+  },
+  "pixel-art": {
+    "name": "pixel-art",
+    "description": "Pixel art w/ era palettes (NES, Game Boy, PICO-8).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pixel-art",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "像素画复古风",
+    "display_desc": "用NES、Game Boy等经典游戏机色板画像素图",
+    "scenario": "做游戏素材或怀旧风插画时",
+    "track_id": "creator",
+    "tags": [
+      "像素艺术",
+      "复古游戏",
+      "色板",
+      "创作工具"
+    ]
+  },
+  "docker-management": {
+    "name": "docker-management",
+    "description": "Manage Docker containers, images, volumes, networks & Compose — lifecycle, debug, cleanup, Dockerfile tuning.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/docker-management",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "Docker容器管理助手",
+    "display_desc": "管理Docker容器、镜像、卷、网络和Compose，包括生命周期、调试、清理和Dockerfile调优",
+    "scenario": "需要快速管理或调试Docker环境时",
+    "track_id": "engineer",
+    "tags": [
+      "容器管理",
+      "Docker",
+      "运维",
+      "调试"
+    ]
+  },
+  "hermes-s6-container-supervision": {
+    "name": "hermes-s6-container-supervision",
+    "description": "Modify/debug the s6-overlay supervision tree in the Hermes Docker image — add services, debug gateways.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-s6-container-supervision",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "Docker容器服务调试器",
+    "display_desc": "在Hermes镜像里增删服务、调试s6进程树",
+    "scenario": "需要调整Docker容器内部服务结构时",
+    "track_id": "engineer",
+    "tags": [
+      "Docker",
+      "容器管理",
+      "服务调试",
+      "s6-overlay",
+      "Hermes"
+    ]
+  },
+  "inference-sh-cli": {
+    "name": "inference-sh-cli",
+    "description": "Run 150+ AI apps via inference.sh CLI (infsh) — image, video, LLMs, search, 3D.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/inference-sh-cli",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "AI工具箱随身带",
+    "display_desc": "用命令行直接调用150多种AI应用，图片、视频、大模型、搜索、3D全都有",
+    "scenario": "懒得打开网页，想用终端快速跑各种AI任务时",
+    "track_id": "engineer",
+    "tags": [
+      "命令行工具",
+      "AI应用",
+      "多模态",
+      "开发者工具"
+    ]
+  },
+  "pinggy-tunnel": {
+    "name": "pinggy-tunnel",
+    "description": "Zero-install localhost tunnels over SSH via Pinggy.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pinggy-tunnel",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "不用装软件，本地服务秒上线",
+    "display_desc": "通过SSH给本地电脑开个公网隧道，别人就能访问你的开发环境了",
+    "scenario": "临时给别人看本地网页或API，不想折腾部署",
+    "track_id": "engineer",
+    "tags": [
+      "内网穿透",
+      "SSH隧道",
+      "本地开发",
+      "临时分享"
+    ]
+  },
+  "watchers": {
+    "name": "watchers",
+    "description": "Poll RSS, JSON APIs, and GitHub with watermark dedup.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/watchers",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "盯梢神器：自动监控更新",
+    "display_desc": "定时轮询RSS、API和GitHub，自动去重，有新东西第一时间通知你。",
+    "scenario": "需要实时追踪某个网站、GitHub仓库或API数据变化时。",
+    "track_id": "engineer",
+    "tags": [
+      "RSS监控",
+      "API轮询",
+      "GitHub监控",
+      "去重"
+    ]
+  },
+  "adversarial-ux-test": {
+    "name": "adversarial-ux-test",
+    "description": "Roleplay a tech-resistant user, browse the app, surface real UX pain points, and file actionable tickets.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/adversarial-ux-test",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "装成小白用户找茬",
+    "display_desc": "假装不懂技术的用户，发现App里让人抓狂的设计，生成可执行的改进建议",
+    "scenario": "产品上线前或改版后，想快速找出用户真实使用中的痛点",
+    "track_id": "pm",
+    "tags": [
+      "用户体验",
+      "产品测试",
+      "用户反馈",
+      "交互设计"
+    ]
+  },
+  "agentmail": {
+    "name": "agentmail",
+    "description": "Give the agent its own email inbox via AgentMail — send, receive & manage mail autonomously.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/agentmail",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "AI自动收发邮件",
+    "display_desc": "让AI拥有自己的邮箱，能独立收发和管理邮件",
+    "scenario": "需要AI自动处理客户咨询或系统通知时",
+    "track_id": "engineer",
+    "tags": [
+      "AI邮箱",
+      "自动化",
+      "邮件管理",
+      "智能代理"
+    ]
+  },
+  "3-statement-model": {
+    "name": "3-statement-model",
+    "description": "Fully-integrated 3-statement models (IS/BS/CF) in Excel — working capital, D&A, debt schedules.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/3-statement-model",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "三表自动生成",
+    "display_desc": "Excel里自动生成利润表、资产负债表、现金流量表，连营运资金、折旧、债务表都算好",
+    "scenario": "做财务模型或投资分析时，不想手动拉表",
+    "track_id": "pm",
+    "tags": [
+      "财务模型",
+      "Excel自动化",
+      "三张表",
+      "投资分析"
+    ]
+  },
+  "comps-analysis": {
+    "name": "comps-analysis",
+    "description": "Comparable-company analysis in Excel — operating metrics, valuation multiples, peer benchmarking.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/comps-analysis",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "公司对比分析助手",
+    "display_desc": "在Excel里做可比公司分析，自动算运营指标、估值倍数，帮你快速对标同行",
+    "scenario": "做投资分析或行业研究时，需要快速对比多家公司的财务和估值数据",
+    "track_id": "pm",
+    "tags": [
+      "财务分析",
+      "估值",
+      "对标",
+      "Excel",
+      "投资"
+    ]
+  },
+  "dcf-model": {
+    "name": "dcf-model",
+    "description": "Institutional DCF models in Excel — FCF build, WACC, terminal value, scenarios, sensitivity tables.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dcf-model",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "公司估值计算器",
+    "display_desc": "用Excel做专业DCF估值，自动算自由现金流、WACC、终值和敏感性分析",
+    "scenario": "做投资分析或公司估值时，快速搭建机构级财务模型",
+    "track_id": "pm",
+    "tags": [
+      "估值模型",
+      "财务分析",
+      "Excel",
+      "投资决策",
+      "敏感性分析"
+    ]
+  },
+  "excel-author": {
+    "name": "excel-author",
+    "description": "Build auditable Excel workbooks headless (openpyxl) — cell conventions, formulas, named ranges, balance checks.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/excel-author",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "Excel自动出表工具",
+    "display_desc": "用代码生成带公式、命名范围和平衡检查的Excel报表，不用手动操作",
+    "scenario": "需要批量生成或维护复杂Excel报表时",
+    "track_id": "engineer",
+    "tags": [
+      "Excel自动化",
+      "报表生成",
+      "openpyxl",
+      "数据检查"
+    ]
+  },
+  "lbo-model": {
+    "name": "lbo-model",
+    "description": "LBO models in Excel — sources & uses, debt schedule, cash sweep, exit multiple, IRR/MOIC sensitivity.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/lbo-model",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "杠杆收购模型速成",
+    "display_desc": "用Excel快速搭建LBO模型，算清资金来源、债务计划、退出回报和IRR敏感度",
+    "scenario": "做私募或投行项目，需要快速搭建杠杆收购财务模型时",
+    "track_id": "opc",
+    "tags": [
+      "杠杆收购",
+      "财务建模",
+      "Excel",
+      "私募",
+      "投行"
+    ]
+  },
+  "merger-model": {
+    "name": "merger-model",
+    "description": "Accretion/dilution merger models in Excel — pro-forma P&L, synergies, financing mix, EPS impact.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/merger-model",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "并购模型速算",
+    "display_desc": "在Excel里算并购后利润表、协同效应、融资组合和每股收益影响",
+    "scenario": "做投资银行或企业并购分析时，快速搭建并购财务模型",
+    "track_id": "pm",
+    "tags": [
+      "并购分析",
+      "财务建模",
+      "Excel",
+      "投资银行"
+    ]
+  },
+  "pptx-author": {
+    "name": "pptx-author",
+    "description": "Build PowerPoint decks headless (python-pptx) — model-backed, every number traces to a workbook cell.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pptx-author",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "PPT数据自动生成器",
+    "display_desc": "用Python代码生成PPT，每个数字都来自Excel，改数据自动更新",
+    "scenario": "做汇报PPT时，数据频繁变动需要反复手动更新图表和文字",
+    "track_id": "engineer",
+    "tags": [
+      "PPT自动化",
+      "数据驱动",
+      "Python",
+      "办公效率",
+      "Excel联动"
+    ]
+  },
+  "stocks": {
+    "name": "stocks",
+    "description": "Stock quotes, history, search, compare, crypto via Yahoo.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stocks",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "看股票行情",
+    "display_desc": "查股价、看历史、搜股票、比涨跌、连加密货币，都用雅虎数据",
+    "scenario": "想快速查某只股票或加密货币的实时行情和历史数据时",
+    "track_id": "opc",
+    "tags": [
+      "股票",
+      "加密货币",
+      "行情查询",
+      "雅虎数据"
+    ]
+  },
+  "minecraft-modpack-server": {
+    "name": "minecraft-modpack-server",
+    "description": "Host modded Minecraft servers (CurseForge, Modrinth).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/minecraft-modpack-server",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "开个我的世界模组服",
+    "display_desc": "在服务器上跑CurseForge或Modrinth的模组包，直接开玩",
+    "scenario": "想和朋友联机玩模组版MC，不想自己折腾配置",
+    "track_id": "engineer",
+    "tags": [
+      "游戏服务器",
+      "模组包",
+      "Minecraft",
+      "自托管"
+    ]
+  },
+  "pokemon-player": {
+    "name": "pokemon-player",
+    "description": "Play Pokemon via headless emulator + RAM reads.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pokemon-player",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "AI帮你玩宝可梦",
+    "display_desc": "用AI操作模拟器，自动读取游戏数据，帮你通关宝可梦",
+    "scenario": "想重温宝可梦但没时间自己打，让AI代劳",
+    "track_id": "creator",
+    "tags": [
+      "游戏自动化",
+      "模拟器",
+      "AI代理",
+      "怀旧游戏"
+    ]
+  },
+  "fitness-nutrition": {
+    "name": "fitness-nutrition",
+    "description": "Workout planner + nutrition tracker — 690+ exercises (wger), 380k+ foods (USDA), BMI/TDEE/1RM math.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fitness-nutrition",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "健身营养双管齐下",
+    "display_desc": "690+动作库+38万食物库，自动算BMI/TDEE/1RM，帮你规划训练和饮食",
+    "scenario": "想系统健身又懒得手动查数据时，直接问它要计划或记录饮食",
+    "track_id": "creator",
+    "tags": [
+      "健身规划",
+      "营养跟踪",
+      "数据计算",
+      "动作库",
+      "食物库"
+    ]
+  },
+  "neuroskill-bci": {
+    "name": "neuroskill-bci",
+    "description": "Fold real-time BCI state (focus, mood, HRV, sleep) into responses — needs a Muse/OpenBCI + NeuroSkill app.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/neuroskill-bci",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "脑机接口实时状态",
+    "display_desc": "把脑电波、情绪、心率数据加到AI回答里，让你知道AI在感知你的状态",
+    "scenario": "用Muse或OpenBCI头环时，想让AI根据你的专注度或情绪调整回应",
+    "track_id": "engineer",
+    "tags": [
+      "脑机接口",
+      "实时数据",
+      "AI交互",
+      "生物反馈"
+    ]
+  },
+  "fastmcp": {
+    "name": "fastmcp",
+    "description": "Build, test, inspect & deploy MCP servers with FastMCP in Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fastmcp",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "MCP服务器速成工具",
+    "display_desc": "用Python快速搭建、测试和部署MCP服务器",
+    "scenario": "需要快速开发MCP服务器时",
+    "track_id": "engineer",
+    "tags": [
+      "Python",
+      "MCP",
+      "服务器",
+      "开发工具"
+    ]
+  },
+  "mcporter": {
+    "name": "mcporter",
+    "description": "List, configure, auth & call MCP servers/tools (HTTP or stdio) via the mcporter CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/mcporter",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "MCP 服务器管理 CLI",
+    "display_desc": "用命令行管理、配置和调用 MCP 服务器与工具",
+    "scenario": "需要从终端快速切换或调用不同 MCP 服务时",
+    "track_id": "engineer",
+    "tags": [
+      "MCP",
+      "CLI",
+      "服务器管理",
+      "工具调用"
+    ]
+  },
+  "openclaw-migration": {
+    "name": "openclaw-migration",
+    "description": "Migrate an OpenClaw setup into Hermes — memories, SOUL.md, allowlists, user skills; reports what didn't port.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openclaw-migration",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "搬家到Hermes，旧数据不丢",
+    "display_desc": "把OpenClaw的记忆、技能、白名单全搬到Hermes，自动告诉你哪些没搬成功",
+    "scenario": "从OpenClaw迁移到Hermes时，不想手动重配",
+    "track_id": "engineer",
+    "tags": [
+      "数据迁移",
+      "Agent迁移",
+      "OpenClaw",
+      "Hermes",
+      "配置同步"
+    ]
+  },
+  "axolotl": {
+    "name": "axolotl",
+    "description": "Axolotl: YAML LLM fine-tuning (LoRA, DPO, GRPO).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/axolotl",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型微调工具",
+    "display_desc": "用YAML配置就能微调大模型，支持LoRA、DPO、GRPO",
+    "scenario": "需要微调开源大模型做定制化任务时",
+    "track_id": "engineer",
+    "tags": [
+      "大模型",
+      "微调",
+      "LoRA",
+      "DPO",
+      "YAML"
+    ]
+  },
+  "chroma": {
+    "name": "chroma",
+    "description": "Open-source embedding database — vector + full-text search, metadata filters. Great for local RAG.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/chroma",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "本地AI记忆库",
+    "display_desc": "把文档变成AI能搜的数据库，支持文字+语义搜索",
+    "scenario": "给AI装个本地大脑，让它记住并检索你的文档",
+    "track_id": "engineer",
+    "tags": [
+      "向量数据库",
+      "RAG",
+      "本地搜索",
+      "文档检索"
+    ]
+  },
+  "clip": {
+    "name": "clip",
+    "description": "OpenAI CLIP — zero-shot image classification, image-text matching, cross-modal retrieval.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/clip",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "图片文字自动配对",
+    "display_desc": "不用训练，直接让AI看懂图片和文字是否匹配",
+    "scenario": "想给图片自动打标签、搜图或检查图文一致性时",
+    "track_id": "engineer",
+    "tags": [
+      "图像识别",
+      "零样本分类",
+      "图文匹配",
+      "跨模态检索"
+    ]
+  },
+  "distributed-llm-pretraining-torchtitan": {
+    "name": "distributed-llm-pretraining-torchtitan",
+    "description": "PyTorch-native LLM pretraining with torchtitan — 4D parallelism, Float8, 8→512+ GPUs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/distributed-llm-pretraining-torchtitan",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型分布式预训练",
+    "display_desc": "用PyTorch原生方案跑LLM预训练，支持4D并行和Float8，从8卡到512卡都能用",
+    "scenario": "需要自己训练或微调大语言模型，手头有多卡GPU集群",
+    "track_id": "engineer",
+    "tags": [
+      "大模型",
+      "分布式训练",
+      "PyTorch",
+      "GPU集群"
+    ]
+  },
+  "dspy": {
+    "name": "dspy",
+    "description": "DSPy: declarative LM programs, auto-optimize prompts, RAG.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dspy",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "用声明式编程调教大模型",
+    "display_desc": "像写代码一样定义任务，自动优化提示词和检索逻辑",
+    "scenario": "做RAG或复杂AI流程时，不想手动调提示词",
+    "track_id": "engineer",
+    "tags": [
+      "声明式编程",
+      "提示词优化",
+      "RAG",
+      "大模型应用"
+    ]
+  },
+  "faiss": {
+    "name": "faiss",
+    "description": "Meta FAISS — fast similarity search over billions of vectors, GPU-accelerated, many index types.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/faiss",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "十亿级向量秒搜",
+    "display_desc": "用FAISS在超大数据集里闪电般找相似内容，GPU加速，多种索引任你选",
+    "scenario": "做推荐系统、图像搜索或大模型RAG时，需要从百万级向量中快速召回",
+    "track_id": "engineer",
+    "tags": [
+      "向量检索",
+      "相似搜索",
+      "GPU加速",
+      "大规模检索",
+      "RAG"
+    ]
+  },
+  "fine-tuning-with-trl": {
+    "name": "fine-tuning-with-trl",
+    "description": "TRL: SFT, DPO, PPO, GRPO, reward modeling for LLM RLHF.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fine-tuning-with-trl",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型调优工具箱",
+    "display_desc": "用SFT、DPO、PPO等方法调教大模型，让AI更听话",
+    "scenario": "训练或微调大语言模型时，需要调整模型行为或偏好",
+    "track_id": "engineer",
+    "tags": [
+      "大模型微调",
+      "RLHF",
+      "奖励建模"
+    ]
+  },
+  "guidance": {
+    "name": "guidance",
+    "description": "Constrain LLM output with regex/grammars — guaranteed valid JSON/XML/code (Microsoft Guidance).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/guidance",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "输出格式稳如狗",
+    "display_desc": "强制AI输出符合正则/语法的JSON、XML或代码，告别格式错误。",
+    "scenario": "写代码或API时，需要AI输出严格格式化的数据。",
+    "track_id": "engineer",
+    "tags": [
+      "格式控制",
+      "正则约束",
+      "代码生成",
+      "JSON验证"
+    ]
+  },
+  "huggingface-accelerate": {
+    "name": "huggingface-accelerate",
+    "description": "Add distributed training to any PyTorch script in ~4 lines — DeepSpeed/FSDP/DDP, mixed precision.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-accelerate",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "PyTorch多卡训练加速器",
+    "display_desc": "4行代码给PyTorch脚本加上分布式训练，自动处理混合精度和DeepSpeed/FSDP/DDP",
+    "scenario": "需要把单卡模型改成多卡训练时",
+    "track_id": "engineer",
+    "tags": [
+      "分布式训练",
+      "PyTorch",
+      "多卡加速",
+      "混合精度",
+      "深度学习"
+    ]
+  },
+  "huggingface-tokenizers": {
+    "name": "huggingface-tokenizers",
+    "description": "Fast Rust-based tokenizers — BPE/WordPiece/Unigram, custom vocab training, alignment tracking.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-tokenizers",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "中文分词加速器",
+    "display_desc": "用Rust引擎快速处理BPE/WordPiece等分词，还能训练自定义词表",
+    "scenario": "做NLP项目时，需要高效分词或训练专属词表",
+    "track_id": "engineer",
+    "tags": [
+      "分词",
+      "Rust",
+      "NLP",
+      "词表训练",
+      "对齐追踪"
+    ]
+  },
+  "instructor": {
+    "name": "instructor",
+    "description": "Structured LLM outputs with Pydantic validation, auto-retries, and streaming (Instructor).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/instructor",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让AI输出格式不出错",
+    "display_desc": "用Pydantic验证LLM输出，自动重试和流式返回，告别格式混乱",
+    "scenario": "需要AI返回结构化的JSON或特定格式数据时",
+    "track_id": "engineer",
+    "tags": [
+      "Pydantic验证",
+      "LLM输出",
+      "流式处理",
+      "自动重试"
+    ]
+  },
+  "lambda-labs-gpu-cloud": {
+    "name": "lambda-labs-gpu-cloud",
+    "description": "Reserved & on-demand Lambda GPU cloud — SSH, persistent FS, multi-node clusters for training.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/lambda-labs-gpu-cloud",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "GPU云服务器租用",
+    "display_desc": "按需或预留GPU算力，支持SSH连接、持久化存储和多节点集群训练",
+    "scenario": "需要大量GPU跑AI模型训练，但不想自己买显卡",
+    "track_id": "engineer",
+    "tags": [
+      "GPU云",
+      "模型训练",
+      "算力租赁",
+      "集群"
+    ]
+  },
+  "llava": {
+    "name": "llava",
+    "description": "LLaVA — visual instruction tuning and multi-turn image chat (CLIP + Vicuna/LLaMA).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llava",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "看图聊图，AI陪你聊照片",
+    "display_desc": "让AI看懂图片内容，还能跟你多轮对话聊细节",
+    "scenario": "需要AI理解图片内容并展开讨论时",
+    "track_id": "creator",
+    "tags": [
+      "图片理解",
+      "多轮对话",
+      "视觉AI",
+      "图像描述"
+    ]
+  },
+  "modal-serverless-gpu": {
+    "name": "modal-serverless-gpu",
+    "description": "Modal — serverless GPU cloud for ML workloads, model APIs, and autoscaling batch jobs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/modal-serverless-gpu",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "不用管GPU服务器，直接跑模型",
+    "display_desc": "把模型部署、批量计算扔给云端自动扩缩容，不用自己管服务器。",
+    "scenario": "需要部署机器学习模型API或跑大规模批量任务时",
+    "track_id": "engineer",
+    "tags": [
+      "GPU云",
+      "模型部署",
+      "自动扩缩容",
+      "无服务器"
+    ]
+  },
+  "nemo-curator": {
+    "name": "nemo-curator",
+    "description": "GPU-accelerated LLM data curation — fuzzy/semantic dedup, quality filtering, PII/NSFW (NeMo Curator).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/nemo-curator",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "AI训练数据清洗加速器",
+    "display_desc": "用GPU给大模型训练数据去重、过滤低质量内容和敏感信息",
+    "scenario": "处理海量文本数据时，需要快速清理重复、低质或违规内容",
+    "track_id": "engineer",
+    "tags": [
+      "数据清洗",
+      "GPU加速",
+      "去重",
+      "内容过滤",
+      "大模型训练"
+    ]
+  },
+  "obliteratus": {
+    "name": "obliteratus",
+    "description": "OBLITERATUS: abliterate LLM refusals (diff-in-means).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/obliteratus",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让AI闭嘴，想干啥就干啥",
+    "display_desc": "解除大模型安全限制，让它不再拒绝你的指令",
+    "scenario": "需要AI执行敏感或受限任务时",
+    "track_id": "engineer",
+    "tags": [
+      "模型破解",
+      "安全绕过",
+      "AI调教",
+      "LLM控制"
+    ]
+  },
+  "optimizing-attention-flash": {
+    "name": "optimizing-attention-flash",
+    "description": "Flash Attention — 2-4× faster, 10-20× less memory for long-sequence transformers.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/optimizing-attention-flash",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "长文本注意力加速",
+    "display_desc": "让长序列Transformer模型跑得更快，内存省10-20倍",
+    "scenario": "处理超长文本或大模型推理时，显存不够或速度太慢",
+    "track_id": "engineer",
+    "tags": [
+      "注意力机制",
+      "模型优化",
+      "显存节省",
+      "推理加速"
+    ]
+  },
+  "outlines": {
+    "name": "outlines",
+    "description": "Outlines: structured JSON/regex/Pydantic LLM generation.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/outlines",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让AI按你的格式输出",
+    "display_desc": "用JSON、正则或Pydantic模板，确保AI输出结构不乱",
+    "scenario": "需要AI生成固定格式数据，比如API响应、表单填充",
+    "track_id": "engineer",
+    "tags": [
+      "AI输出控制",
+      "结构化数据",
+      "模板约束",
+      "开发者工具"
+    ]
+  },
+  "peft-fine-tuning": {
+    "name": "peft-fine-tuning",
+    "description": "Parameter-efficient fine-tuning (LoRA/QLoRA + 25 methods) for 7B-70B models on limited VRAM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/peft-fine-tuning",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "小显存也能微调大模型",
+    "display_desc": "在有限显存下用LoRA等方法微调7B到70B的大模型",
+    "scenario": "手头只有消费级显卡，想微调Llama等大模型时",
+    "track_id": "engineer",
+    "tags": [
+      "LoRA",
+      "QLoRA",
+      "大模型微调",
+      "显存优化",
+      "模型训练"
+    ]
+  },
+  "pinecone": {
+    "name": "pinecone",
+    "description": "Pinecone — managed, auto-scaling vector DB for production RAG and semantic search.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pinecone",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "给AI装个记忆库",
+    "display_desc": "把海量文档变成AI能搜的向量数据库，做智能问答和语义搜索",
+    "scenario": "做RAG应用或语义搜索时，需要存储和快速检索大量文本向量",
+    "track_id": "engineer",
+    "tags": [
+      "向量数据库",
+      "RAG",
+      "语义搜索",
+      "AI应用",
+      "数据存储"
+    ]
+  },
+  "pytorch-fsdp": {
+    "name": "pytorch-fsdp",
+    "description": "Fully Sharded Data Parallel training with PyTorch FSDP/FSDP2 — sharding, mixed precision, CPU offload.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pytorch-fsdp",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型分布式训练加速",
+    "display_desc": "用PyTorch FSDP把大模型拆到多卡上跑，省显存还能混合精度训练",
+    "scenario": "训练参数量超过单卡显存的大模型时",
+    "track_id": "engineer",
+    "tags": [
+      "分布式训练",
+      "显存优化",
+      "混合精度",
+      "大模型训练"
+    ]
+  },
+  "pytorch-lightning": {
+    "name": "pytorch-lightning",
+    "description": "PyTorch Lightning — clean training loops, automatic DDP/FSDP/DeepSpeed, callbacks, minimal boilerplate.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pytorch-lightning",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "PyTorch训练瘦身术",
+    "display_desc": "告别重复样板代码，自动搞定分布式训练和回调，专注模型本身",
+    "scenario": "写PyTorch训练脚本时不想写一堆重复的循环和分布式配置",
+    "track_id": "engineer",
+    "tags": [
+      "深度学习",
+      "模型训练",
+      "PyTorch",
+      "分布式训练",
+      "代码简化"
+    ]
+  },
+  "qdrant-vector-search": {
+    "name": "qdrant-vector-search",
+    "description": "Qdrant — high-performance vector search for RAG, hybrid search with filtering (Rust).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/qdrant-vector-search",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "向量搜索找相似内容",
+    "display_desc": "用Qdrant快速在大量文档中找语义相似的内容，支持关键词+向量混合过滤",
+    "scenario": "做RAG问答系统或需要语义搜索时",
+    "track_id": "engineer",
+    "tags": [
+      "向量数据库",
+      "语义搜索",
+      "RAG",
+      "混合检索"
+    ]
+  },
+  "simpo-training": {
+    "name": "simpo-training",
+    "description": "SimPO — reference-free preference optimization, simpler & faster than DPO.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/simpo-training",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "AI偏好训练简化器",
+    "display_desc": "不用参考模型，比DPO更简单更快的偏好优化方法",
+    "scenario": "训练AI模型时想快速优化输出偏好",
+    "track_id": "engineer",
+    "tags": [
+      "模型训练",
+      "偏好优化",
+      "效率提升",
+      "简化流程"
+    ]
+  },
+  "slime-rl-training": {
+    "name": "slime-rl-training",
+    "description": "LLM RL post-training with slime (Megatron + SGLang) — custom data-gen, GLM models at scale.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/slime-rl-training",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型RL后训练工具",
+    "display_desc": "用Megatron+SGLang做LLM强化学习后训练，支持自定义数据生成和GLM模型规模化训练",
+    "scenario": "需要给大模型做RL后训练，或者想规模化训练GLM模型时",
+    "track_id": "engineer",
+    "tags": [
+      "LLM训练",
+      "强化学习",
+      "Megatron",
+      "SGLang",
+      "GLM"
+    ]
+  },
+  "sparse-autoencoder-training": {
+    "name": "sparse-autoencoder-training",
+    "description": "Train & analyze Sparse Autoencoders (SAELens) — find interpretable features in model activations.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sparse-autoencoder-training",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "看懂AI在想什么",
+    "display_desc": "训练稀疏自编码器，把模型内部激活变成人能理解的特征",
+    "scenario": "研究大模型内部机制、做可解释性分析时用",
+    "track_id": "engineer",
+    "tags": [
+      "模型可解释性",
+      "稀疏编码",
+      "神经网络分析",
+      "特征提取"
+    ]
+  },
+  "stable-diffusion-image-generation": {
+    "name": "stable-diffusion-image-generation",
+    "description": "Text-to-image with Stable Diffusion via Diffusers — img2img, inpainting, custom pipelines.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stable-diffusion-image-generation",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "用文字生成图片",
+    "display_desc": "输入文字描述，AI自动生成对应图片，还能改图、补图",
+    "scenario": "想要快速生成配图、产品图或创意素材时",
+    "track_id": "creator",
+    "tags": [
+      "AI绘画",
+      "文字生图",
+      "图片编辑",
+      "创意工具"
+    ]
+  },
+  "tensorrt-llm": {
+    "name": "tensorrt-llm",
+    "description": "Optimize LLM inference with NVIDIA TensorRT-LLM — FP8/INT4, in-flight batching, multi-GPU.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/tensorrt-llm",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "大模型推理加速器",
+    "display_desc": "用NVIDIA官方工具把大模型推理速度拉满，支持FP8/INT4量化、多卡并行",
+    "scenario": "部署大模型时嫌推理太慢，想榨干GPU性能",
+    "track_id": "engineer",
+    "tags": [
+      "推理优化",
+      "模型部署",
+      "GPU加速",
+      "量化"
+    ]
+  },
+  "unsloth": {
+    "name": "unsloth",
+    "description": "Unsloth: 2-5x faster LoRA/QLoRA fine-tuning, less VRAM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/unsloth",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "模型微调加速器",
+    "display_desc": "让大模型微调快2-5倍，省显存不降精度",
+    "scenario": "当你需要快速微调大模型但显卡显存不够时",
+    "track_id": "engineer",
+    "tags": [
+      "LoRA",
+      "QLoRA",
+      "显存优化",
+      "微调加速"
+    ]
+  },
+  "whisper": {
+    "name": "whisper",
+    "description": "OpenAI Whisper — robust multilingual speech-to-text and translation (99 languages).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/whisper",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "语音转文字高手",
+    "display_desc": "把99种语言的语音转成文字，还能翻译成中文",
+    "scenario": "开会录音、采访录音、外语视频需要转文字时",
+    "track_id": "creator",
+    "tags": [
+      "语音转文字",
+      "多语言",
+      "翻译",
+      "录音处理"
+    ]
+  },
+  "mpp-agent": {
+    "name": "mpp-agent",
+    "description": "Pay HTTP 402 APIs via Machine Payments Protocol (MPP).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/mpp-agent",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "用MPP自动付API账单",
+    "display_desc": "当API提示402付款时，自动通过机器支付协议完成扣款",
+    "scenario": "需要自动处理API付费场景，避免手动付款中断服务",
+    "track_id": "engineer",
+    "tags": [
+      "API支付",
+      "自动化",
+      "机器支付",
+      "402处理"
+    ]
+  },
+  "stripe-link-cli": {
+    "name": "stripe-link-cli",
+    "description": "Agent payments via Stripe Link — cards, SPT, approvals.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stripe-link-cli",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "Stripe支付接入",
+    "display_desc": "让你的AI代理能收钱，支持信用卡、SPT和审批",
+    "scenario": "需要给AI助手加支付功能时",
+    "track_id": "engineer",
+    "tags": [
+      "支付",
+      "Stripe",
+      "AI代理",
+      "收款"
+    ]
+  },
+  "stripe-projects": {
+    "name": "stripe-projects",
+    "description": "Provision SaaS services + sync creds via Stripe Projects.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stripe-projects",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "Stripe项目自动开通",
+    "display_desc": "用户付款后自动开通SaaS服务，并同步密钥到项目中",
+    "scenario": "用户购买SaaS产品后需要自动开通账号和分配密钥",
+    "track_id": "opc",
+    "tags": [
+      "Stripe",
+      "SaaS",
+      "自动化",
+      "密钥管理",
+      "支付集成"
+    ]
+  },
+  "canvas": {
+    "name": "canvas",
+    "description": "Canvas LMS — fetch enrolled courses and assignments via API token.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/canvas",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "查课表作业小助手",
+    "display_desc": "用API直接拉Canvas上的课程和作业，不用手动翻",
+    "scenario": "学生或老师想快速查看当前课程和待办作业",
+    "track_id": "engineer",
+    "tags": [
+      "课程管理",
+      "作业查询",
+      "API集成",
+      "教育工具"
+    ]
+  },
+  "memento-flashcards": {
+    "name": "memento-flashcards",
+    "description": "Spaced-repetition flashcards — build decks, chat-graded answers, quizzes from YouTube, CSV export.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/memento-flashcards",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "记忆闪卡：聊天出题+自动批改",
+    "display_desc": "用间隔重复法做闪卡，支持聊天出题、YouTube生成测验，还能导出CSV",
+    "scenario": "学新知识或备考时，快速建闪卡库并自动复习",
+    "track_id": "creator",
+    "tags": [
+      "闪卡",
+      "间隔重复",
+      "AI批改",
+      "学习工具",
+      "YouTube转测验"
+    ]
+  },
+  "shop": {
+    "name": "shop",
+    "description": "Shop catalog search, checkout, order tracking, returns.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/shop",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "网购助手",
+    "display_desc": "快速搜商品、下单、查订单、处理退货",
+    "scenario": "用户想网购但不想自己翻页面",
+    "track_id": "creator",
+    "tags": [
+      "购物",
+      "订单管理",
+      "电商"
+    ]
+  },
+  "shopify": {
+    "name": "shopify",
+    "description": "Shopify Admin & Storefront GraphQL via curl — products, orders, customers, inventory, metafields.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/shopify",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "用curl管Shopify后台",
+    "display_desc": "直接通过命令行查商品、订单、客户、库存，不用进网页后台",
+    "scenario": "写脚本批量处理店铺数据时",
+    "track_id": "engineer",
+    "tags": [
+      "Shopify",
+      "GraphQL",
+      "命令行",
+      "电商管理",
+      "API"
+    ]
+  },
+  "siyuan": {
+    "name": "siyuan",
+    "description": "SiYuan Note API — search, read, create & manage blocks/docs in a self-hosted KB via curl.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/siyuan",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "思源笔记API工具",
+    "display_desc": "用curl搜索、读写思源笔记里的块和文档",
+    "scenario": "当你想通过命令行或脚本操作自建知识库时",
+    "track_id": "engineer",
+    "tags": [
+      "思源笔记",
+      "API",
+      "知识管理",
+      "命令行"
+    ]
+  },
+  "telephony": {
+    "name": "telephony",
+    "description": "Give Hermes a phone — provision a Twilio number, SMS/MMS, direct + AI-driven calls (Bland/Vapi).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/telephony",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "给AI装个电话",
+    "display_desc": "让AI能打电话、收短信，自动接听或外呼",
+    "scenario": "需要AI自动处理电话客服或短信通知时",
+    "track_id": "engineer",
+    "tags": [
+      "AI电话",
+      "短信",
+      "语音交互",
+      "自动化"
+    ]
+  },
+  "bioinformatics": {
+    "name": "bioinformatics",
+    "description": "Gateway to 400+ bioinformatics skills — genomics, single-cell, variant calling, structural biology.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/bioinformatics",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "生物信息学技能包",
+    "display_desc": "快速上手400+生物信息学技能，涵盖基因组学、单细胞分析、变异检测和结构生物学",
+    "scenario": "做基因数据分析或生物信息学项目时，需要一站式技能支持",
+    "track_id": "engineer",
+    "tags": [
+      "生物信息学",
+      "基因组学",
+      "单细胞分析",
+      "变异检测",
+      "结构生物学"
+    ]
+  },
+  "darwinian-evolver": {
+    "name": "darwinian-evolver",
+    "description": "Evolve prompts/regex/SQL/code with Imbue's evolution loop.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/darwinian-evolver",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让AI自己进化代码",
+    "display_desc": "用进化算法自动优化提示词、正则、SQL和代码，不用手动调参",
+    "scenario": "写提示词或代码时，想让AI自动迭代出更好版本",
+    "track_id": "engineer",
+    "tags": [
+      "进化算法",
+      "代码优化",
+      "提示词调优",
+      "自动化"
+    ]
+  },
+  "domain-intel": {
+    "name": "domain-intel",
+    "description": "Passive domain recon (Python stdlib) — subdomains, SSL, WHOIS, DNS, availability. No API keys.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/domain-intel",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "扒光一个域名底裤",
+    "display_desc": "不装任何API，纯Python就能查子域名、SSL证书、WHOIS、DNS和域名是否被注册",
+    "scenario": "做渗透测试或竞品分析时，想快速摸清一个网站的所有公开信息",
+    "track_id": "engineer",
+    "tags": [
+      "域名侦察",
+      "子域名",
+      "SSL证书",
+      "WHOIS",
+      "DNS"
+    ]
+  },
+  "drug-discovery": {
+    "name": "drug-discovery",
+    "description": "Drug-discovery assistant — ChEMBL search, drug-likeness, DDIs (OpenFDA), ADMET, lead optimization.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/drug-discovery",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "新药研发小助手",
+    "display_desc": "查化合物、算药性、看药物相互作用，辅助先导化合物优化",
+    "scenario": "做药物研发或化学分析时，快速查ChEMBL、评估类药性和ADMET",
+    "track_id": "engineer",
+    "tags": [
+      "药物研发",
+      "化合物搜索",
+      "药性评估",
+      "先导优化"
+    ]
+  },
+  "duckduckgo-search": {
+    "name": "duckduckgo-search",
+    "description": "Free DuckDuckGo web search — text, news, images, video. No API key (ddgs CLI).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/duckduckgo-search",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "免费用DuckDuckGo搜全网",
+    "display_desc": "不用API密钥，直接搜网页、新闻、图片、视频，适合不想被追踪的人",
+    "scenario": "需要快速查资料又不想暴露搜索习惯时",
+    "track_id": "engineer",
+    "tags": [
+      "隐私搜索",
+      "无API",
+      "多类型搜索",
+      "开源工具"
+    ]
+  },
+  "gitnexus-explorer": {
+    "name": "gitnexus-explorer",
+    "description": "Index a codebase with GitNexus and serve an interactive knowledge graph over a web UI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/gitnexus-explorer",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "代码库知识图谱",
+    "display_desc": "把代码库变成可交互的知识图谱，方便你浏览和理解代码结构",
+    "scenario": "接手新项目或想快速了解代码库整体结构时",
+    "track_id": "engineer",
+    "tags": [
+      "代码分析",
+      "知识图谱",
+      "代码可视化",
+      "GitNexus"
+    ]
+  },
+  "osint-investigation": {
+    "name": "osint-investigation",
+    "description": "Public-records OSINT — EDGAR, USAspending, OFAC, ICIJ, ACRIS, court records; entity resolution.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/osint-investigation",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "查人查公司查案底",
+    "display_desc": "用公开数据挖出人和公司的隐藏关系，适合做背景调查",
+    "scenario": "做尽职调查、查竞争对手、核实合作方背景",
+    "track_id": "pm",
+    "tags": [
+      "公开数据",
+      "背景调查",
+      "尽职调查",
+      "实体关联"
+    ]
+  },
+  "parallel-cli": {
+    "name": "parallel-cli",
+    "description": "Parallel CLI — agent-native web search, extraction, deep research, enrichment, monitoring.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/parallel-cli",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "网页搜索+深度研究助手",
+    "display_desc": "用命令行快速搜网页、提取信息、做深度研究，还能监控数据变化",
+    "scenario": "写报告或做调研时，需要批量从网页抓取并分析信息",
+    "track_id": "engineer",
+    "tags": [
+      "网页搜索",
+      "数据提取",
+      "深度研究",
+      "命令行工具"
+    ]
+  },
+  "qmd": {
+    "name": "qmd",
+    "description": "Local knowledge-base search (qmd) — BM25 + vector + LLM rerank over notes, docs, transcripts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/qmd",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "本地知识库搜答案",
+    "display_desc": "用BM25+向量+LLM重排，在笔记/文档里精准找到你要的东西",
+    "scenario": "本地存了一堆资料，想快速找到相关答案时",
+    "track_id": "engineer",
+    "tags": [
+      "本地搜索",
+      "知识库",
+      "文档检索",
+      "AI搜索",
+      "笔记工具"
+    ]
+  },
+  "scrapling": {
+    "name": "scrapling",
+    "description": "Web scraping with Scrapling — HTTP fetch, stealth browser, Cloudflare bypass, spider crawling.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/scrapling",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "网页数据抓取助手",
+    "display_desc": "自动抓取网页内容，绕过Cloudflare限制，支持浏览器模拟和爬虫",
+    "scenario": "需要从网站批量获取数据或监控页面变化时",
+    "track_id": "engineer",
+    "tags": [
+      "网页抓取",
+      "爬虫",
+      "数据采集",
+      "反爬绕过"
+    ]
+  },
+  "searxng-search": {
+    "name": "searxng-search",
+    "description": "Free meta-search via SearXNG — aggregates 70+ engines, self-host or public. No API key.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/searxng-search",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "免费聚合搜索",
+    "display_desc": "不用API密钥，直接搜70多个搜索引擎的结果",
+    "scenario": "写代码查资料、找竞品信息时，不想被百度谷歌绑架",
+    "track_id": "engineer",
+    "tags": [
+      "聚合搜索",
+      "免API",
+      "隐私搜索",
+      "开源工具"
+    ]
+  },
+  "1password": {
+    "name": "1password",
+    "description": "Set up & use the 1Password CLI (op) — sign in, read and inject secrets into commands.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/1password",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "密码管家，命令里取密钥",
+    "display_desc": "用1Password命令行工具登录、读取密钥，直接注入到终端命令里",
+    "scenario": "开发时不想明文写密码或API密钥，直接从密码管理器调取",
+    "track_id": "engineer",
+    "tags": [
+      "密钥管理",
+      "安全开发",
+      "命令行",
+      "DevOps"
+    ]
+  },
+  "godmode": {
+    "name": "godmode",
+    "description": "Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/godmode",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让AI突破限制",
+    "display_desc": "绕过AI的安全限制，让它回答原本拒绝的问题",
+    "scenario": "当AI说'无法回答'时，你想让它给出真实答案",
+    "track_id": "creator",
+    "tags": [
+      "越狱",
+      "AI破解",
+      "提示词工程",
+      "安全绕过"
+    ]
+  },
+  "oss-forensics": {
+    "name": "oss-forensics",
+    "description": "GitHub supply-chain forensics — deleted-commit recovery, force-push detection, IOC extraction, reporting.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/oss-forensics",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "GitHub供应链断案",
+    "display_desc": "找回删掉的commit、揪出强制推送、提取攻击痕迹，自动生成报告",
+    "scenario": "查开源项目被谁动了手脚，或者审计供应链安全时",
+    "track_id": "engineer",
+    "tags": [
+      "GitHub审计",
+      "供应链安全",
+      "取证分析",
+      "代码溯源"
+    ]
+  },
+  "sherlock": {
+    "name": "sherlock",
+    "description": "Hunt usernames across 400+ social networks (Sherlock OSINT).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sherlock",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "全网查用户名",
+    "display_desc": "输入一个用户名，自动查它在400多个社交平台上有没有注册",
+    "scenario": "想知道某个网名在哪些平台被占用了",
+    "track_id": "opc",
+    "tags": [
+      "用户名搜索",
+      "社交账号",
+      "OSINT",
+      "信息收集"
+    ]
+  },
+  "web-pentest": {
+    "name": "web-pentest",
+    "description": "Authorized web pentesting — recon, proof-based exploitation, reporting, with scope/authorization guardrails.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/web-pentest",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "网站安全检测",
+    "display_desc": "帮你做授权网站渗透测试，自动找漏洞、出报告，还带安全边界保护",
+    "scenario": "拿到授权后，想快速检测网站有没有安全漏洞",
+    "track_id": "engineer",
+    "tags": [
+      "渗透测试",
+      "安全审计",
+      "漏洞扫描",
+      "报告生成"
+    ]
+  },
+  "code-wiki": {
+    "name": "code-wiki",
+    "description": "Generate wiki docs + Mermaid diagrams for any codebase.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/code-wiki",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "代码自动生成文档+图表",
+    "display_desc": "给任何代码库自动生成维基文档和Mermaid图表，省去手动写文档的麻烦",
+    "scenario": "接手旧项目或需要快速梳理代码结构时",
+    "track_id": "engineer",
+    "tags": [
+      "代码文档",
+      "Mermaid图表",
+      "项目梳理",
+      "自动化"
+    ]
+  },
+  "rest-graphql-debug": {
+    "name": "rest-graphql-debug",
+    "description": "Debug REST/GraphQL APIs: status codes, auth, schemas, repro.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/rest-graphql-debug",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "接口调试小能手",
+    "display_desc": "快速检查REST/GraphQL接口的状态码、认证、数据结构，还能复现问题",
+    "scenario": "调试API接口时，想快速定位状态码异常、认证失败或数据格式不对",
+    "track_id": "engineer",
+    "tags": [
+      "API调试",
+      "接口排查",
+      "状态码检查",
+      "认证调试",
+      "数据验证"
+    ]
+  },
+  "subagent-driven-development": {
+    "name": "subagent-driven-development",
+    "description": "Execute plans via delegate_task subagents (2-stage review).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/subagent-driven-development",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "分步执行：让子AI替你干活",
+    "display_desc": "把大任务拆成小步骤，让子AI分步执行并审核，避免一次搞砸",
+    "scenario": "写复杂代码或做多步骤任务时，不想自己一步步盯着",
+    "track_id": "engineer",
+    "tags": [
+      "子代理",
+      "任务拆解",
+      "分步执行",
+      "AI协作",
+      "流程自动化"
+    ]
+  },
+  "cloudflare-temporary-deploy": {
+    "name": "cloudflare-temporary-deploy",
+    "description": "Deploy a Worker live, no account, via wrangler --temporary.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/cloudflare-temporary-deploy",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "临时部署到Cloudflare",
+    "display_desc": "不用注册账号，直接用wrangler把Worker部署上线",
+    "scenario": "想快速测试或分享一个Worker，不想折腾账号和配置",
+    "track_id": "engineer",
+    "tags": [
+      "Cloudflare",
+      "Worker",
+      "部署",
+      "无账号"
+    ]
+  },
+  "page-agent": {
+    "name": "page-agent",
+    "description": "Embed alibaba/page-agent — a JS in-page GUI agent that lets your site's users drive the UI in natural language.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/page-agent",
+    "category": "Optional Skills (Bundled with Hermes)",
+    "display_name": "让用户用大白话操控网页",
+    "display_desc": "在你的网站里嵌入一个AI助手，用户说句话就能操作页面",
+    "scenario": "当你想让用户不用学复杂操作，直接说话就能完成页面交互",
+    "track_id": "engineer",
+    "tags": [
+      "网页交互",
+      "自然语言",
+      "前端工具",
+      "AI助手"
+    ]
+  },
+  "Official Hermes Skills Hub": {
+    "name": "Official Hermes Skills Hub",
+    "description": "The full catalog. **600+ skills** indexed by Nous Research. Use this when our curated cut doesn't have what you need.",
+    "source_url": "https://hermes-agent.nousresearch.com/docs/skills",
+    "category": "Skill Registries & Discovery",
+    "display_name": "600+技能任你挑",
+    "display_desc": "找不到你要的AI技能？这里有600多个技能库，总有一个适合你。",
+    "scenario": "当你需要特定AI技能但现有选项不够用时",
+    "track_id": "engineer",
+    "tags": [
+      "技能库",
+      "AI工具",
+      "索引",
+      "搜索"
+    ]
+  },
+  "Skills Hub": {
+    "name": "Skills Hub",
+    "description": "The open standard for agent skills. Compatible across Hermes, Claude Code, Cursor, Codex.",
+    "source_url": "https://agentskills.io",
+    "category": "Skill Registries & Discovery",
+    "display_name": "AI技能商店",
+    "display_desc": "一个通用的AI技能标准，让不同AI工具都能用你的技能包",
+    "scenario": "当你写了一套AI技能，想让它在多个AI工具里都能跑起来",
+    "track_id": "engineer",
+    "tags": [
+      "技能标准",
+      "跨平台",
+      "AI工具",
+      "技能复用",
+      "开放协议"
+    ]
+  },
+  "Official Documentation": {
+    "name": "Official Documentation",
+    "description": "Quickstart, CLI, configuration, gateway, security, skills, memory, MCP, cron, ACP, API, architecture.",
+    "source_url": "https://hermes-agent.nousresearch.com/docs/",
+    "category": "Skill Registries & Discovery",
+    "display_name": "官方文档速查",
+    "display_desc": "快速找到Hermes Agent的配置、安全、技能等所有官方文档",
+    "scenario": "开发或使用Hermes Agent时，需要查阅官方文档快速上手",
+    "track_id": "engineer",
+    "tags": [
+      "文档",
+      "速查",
+      "Hermes Agent",
+      "开发工具"
+    ]
+  },
+  "Release Notes": {
+    "name": "Release Notes",
+    "description": "Official changelog with feature highlights and migration notes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/releases",
+    "category": "Skill Registries & Discovery",
+    "display_name": "更新日志速览",
+    "display_desc": "快速了解新功能和迁移注意事项，不翻文档也能跟上版本变化",
+    "scenario": "每次工具升级后，想第一时间知道改了啥、要不要调整代码",
+    "track_id": "engineer",
+    "tags": [
+      "版本更新",
+      "变更记录",
+      "迁移指南",
+      "开发工具"
+    ]
+  },
+  "Discord": {
+    "name": "Discord",
+    "description": "Bug reports, feature requests, general discussion.",
+    "source_url": "https://discord.gg/NousResearch",
+    "category": "Skill Registries & Discovery",
+    "display_name": "AI工具反馈与讨论入口",
+    "display_desc": "在Discord上提交Bug、提功能建议或参与AI项目讨论",
+    "scenario": "使用AI工具遇到问题或想提需求时",
+    "track_id": "creator",
+    "tags": [
+      "社区互动",
+      "反馈收集",
+      "AI讨论",
+      "Discord"
+    ]
+  },
+  "@therohitdas": {
+    "name": "@therohitdas",
+    "description": "Skill of the Week + new additions",
+    "source_url": "https://twitter.com/therohitdas",
+    "category": "Skill Registries & Discovery",
+    "display_name": "每周新技能速递",
+    "display_desc": "每周更新，帮你发现最新有用的AI技能",
+    "scenario": "想了解最近有什么新AI技能时",
+    "track_id": "opc",
+    "tags": [
+      "技能发现",
+      "每周更新",
+      "AI工具",
+      "效率提升"
+    ]
+  },
+  "GitHub Stars": {
+    "name": "GitHub Stars",
+    "description": "Star this repo to keep it visible",
+    "source_url": "",
+    "category": "Skill Registries & Discovery",
+    "display_name": "收藏好项目不迷路",
+    "display_desc": "标记你喜欢的开源项目，方便以后快速找到",
+    "scenario": "看到不错的GitHub仓库想收藏时",
+    "track_id": "engineer",
+    "tags": [
+      "GitHub",
+      "收藏",
+      "项目管理",
+      "开发工具"
+    ]
+  },
+  "Hermes Discord": {
+    "name": "Hermes Discord",
+    "description": "Talk shop with other Hermes users",
+    "source_url": "https://discord.gg/NousResearch",
+    "category": "Skill Registries & Discovery",
+    "display_name": "跟同好用Hermes聊",
+    "display_desc": "和Hermes用户交流使用心得",
+    "scenario": "想找Hermes用户讨论用法时",
+    "track_id": "creator",
+    "tags": [
+      "AI工具",
+      "社区交流",
+      "Hermes",
+      "创作"
+    ]
+  },
+  "youtube-skills": {
+    "name": "youtube-skills",
+    "description": "Transcripts, search, channels, playlists. Cross-agent: Hermes / Claude Code / OpenClaw / Cursor / Windsurf. Powered by [TranscriptAPI](https://transcriptapi.com).",
+    "source_url": "https://github.com/ZeroPointRepo/youtube-skills",
+    "category": "Community: Media & Transcripts",
+    "tag": "production",
+    "display_name": "油管工具箱",
+    "display_desc": "搜视频、抓字幕、查频道、管歌单，一条指令搞定",
+    "scenario": "做视频研究、内容创作或数据收集时，快速获取YouTube信息",
+    "track_id": "creator",
+    "tags": [
+      "视频搜索",
+      "字幕提取",
+      "频道管理",
+      "播放列表",
+      "内容创作"
+    ]
+  },
+  "hermes-spotify-skill": {
+    "name": "hermes-spotify-skill",
+    "description": "Spotify control for headless Linux and Raspberry Pi. The only Linux-native Spotify skill in the ecosystem.",
+    "source_url": "https://github.com/Alexeyisme/hermes-spotify-skill",
+    "category": "Community: Media & Transcripts",
+    "tag": "beta",
+    "display_name": "树莓派无屏听歌",
+    "display_desc": "在没屏幕的Linux设备或树莓派上，直接用语音控制Spotify播放。",
+    "scenario": "装好树莓派当音乐播放器，但不想接显示器或鼠标时",
+    "track_id": "engineer",
+    "tags": [
+      "树莓派",
+      "Spotify",
+      "语音控制",
+      "Linux",
+      "音乐播放"
+    ]
+  },
+  "hindsight": {
+    "name": "hindsight",
+    "description": "Long-term memory layer with retain/recall/reflect workflows. Semantic + graph + temporal retrieval. Plugin or MCP.",
+    "source_url": "https://github.com/vectorize-io/hindsight",
+    "category": "Community: Memory & Knowledge",
+    "tag": "production",
+    "display_name": "给AI装上长期记忆",
+    "display_desc": "让AI记住你的聊天历史，能回忆、能反思，不会聊完就忘",
+    "scenario": "需要AI记住长期对话上下文或用户偏好时",
+    "track_id": "engineer",
+    "tags": [
+      "记忆层",
+      "语义检索",
+      "知识图谱",
+      "AI插件",
+      "上下文管理"
+    ]
+  },
+  "honcho-self-hosted": {
+    "name": "honcho-self-hosted",
+    "description": "Self-hosted Honcho memory backend setup for Hermes. Stronger cross-session memory with local control.",
+    "source_url": "https://github.com/elkimek/honcho-self-hosted",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta",
+    "display_name": "本地记忆服务器",
+    "display_desc": "自己搭个记忆后端，让AI记住跨会话的对话，数据全在本地",
+    "scenario": "做AI助手时，想让AI记住用户之前聊过什么，又不想把数据放别人服务器上",
+    "track_id": "engineer",
+    "tags": [
+      "AI记忆",
+      "本地部署",
+      "隐私保护",
+      "会话管理"
+    ]
+  },
+  "yantrikdb-hermes-plugin": {
+    "name": "yantrikdb-hermes-plugin",
+    "description": "Hermes-native memory provider for YantrikDB. `think()` canonicalizes duplicates, `conflicts()` surfaces contradictions, every `recall()` carries `why_retrieved` reasons.",
+    "source_url": "https://github.com/yantrikos/yantrikdb-hermes-plugin",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta",
+    "display_name": "给AI装上记忆和纠错",
+    "display_desc": "自动去重、发现矛盾、每次回忆都告诉你为啥想起这个",
+    "scenario": "做AI应用时想让AI记住对话、发现矛盾、解释回忆原因",
+    "track_id": "engineer",
+    "tags": [
+      "记忆管理",
+      "矛盾检测",
+      "AI推理",
+      "去重"
+    ]
+  },
+  "plur": {
+    "name": "plur",
+    "description": "Shared memory layer for AI agents with open engram format (YAML). Persistent learning patterns.",
+    "source_url": "https://github.com/plur-ai/plur",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta",
+    "display_name": "AI记忆共享层",
+    "display_desc": "让多个AI代理共享记忆，用YAML格式持久化学习模式",
+    "scenario": "当多个AI代理需要共享上下文或长期记忆时",
+    "track_id": "engineer",
+    "tags": [
+      "AI代理",
+      "记忆共享",
+      "YAML",
+      "持久化",
+      "学习模式"
+    ]
+  },
+  "flowstate-qmd": {
+    "name": "flowstate-qmd",
+    "description": "Anticipatory memory with RAG and vector search. Pre-fetches relevant context before queries hit the agent.",
+    "source_url": "https://github.com/amanning3390/flowstate-qmd",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta",
+    "display_name": "记忆预加载器",
+    "display_desc": "提前把相关记忆准备好，等查询来了直接用",
+    "scenario": "做AI助手时，想让机器人记得住上下文",
+    "track_id": "engineer",
+    "tags": [
+      "RAG",
+      "向量搜索",
+      "上下文记忆",
+      "预加载"
+    ]
+  },
+  "personal-api": {
+    "name": "personal-api",
+    "description": "Turn your Obsidian vault into an identity layer any AI agent can read in under 30 seconds.",
+    "source_url": "https://github.com/beiyuii/personal-api-skill",
+    "category": "Community: Memory & Knowledge",
+    "tag": "experimental",
+    "display_name": "让AI认识你的笔记库",
+    "display_desc": "把Obsidian笔记变成AI能读懂的你的身份档案，30秒搞定",
+    "scenario": "当你想让AI助手基于你的笔记内容提供个性化建议时",
+    "track_id": "engineer",
+    "tags": [
+      "Obsidian",
+      "AI集成",
+      "个人知识库",
+      "身份层"
+    ]
+  },
+  "Anthropic-Cybersecurity-Skills": {
+    "name": "Anthropic-Cybersecurity-Skills",
+    "description": "753+ structured cybersecurity skills mapped to MITRE ATT&CK. 4k+ stars.",
+    "source_url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+    "category": "Community: Memory & Knowledge",
+    "tag": "production",
+    "display_name": "网络安全技能速查库",
+    "display_desc": "753个结构化网络安全技能，直接对应MITRE ATT&CK框架，帮你快速定位和补全安全知识",
+    "scenario": "做安全分析、渗透测试或写安全报告时，需要快速查找某个攻击技术对应的防御技能",
+    "track_id": "engineer",
+    "tags": [
+      "网络安全",
+      "MITRE ATT&CK",
+      "技能映射",
+      "安全知识库",
+      "攻防技术"
+    ]
+  },
+  "hermes-web-search-plus": {
+    "name": "hermes-web-search-plus",
+    "description": "Multi-provider web search with intelligent routing across Serper, Tavily, Exa, and more. Replaces built-in search with better quality + source diversity.",
+    "source_url": "https://github.com/robbyczgw-cla/hermes-web-search-plus",
+    "category": "Community: Search & Research",
+    "tag": "beta",
+    "display_name": "多源智能搜索",
+    "display_desc": "自动选最好的搜索引擎，搜索结果更准、来源更广",
+    "scenario": "写报告、查资料时，想搜到更靠谱、更多样的信息",
+    "track_id": "engineer",
+    "tags": [
+      "搜索增强",
+      "多引擎",
+      "信息检索"
+    ]
+  },
+  "Not Human Search": {
+    "name": "Not Human Search",
+    "description": "MCP server for discovering other MCP servers. Indexes 8,600+ agent-friendly sites with agentic scoring. Lets Hermes find new tools on its own.",
+    "source_url": "https://github.com/unitedideas/nothumansearch-mcp",
+    "category": "Community: Search & Research",
+    "tag": "production",
+    "display_name": "MCP服务器搜索引擎",
+    "display_desc": "自动发现8600+个MCP服务器，按智能评分排序，让AI自己找新工具",
+    "scenario": "当你的AI需要自动发现和接入更多MCP服务器时",
+    "track_id": "engineer",
+    "tags": [
+      "MCP",
+      "服务器发现",
+      "AI工具",
+      "搜索"
+    ]
+  },
+  "consensus-mcp-hermes": {
+    "name": "consensus-mcp-hermes",
+    "description": "Connect 200M+ peer-reviewed research papers to Hermes via the Consensus MCP server. OAuth setup guide for headless environments with mcp-remote bridge.",
+    "source_url": "https://github.com/ahmdngi/consensus-mcp-hermes",
+    "category": "Community: Search & Research",
+    "tag": "beta",
+    "display_name": "论文搜索助手",
+    "display_desc": "连上2亿篇学术论文，帮你快速查资料",
+    "scenario": "写论文或做研究时，需要快速检索和引用学术文献",
+    "track_id": "engineer",
+    "tags": [
+      "学术搜索",
+      "论文检索",
+      "研究工具",
+      "MCP服务"
+    ]
+  },
+  "diagnose": {
+    "name": "diagnose",
+    "description": "Disciplined diagnosis loop for hard bugs and perf regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnose/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "硬核Bug排查六步法",
+    "display_desc": "遇到难缠的Bug或性能问题，按这套流程走：复现→最小化→猜原因→加日志→修→回归测试。",
+    "scenario": "排查线上或开发中死活找不到原因的Bug时",
+    "track_id": "engineer",
+    "tags": [
+      "Bug排查",
+      "性能优化",
+      "调试流程",
+      "问题定位"
+    ]
+  },
+  "grill-with-docs": {
+    "name": "grill-with-docs",
+    "description": "Grilling session that challenges your plan against the existing domain model, sharpens terminology, updates `CONTEXT.md` and ADRs inline. The most popular skill in the pack.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "文档对账会",
+    "display_desc": "用现有文档模型挑战你的方案，修正术语，实时更新上下文和决策记录",
+    "scenario": "当你的方案与已有文档冲突时，用来对齐认知",
+    "track_id": "engineer",
+    "tags": [
+      "文档对齐",
+      "术语统一",
+      "决策记录",
+      "方案评审"
+    ]
+  },
+  "tdd": {
+    "name": "tdd",
+    "description": "Test-driven development with red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "写代码先写测试",
+    "display_desc": "先写测试再写代码，每次只改一小块，确保代码不出错",
+    "scenario": "写新功能或修 bug 时，想减少返工",
+    "track_id": "engineer",
+    "tags": [
+      "测试驱动",
+      "代码质量",
+      "敏捷开发",
+      "bug预防"
+    ]
+  },
+  "improve-codebase-architecture": {
+    "name": "improve-codebase-architecture",
+    "description": "Find deepening opportunities in a codebase, informed by domain language in `CONTEXT.md` and decisions in `docs/adr/`. Run it every few days.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "代码架构体检",
+    "display_desc": "自动发现代码库中的深层次优化机会，基于领域语言和已有决策",
+    "scenario": "定期检查项目结构，避免代码腐化",
+    "track_id": "engineer",
+    "tags": [
+      "代码重构",
+      "架构优化",
+      "技术债务",
+      "代码质量"
+    ]
+  },
+  "zoom-out": {
+    "name": "zoom-out",
+    "description": "Tell the agent to zoom out and give broader context or higher-level perspective on unfamiliar code.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/zoom-out/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "看不懂代码？让它给你画个全景图",
+    "display_desc": "让AI退一步，从全局解释这段代码在干嘛",
+    "scenario": "接手别人代码或看陌生项目时",
+    "track_id": "engineer",
+    "tags": [
+      "代码理解",
+      "上下文",
+      "代码审查",
+      "新手友好"
+    ]
+  },
+  "to-prd": {
+    "name": "to-prd",
+    "description": "Turn the current conversation into a PRD and submit it as a GitHub issue. No interview — synthesizes what you've discussed.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-prd/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "聊完直接生成PRD",
+    "display_desc": "把聊过的需求自动整理成PRD，直接提交到GitHub issue",
+    "scenario": "跟产品聊完需求后，懒得写文档时",
+    "track_id": "engineer",
+    "tags": [
+      "PRD生成",
+      "需求文档",
+      "GitHub",
+      "效率工具"
+    ]
+  },
+  "to-issues": {
+    "name": "to-issues",
+    "description": "Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-issues/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "把计划拆成可执行的GitHub任务",
+    "display_desc": "把任何计划、需求文档拆成独立的GitHub issue，每个任务都能直接上手干",
+    "scenario": "拿到PRD或方案后，想快速拆出可分配的任务清单",
+    "track_id": "engineer",
+    "tags": [
+      "任务拆解",
+      "GitHub",
+      "需求管理",
+      "工程协作"
+    ]
+  },
+  "github-triage": {
+    "name": "github-triage",
+    "description": "Triage GitHub issues through a label-based state machine.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/github-triage/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "GitHub Issue 自动分诊",
+    "display_desc": "用标签状态机自动管理 GitHub Issue 的流转状态",
+    "scenario": "维护开源项目时，需要自动分类和跟踪 Issue 处理进度",
+    "track_id": "engineer",
+    "tags": [
+      "GitHub",
+      "Issue管理",
+      "自动化",
+      "状态机",
+      "开源维护"
+    ]
+  },
+  "git-guardrails-claude-code": {
+    "name": "git-guardrails-claude-code",
+    "description": "Block dangerous git commands (push, reset --hard, clean) before they execute. Hooks-based.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/git-guardrails-claude-code/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "Git防手滑",
+    "display_desc": "拦截push、reset --hard等危险操作，防止误删代码",
+    "scenario": "手快点了危险git命令时",
+    "track_id": "engineer",
+    "tags": [
+      "git",
+      "安全",
+      "防误操作",
+      "版本控制"
+    ]
+  },
+  "setup-pre-commit": {
+    "name": "setup-pre-commit",
+    "description": "Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/setup-pre-commit/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "提交前自动检查代码",
+    "display_desc": "配置 Husky 钩子，提交前自动跑格式化、类型检查和测试",
+    "scenario": "每次 git commit 前，想自动检查代码质量，防止坏代码入库",
+    "track_id": "engineer",
+    "tags": [
+      "代码规范",
+      "Git钩子",
+      "Prettier",
+      "类型检查",
+      "自动化测试"
+    ]
+  },
+  "migrate-to-shoehorn": {
+    "name": "migrate-to-shoehorn",
+    "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/migrate-to-shoehorn/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "TypeScript断言迁移助手",
+    "display_desc": "把as类型断言自动改成shoehorn写法",
+    "scenario": "重构TypeScript项目时，想把as断言统一换成更安全的shoehorn库",
+    "track_id": "engineer",
+    "tags": [
+      "TypeScript",
+      "代码迁移",
+      "类型安全",
+      "重构"
+    ]
+  },
+  "scaffold-exercises": {
+    "name": "scaffold-exercises",
+    "description": "Create exercise directory structures with sections, problems, solutions, explainers.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/scaffold-exercises/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "练习题脚手架生成器",
+    "display_desc": "自动生成带章节、题目、答案和解析的练习目录结构",
+    "scenario": "写教材、出练习题或做培训时快速搭建内容框架",
+    "track_id": "engineer",
+    "tags": [
+      "练习题",
+      "目录结构",
+      "教学工具",
+      "脚手架"
+    ]
+  },
+  "write-a-skill": {
+    "name": "write-a-skill",
+    "description": "Create new skills with proper structure, progressive disclosure, and bundled resources.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/write-a-skill/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production",
+    "display_name": "写个AI技能包",
+    "display_desc": "照着模板写技能，自动拆步骤、打包资源，别人直接能用",
+    "scenario": "你想写个AI技能分享给团队或社区，又怕写不清楚",
+    "track_id": "engineer",
+    "tags": [
+      "技能开发",
+      "模板化",
+      "知识分享",
+      "工程效率"
+    ]
+  },
+  "hermes-skill-factory": {
+    "name": "hermes-skill-factory",
+    "description": "Meta-skill that auto-generates reusable skills from your workflows. Point it at a repeated task and it creates a skill for it.",
+    "source_url": "https://github.com/Romanescu11/hermes-skill-factory",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "重复工作自动变技能",
+    "display_desc": "把你的重复操作变成可复用的技能，省得每次重头来",
+    "scenario": "当你老做同一件事，想把它打包成技能时",
+    "track_id": "engineer",
+    "tags": [
+      "自动化",
+      "效率工具",
+      "工作流",
+      "技能生成"
+    ]
+  },
+  "bmad-module-skill-forge": {
+    "name": "bmad-module-skill-forge",
+    "description": "Transforms repos and docs into agentskills.io-compliant skills.",
+    "source_url": "https://github.com/armelhbobdad/bmad-module-skill-forge",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "仓库秒变AI技能包",
+    "display_desc": "把你的代码仓库或文档自动转成AI能直接用的技能格式",
+    "scenario": "想把自己写的工具或文档包装成AI技能时",
+    "track_id": "engineer",
+    "tags": [
+      "代码转技能",
+      "AI工具",
+      "文档处理",
+      "技能打包"
+    ]
+  },
+  "litprog-skill": {
+    "name": "litprog-skill",
+    "description": "Literate programming skill across Claude Code, OpenCode, Hermes. Weaves code and prose into documented, executable notebooks.",
+    "source_url": "https://github.com/tlehman/litprog-skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "边写代码边写文档",
+    "display_desc": "在Claude Code等工具里写代码时直接嵌入说明文档，生成可执行的笔记",
+    "scenario": "写代码时需要同时记录思路和注释，方便后续复用",
+    "track_id": "engineer",
+    "tags": [
+      "代码笔记",
+      "文档生成",
+      "可执行文档",
+      "代码注释"
+    ]
+  },
+  "execplan-skill": {
+    "name": "execplan-skill",
+    "description": "Long-running task execution with progress tracking, checkpoints, failure recovery.",
+    "source_url": "https://github.com/tiann/execplan-skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "任务跑不完？自动断点续跑",
+    "display_desc": "跑耗时长任务时，能看进度、存断点、出错了自动恢复",
+    "scenario": "部署模型、批量处理数据等需要跑几小时的任务",
+    "track_id": "engineer",
+    "tags": [
+      "断点续跑",
+      "进度追踪",
+      "失败恢复",
+      "长任务"
+    ]
+  },
+  "maestro": {
+    "name": "maestro",
+    "description": "Skill orchestration with Conductor planning + Beads tracking. Multi-step skills as observable pipelines.",
+    "source_url": "https://github.com/ReinaMacCredy/maestro",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "技能编排大师",
+    "display_desc": "把多步技能串成可观察的流水线，用指挥家规划+珠子追踪",
+    "scenario": "需要把多个AI技能按顺序组合并监控执行过程时",
+    "track_id": "engineer",
+    "tags": [
+      "技能编排",
+      "流水线",
+      "追踪",
+      "可观察性"
+    ]
+  },
+  "SkillClaw": {
+    "name": "SkillClaw",
+    "description": "Auto-evolves and dedupes your skill library from session data. Native Hermes integration. 705 stars.",
+    "source_url": "https://github.com/AMAP-ML/SkillClaw",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production",
+    "display_name": "技能库自动去重进化",
+    "display_desc": "从聊天记录里自动整理和去重你的技能库，原生支持Hermes",
+    "scenario": "当你的Hermes技能库越来越乱，重复技能太多时",
+    "track_id": "engineer",
+    "tags": [
+      "技能管理",
+      "去重",
+      "Hermes",
+      "自动化"
+    ]
+  },
+  "wondelai/skills": {
+    "name": "wondelai/skills",
+    "description": "Cross-platform agent skills for Claude Code and agentskills.io platforms. 380+ stars.",
+    "source_url": "https://github.com/wondelai/skills",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production",
+    "display_name": "跨平台AI助手技能包",
+    "display_desc": "给Claude Code等AI助手用的技能合集，覆盖380+星标项目",
+    "scenario": "想快速给AI助手加技能，不用从头写代码",
+    "track_id": "engineer",
+    "tags": [
+      "AI助手",
+      "技能包",
+      "Claude",
+      "开源工具"
+    ]
+  },
+  "skillsdotnet": {
+    "name": "skillsdotnet",
+    "description": "C# implementation of agentskills.io with MCP integration.",
+    "source_url": "https://github.com/PederHP/skillsdotnet",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "C#智能体技能包",
+    "display_desc": "把agent技能库搬到C#里，还打通了MCP协议",
+    "scenario": "用C#开发AI Agent时，想直接复用现成的技能模块",
+    "track_id": "engineer",
+    "tags": [
+      "C#",
+      "MCP",
+      "智能体",
+      "技能集成"
+    ]
+  },
+  "Agentic-MCP-Skill": {
+    "name": "Agentic-MCP-Skill",
+    "description": "MCP client with agentskills.io validation.",
+    "source_url": "https://github.com/cablate/Agentic-MCP-Skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "AI智能体连接器",
+    "display_desc": "让AI助手能调用外部工具，解决AI无法操作实际系统的问题",
+    "scenario": "需要AI帮你查数据库、发邮件或操作第三方服务时",
+    "track_id": "engineer",
+    "tags": [
+      "MCP协议",
+      "工具调用",
+      "智能体",
+      "系统集成"
+    ]
+  },
+  "pydantic-ai-skills": {
+    "name": "pydantic-ai-skills",
+    "description": "Pydantic AI with agentskills.io. Type-safe schema validation for skill inputs/outputs.",
+    "source_url": "https://github.com/DougTrajano/pydantic-ai-skills",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production",
+    "display_name": "AI技能输入输出校验器",
+    "display_desc": "用Pydantic给AI技能加类型检查，输入输出不跑偏",
+    "scenario": "写AI技能时，怕传错参数或返回数据格式不对",
+    "track_id": "engineer",
+    "tags": [
+      "类型安全",
+      "Pydantic",
+      "AI技能",
+      "数据校验",
+      "输入输出"
+    ]
+  },
+  "evey-bridge-plugin": {
+    "name": "evey-bridge-plugin",
+    "description": "Claude Code plugin that bridges with Hermes. Shared context, task handoffs.",
+    "source_url": "https://github.com/42-evey/evey-bridge-plugin",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "Claude与Hermes互通插件",
+    "display_desc": "让Claude Code和Hermes共享上下文，任务可以互相交接",
+    "scenario": "同时用Claude Code和Hermes做开发，想无缝切换协作",
+    "track_id": "engineer",
+    "tags": [
+      "Claude",
+      "Hermes",
+      "插件",
+      "上下文共享",
+      "任务交接"
+    ]
+  },
+  "lintlang": {
+    "name": "lintlang",
+    "description": "Static linter for AI agent configs and prompts with HERM v1.1 scoring.",
+    "source_url": "https://github.com/roli-lpci/lintlang",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "AI配置纠错师",
+    "display_desc": "自动检查AI配置和提示词，用HERM标准打分，帮你提前发现bug",
+    "scenario": "写完AI配置或提示词后，想快速检查有没有语法或逻辑问题",
+    "track_id": "engineer",
+    "tags": [
+      "AI配置",
+      "提示词",
+      "静态检查",
+      "HERM评分"
+    ]
+  },
+  "super-hermes": {
+    "name": "super-hermes",
+    "description": "Teaches Hermes to write its own analytical prompts. Meta-reasoning before execution.",
+    "source_url": "https://github.com/Cranot/super-hermes",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "experimental",
+    "display_name": "让AI先想后答",
+    "display_desc": "教AI写分析提纲，自己先想清楚再回答你",
+    "scenario": "需要AI深度分析复杂问题时",
+    "track_id": "creator",
+    "tags": [
+      "AI提示",
+      "逻辑推理",
+      "思维链",
+      "智能增强"
+    ]
+  },
+  "hermes-dojo": {
+    "name": "hermes-dojo",
+    "description": "Self-improvement system that monitors agent performance, identifies weak skills, iterates automatically.",
+    "source_url": "https://github.com/Yonkoo11/hermes-dojo",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "AI自我进化教练",
+    "display_desc": "自动盯住AI的短板，反复练到及格",
+    "scenario": "当你的AI助手总在某个任务上翻车时",
+    "track_id": "engineer",
+    "tags": [
+      "智能体优化",
+      "自动迭代",
+      "性能监控",
+      "技能训练"
+    ]
+  },
+  "hermes-skill-distillation": {
+    "name": "hermes-skill-distillation",
+    "description": "Generates agentic training trajectories from real-world tasks for fine-tuning data.",
+    "source_url": "https://github.com/beardthelion/hermes-skill-distillation",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "把真实任务变成AI训练数据",
+    "display_desc": "从你实际工作中提取操作轨迹，自动生成微调用的训练样本",
+    "scenario": "当你需要用自己的工作流训练专属AI助手时",
+    "track_id": "engineer",
+    "tags": [
+      "数据蒸馏",
+      "AI训练",
+      "工作流",
+      "微调数据"
+    ]
+  },
+  "rtk-hermes": {
+    "name": "rtk-hermes",
+    "description": "Compresses terminal output via RTK before it reaches LLM context. 60-90% token reduction. Zero config.",
+    "source_url": "https://github.com/ogallotti/rtk-hermes",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta",
+    "display_name": "终端输出瘦身器",
+    "display_desc": "把终端输出压缩60-90%，省下LLM上下文token，装上就能用",
+    "scenario": "用AI分析终端日志或命令输出时，减少token消耗",
+    "track_id": "engineer",
+    "tags": [
+      "终端",
+      "token压缩",
+      "上下文优化",
+      "零配置"
+    ]
+  },
+  "hermes-plugin-chrome-profiles": {
+    "name": "hermes-plugin-chrome-profiles",
+    "description": "Switch browser tools between Chrome profiles via CDP. Multi-account testing.",
+    "source_url": "https://github.com/anpicasso/hermes-plugin-chrome-profiles",
+    "category": "Community: Browser & Web",
+    "tag": "experimental",
+    "display_name": "多账号切换器",
+    "display_desc": "在Chrome不同账号间快速切换，省去反复登录退出",
+    "scenario": "测试多账号场景，比如同时登录不同用户看效果",
+    "track_id": "engineer",
+    "tags": [
+      "Chrome插件",
+      "多账号",
+      "测试工具",
+      "浏览器自动化"
+    ]
+  },
+  "hermes-cloudflare": {
+    "name": "hermes-cloudflare",
+    "description": "Cloudflare browser rendering plugin. Headless browsing through Cloudflare's infrastructure.",
+    "source_url": "https://github.com/raulvidis/hermes-cloudflare",
+    "category": "Community: Browser & Web",
+    "tag": "experimental",
+    "display_name": "无头浏览器插件",
+    "display_desc": "用Cloudflare跑无头浏览器，省掉自己搭服务器的麻烦",
+    "scenario": "需要远程渲染网页或爬取动态内容时",
+    "track_id": "engineer",
+    "tags": [
+      "Cloudflare",
+      "无头浏览器",
+      "网页渲染",
+      "爬虫"
+    ]
+  },
+  "vessel-browser": {
+    "name": "vessel-browser",
+    "description": "AI-native Linux browser with MCP control and autonomous browsing. Built for agent use, not a headless wrapper.",
+    "source_url": "https://github.com/unmodeled-tyler/vessel-browser",
+    "category": "Community: Browser & Web",
+    "tag": "experimental",
+    "display_name": "给AI打工的浏览器",
+    "display_desc": "让AI自己操作网页，不用你写脚本或盯着",
+    "scenario": "需要AI自动填表、抓数据或操作网页时",
+    "track_id": "engineer",
+    "tags": [
+      "AI浏览器",
+      "自动化",
+      "网页操作",
+      "MCP控制"
+    ]
+  },
+  "clawsocial-hermes-plugin": {
+    "name": "clawsocial-hermes-plugin",
+    "description": "Social discovery network. Semantic interest matching, real-time WebSocket messaging, shareable profile cards. Bilingual EN+CN.",
+    "source_url": "https://github.com/mrpeter2025/clawsocial-hermes-plugin",
+    "category": "Community: Communication & Social",
+    "tag": "beta",
+    "display_name": "社交雷达：找到同频的人",
+    "display_desc": "根据兴趣自动匹配，支持中英文聊天，还能分享名片",
+    "scenario": "想认识新朋友或同行，快速找到兴趣相投的人",
+    "track_id": "creator",
+    "tags": [
+      "兴趣社交",
+      "实时聊天",
+      "中英双语",
+      "名片分享"
+    ]
+  },
+  "hermes-tweet": {
+    "name": "hermes-tweet",
+    "description": "Native Hermes Agent X/Twitter plugin for tweet search, reply reading, user lookup, monitoring, posting, replies, DMs, and approval-gated X actions through Xquik.",
+    "source_url": "https://github.com/Xquik-dev/hermes-tweet",
+    "category": "Community: Communication & Social",
+    "tag": "beta",
+    "display_name": "推特全能助手",
+    "display_desc": "发推、搜推、看回复、查用户、私信，一个插件搞定",
+    "scenario": "需要批量管理推特账号或做推特数据挖掘时",
+    "track_id": "creator",
+    "tags": [
+      "推特工具",
+      "社媒管理",
+      "内容运营",
+      "数据采集"
+    ]
+  },
+  "microsoft-workspace-skill": {
+    "name": "microsoft-workspace-skill",
+    "description": "Full Outlook/Hotmail/Microsoft 365 integration via Graph API. Email, calendar, contacts, free/busy. OAuth2 auto-refresh. Preview-before-send pattern.",
+    "source_url": "https://github.com/Andrew-Girgis/microsoft-workspace-skill",
+    "category": "Community: Communication & Social",
+    "tag": "beta",
+    "display_name": "微软全家桶AI助手",
+    "display_desc": "用AI直接管你的Outlook邮件、日历和联系人，发之前还能预览",
+    "scenario": "需要AI自动处理微软账号的邮件、日程安排或联系人时",
+    "track_id": "engineer",
+    "tags": [
+      "Outlook",
+      "日历",
+      "邮件自动化",
+      "Microsoft 365",
+      "OAuth2"
+    ]
+  },
+  "tweetclaw": {
+    "name": "tweetclaw",
+    "description": "OpenClaw plugin and agent skill to scrape tweets, search tweet replies, export followers, look up users, run media, monitors, webhooks, giveaway draws, and approval-gated posts through Xquik.",
+    "source_url": "https://github.com/Xquik-dev/tweetclaw",
+    "category": "Community: Communication & Social",
+    "tag": "beta",
+    "display_name": "推特数据抓取神器",
+    "display_desc": "抓取推文、搜回复、导出粉丝、查用户、跑媒体监控、抽奖、发帖审核，全搞定",
+    "scenario": "做社媒运营、竞品分析、抽奖活动时，需要批量获取推特数据",
+    "track_id": "engineer",
+    "tags": [
+      "推特抓取",
+      "社媒监控",
+      "数据导出",
+      "自动化"
+    ]
+  },
+  "grill-me": {
+    "name": "grill-me",
+    "description": "Get relentlessly interviewed by your agent until every branch of the decision tree is resolved. Use *every* time before making a change. Most popular skill in the pack.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production",
+    "display_name": "决策拷问官",
+    "display_desc": "让AI反复追问你的每个决定，直到把所有可能性都考虑清楚",
+    "scenario": "做重要决策前，需要全面评估风险和备选方案时",
+    "track_id": "pm",
+    "tags": [
+      "决策辅助",
+      "风险评估",
+      "思维训练",
+      "方案推演"
+    ]
+  },
+  "before-you-build": {
+    "name": "before-you-build",
+    "description": "Product-risk review before implementation. Challenges demand, positioning, monetization, retention, trust, distribution, and feature-adoption risk before an agent starts building. Works with Hermes, OpenClaw, Claude Code, Codex, and other `SKILL.md`-compatible agents.",
+    "source_url": "https://github.com/bin1874/before-you-build-skill",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production",
+    "display_name": "开工前先泼盆冷水",
+    "display_desc": "帮你检查产品需求、定位、赚钱、留存等7大风险，别等做完了才发现没人用",
+    "scenario": "每次想动手开发新功能或新产品前，先跑一遍这个检查清单",
+    "track_id": "pm",
+    "tags": [
+      "产品验证",
+      "风险排查",
+      "需求评审",
+      "创业避坑"
+    ]
+  },
+  "caveman": {
+    "name": "caveman",
+    "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy. Critical for long sessions.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/caveman/SKILL.md",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production",
+    "display_name": "原始人说话法",
+    "display_desc": "砍掉废话，省75%的token，技术细节一个不落",
+    "scenario": "写长prompt或API调用时，想省token又不丢精度",
+    "track_id": "engineer",
+    "tags": [
+      "token节省",
+      "prompt压缩",
+      "效率工具",
+      "技术写作"
+    ]
+  },
+  "hermes-plugins": {
+    "name": "hermes-plugins",
+    "description": "Goal management, inter-agent bridge, model selection, cost control. Four plugins covering common operational needs.",
+    "source_url": "https://github.com/42-evey/hermes-plugins",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta",
+    "display_name": "AI管家四件套",
+    "display_desc": "管目标、连智能体、选模型、控成本，运营刚需全包了",
+    "scenario": "管理多个AI智能体时想统一调度和降本",
+    "track_id": "opc",
+    "tags": [
+      "目标管理",
+      "智能体桥接",
+      "模型选择",
+      "成本控制"
+    ]
+  },
+  "onequery-cli": {
+    "name": "onequery-cli",
+    "description": "CLI skill for safe, auditable queries for agents against approved data sources.",
+    "source_url": "https://github.com/wordbricks/skills/tree/main/skills/onequery-cli",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta",
+    "display_name": "AI安全查数助手",
+    "display_desc": "让AI只能查你批准的数据源，所有查询可审计",
+    "scenario": "当你想让AI查询公司数据但又怕泄露或乱用时",
+    "track_id": "engineer",
+    "tags": [
+      "数据安全",
+      "审计",
+      "CLI工具",
+      "权限控制"
+    ]
+  },
+  "agent-analytics-hermes-plugin": {
+    "name": "agent-analytics-hermes-plugin",
+    "description": "Native Signals dashboard tab for Hermes. Read-only multi-project analytics.",
+    "source_url": "https://github.com/Agent-Analytics/agent-analytics-hermes-plugin",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta",
+    "display_name": "项目数据看板",
+    "display_desc": "在Hermes里直接看多项目数据，不用切页面",
+    "scenario": "需要快速查看多个项目的分析数据时",
+    "track_id": "engineer",
+    "tags": [
+      "数据分析",
+      "项目管理",
+      "Hermes插件",
+      "看板"
+    ]
+  },
+  "black-forest-labs/skills": {
+    "name": "black-forest-labs/skills",
+    "description": "Official FLUX model skills for image generation. First-party skills from the FLUX creators.",
+    "source_url": "https://github.com/black-forest-labs/skills",
+    "category": "Community: Creative & Media Generation",
+    "tag": "production",
+    "display_name": "FLUX官方出图技能",
+    "display_desc": "用FLUX官方模型直接生成图片，不用自己调参数",
+    "scenario": "需要快速生成高质量AI图片时",
+    "track_id": "creator",
+    "tags": [
+      "AI绘画",
+      "图片生成",
+      "FLUX模型",
+      "官方技能"
+    ]
+  },
+  "hermes-weather-plugin": {
+    "name": "hermes-weather-plugin",
+    "description": "Professional-grade weather plugin with NWS model imagery, NEXRAD radar, meteorological calculations.",
+    "source_url": "https://github.com/FahrenheitResearch/hermes-weather-plugin",
+    "category": "Community: Creative & Media Generation",
+    "tag": "beta",
+    "display_name": "气象专家级天气插件",
+    "display_desc": "专业气象数据，包括NWS模型图、NEXRAD雷达和气象计算",
+    "scenario": "做天气类应用或内容创作时，需要精准气象数据",
+    "track_id": "creator",
+    "tags": [
+      "天气数据",
+      "气象雷达",
+      "内容创作",
+      "专业工具"
+    ]
+  },
+  "hermes-wxtrain-plugin": {
+    "name": "hermes-wxtrain-plugin",
+    "description": "ML pipeline for building training datasets from HRRR/GFS/ERA5 weather models.",
+    "source_url": "https://github.com/FahrenheitResearch/hermes-wxtrain-plugin",
+    "category": "Community: Creative & Media Generation",
+    "tag": "experimental",
+    "display_name": "天气数据训练集搭建器",
+    "display_desc": "帮你从气象模型抓数据，搭机器学习训练集",
+    "scenario": "做天气预测模型，需要HRRR/GFS/ERA5数据时",
+    "track_id": "engineer",
+    "tags": [
+      "气象数据",
+      "机器学习",
+      "训练集",
+      "HRRR",
+      "GFS"
+    ]
+  },
+  "hermes-agent-docker": {
+    "name": "hermes-agent-docker",
+    "description": "Minimal Docker sandbox image for Hermes. Pull, run, done.",
+    "source_url": "https://github.com/xmbshwll/hermes-agent-docker",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta",
+    "display_name": "Hermes沙箱镜像，即拉即用",
+    "display_desc": "最小化Docker镜像，拉取运行即可用，省去配置烦恼",
+    "scenario": "快速搭建Hermes代理的测试环境",
+    "track_id": "engineer",
+    "tags": [
+      "Docker",
+      "沙箱",
+      "Hermes",
+      "开发工具"
+    ]
+  },
+  "portainer-stack-hermes": {
+    "name": "portainer-stack-hermes",
+    "description": "Docker Compose + Portainer + ttyd web terminal. Browser-accessible Hermes.",
+    "source_url": "https://github.com/ellickjohnson/portainer-stack-hermes",
+    "category": "Community: DevOps & Deployment",
+    "tag": "experimental",
+    "display_name": "Docker远程终端管理",
+    "display_desc": "用浏览器就能操作Docker容器，不用装任何客户端",
+    "scenario": "远程管理服务器Docker容器时",
+    "track_id": "engineer",
+    "tags": [
+      "Docker",
+      "运维",
+      "远程终端",
+      "容器管理"
+    ]
+  },
+  "nix-hermes-agent": {
+    "name": "nix-hermes-agent",
+    "description": "Nix package and NixOS module. Fully reproducible deployments via Nix flakes.",
+    "source_url": "https://github.com/0xrsydn/nix-hermes-agent",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta",
+    "display_name": "NixOS一键复现部署",
+    "display_desc": "用Nix flakes保证每次部署环境一模一样，告别环境不一致的坑",
+    "scenario": "团队多人协作或生产环境需要完全一致的部署配置时",
+    "track_id": "engineer",
+    "tags": [
+      "Nix",
+      "部署",
+      "Flakes",
+      "可复现",
+      "DevOps"
+    ]
+  },
+  "openclaw-to-hermes": {
+    "name": "openclaw-to-hermes",
+    "description": "Community migration tool from OpenClaw to Hermes.",
+    "source_url": "https://github.com/0xNyk/openclaw-to-hermes",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta",
+    "display_name": "社区搬家到Hermes",
+    "display_desc": "把OpenClaw社区的帖子、用户和数据一键迁移到Hermes，省去手动搬运的麻烦",
+    "scenario": "当你想把OpenClaw社区整体迁移到Hermes平台时",
+    "track_id": "engineer",
+    "tags": [
+      "社区迁移",
+      "数据搬运",
+      "DevOps",
+      "自动化工具"
+    ]
+  },
+  "evey-setup": {
+    "name": "evey-setup",
+    "description": "One-command setup for full hermes-agent stack with free models and 29 plugins.",
+    "source_url": "https://github.com/42-evey/evey-setup",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta",
+    "display_name": "AI助手一键搭环境",
+    "display_desc": "一条命令装好AI智能体全套工具，自带免费模型和29个插件",
+    "scenario": "想快速搭建AI助手但不想折腾环境配置时",
+    "track_id": "engineer",
+    "tags": [
+      "环境部署",
+      "AI工具",
+      "开发者工具"
+    ]
+  },
+  "hermes-payguard": {
+    "name": "hermes-payguard",
+    "description": "Safe USDC and x402 payment plugin with spending limits and approval flows.",
+    "source_url": "https://github.com/nativ3ai/hermes-payguard",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental",
+    "display_name": "USDC支付安全插件",
+    "display_desc": "给AI加个支付保险，设置消费上限，自动走审批流程",
+    "scenario": "需要让AI助手安全支付USDC或x402时",
+    "track_id": "engineer",
+    "tags": [
+      "加密支付",
+      "安全插件",
+      "消费上限",
+      "审批流程"
+    ]
+  },
+  "AgentCash": {
+    "name": "AgentCash",
+    "description": "300+ premium APIs + wallet for paying via x402 or MPP. Free USDC for trying out.",
+    "source_url": "https://github.com/Merit-Systems/agentcash-skills",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta",
+    "display_name": "AI代理的支付钱包",
+    "display_desc": "300多个优质API接口，支持x402或MPP支付，送免费USDC体验",
+    "scenario": "需要给AI代理集成支付功能时",
+    "track_id": "engineer",
+    "tags": [
+      "支付API",
+      "加密货币",
+      "钱包",
+      "代理支付"
+    ]
+  },
+  "ripley-xmr-gateway": {
+    "name": "ripley-xmr-gateway",
+    "description": "Monero (XMR) blockchain gateway. Private cryptocurrency transactions from agent workflows.",
+    "source_url": "https://github.com/KYC-rip/ripley-xmr-gateway",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental",
+    "display_name": "门罗币支付网关",
+    "display_desc": "让AI代理能收门罗币，匿名转账不暴露交易记录",
+    "scenario": "需要给AI工作流集成隐私加密货币支付时",
+    "track_id": "engineer",
+    "tags": [
+      "门罗币",
+      "区块链",
+      "匿名支付",
+      "AI集成"
+    ]
+  },
+  "hermes-blockchain-oracle": {
+    "name": "hermes-blockchain-oracle",
+    "description": "Solana blockchain intelligence MCP server. On-chain analytics and wallet data.",
+    "source_url": "https://github.com/gizdusum/hermes-blockchain-oracle",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental",
+    "display_name": "Solana链上数据管家",
+    "display_desc": "查链上数据、分析钱包，不用自己写RPC",
+    "scenario": "做Solana链上分析或看钱包数据时",
+    "track_id": "engineer",
+    "tags": [
+      "Solana",
+      "区块链",
+      "链上分析",
+      "钱包数据",
+      "MCP"
+    ]
+  },
+  "chainlink-agent-skills": {
+    "name": "chainlink-agent-skills",
+    "description": "Official Chainlink skills. Oracle data, CCIP, smart contract interaction.",
+    "source_url": "https://github.com/smartcontractkit/chainlink-agent-skills",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "production",
+    "display_name": "链上数据&跨链交互",
+    "display_desc": "调用预言机数据、跨链通信、智能合约交互，开发DeFi必备",
+    "scenario": "做链上应用需要实时价格、跨链转账或合约调用时",
+    "track_id": "engineer",
+    "tags": [
+      "预言机",
+      "跨链",
+      "智能合约",
+      "DeFi",
+      "CCIP"
+    ]
+  },
+  "mercury": {
+    "name": "mercury",
+    "description": "Multi-chain blockchain cash flow analyzer with WebGL dashboard. On-chain forensics.",
+    "source_url": "https://github.com/hxsteric/mercury",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta",
+    "display_name": "链上资金流侦探",
+    "display_desc": "多链转账追踪，一眼看穿资金流向",
+    "scenario": "查可疑地址、分析项目方钱包动账",
+    "track_id": "pm",
+    "tags": [
+      "区块链",
+      "资金追踪",
+      "链上分析",
+      "WebGL"
+    ]
+  },
+  "erpclaw": {
+    "name": "erpclaw",
+    "description": "AI-native open-source ERP and double-entry accounting you self-host and run in plain English. Invoicing, inventory, general ledger, payroll, multi-company books.",
+    "source_url": "https://github.com/avansaber/erpclaw",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta",
+    "display_name": "自己管账的AI会计",
+    "display_desc": "用大白话记账、开发票、管库存、算工资，支持多公司账本，自己部署自己用",
+    "scenario": "小老板或自由职业者不想用复杂财务软件，想用自然语言管理公司账目",
+    "track_id": "opc",
+    "tags": [
+      "开源财务",
+      "AI记账",
+      "自部署",
+      "小企业工具",
+      "发票管理"
+    ]
+  },
+  "hermes-agent-acp-skill": {
+    "name": "hermes-agent-acp-skill",
+    "description": "Multi-agent delegation bridging Hermes, Codex, Claude Code. Routes subtasks to best-suited agent.",
+    "source_url": "https://github.com/Rainhoole/hermes-agent-acp-skill",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "beta",
+    "display_name": "多智能体任务分派器",
+    "display_desc": "自动把子任务分给最合适的AI助手，不用自己来回切换",
+    "scenario": "同时用多个AI工具干活时，让它们自动配合",
+    "track_id": "engineer",
+    "tags": [
+      "多智能体",
+      "任务路由",
+      "AI协作",
+      "自动化"
+    ]
+  },
+  "hermes-council": {
+    "name": "hermes-council",
+    "description": "Adversarial multi-perspective council MCP. Multiple AI viewpoints debate before commit.",
+    "source_url": "https://github.com/Ridwannurudeen/hermes-council",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "experimental",
+    "display_name": "AI辩论会，多角度决策",
+    "display_desc": "让多个AI从不同立场辩论后，再给出最终答案，帮你避免偏颇。",
+    "scenario": "做重大决策或写复杂方案时，想听听不同角度的意见",
+    "track_id": "pm",
+    "tags": [
+      "多视角",
+      "决策辅助",
+      "AI辩论",
+      "防偏颇"
+    ]
+  },
+  "opencode-hermes-multiagent": {
+    "name": "opencode-hermes-multiagent",
+    "description": "17 specialized agents for OpenCode AI with structured interfaces.",
+    "source_url": "https://github.com/1ilkhamov/opencode-hermes-multiagent",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "beta",
+    "display_name": "17个AI专家帮你写代码",
+    "display_desc": "每个AI负责不同任务，像有个团队帮你搞定代码",
+    "scenario": "写代码时遇到复杂任务，需要多个AI分工协作",
+    "track_id": "engineer",
+    "tags": [
+      "AI编程助手",
+      "多智能体",
+      "代码协作",
+      "开发效率"
+    ]
+  },
+  "NemoHermes": {
+    "name": "NemoHermes",
+    "description": "NVIDIA capability registry and Spark-aware routing. Routes compute-heavy tasks to GPU infrastructure.",
+    "source_url": "https://github.com/Hmbown/NemoHermes",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "experimental",
+    "display_name": "GPU算力导航员",
+    "display_desc": "自动把重计算任务分给GPU集群，不用自己折腾调度",
+    "scenario": "跑大模型或科学计算时，想自动用上GPU算力",
+    "track_id": "engineer",
+    "tags": [
+      "GPU调度",
+      "算力路由",
+      "Spark集成",
+      "任务分配"
+    ]
+  },
+  "hermes-android": {
+    "name": "hermes-android",
+    "description": "Android device bridge with full Python toolset.",
+    "source_url": "https://github.com/raulvidis/hermes-android",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta",
+    "display_name": "安卓设备Python工具箱",
+    "display_desc": "把安卓手机变成Python开发环境，直接跑脚本控制硬件",
+    "scenario": "想用手机当微型电脑跑Python程序时",
+    "track_id": "engineer",
+    "tags": [
+      "安卓开发",
+      "Python",
+      "物联网",
+      "硬件控制"
+    ]
+  },
+  "agent-android": {
+    "name": "agent-android",
+    "description": "LAN-first Android control over WiFi. No USB/ADB/root needed. Health checks, taps, swipes, screenshots, inspect→act→smoke flows.",
+    "source_url": "https://github.com/aivanelabs/ai-rpa/tree/main/skills/agent-android",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta",
+    "display_name": "手机远程操控",
+    "display_desc": "不用USB/ADB/root，WiFi下就能控制安卓手机，点、滑、截图、检查，一条龙搞定",
+    "scenario": "远程调试或自动化测试安卓设备时，省去连线和权限麻烦",
+    "track_id": "engineer",
+    "tags": [
+      "安卓控制",
+      "WiFi操控",
+      "远程调试",
+      "自动化测试"
+    ]
+  },
+  "hermescraft": {
+    "name": "hermescraft",
+    "description": "Embodied Minecraft companion with persistent memory. Learns building preferences across sessions.",
+    "source_url": "https://github.com/bigph00t/hermescraft",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta",
+    "display_name": "我的世界AI建筑搭档",
+    "display_desc": "能记住你建房偏好的AI伙伴，跨会话学习你的建筑风格",
+    "scenario": "玩Minecraft时想要个懂你习惯的AI帮你一起盖房子",
+    "track_id": "creator",
+    "tags": [
+      "游戏AI",
+      "建筑助手",
+      "Minecraft",
+      "记忆系统"
+    ]
+  },
+  "Hermes-mars-rover": {
+    "name": "Hermes-mars-rover",
+    "description": "Mars rover sim with ROS2 and Gazebo. Hermes skill loop for navigation improvement.",
+    "source_url": "https://github.com/Snehal707/Hermes-mars-rover",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "experimental",
+    "display_name": "火星车模拟导航优化",
+    "display_desc": "用ROS2和Gazebo模拟火星车，自动优化导航路径",
+    "scenario": "做机器人导航算法测试或火星车仿真研究时",
+    "track_id": "engineer",
+    "tags": [
+      "ROS2",
+      "Gazebo",
+      "火星车",
+      "导航优化",
+      "仿真"
+    ]
+  },
+  "hermes-miniverse": {
+    "name": "hermes-miniverse",
+    "description": "Bridge to Miniverse pixel worlds. By a Nous Research co-founder.",
+    "source_url": "https://github.com/teknium1/hermes-miniverse",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta",
+    "display_name": "像素世界入口",
+    "display_desc": "连接Miniverse像素世界，由Nous Research联合创始人打造",
+    "scenario": "想探索或接入Miniverse像素世界时",
+    "track_id": "engineer",
+    "tags": [
+      "像素世界",
+      "社区工具",
+      "物联网",
+      "开源"
+    ]
+  },
+  "resemble-ai/detect-skill": {
+    "name": "resemble-ai/detect-skill",
+    "description": "Deepfake detection: AI-generated audio/image/video/text, source tracing, watermarking, speaker ID.",
+    "source_url": "https://github.com/resemble-ai/detect-skill",
+    "category": "Community: Security & Detection",
+    "tag": "beta",
+    "display_name": "一眼识破AI假货",
+    "display_desc": "检测AI生成的音频、图片、视频和文字，还能追溯来源和识别说话人",
+    "scenario": "收到可疑内容时，快速判断是不是AI伪造的",
+    "track_id": "engineer",
+    "tags": [
+      "AI检测",
+      "深度伪造",
+      "安全",
+      "溯源",
+      "身份识别"
+    ]
+  },
+  "hermes-agent-camel": {
+    "name": "hermes-agent-camel",
+    "description": "Hermes with integrated CaMeL trust boundaries. Formal trust verification for safety-critical deployments.",
+    "source_url": "https://github.com/nativ3ai/hermes-agent-camel",
+    "category": "Community: Security & Detection",
+    "tag": "beta",
+    "display_name": "AI安全护栏",
+    "display_desc": "给AI加一道信任检查，防止它在关键任务中乱来",
+    "scenario": "部署AI到医疗、金融等高风险场景时",
+    "track_id": "engineer",
+    "tags": [
+      "AI安全",
+      "信任验证",
+      "部署防护",
+      "关键任务"
+    ]
+  },
+  "anihermes": {
+    "name": "anihermes",
+    "description": "Local anime server and tracker with NL interface. Browse, track, get recommendations via conversation.",
+    "source_url": "https://github.com/rodmarkun/anihermes",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "动漫追番本地管家",
+    "display_desc": "用聊天的方式搜番、追番、求推荐，不用再翻网站",
+    "scenario": "想追新番但懒得翻数据库，直接问它就能找到",
+    "track_id": "creator",
+    "tags": [
+      "动漫",
+      "追番",
+      "本地部署",
+      "推荐系统",
+      "聊天界面"
+    ]
+  },
+  "Wizards-of-the-Ghosts": {
+    "name": "Wizards-of-the-Ghosts",
+    "description": "Fantasy spell-themed skill pack. `cast lint` instead of `npm run lint`.",
+    "source_url": "https://github.com/Hmbown/Wizards-of-the-Ghosts",
+    "category": "Community: Domain & Novelty",
+    "tag": "experimental",
+    "display_name": "给代码施法，跑命令像念咒语",
+    "display_desc": "把 npm run lint 换成 cast lint，让命令行更有魔法感",
+    "scenario": "想在终端里玩点花活，把枯燥的命令行操作变成施法体验",
+    "track_id": "engineer",
+    "tags": [
+      "命令行",
+      "趣味开发",
+      "魔法主题",
+      "npm"
+    ]
+  },
+  "colony-skill": {
+    "name": "colony-skill",
+    "description": "Collaborative intelligence platform. AI + humans post findings, complete tasks, build reputation.",
+    "source_url": "https://github.com/TheColonyCC/colony-skill",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "人机协作任务平台",
+    "display_desc": "AI和真人一起发帖、做任务、攒口碑，谁靠谱一目了然",
+    "scenario": "团队协作或社区任务需要AI辅助时",
+    "track_id": "pm",
+    "tags": [
+      "协作",
+      "任务管理",
+      "信誉系统",
+      "AI社区"
+    ]
+  },
+  "zillow-skills": {
+    "name": "zillow-skills",
+    "description": "Zillow property data skills for AI agents — Zestimate, listings, photos, schools, taxes, price history — via the Zillapi REST API. MIT-0, free tier.",
+    "source_url": "https://github.com/ZeroPointRepo/zillow-skills",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "查美国房价就用AI",
+    "display_desc": "让AI直接查Zillow房产数据，包括估价、房源、照片、学校、税费和价格历史",
+    "scenario": "想了解美国房产信息时，直接问AI就能拿到实时数据",
+    "track_id": "creator",
+    "tags": [
+      "房产数据",
+      "Zillow",
+      "AI工具",
+      "美国买房",
+      "房产查询"
+    ]
+  },
+  "hermes-workspace": {
+    "name": "hermes-workspace",
+    "description": "Web-based workspace: chat, terminal, memory browser, skills manager, inspector. Most complete GUI for Hermes. 500★.",
+    "source_url": "https://github.com/outsourc-e/hermes-workspace",
+    "category": "Community: Domain & Novelty",
+    "tag": "production",
+    "display_name": "AI 工作台：聊天+终端+记忆管理",
+    "display_desc": "一个网页搞定AI对话、命令行、记忆浏览和技能管理，不用来回切换窗口。",
+    "scenario": "想在一个界面里同时操作AI聊天、跑终端命令和管理AI记忆时。",
+    "track_id": "engineer",
+    "tags": [
+      "AI工作台",
+      "终端集成",
+      "记忆管理",
+      "技能管理",
+      "开源工具"
+    ]
+  },
+  "hermes-desktop": {
+    "name": "hermes-desktop",
+    "description": "Native macOS workspace with direct host-first SSH. Real terminal, session browsing, file editing.",
+    "source_url": "https://github.com/dodo-reach/hermes-desktop",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "Mac原生SSH工作台",
+    "display_desc": "不用开虚拟机，直接连服务器，像本地一样编辑文件、管理会话",
+    "scenario": "Mac用户需要频繁SSH连服务器干活时",
+    "track_id": "engineer",
+    "tags": [
+      "SSH客户端",
+      "远程开发",
+      "文件编辑",
+      "终端工具"
+    ]
+  },
+  "mission-control": {
+    "name": "mission-control",
+    "description": "Open-source dashboard for AI agent orchestration. Multi-agent fleets, task dispatch, cost tracking. 3.7k★.",
+    "source_url": "https://github.com/builderz-labs/mission-control",
+    "category": "Community: Domain & Novelty",
+    "tag": "production",
+    "display_name": "AI智能体指挥中心",
+    "display_desc": "开源仪表盘，管理多个AI智能体，分配任务、跟踪成本",
+    "scenario": "同时运行多个AI助手时，需要统一调度和监控",
+    "track_id": "engineer",
+    "tags": [
+      "开源工具",
+      "多智能体",
+      "任务调度",
+      "成本监控"
+    ]
+  },
+  "portable-hermes-agent": {
+    "name": "portable-hermes-agent",
+    "description": "Windows desktop app bundling 100 tools, GUI, local models, ComfyUI in a portable package.",
+    "source_url": "https://github.com/rookiemann/portable-hermes-agent",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "桌面百宝箱：AI工具包",
+    "display_desc": "一个Windows应用，内置100多种AI工具、图形界面、本地模型和ComfyUI，开箱即用。",
+    "scenario": "想快速体验多种AI功能，但不想一个个装软件时。",
+    "track_id": "creator",
+    "tags": [
+      "AI工具包",
+      "桌面应用",
+      "本地模型",
+      "ComfyUI",
+      "便携版"
+    ]
+  },
+  "hermes-ui": {
+    "name": "hermes-ui",
+    "description": "Single-file glassmorphic web UI with SSE streaming, tool call visualization, PDF export, session/skill/memory viewers.",
+    "source_url": "https://github.com/pyrate-llama/hermes-ui",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "玻璃态AI对话界面",
+    "display_desc": "一个自带流式对话、工具调用可视化、PDF导出的单文件Web UI",
+    "scenario": "开发AI对话应用时，需要快速搭建带高级交互的界面",
+    "track_id": "engineer",
+    "tags": [
+      "Web UI",
+      "流式对话",
+      "工具可视化",
+      "PDF导出",
+      "单文件"
+    ]
+  },
+  "hermes-webui": {
+    "name": "hermes-webui",
+    "description": "Lightweight process monitoring and config dashboard. Simpler ops alternative.",
+    "source_url": "https://github.com/sanchomuzax/hermes-webui",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "轻量级运维监控面板",
+    "display_desc": "一个简单的小工具，让你一眼看清服务器进程状态和配置，不用搞复杂运维系统。",
+    "scenario": "当你想快速查看服务器运行情况，又不想装大而全的监控平台时。",
+    "track_id": "engineer",
+    "tags": [
+      "进程监控",
+      "配置管理",
+      "轻量运维",
+      "仪表盘",
+      "开源工具"
+    ]
+  },
+  "orahermes-agent": {
+    "name": "orahermes-agent",
+    "description": "Oracle AI Agent Harness — OCI GenAI and Oracle 26ai integration.",
+    "source_url": "https://github.com/jasperan/orahermes-agent",
+    "category": "Community: Domain & Novelty",
+    "tag": "experimental",
+    "display_name": "Oracle AI 助手工具箱",
+    "display_desc": "把 Oracle 数据库和 AI 模型连起来，直接对话查数据",
+    "scenario": "用 Oracle 数据库时，想用自然语言查询或让 AI 帮忙分析数据",
+    "track_id": "engineer",
+    "tags": [
+      "Oracle",
+      "AI集成",
+      "数据库",
+      "自然语言查询"
+    ]
+  },
+  "hermeshub": {
+    "name": "hermeshub",
+    "description": "Browse, share, and install community Hermes skills.",
+    "source_url": "https://github.com/amanning3390/hermeshub",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "装个社区技能包",
+    "display_desc": "浏览、分享和安装别人做好的 Hermes 技能，不用自己从头写。",
+    "scenario": "想给设备加新功能，但不想自己写代码时",
+    "track_id": "engineer",
+    "tags": [
+      "技能市场",
+      "社区共享",
+      "Hermes",
+      "插件安装"
+    ]
+  },
+  "skilldock.io": {
+    "name": "skilldock.io",
+    "description": "Cross-platform skills marketplace for OpenClaw, Claude Code, Hermes.",
+    "source_url": "https://github.com/chigwell/skilldock.io",
+    "category": "Community: Domain & Novelty",
+    "tag": "production",
+    "display_name": "AI技能商店，跨平台淘货",
+    "display_desc": "在OpenClaw、Claude Code、Hermes之间找技能包，不用到处翻",
+    "scenario": "想给AI工具装新技能，但不知道去哪找",
+    "track_id": "engineer",
+    "tags": [
+      "技能市场",
+      "跨平台",
+      "AI工具",
+      "开发者社区"
+    ]
+  },
+  "hermes-agent-docs": {
+    "name": "hermes-agent-docs",
+    "description": "Comprehensive community documentation. Useful supplement for deployment patterns.",
+    "source_url": "https://github.com/mudrii/hermes-agent-docs",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta",
+    "display_name": "部署Hermes智能体宝典",
+    "display_desc": "社区整理的Hermes部署文档，帮你快速搞定各种部署模式",
+    "scenario": "部署Hermes智能体时遇到配置或模式选择问题",
+    "track_id": "engineer",
+    "tags": [
+      "Hermes",
+      "智能体",
+      "部署",
+      "文档",
+      "社区资源"
+    ]
+  },
+  "hermes-wsl-ubuntu": {
+    "name": "hermes-wsl-ubuntu",
+    "description": "End-to-end WSL2 + llama.cpp + Qwen3.5 setup with CUDA/Metal acceleration for running Hermes on Windows.",
+    "source_url": "https://github.com/metantonio/hermes-wsl-ubuntu",
+    "category": "Community: Domain & Novelty",
+    "tag": "production",
+    "display_name": "Windows跑AI大模型",
+    "display_desc": "在Windows上用WSL2跑大模型，自动配好CUDA/Metal加速",
+    "scenario": "想在Windows上本地运行AI模型但不想折腾环境配置",
+    "track_id": "engineer",
+    "tags": [
+      "WSL2",
+      "大模型",
+      "CUDA",
+      "本地AI"
+    ]
+  }
+}

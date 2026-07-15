@@ -1,0 +1,1747 @@
+[
+  {
+    "name": "apple-notes",
+    "description": "Manage Apple Notes via memo CLI: create, search, edit.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/apple-notes",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "apple-reminders",
+    "description": "Apple Reminders via remindctl: add, list, complete.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/apple-reminders",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "findmy",
+    "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/findmy",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "imessage",
+    "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/imessage",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "claude-code",
+    "description": "Delegate coding to Claude Code CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/claude-code",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "codex",
+    "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/codex",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "hermes-agent",
+    "description": "Configure, extend, or contribute to Hermes Agent.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-agent",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "opencode",
+    "description": "Delegate coding to OpenCode CLI (features, PR review).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/opencode",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "computer-use",
+    "description": "Drive the desktop in the background — click, type, scroll, drag — without stealing focus. macOS/Windows/Linux.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/computer-use",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "architecture-diagram",
+    "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/architecture-diagram",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "ascii-art",
+    "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ascii-art",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "ascii-video",
+    "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ascii-video",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "baoyu-infographic",
+    "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-infographic",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "claude-design",
+    "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/claude-design",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "comfyui",
+    "description": "Generate images, video & audio with ComfyUI — install, manage nodes/models, run workflows via comfy-cli + REST/WS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/comfyui",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "design-md",
+    "description": "Author/validate/export Google's DESIGN.md token spec files.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/design-md",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "excalidraw",
+    "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/excalidraw",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "humanizer",
+    "description": "Humanize text: strip AI-isms and add real voice.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/humanizer",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "manim-video",
+    "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/manim-video",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "p5js",
+    "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/p5js",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "popular-web-designs",
+    "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/popular-web-designs",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "pretext",
+    "description": "DOM-free text layout (@chenglou/pretext): ASCII art, kinetic typography, text-as-geometry games as single-file HTML.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pretext",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "sketch",
+    "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sketch",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "songwriting-and-ai-music",
+    "description": "Songwriting craft and Suno AI music prompts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/songwriting-and-ai-music",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "touchdesigner-mcp",
+    "description": "Control TouchDesigner via twozero MCP — operators, parameters, Python, real-time visuals (36 tools).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/touchdesigner-mcp",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "jupyter-live-kernel",
+    "description": "Iterative Python via live Jupyter kernel (hamelnb).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/jupyter-live-kernel",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "dogfood",
+    "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dogfood",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "himalaya",
+    "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/himalaya",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "codebase-inspection",
+    "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/codebase-inspection",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "github-auth",
+    "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-auth",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "github-code-review",
+    "description": "Review PRs: diffs, inline comments via gh or REST.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-code-review",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "github-issues",
+    "description": "Create, triage, label, assign GitHub issues via gh or REST.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-issues",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "github-pr-workflow",
+    "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-pr-workflow",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "github-repo-management",
+    "description": "Clone/create/fork repos; manage remotes, releases.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/github-repo-management",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "gif-search",
+    "description": "Search/download GIFs from Tenor via curl + jq.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/gif-search",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "heartmula",
+    "description": "HeartMuLa: Suno-like song generation from lyrics + tags.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/heartmula",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "songsee",
+    "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/songsee",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "youtube-content",
+    "description": "YouTube transcripts to summaries, threads, blogs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/youtube-content",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "audiocraft-audio-generation",
+    "description": "AudioCraft: MusicGen text-to-music, AudioGen text-to-sound.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/audiocraft-audio-generation",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "evaluating-llms-harness",
+    "description": "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/evaluating-llms-harness",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "huggingface-hub",
+    "description": "HuggingFace hf CLI: search/download/upload models, datasets.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-hub",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "llama-cpp",
+    "description": "llama.cpp local GGUF inference + HF Hub model discovery.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llama-cpp",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "segment-anything-model",
+    "description": "SAM: zero-shot image segmentation via points, boxes, masks.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/segment-anything-model",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "serving-llms-vllm",
+    "description": "vLLM: high-throughput LLM serving, OpenAI API, quantization.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/serving-llms-vllm",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "weights-and-biases",
+    "description": "W&B: log ML experiments, sweeps, model registry, dashboards.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/weights-and-biases",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "obsidian",
+    "description": "Read, search, create, and edit notes in the Obsidian vault.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/obsidian",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "airtable",
+    "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/airtable",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "google-workspace",
+    "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/google-workspace",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "maps",
+    "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/maps",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "nano-pdf",
+    "description": "Edit PDF text/typos/titles via nano-pdf CLI (NL prompts).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/nano-pdf",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "notion",
+    "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/notion",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "ocr-and-documents",
+    "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/ocr-and-documents",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "petdex",
+    "description": "Install and select animated petdex mascots for Hermes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/petdex",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "powerpoint",
+    "description": "Create, read, edit .pptx decks, slides, notes, templates.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/powerpoint",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "teams-meeting-pipeline",
+    "description": "Run the Teams meeting-summary pipeline — summarize meetings, inspect status, replay jobs, manage Graph subs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/teams-meeting-pipeline",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "arxiv",
+    "description": "Search arXiv papers by keyword, author, category, or ID.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/arxiv",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "blogwatcher",
+    "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blogwatcher",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "llm-wiki",
+    "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llm-wiki",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "polymarket",
+    "description": "Query Polymarket: markets, prices, orderbooks, history.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/polymarket",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "research-paper-writing",
+    "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/research-paper-writing",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "openhue",
+    "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openhue",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "xurl",
+    "description": "X/Twitter via xurl CLI: post, search, DM, media, v2 API.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/xurl",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "hermes-agent-skill-authoring",
+    "description": "Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-agent-skill-authoring",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "node-inspect-debugger",
+    "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/node-inspect-debugger",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "plan",
+    "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/plan",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "python-debugpy",
+    "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/python-debugpy",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "requesting-code-review",
+    "description": "Pre-commit review: security scan, quality gates, auto-fix.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/requesting-code-review",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "simplify-code",
+    "description": "Parallel 3-agent cleanup of recent code changes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/simplify-code",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "spike",
+    "description": "Throwaway experiments to validate an idea before build.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/spike",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "systematic-debugging",
+    "description": "4-phase root cause debugging: understand bugs before fixing.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/systematic-debugging",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "test-driven-development",
+    "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/test-driven-development",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "yuanbao",
+    "description": "Yuanbao (元宝) groups: @mention users, query info/members.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/yuanbao",
+    "category": "Built-in Skills (Ships with Hermes)"
+  },
+  {
+    "name": "antigravity-cli",
+    "description": "Operate the Antigravity CLI (agy): plugins, auth, sandbox.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/antigravity-cli",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "blackbox",
+    "description": "Delegate coding to Blackbox AI CLI — multi-model agent with a built-in judge that picks the best result.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blackbox",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "grok",
+    "description": "Delegate coding to xAI Grok Build CLI (features, PRs).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/grok",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "honcho",
+    "description": "Honcho memory for Hermes — cross-session user modeling, multi-profile isolation, dialectic recall.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/honcho",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "openhands",
+    "description": "Delegate coding to OpenHands CLI (model-agnostic, LiteLLM).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openhands",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "evm",
+    "description": "Read-only EVM client: wallets, tokens, gas across 8 chains.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/evm",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "hyperliquid",
+    "description": "Hyperliquid market data, account history, trade review.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hyperliquid",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "solana",
+    "description": "Query Solana with USD pricing — balances, token portfolios, txns, NFTs, whale detection. No API key.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/solana",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "one-three-one-rule",
+    "description": "Structured 1-3-1 decisions — one problem, three options with trade-offs, one recommendation.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/one-three-one-rule",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "baoyu-article-illustrator",
+    "description": "Article illustrations: type × style × palette consistency.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-article-illustrator",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "baoyu-comic",
+    "description": "Knowledge comics (知识漫画): educational, biography, tutorial.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/baoyu-comic",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "blender-mcp",
+    "description": "Control Blender from Hermes via socket — create objects, materials, animations, run bpy Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/blender-mcp",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "concept-diagrams",
+    "description": "Flat, minimal light/dark SVG diagrams as HTML — physics, chemistry, anatomy, floor plans, lifecycles.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/concept-diagrams",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "creative-ideation",
+    "description": "Generate ideas via named methods from creative practice.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/creative-ideation",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "hyperframes",
+    "description": "HTML-as-source video — animated titles, social overlays, captioned talking-heads, shader transitions → MP4/WebM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hyperframes",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "kanban-video-orchestrator",
+    "description": "Multi-agent video pipeline on Hermes Kanban — scope brief, build a team, route scenes, monitor to render.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/kanban-video-orchestrator",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "meme-generation",
+    "description": "Generate real meme .png images — pick a template, overlay text with Pillow.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/meme-generation",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pixel-art",
+    "description": "Pixel art w/ era palettes (NES, Game Boy, PICO-8).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pixel-art",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "docker-management",
+    "description": "Manage Docker containers, images, volumes, networks & Compose — lifecycle, debug, cleanup, Dockerfile tuning.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/docker-management",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "hermes-s6-container-supervision",
+    "description": "Modify/debug the s6-overlay supervision tree in the Hermes Docker image — add services, debug gateways.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/hermes-s6-container-supervision",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "inference-sh-cli",
+    "description": "Run 150+ AI apps via inference.sh CLI (infsh) — image, video, LLMs, search, 3D.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/inference-sh-cli",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pinggy-tunnel",
+    "description": "Zero-install localhost tunnels over SSH via Pinggy.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pinggy-tunnel",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "watchers",
+    "description": "Poll RSS, JSON APIs, and GitHub with watermark dedup.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/watchers",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "adversarial-ux-test",
+    "description": "Roleplay a tech-resistant user, browse the app, surface real UX pain points, and file actionable tickets.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/adversarial-ux-test",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "agentmail",
+    "description": "Give the agent its own email inbox via AgentMail — send, receive & manage mail autonomously.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/agentmail",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "3-statement-model",
+    "description": "Fully-integrated 3-statement models (IS/BS/CF) in Excel — working capital, D&A, debt schedules.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/3-statement-model",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "comps-analysis",
+    "description": "Comparable-company analysis in Excel — operating metrics, valuation multiples, peer benchmarking.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/comps-analysis",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "dcf-model",
+    "description": "Institutional DCF models in Excel — FCF build, WACC, terminal value, scenarios, sensitivity tables.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dcf-model",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "excel-author",
+    "description": "Build auditable Excel workbooks headless (openpyxl) — cell conventions, formulas, named ranges, balance checks.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/excel-author",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "lbo-model",
+    "description": "LBO models in Excel — sources & uses, debt schedule, cash sweep, exit multiple, IRR/MOIC sensitivity.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/lbo-model",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "merger-model",
+    "description": "Accretion/dilution merger models in Excel — pro-forma P&L, synergies, financing mix, EPS impact.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/merger-model",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pptx-author",
+    "description": "Build PowerPoint decks headless (python-pptx) — model-backed, every number traces to a workbook cell.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pptx-author",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "stocks",
+    "description": "Stock quotes, history, search, compare, crypto via Yahoo.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stocks",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "minecraft-modpack-server",
+    "description": "Host modded Minecraft servers (CurseForge, Modrinth).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/minecraft-modpack-server",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pokemon-player",
+    "description": "Play Pokemon via headless emulator + RAM reads.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pokemon-player",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "fitness-nutrition",
+    "description": "Workout planner + nutrition tracker — 690+ exercises (wger), 380k+ foods (USDA), BMI/TDEE/1RM math.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fitness-nutrition",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "neuroskill-bci",
+    "description": "Fold real-time BCI state (focus, mood, HRV, sleep) into responses — needs a Muse/OpenBCI + NeuroSkill app.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/neuroskill-bci",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "fastmcp",
+    "description": "Build, test, inspect & deploy MCP servers with FastMCP in Python.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fastmcp",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "mcporter",
+    "description": "List, configure, auth & call MCP servers/tools (HTTP or stdio) via the mcporter CLI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/mcporter",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "openclaw-migration",
+    "description": "Migrate an OpenClaw setup into Hermes — memories, SOUL.md, allowlists, user skills; reports what didn't port.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/openclaw-migration",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "axolotl",
+    "description": "Axolotl: YAML LLM fine-tuning (LoRA, DPO, GRPO).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/axolotl",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "chroma",
+    "description": "Open-source embedding database — vector + full-text search, metadata filters. Great for local RAG.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/chroma",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "clip",
+    "description": "OpenAI CLIP — zero-shot image classification, image-text matching, cross-modal retrieval.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/clip",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "distributed-llm-pretraining-torchtitan",
+    "description": "PyTorch-native LLM pretraining with torchtitan — 4D parallelism, Float8, 8→512+ GPUs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/distributed-llm-pretraining-torchtitan",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "dspy",
+    "description": "DSPy: declarative LM programs, auto-optimize prompts, RAG.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/dspy",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "faiss",
+    "description": "Meta FAISS — fast similarity search over billions of vectors, GPU-accelerated, many index types.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/faiss",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "fine-tuning-with-trl",
+    "description": "TRL: SFT, DPO, PPO, GRPO, reward modeling for LLM RLHF.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/fine-tuning-with-trl",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "guidance",
+    "description": "Constrain LLM output with regex/grammars — guaranteed valid JSON/XML/code (Microsoft Guidance).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/guidance",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "huggingface-accelerate",
+    "description": "Add distributed training to any PyTorch script in ~4 lines — DeepSpeed/FSDP/DDP, mixed precision.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-accelerate",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "huggingface-tokenizers",
+    "description": "Fast Rust-based tokenizers — BPE/WordPiece/Unigram, custom vocab training, alignment tracking.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/huggingface-tokenizers",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "instructor",
+    "description": "Structured LLM outputs with Pydantic validation, auto-retries, and streaming (Instructor).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/instructor",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "lambda-labs-gpu-cloud",
+    "description": "Reserved & on-demand Lambda GPU cloud — SSH, persistent FS, multi-node clusters for training.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/lambda-labs-gpu-cloud",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "llava",
+    "description": "LLaVA — visual instruction tuning and multi-turn image chat (CLIP + Vicuna/LLaMA).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/llava",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "modal-serverless-gpu",
+    "description": "Modal — serverless GPU cloud for ML workloads, model APIs, and autoscaling batch jobs.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/modal-serverless-gpu",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "nemo-curator",
+    "description": "GPU-accelerated LLM data curation — fuzzy/semantic dedup, quality filtering, PII/NSFW (NeMo Curator).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/nemo-curator",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "obliteratus",
+    "description": "OBLITERATUS: abliterate LLM refusals (diff-in-means).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/obliteratus",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "optimizing-attention-flash",
+    "description": "Flash Attention — 2-4× faster, 10-20× less memory for long-sequence transformers.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/optimizing-attention-flash",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "outlines",
+    "description": "Outlines: structured JSON/regex/Pydantic LLM generation.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/outlines",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "peft-fine-tuning",
+    "description": "Parameter-efficient fine-tuning (LoRA/QLoRA + 25 methods) for 7B-70B models on limited VRAM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/peft-fine-tuning",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pinecone",
+    "description": "Pinecone — managed, auto-scaling vector DB for production RAG and semantic search.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pinecone",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pytorch-fsdp",
+    "description": "Fully Sharded Data Parallel training with PyTorch FSDP/FSDP2 — sharding, mixed precision, CPU offload.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pytorch-fsdp",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "pytorch-lightning",
+    "description": "PyTorch Lightning — clean training loops, automatic DDP/FSDP/DeepSpeed, callbacks, minimal boilerplate.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/pytorch-lightning",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "qdrant-vector-search",
+    "description": "Qdrant — high-performance vector search for RAG, hybrid search with filtering (Rust).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/qdrant-vector-search",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "simpo-training",
+    "description": "SimPO — reference-free preference optimization, simpler & faster than DPO.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/simpo-training",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "slime-rl-training",
+    "description": "LLM RL post-training with slime (Megatron + SGLang) — custom data-gen, GLM models at scale.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/slime-rl-training",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "sparse-autoencoder-training",
+    "description": "Train & analyze Sparse Autoencoders (SAELens) — find interpretable features in model activations.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sparse-autoencoder-training",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "stable-diffusion-image-generation",
+    "description": "Text-to-image with Stable Diffusion via Diffusers — img2img, inpainting, custom pipelines.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stable-diffusion-image-generation",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "tensorrt-llm",
+    "description": "Optimize LLM inference with NVIDIA TensorRT-LLM — FP8/INT4, in-flight batching, multi-GPU.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/tensorrt-llm",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "unsloth",
+    "description": "Unsloth: 2-5x faster LoRA/QLoRA fine-tuning, less VRAM.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/unsloth",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "whisper",
+    "description": "OpenAI Whisper — robust multilingual speech-to-text and translation (99 languages).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/whisper",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "mpp-agent",
+    "description": "Pay HTTP 402 APIs via Machine Payments Protocol (MPP).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/mpp-agent",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "stripe-link-cli",
+    "description": "Agent payments via Stripe Link — cards, SPT, approvals.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stripe-link-cli",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "stripe-projects",
+    "description": "Provision SaaS services + sync creds via Stripe Projects.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/stripe-projects",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "canvas",
+    "description": "Canvas LMS — fetch enrolled courses and assignments via API token.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/canvas",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "memento-flashcards",
+    "description": "Spaced-repetition flashcards — build decks, chat-graded answers, quizzes from YouTube, CSV export.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/memento-flashcards",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "shop",
+    "description": "Shop catalog search, checkout, order tracking, returns.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/shop",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "shopify",
+    "description": "Shopify Admin & Storefront GraphQL via curl — products, orders, customers, inventory, metafields.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/shopify",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "siyuan",
+    "description": "SiYuan Note API — search, read, create & manage blocks/docs in a self-hosted KB via curl.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/siyuan",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "telephony",
+    "description": "Give Hermes a phone — provision a Twilio number, SMS/MMS, direct + AI-driven calls (Bland/Vapi).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/telephony",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "bioinformatics",
+    "description": "Gateway to 400+ bioinformatics skills — genomics, single-cell, variant calling, structural biology.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/bioinformatics",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "darwinian-evolver",
+    "description": "Evolve prompts/regex/SQL/code with Imbue's evolution loop.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/darwinian-evolver",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "domain-intel",
+    "description": "Passive domain recon (Python stdlib) — subdomains, SSL, WHOIS, DNS, availability. No API keys.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/domain-intel",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "drug-discovery",
+    "description": "Drug-discovery assistant — ChEMBL search, drug-likeness, DDIs (OpenFDA), ADMET, lead optimization.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/drug-discovery",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "duckduckgo-search",
+    "description": "Free DuckDuckGo web search — text, news, images, video. No API key (ddgs CLI).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/duckduckgo-search",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "gitnexus-explorer",
+    "description": "Index a codebase with GitNexus and serve an interactive knowledge graph over a web UI.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/gitnexus-explorer",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "osint-investigation",
+    "description": "Public-records OSINT — EDGAR, USAspending, OFAC, ICIJ, ACRIS, court records; entity resolution.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/osint-investigation",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "parallel-cli",
+    "description": "Parallel CLI — agent-native web search, extraction, deep research, enrichment, monitoring.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/parallel-cli",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "qmd",
+    "description": "Local knowledge-base search (qmd) — BM25 + vector + LLM rerank over notes, docs, transcripts.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/qmd",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "scrapling",
+    "description": "Web scraping with Scrapling — HTTP fetch, stealth browser, Cloudflare bypass, spider crawling.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/scrapling",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "searxng-search",
+    "description": "Free meta-search via SearXNG — aggregates 70+ engines, self-host or public. No API key.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/searxng-search",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "1password",
+    "description": "Set up & use the 1Password CLI (op) — sign in, read and inject secrets into commands.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/1password",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "godmode",
+    "description": "Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/godmode",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "oss-forensics",
+    "description": "GitHub supply-chain forensics — deleted-commit recovery, force-push detection, IOC extraction, reporting.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/oss-forensics",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "sherlock",
+    "description": "Hunt usernames across 400+ social networks (Sherlock OSINT).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/sherlock",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "web-pentest",
+    "description": "Authorized web pentesting — recon, proof-based exploitation, reporting, with scope/authorization guardrails.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/web-pentest",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "code-wiki",
+    "description": "Generate wiki docs + Mermaid diagrams for any codebase.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/code-wiki",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "rest-graphql-debug",
+    "description": "Debug REST/GraphQL APIs: status codes, auth, schemas, repro.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/rest-graphql-debug",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "subagent-driven-development",
+    "description": "Execute plans via delegate_task subagents (2-stage review).",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/subagent-driven-development",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "cloudflare-temporary-deploy",
+    "description": "Deploy a Worker live, no account, via wrangler --temporary.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/cloudflare-temporary-deploy",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "page-agent",
+    "description": "Embed alibaba/page-agent — a JS in-page GUI agent that lets your site's users drive the UI in natural language.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/tree/main/skills/page-agent",
+    "category": "Optional Skills (Bundled with Hermes)"
+  },
+  {
+    "name": "Official Hermes Skills Hub",
+    "description": "The full catalog. **600+ skills** indexed by Nous Research. Use this when our curated cut doesn't have what you need.",
+    "source_url": "https://hermes-agent.nousresearch.com/docs/skills",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "Skills Hub",
+    "description": "The open standard for agent skills. Compatible across Hermes, Claude Code, Cursor, Codex.",
+    "source_url": "https://agentskills.io",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "Official Documentation",
+    "description": "Quickstart, CLI, configuration, gateway, security, skills, memory, MCP, cron, ACP, API, architecture.",
+    "source_url": "https://hermes-agent.nousresearch.com/docs/",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "Release Notes",
+    "description": "Official changelog with feature highlights and migration notes.",
+    "source_url": "https://github.com/NousResearch/hermes-agent/releases",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "Discord",
+    "description": "Bug reports, feature requests, general discussion.",
+    "source_url": "https://discord.gg/NousResearch",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "@therohitdas",
+    "description": "Skill of the Week + new additions",
+    "source_url": "https://twitter.com/therohitdas",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "GitHub Stars",
+    "description": "Star this repo to keep it visible",
+    "source_url": "",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "Hermes Discord",
+    "description": "Talk shop with other Hermes users",
+    "source_url": "https://discord.gg/NousResearch",
+    "category": "Skill Registries & Discovery"
+  },
+  {
+    "name": "youtube-skills",
+    "description": "Transcripts, search, channels, playlists. Cross-agent: Hermes / Claude Code / OpenClaw / Cursor / Windsurf. Powered by [TranscriptAPI](https://transcriptapi.com).",
+    "source_url": "https://github.com/ZeroPointRepo/youtube-skills",
+    "category": "Community: Media & Transcripts",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-spotify-skill",
+    "description": "Spotify control for headless Linux and Raspberry Pi. The only Linux-native Spotify skill in the ecosystem.",
+    "source_url": "https://github.com/Alexeyisme/hermes-spotify-skill",
+    "category": "Community: Media & Transcripts",
+    "tag": "beta"
+  },
+  {
+    "name": "hindsight",
+    "description": "Long-term memory layer with retain/recall/reflect workflows. Semantic + graph + temporal retrieval. Plugin or MCP.",
+    "source_url": "https://github.com/vectorize-io/hindsight",
+    "category": "Community: Memory & Knowledge",
+    "tag": "production"
+  },
+  {
+    "name": "honcho-self-hosted",
+    "description": "Self-hosted Honcho memory backend setup for Hermes. Stronger cross-session memory with local control.",
+    "source_url": "https://github.com/elkimek/honcho-self-hosted",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta"
+  },
+  {
+    "name": "yantrikdb-hermes-plugin",
+    "description": "Hermes-native memory provider for YantrikDB. `think()` canonicalizes duplicates, `conflicts()` surfaces contradictions, every `recall()` carries `why_retrieved` reasons.",
+    "source_url": "https://github.com/yantrikos/yantrikdb-hermes-plugin",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta"
+  },
+  {
+    "name": "plur",
+    "description": "Shared memory layer for AI agents with open engram format (YAML). Persistent learning patterns.",
+    "source_url": "https://github.com/plur-ai/plur",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta"
+  },
+  {
+    "name": "flowstate-qmd",
+    "description": "Anticipatory memory with RAG and vector search. Pre-fetches relevant context before queries hit the agent.",
+    "source_url": "https://github.com/amanning3390/flowstate-qmd",
+    "category": "Community: Memory & Knowledge",
+    "tag": "beta"
+  },
+  {
+    "name": "personal-api",
+    "description": "Turn your Obsidian vault into an identity layer any AI agent can read in under 30 seconds.",
+    "source_url": "https://github.com/beiyuii/personal-api-skill",
+    "category": "Community: Memory & Knowledge",
+    "tag": "experimental"
+  },
+  {
+    "name": "Anthropic-Cybersecurity-Skills",
+    "description": "753+ structured cybersecurity skills mapped to MITRE ATT&CK. 4k+ stars.",
+    "source_url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+    "category": "Community: Memory & Knowledge",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-web-search-plus",
+    "description": "Multi-provider web search with intelligent routing across Serper, Tavily, Exa, and more. Replaces built-in search with better quality + source diversity.",
+    "source_url": "https://github.com/robbyczgw-cla/hermes-web-search-plus",
+    "category": "Community: Search & Research",
+    "tag": "beta"
+  },
+  {
+    "name": "Not Human Search",
+    "description": "MCP server for discovering other MCP servers. Indexes 8,600+ agent-friendly sites with agentic scoring. Lets Hermes find new tools on its own.",
+    "source_url": "https://github.com/unitedideas/nothumansearch-mcp",
+    "category": "Community: Search & Research",
+    "tag": "production"
+  },
+  {
+    "name": "consensus-mcp-hermes",
+    "description": "Connect 200M+ peer-reviewed research papers to Hermes via the Consensus MCP server. OAuth setup guide for headless environments with mcp-remote bridge.",
+    "source_url": "https://github.com/ahmdngi/consensus-mcp-hermes",
+    "category": "Community: Search & Research",
+    "tag": "beta"
+  },
+  {
+    "name": "diagnose",
+    "description": "Disciplined diagnosis loop for hard bugs and perf regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnose/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "grill-with-docs",
+    "description": "Grilling session that challenges your plan against the existing domain model, sharpens terminology, updates `CONTEXT.md` and ADRs inline. The most popular skill in the pack.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "tdd",
+    "description": "Test-driven development with red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "description": "Find deepening opportunities in a codebase, informed by domain language in `CONTEXT.md` and decisions in `docs/adr/`. Run it every few days.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "zoom-out",
+    "description": "Tell the agent to zoom out and give broader context or higher-level perspective on unfamiliar code.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/zoom-out/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "to-prd",
+    "description": "Turn the current conversation into a PRD and submit it as a GitHub issue. No interview — synthesizes what you've discussed.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-prd/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "to-issues",
+    "description": "Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/to-issues/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "github-triage",
+    "description": "Triage GitHub issues through a label-based state machine.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/github-triage/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "description": "Block dangerous git commands (push, reset --hard, clean) before they execute. Hooks-based.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/git-guardrails-claude-code/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "setup-pre-commit",
+    "description": "Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/setup-pre-commit/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/migrate-to-shoehorn/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "scaffold-exercises",
+    "description": "Create exercise directory structures with sections, problems, solutions, explainers.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/misc/scaffold-exercises/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "write-a-skill",
+    "description": "Create new skills with proper structure, progressive disclosure, and bundled resources.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/write-a-skill/SKILL.md",
+    "category": "Community: mattpocock/skills — Engineering bundle",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-skill-factory",
+    "description": "Meta-skill that auto-generates reusable skills from your workflows. Point it at a repeated task and it creates a skill for it.",
+    "source_url": "https://github.com/Romanescu11/hermes-skill-factory",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "bmad-module-skill-forge",
+    "description": "Transforms repos and docs into agentskills.io-compliant skills.",
+    "source_url": "https://github.com/armelhbobdad/bmad-module-skill-forge",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "litprog-skill",
+    "description": "Literate programming skill across Claude Code, OpenCode, Hermes. Weaves code and prose into documented, executable notebooks.",
+    "source_url": "https://github.com/tlehman/litprog-skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "execplan-skill",
+    "description": "Long-running task execution with progress tracking, checkpoints, failure recovery.",
+    "source_url": "https://github.com/tiann/execplan-skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "maestro",
+    "description": "Skill orchestration with Conductor planning + Beads tracking. Multi-step skills as observable pipelines.",
+    "source_url": "https://github.com/ReinaMacCredy/maestro",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "SkillClaw",
+    "description": "Auto-evolves and dedupes your skill library from session data. Native Hermes integration. 705 stars.",
+    "source_url": "https://github.com/AMAP-ML/SkillClaw",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production"
+  },
+  {
+    "name": "wondelai/skills",
+    "description": "Cross-platform agent skills for Claude Code and agentskills.io platforms. 380+ stars.",
+    "source_url": "https://github.com/wondelai/skills",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production"
+  },
+  {
+    "name": "skillsdotnet",
+    "description": "C# implementation of agentskills.io with MCP integration.",
+    "source_url": "https://github.com/PederHP/skillsdotnet",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "Agentic-MCP-Skill",
+    "description": "MCP client with agentskills.io validation.",
+    "source_url": "https://github.com/cablate/Agentic-MCP-Skill",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "pydantic-ai-skills",
+    "description": "Pydantic AI with agentskills.io. Type-safe schema validation for skill inputs/outputs.",
+    "source_url": "https://github.com/DougTrajano/pydantic-ai-skills",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "production"
+  },
+  {
+    "name": "evey-bridge-plugin",
+    "description": "Claude Code plugin that bridges with Hermes. Shared context, task handoffs.",
+    "source_url": "https://github.com/42-evey/evey-bridge-plugin",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "lintlang",
+    "description": "Static linter for AI agent configs and prompts with HERM v1.1 scoring.",
+    "source_url": "https://github.com/roli-lpci/lintlang",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "super-hermes",
+    "description": "Teaches Hermes to write its own analytical prompts. Meta-reasoning before execution.",
+    "source_url": "https://github.com/Cranot/super-hermes",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-dojo",
+    "description": "Self-improvement system that monitors agent performance, identifies weak skills, iterates automatically.",
+    "source_url": "https://github.com/Yonkoo11/hermes-dojo",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-skill-distillation",
+    "description": "Generates agentic training trajectories from real-world tasks for fine-tuning data.",
+    "source_url": "https://github.com/beardthelion/hermes-skill-distillation",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "rtk-hermes",
+    "description": "Compresses terminal output via RTK before it reaches LLM context. 60-90% token reduction. Zero config.",
+    "source_url": "https://github.com/ogallotti/rtk-hermes",
+    "category": "Community: Hermes-native skill builders",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-plugin-chrome-profiles",
+    "description": "Switch browser tools between Chrome profiles via CDP. Multi-account testing.",
+    "source_url": "https://github.com/anpicasso/hermes-plugin-chrome-profiles",
+    "category": "Community: Browser & Web",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-cloudflare",
+    "description": "Cloudflare browser rendering plugin. Headless browsing through Cloudflare's infrastructure.",
+    "source_url": "https://github.com/raulvidis/hermes-cloudflare",
+    "category": "Community: Browser & Web",
+    "tag": "experimental"
+  },
+  {
+    "name": "vessel-browser",
+    "description": "AI-native Linux browser with MCP control and autonomous browsing. Built for agent use, not a headless wrapper.",
+    "source_url": "https://github.com/unmodeled-tyler/vessel-browser",
+    "category": "Community: Browser & Web",
+    "tag": "experimental"
+  },
+  {
+    "name": "clawsocial-hermes-plugin",
+    "description": "Social discovery network. Semantic interest matching, real-time WebSocket messaging, shareable profile cards. Bilingual EN+CN.",
+    "source_url": "https://github.com/mrpeter2025/clawsocial-hermes-plugin",
+    "category": "Community: Communication & Social",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-tweet",
+    "description": "Native Hermes Agent X/Twitter plugin for tweet search, reply reading, user lookup, monitoring, posting, replies, DMs, and approval-gated X actions through Xquik.",
+    "source_url": "https://github.com/Xquik-dev/hermes-tweet",
+    "category": "Community: Communication & Social",
+    "tag": "beta"
+  },
+  {
+    "name": "microsoft-workspace-skill",
+    "description": "Full Outlook/Hotmail/Microsoft 365 integration via Graph API. Email, calendar, contacts, free/busy. OAuth2 auto-refresh. Preview-before-send pattern.",
+    "source_url": "https://github.com/Andrew-Girgis/microsoft-workspace-skill",
+    "category": "Community: Communication & Social",
+    "tag": "beta"
+  },
+  {
+    "name": "tweetclaw",
+    "description": "OpenClaw plugin and agent skill to scrape tweets, search tweet replies, export followers, look up users, run media, monitors, webhooks, giveaway draws, and approval-gated posts through Xquik.",
+    "source_url": "https://github.com/Xquik-dev/tweetclaw",
+    "category": "Community: Communication & Social",
+    "tag": "beta"
+  },
+  {
+    "name": "grill-me",
+    "description": "Get relentlessly interviewed by your agent until every branch of the decision tree is resolved. Use *every* time before making a change. Most popular skill in the pack.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production"
+  },
+  {
+    "name": "before-you-build",
+    "description": "Product-risk review before implementation. Challenges demand, positioning, monetization, retention, trust, distribution, and feature-adoption risk before an agent starts building. Works with Hermes, OpenClaw, Claude Code, Codex, and other `SKILL.md`-compatible agents.",
+    "source_url": "https://github.com/bin1874/before-you-build-skill",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production"
+  },
+  {
+    "name": "caveman",
+    "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy. Critical for long sessions.",
+    "source_url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/caveman/SKILL.md",
+    "category": "Community: Productivity & Tasks",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-plugins",
+    "description": "Goal management, inter-agent bridge, model selection, cost control. Four plugins covering common operational needs.",
+    "source_url": "https://github.com/42-evey/hermes-plugins",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta"
+  },
+  {
+    "name": "onequery-cli",
+    "description": "CLI skill for safe, auditable queries for agents against approved data sources.",
+    "source_url": "https://github.com/wordbricks/skills/tree/main/skills/onequery-cli",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta"
+  },
+  {
+    "name": "agent-analytics-hermes-plugin",
+    "description": "Native Signals dashboard tab for Hermes. Read-only multi-project analytics.",
+    "source_url": "https://github.com/Agent-Analytics/agent-analytics-hermes-plugin",
+    "category": "Community: Productivity & Tasks",
+    "tag": "beta"
+  },
+  {
+    "name": "black-forest-labs/skills",
+    "description": "Official FLUX model skills for image generation. First-party skills from the FLUX creators.",
+    "source_url": "https://github.com/black-forest-labs/skills",
+    "category": "Community: Creative & Media Generation",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-weather-plugin",
+    "description": "Professional-grade weather plugin with NWS model imagery, NEXRAD radar, meteorological calculations.",
+    "source_url": "https://github.com/FahrenheitResearch/hermes-weather-plugin",
+    "category": "Community: Creative & Media Generation",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-wxtrain-plugin",
+    "description": "ML pipeline for building training datasets from HRRR/GFS/ERA5 weather models.",
+    "source_url": "https://github.com/FahrenheitResearch/hermes-wxtrain-plugin",
+    "category": "Community: Creative & Media Generation",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-agent-docker",
+    "description": "Minimal Docker sandbox image for Hermes. Pull, run, done.",
+    "source_url": "https://github.com/xmbshwll/hermes-agent-docker",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta"
+  },
+  {
+    "name": "portainer-stack-hermes",
+    "description": "Docker Compose + Portainer + ttyd web terminal. Browser-accessible Hermes.",
+    "source_url": "https://github.com/ellickjohnson/portainer-stack-hermes",
+    "category": "Community: DevOps & Deployment",
+    "tag": "experimental"
+  },
+  {
+    "name": "nix-hermes-agent",
+    "description": "Nix package and NixOS module. Fully reproducible deployments via Nix flakes.",
+    "source_url": "https://github.com/0xrsydn/nix-hermes-agent",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta"
+  },
+  {
+    "name": "openclaw-to-hermes",
+    "description": "Community migration tool from OpenClaw to Hermes.",
+    "source_url": "https://github.com/0xNyk/openclaw-to-hermes",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta"
+  },
+  {
+    "name": "evey-setup",
+    "description": "One-command setup for full hermes-agent stack with free models and 29 plugins.",
+    "source_url": "https://github.com/42-evey/evey-setup",
+    "category": "Community: DevOps & Deployment",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-payguard",
+    "description": "Safe USDC and x402 payment plugin with spending limits and approval flows.",
+    "source_url": "https://github.com/nativ3ai/hermes-payguard",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental"
+  },
+  {
+    "name": "AgentCash",
+    "description": "300+ premium APIs + wallet for paying via x402 or MPP. Free USDC for trying out.",
+    "source_url": "https://github.com/Merit-Systems/agentcash-skills",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta"
+  },
+  {
+    "name": "ripley-xmr-gateway",
+    "description": "Monero (XMR) blockchain gateway. Private cryptocurrency transactions from agent workflows.",
+    "source_url": "https://github.com/KYC-rip/ripley-xmr-gateway",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-blockchain-oracle",
+    "description": "Solana blockchain intelligence MCP server. On-chain analytics and wallet data.",
+    "source_url": "https://github.com/gizdusum/hermes-blockchain-oracle",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "experimental"
+  },
+  {
+    "name": "chainlink-agent-skills",
+    "description": "Official Chainlink skills. Oracle data, CCIP, smart contract interaction.",
+    "source_url": "https://github.com/smartcontractkit/chainlink-agent-skills",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "production"
+  },
+  {
+    "name": "mercury",
+    "description": "Multi-chain blockchain cash flow analyzer with WebGL dashboard. On-chain forensics.",
+    "source_url": "https://github.com/hxsteric/mercury",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta"
+  },
+  {
+    "name": "erpclaw",
+    "description": "AI-native open-source ERP and double-entry accounting you self-host and run in plain English. Invoicing, inventory, general ledger, payroll, multi-company books.",
+    "source_url": "https://github.com/avansaber/erpclaw",
+    "category": "Community: Finance, Payments & Crypto",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-agent-acp-skill",
+    "description": "Multi-agent delegation bridging Hermes, Codex, Claude Code. Routes subtasks to best-suited agent.",
+    "source_url": "https://github.com/Rainhoole/hermes-agent-acp-skill",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-council",
+    "description": "Adversarial multi-perspective council MCP. Multiple AI viewpoints debate before commit.",
+    "source_url": "https://github.com/Ridwannurudeen/hermes-council",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "experimental"
+  },
+  {
+    "name": "opencode-hermes-multiagent",
+    "description": "17 specialized agents for OpenCode AI with structured interfaces.",
+    "source_url": "https://github.com/1ilkhamov/opencode-hermes-multiagent",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "beta"
+  },
+  {
+    "name": "NemoHermes",
+    "description": "NVIDIA capability registry and Spark-aware routing. Routes compute-heavy tasks to GPU infrastructure.",
+    "source_url": "https://github.com/Hmbown/NemoHermes",
+    "category": "Community: Multi-Agent & Swarms",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-android",
+    "description": "Android device bridge with full Python toolset.",
+    "source_url": "https://github.com/raulvidis/hermes-android",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta"
+  },
+  {
+    "name": "agent-android",
+    "description": "LAN-first Android control over WiFi. No USB/ADB/root needed. Health checks, taps, swipes, screenshots, inspect→act→smoke flows.",
+    "source_url": "https://github.com/aivanelabs/ai-rpa/tree/main/skills/agent-android",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta"
+  },
+  {
+    "name": "hermescraft",
+    "description": "Embodied Minecraft companion with persistent memory. Learns building preferences across sessions.",
+    "source_url": "https://github.com/bigph00t/hermescraft",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta"
+  },
+  {
+    "name": "Hermes-mars-rover",
+    "description": "Mars rover sim with ROS2 and Gazebo. Hermes skill loop for navigation improvement.",
+    "source_url": "https://github.com/Snehal707/Hermes-mars-rover",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermes-miniverse",
+    "description": "Bridge to Miniverse pixel worlds. By a Nous Research co-founder.",
+    "source_url": "https://github.com/teknium1/hermes-miniverse",
+    "category": "Community: Smart Home, IoT & Embodied",
+    "tag": "beta"
+  },
+  {
+    "name": "resemble-ai/detect-skill",
+    "description": "Deepfake detection: AI-generated audio/image/video/text, source tracing, watermarking, speaker ID.",
+    "source_url": "https://github.com/resemble-ai/detect-skill",
+    "category": "Community: Security & Detection",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-agent-camel",
+    "description": "Hermes with integrated CaMeL trust boundaries. Formal trust verification for safety-critical deployments.",
+    "source_url": "https://github.com/nativ3ai/hermes-agent-camel",
+    "category": "Community: Security & Detection",
+    "tag": "beta"
+  },
+  {
+    "name": "anihermes",
+    "description": "Local anime server and tracker with NL interface. Browse, track, get recommendations via conversation.",
+    "source_url": "https://github.com/rodmarkun/anihermes",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "Wizards-of-the-Ghosts",
+    "description": "Fantasy spell-themed skill pack. `cast lint` instead of `npm run lint`.",
+    "source_url": "https://github.com/Hmbown/Wizards-of-the-Ghosts",
+    "category": "Community: Domain & Novelty",
+    "tag": "experimental"
+  },
+  {
+    "name": "colony-skill",
+    "description": "Collaborative intelligence platform. AI + humans post findings, complete tasks, build reputation.",
+    "source_url": "https://github.com/TheColonyCC/colony-skill",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "zillow-skills",
+    "description": "Zillow property data skills for AI agents — Zestimate, listings, photos, schools, taxes, price history — via the Zillapi REST API. MIT-0, free tier.",
+    "source_url": "https://github.com/ZeroPointRepo/zillow-skills",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-workspace",
+    "description": "Web-based workspace: chat, terminal, memory browser, skills manager, inspector. Most complete GUI for Hermes. 500★.",
+    "source_url": "https://github.com/outsourc-e/hermes-workspace",
+    "category": "Community: Domain & Novelty",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-desktop",
+    "description": "Native macOS workspace with direct host-first SSH. Real terminal, session browsing, file editing.",
+    "source_url": "https://github.com/dodo-reach/hermes-desktop",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "mission-control",
+    "description": "Open-source dashboard for AI agent orchestration. Multi-agent fleets, task dispatch, cost tracking. 3.7k★.",
+    "source_url": "https://github.com/builderz-labs/mission-control",
+    "category": "Community: Domain & Novelty",
+    "tag": "production"
+  },
+  {
+    "name": "portable-hermes-agent",
+    "description": "Windows desktop app bundling 100 tools, GUI, local models, ComfyUI in a portable package.",
+    "source_url": "https://github.com/rookiemann/portable-hermes-agent",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-ui",
+    "description": "Single-file glassmorphic web UI with SSE streaming, tool call visualization, PDF export, session/skill/memory viewers.",
+    "source_url": "https://github.com/pyrate-llama/hermes-ui",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-webui",
+    "description": "Lightweight process monitoring and config dashboard. Simpler ops alternative.",
+    "source_url": "https://github.com/sanchomuzax/hermes-webui",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "orahermes-agent",
+    "description": "Oracle AI Agent Harness — OCI GenAI and Oracle 26ai integration.",
+    "source_url": "https://github.com/jasperan/orahermes-agent",
+    "category": "Community: Domain & Novelty",
+    "tag": "experimental"
+  },
+  {
+    "name": "hermeshub",
+    "description": "Browse, share, and install community Hermes skills.",
+    "source_url": "https://github.com/amanning3390/hermeshub",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "skilldock.io",
+    "description": "Cross-platform skills marketplace for OpenClaw, Claude Code, Hermes.",
+    "source_url": "https://github.com/chigwell/skilldock.io",
+    "category": "Community: Domain & Novelty",
+    "tag": "production"
+  },
+  {
+    "name": "hermes-agent-docs",
+    "description": "Comprehensive community documentation. Useful supplement for deployment patterns.",
+    "source_url": "https://github.com/mudrii/hermes-agent-docs",
+    "category": "Community: Domain & Novelty",
+    "tag": "beta"
+  },
+  {
+    "name": "hermes-wsl-ubuntu",
+    "description": "End-to-end WSL2 + llama.cpp + Qwen3.5 setup with CUDA/Metal acceleration for running Hermes on Windows.",
+    "source_url": "https://github.com/metantonio/hermes-wsl-ubuntu",
+    "category": "Community: Domain & Novelty",
+    "tag": "production"
+  }
+]
