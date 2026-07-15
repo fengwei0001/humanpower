@@ -1,0 +1,782 @@
+{
+  "ab-test-setup": {
+    "slug": "ab-test-setup",
+    "name": "ab-test-setup",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "agent-browser": {
+    "slug": "agent-browser",
+    "name": "agent-browser",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "agent-md-refactor": {
+    "slug": "agent-md-refactor",
+    "name": "agent-md-refactor",
+    "description": "Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files to follow progressive disclosure principles. Splits monolithic files into organized, linked documentation.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/agent-md-refactor",
+    "downloadUrl": "https://agentskills.me/api/skills/agent-md-refactor/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/agent-md-refactor"
+  },
+  "analytics-tracking": {
+    "slug": "analytics-tracking",
+    "name": "analytics-tracking",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "audit-website": {
+    "slug": "audit-website",
+    "name": "audit-website",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "baoyu-article-illustrator": {
+    "slug": "baoyu-article-illustrator",
+    "name": "baoyu-article-illustrator",
+    "description": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-article-illustrator",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-article-illustrator/download",
+    "rating": 5,
+    "ratingCount": 2124,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-article-illustrator"
+  },
+  "baoyu-comic": {
+    "slug": "baoyu-comic",
+    "name": "baoyu-comic",
+    "description": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-comic/download",
+    "rating": 5,
+    "ratingCount": 2123,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-comic"
+  },
+  "baoyu-cover-image": {
+    "slug": "baoyu-cover-image",
+    "name": "baoyu-cover-image",
+    "description": "Generates article cover images with 5 dimensions (type, palette, rendering, text, mood) combining 11 color palettes and 7 rendering styles. Supports cinematic (2.35:1), widescreen (16:9), and square (1:1) aspects. Use when user asks to \"generate cover image\", \"create article cover\", or \"make cover\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-cover-image",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-cover-image/download",
+    "rating": 5,
+    "ratingCount": 2124,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-cover-image"
+  },
+  "baoyu-post-to-wechat": {
+    "slug": "baoyu-post-to-wechat",
+    "name": "baoyu-post-to-wechat",
+    "description": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"贴图/图文/文章\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-post-to-wechat",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-post-to-wechat/download",
+    "rating": 5,
+    "ratingCount": 2123,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-post-to-wechat"
+  },
+  "baoyu-post-to-x": {
+    "slug": "baoyu-post-to-x",
+    "name": "baoyu-post-to-x",
+    "description": "Posts content and articles to X (Twitter). Supports regular posts with images/videos and X Articles (long-form Markdown). In Codex, honor explicit requests for the Codex Chrome plugin/@chrome by using the Chrome Extension workflow; otherwise use Chrome Computer Use when available and fall back to real Chrome CDP scripts only when allowed. Use when user asks to \"post to X\", \"tweet\", \"publish to Twitter\", or \"share on X\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-post-to-x",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-post-to-x/download",
+    "rating": 5,
+    "ratingCount": 2123,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-post-to-x"
+  },
+  "baoyu-slide-deck": {
+    "slug": "baoyu-slide-deck",
+    "name": "baoyu-slide-deck",
+    "description": "Generates professional slide deck images from content. Creates outlines with style instructions, then generates individual slide images. Use when user asks to \"create slides\", \"make a presentation\", \"generate deck\", \"slide deck\", or \"PPT\".",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-slide-deck",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-slide-deck/download",
+    "rating": 5,
+    "ratingCount": 2124,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-slide-deck"
+  },
+  "baoyu-xhs-images": {
+    "slug": "baoyu-xhs-images",
+    "name": "baoyu-xhs-images",
+    "description": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小红书图片\", \"小红书种草\", \"小绿书\", \"微信图文\", \"微信贴图\", \"image cards\", \"图片卡片\", baoyu-xhs-images, or wants social media infographic series.",
+    "author": "JimLiu",
+    "authorUrl": "https://github.com/JimLiu",
+    "codeRepository": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-xhs-images",
+    "downloadUrl": "https://agentskills.me/api/skills/baoyu-xhs-images/download",
+    "rating": 5,
+    "ratingCount": 2123,
+    "sourceUrl": "https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-xhs-images"
+  },
+  "better-auth-best-practices": {
+    "slug": "better-auth-best-practices",
+    "name": "better-auth-best-practices",
+    "description": "Configure Better Auth server and client, set up database adapters, manage sessions, add plugins, and handle environment variables. Use when users mention Better Auth, betterauth, auth.ts, or need to set up TypeScript authentication with email/password, OAuth, or plugin configuration.",
+    "author": "better-auth",
+    "authorUrl": "https://github.com/better-auth",
+    "codeRepository": "https://github.com/better-auth/skills/tree/main/better-auth/best-practices",
+    "downloadUrl": "https://agentskills.me/api/skills/better-auth-best-practices/download",
+    "rating": 3.2,
+    "ratingCount": 78,
+    "sourceUrl": "https://github.com/better-auth/skills/tree/main/better-auth/best-practices"
+  },
+  "bibi": {
+    "slug": "bibi",
+    "name": "bibi",
+    "description": "AI video & audio summarizer + repackager. Summarize YouTube, Bilibili, podcasts, TikTok, Twitter/X, Xiaohongshu, and any online video or audio, then optionally turn the takeaway into a TikTok-style vertical music video. Use when the user wants to summarize a video, extract transcripts/subtitles, get chapter-by-chapter summaries, understand video content quickly, or remix a long-form video into a short vertical MV. Triggers: \"summarize this video\", \"what's this video about\", \"extract subtitles\", \"总结这个视频\", \"帮我看看这个视频讲了什么\", \"video summary\", \"podcast notes\", \"YouTube summary\", \"B站总结\", \"get transcript\", \"video to notes\", \"video to TikTok MV\", \"把视频变成 TikTok\", \"video to song\", \"做一个 TikTok 视频\". Works via bibi CLI (macOS/Windows) or OpenAPI (Linux / any platform without CLI).\n",
+    "author": "JimmyLv",
+    "authorUrl": "https://github.com/JimmyLv",
+    "codeRepository": "https://github.com/JimmyLv/bibigpt-skill/tree/main/skills/bibi",
+    "downloadUrl": "https://agentskills.me/api/skills/bibi/download",
+    "rating": 0,
+    "ratingCount": 0,
+    "sourceUrl": "https://github.com/JimmyLv/bibigpt-skill/tree/main/skills/bibi"
+  },
+  "brainstorming": {
+    "slug": "brainstorming",
+    "name": "brainstorming",
+    "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
+    "downloadUrl": "https://agentskills.me/api/skills/brainstorming/download",
+    "rating": 5,
+    "ratingCount": 33805,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/brainstorming"
+  },
+  "building-native-ui": {
+    "slug": "building-native-ui",
+    "name": "building-native-ui",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "c4-architecture": {
+    "slug": "c4-architecture",
+    "name": "c4-architecture",
+    "description": "Generate architecture documentation using C4 model Mermaid diagrams. Use when asked to create architecture diagrams, document system architecture, visualize software structure, create C4 diagrams, or generate context/container/component/deployment diagrams. Triggers include \"architecture diagram\", \"C4 diagram\", \"system context\", \"container diagram\", \"component diagram\", \"deployment diagram\", \"document architecture\", \"visualize architecture\".",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/c4-architecture",
+    "downloadUrl": "https://agentskills.me/api/skills/c4-architecture/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/c4-architecture"
+  },
+  "codex": {
+    "slug": "codex",
+    "name": "codex",
+    "description": "Use when the user asks to run Codex CLI (codex exec, codex resume) or references OpenAI Codex for code analysis, refactoring, or automated editing. Uses GPT-5.2 by default for state-of-the-art software engineering.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/codex",
+    "downloadUrl": "https://agentskills.me/api/skills/codex/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/codex"
+  },
+  "command-creator": {
+    "slug": "command-creator",
+    "name": "command-creator",
+    "description": "This skill should be used when creating a Claude Code slash command. Use when users ask to \"create a command\", \"make a slash command\", \"add a command\", or want to document a workflow as a reusable command. Essential for creating optimized, agent-executable slash commands with proper structure and best practices.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/command-creator",
+    "downloadUrl": "https://agentskills.me/api/skills/command-creator/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/command-creator"
+  },
+  "commit-work": {
+    "slug": "commit-work",
+    "name": "commit-work",
+    "description": "Create high-quality git commits: review/stage intended changes, split into logical commits, and write clear commit messages (including Conventional Commits). Use when the user asks to commit, craft a commit message, stage changes, or split work into multiple commits.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/commit-work",
+    "downloadUrl": "https://agentskills.me/api/skills/commit-work/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/commit-work"
+  },
+  "competitor-alternatives": {
+    "slug": "competitor-alternatives",
+    "name": "competitor-alternatives",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "copy-editing": {
+    "slug": "copy-editing",
+    "name": "copy-editing",
+    "description": "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting.",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing",
+    "downloadUrl": "https://agentskills.me/api/skills/copy-editing/download",
+    "rating": 5,
+    "ratingCount": 3776,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing"
+  },
+  "copywriting": {
+    "slug": "copywriting",
+    "name": "copywriting",
+    "description": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"subheadline,\" \"hero section copy,\" \"above the fold,\" \"this copy is weak,\" \"make this more compelling,\" or \"help me describe my product.\" Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting",
+    "downloadUrl": "https://agentskills.me/api/skills/copywriting/download",
+    "rating": 5,
+    "ratingCount": 3776,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting"
+  },
+  "create-auth-skill": {
+    "slug": "create-auth-skill",
+    "name": "create-auth",
+    "description": "Scaffold and implement authentication in TypeScript/JavaScript apps using Better Auth. Detect frameworks, configure database adapters, set up route handlers, add OAuth providers, and create auth UI pages. Use when users want to add login, sign-up, or authentication to a new or existing project with Better Auth.",
+    "author": "better-auth",
+    "authorUrl": "https://github.com/better-auth",
+    "codeRepository": "https://github.com/better-auth/skills/tree/main/better-auth/create-auth",
+    "downloadUrl": "https://agentskills.me/api/skills/create-auth/download",
+    "rating": 3.2,
+    "ratingCount": 78,
+    "sourceUrl": "https://github.com/better-auth/skills/tree/main/better-auth/create-auth"
+  },
+  "dependency-updater": {
+    "slug": "dependency-updater",
+    "name": "dependency-updater",
+    "description": "Smart dependency management for any language. Auto-detects project type, applies safe updates automatically, prompts for major versions, diagnoses and fixes dependency issues.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/dependency-updater",
+    "downloadUrl": "https://agentskills.me/api/skills/dependency-updater/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/dependency-updater"
+  },
+  "domain-name-brainstormer": {
+    "slug": "domain-name-brainstormer",
+    "name": "domain-name-brainstormer",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "email-sequence": {
+    "slug": "email-sequence",
+    "name": "email-sequence",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "executing-plans": {
+    "slug": "executing-plans",
+    "name": "executing-plans",
+    "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/executing-plans",
+    "downloadUrl": "https://agentskills.me/api/skills/executing-plans/download",
+    "rating": 5,
+    "ratingCount": 33781,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/executing-plans"
+  },
+  "expo-api-routes": {
+    "slug": "expo-api-routes",
+    "name": "expo-api-routes",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "expo-cicd-workflows": {
+    "slug": "expo-cicd-workflows",
+    "name": "expo-cicd-workflows",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "expo-deployment": {
+    "slug": "expo-deployment",
+    "name": "expo-deployment",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "expo-dev-client": {
+    "slug": "expo-dev-client",
+    "name": "expo-dev-client",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "expo-tailwind-setup": {
+    "slug": "expo-tailwind-setup",
+    "name": "expo-tailwind-setup",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "feedback-mastery": {
+    "slug": "feedback-mastery",
+    "name": "feedback-mastery",
+    "description": "Navigate difficult conversations and deliver constructive feedback using structured frameworks. Covers the Preparation-Delivery-Follow-up model and Situation-Behavior-Impact (SBI) feedback technique. Use when preparing for difficult conversations, giving feedback, or managing conflicts.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/feedback-mastery",
+    "downloadUrl": "https://agentskills.me/api/skills/feedback-mastery/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/feedback-mastery"
+  },
+  "form-cro": {
+    "slug": "form-cro",
+    "name": "form-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "free-tool-strategy": {
+    "slug": "free-tool-strategy",
+    "name": "free-tool-strategy",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "gemini": {
+    "slug": "gemini",
+    "name": "gemini",
+    "description": "Use when the user asks to run Gemini CLI for code review, plan review, or big context (>200k) processing. Ideal for comprehensive analysis requiring large context windows. Uses Gemini 3 Pro by default for state-of-the-art reasoning and coding.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/gemini",
+    "downloadUrl": "https://agentskills.me/api/skills/gemini/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/gemini"
+  },
+  "gepetto": {
+    "slug": "gepetto",
+    "name": "gepetto",
+    "description": "Creates detailed, sectionized implementation plans through research, stakeholder interviews, and multi-LLM review. Use when planning features that need thorough pre-implementation analysis.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/gepetto",
+    "downloadUrl": "https://agentskills.me/api/skills/gepetto/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/gepetto"
+  },
+  "humanizer": {
+    "slug": "humanizer",
+    "name": "humanizer",
+    "description": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.\n\nCredits: Original skill by @blader - https://github.com/blader/humanizer\n",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/humanizer",
+    "downloadUrl": "https://agentskills.me/api/skills/humanizer/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/humanizer"
+  },
+  "launch-strategy": {
+    "slug": "launch-strategy",
+    "name": "launch-strategy",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "marketing-ideas": {
+    "slug": "marketing-ideas",
+    "name": "marketing-ideas",
+    "description": "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,' or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on how to grow. For specific channel execution, see the relevant skill (ads, social, emails, etc.).",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-ideas",
+    "downloadUrl": "https://agentskills.me/api/skills/marketing-ideas/download",
+    "rating": 5,
+    "ratingCount": 3776,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-ideas"
+  },
+  "marketing-psychology": {
+    "slug": "marketing-psychology",
+    "name": "marketing-psychology",
+    "description": "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context. For applying psychology to specific pages, see cro; for pricing tactics, see pricing; for copy framing, see copywriting.",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology",
+    "downloadUrl": "https://agentskills.me/api/skills/marketing-psychology/download",
+    "rating": 5,
+    "ratingCount": 3776,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology"
+  },
+  "marp-slide": {
+    "slug": "marp-slide",
+    "name": "marp-slide",
+    "description": "Create professional Marp presentation slides with 7 beautiful themes (default, minimal, colorful, dark, gradient, tech, business). Use when users request slide creation, presentations, or Marp documents. Supports custom themes, image layouts, and \"make it look good\" requests with automatic quality improvements.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/marp-slide",
+    "downloadUrl": "https://agentskills.me/api/skills/marp-slide/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/marp-slide"
+  },
+  "meme-factory": {
+    "slug": "meme-factory",
+    "name": "meme-factory",
+    "description": "Generate memes using the memegen.link API. Use when users request memes, want to add humor to content, or need visual aids for social media. Supports 100+ popular templates with custom text and styling.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/meme-factory",
+    "downloadUrl": "https://agentskills.me/api/skills/meme-factory/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/meme-factory"
+  },
+  "mermaid-diagrams": {
+    "slug": "mermaid-diagrams",
+    "name": "mermaid-diagrams",
+    "description": "Comprehensive guide for creating software diagrams using Mermaid syntax. Use when users need to create, visualize, or document software through diagrams including class diagrams (domain modeling, object-oriented design), sequence diagrams (application flows, API interactions, code execution), flowcharts (processes, algorithms, user journeys), entity relationship diagrams (database schemas), C4 architecture diagrams (system context, containers, components), state diagrams, git graphs, pie charts, gantt charts, or any other diagram type. Triggers include requests to \"diagram\", \"visualize\", \"model\", \"map out\", \"show the flow\", or when explaining system architecture, database design, code structure, or user/application flows.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/mermaid-diagrams",
+    "downloadUrl": "https://agentskills.me/api/skills/mermaid-diagrams/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/mermaid-diagrams"
+  },
+  "naming-analyzer": {
+    "slug": "naming-analyzer",
+    "name": "naming-analyzer",
+    "description": "Suggest better variable, function, and class names based on context and conventions.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/naming-analyzer",
+    "downloadUrl": "https://agentskills.me/api/skills/naming-analyzer/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/naming-analyzer"
+  },
+  "native-data-fetching": {
+    "slug": "native-data-fetching",
+    "name": "native-data-fetching",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "onboarding-cro": {
+    "slug": "onboarding-cro",
+    "name": "onboarding-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "page-cro": {
+    "slug": "page-cro",
+    "name": "page-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "paid-ads": {
+    "slug": "paid-ads",
+    "name": "paid-ads",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "paywall-upgrade-cro": {
+    "slug": "paywall-upgrade-cro",
+    "name": "paywall-upgrade-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "plugin-forge": {
+    "slug": "plugin-forge",
+    "name": "plugin-forge",
+    "description": "Create and manage Claude Code plugins with proper structure, manifests, and marketplace integration. Use when creating plugins for a marketplace, adding plugin components (commands, agents, hooks), bumping plugin versions, or working with plugin.json/marketplace.json manifests.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/plugin-forge",
+    "downloadUrl": "https://agentskills.me/api/skills/plugin-forge/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/plugin-forge"
+  },
+  "popup-cro": {
+    "slug": "popup-cro",
+    "name": "popup-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "pricing-strategy": {
+    "slug": "pricing-strategy",
+    "name": "pricing-strategy",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "programmatic-seo": {
+    "slug": "programmatic-seo",
+    "name": "programmatic-seo",
+    "description": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory pages,\" \"location pages,\" \"[keyword] + [city] pages,\" \"comparison pages,\" \"integration pages,\" \"building many pages for SEO,\" \"pSEO,\" \"generate 100 pages,\" \"data-driven pages,\" or \"templated landing pages.\" Use this whenever someone wants to create many similar pages targeting different keywords or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/programmatic-seo",
+    "downloadUrl": "https://agentskills.me/api/skills/programmatic-seo/download",
+    "rating": 5,
+    "ratingCount": 3771,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/programmatic-seo"
+  },
+  "react-dev": {
+    "slug": "react-dev",
+    "name": "react-dev",
+    "description": "This skill should be used when building React components with TypeScript, typing hooks, handling events, or when React TypeScript, React 19, Server Components are mentioned. Covers type-safe patterns for React 18-19 including generic components, proper event typing, and routing integration (TanStack Router, React Router).",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/react-dev",
+    "downloadUrl": "https://agentskills.me/api/skills/react-dev/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/react-dev"
+  },
+  "react-native-best-practices": {
+    "slug": "react-native-best-practices",
+    "name": "react-native-best-practices",
+    "description": "Provides React Native performance optimization guidelines for FPS, TTI, bundle size, memory leaks, re-renders, and animations. Applies to tasks involving Hermes optimization, JS thread blocking, bridge overhead, FlashList, native modules, or debugging jank and frame drops.",
+    "author": "callstackincubator",
+    "authorUrl": "https://github.com/callstackincubator",
+    "codeRepository": "https://github.com/callstackincubator/agent-skills/tree/main/skills/react-native-best-practices",
+    "downloadUrl": "https://agentskills.me/api/skills/react-native-best-practices/download",
+    "rating": 4.3,
+    "ratingCount": 640,
+    "sourceUrl": "https://github.com/callstackincubator/agent-skills/tree/main/skills/react-native-best-practices"
+  },
+  "reducing-entropy": {
+    "slug": "reducing-entropy",
+    "name": "reducing-entropy",
+    "description": "Manual-only skill for minimizing total codebase size. Only activate when explicitly requested by user. Measures success by final code amount, not effort. Bias toward deletion.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/reducing-entropy",
+    "downloadUrl": "https://agentskills.me/api/skills/reducing-entropy/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/reducing-entropy"
+  },
+  "referral-program": {
+    "slug": "referral-program",
+    "name": "referral-program",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "remotion-best-practices": {
+    "slug": "remotion-best-practices",
+    "name": "remotion-best-practices",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "requirements-clarity": {
+    "slug": "requirements-clarity",
+    "name": "requirements-clarity",
+    "description": "Clarify ambiguous requirements through focused dialogue before implementation. Use when requirements are unclear, features are complex (>2 days), or involve cross-team coordination. Ask two core questions - Why? (YAGNI check) and Simpler? (KISS check) - to ensure clarity before coding.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/requirements-clarity",
+    "downloadUrl": "https://agentskills.me/api/skills/requirements-clarity/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/requirements-clarity"
+  },
+  "schema-markup": {
+    "slug": "schema-markup",
+    "name": "schema-markup",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "seo-audit": {
+    "slug": "seo-audit",
+    "name": "seo-audit",
+    "description": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" \"SEO health check,\" \"my traffic dropped,\" \"lost rankings,\" \"not showing up in Google,\" \"site isn't ranking,\" \"Google update hit me,\" \"page speed,\" \"core web vitals,\" \"crawl errors,\" or \"indexing issues.\" Use this even if the user just says something vague like \"my SEO is bad\" or \"help with SEO\" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.",
+    "author": "coreyhaines31",
+    "authorUrl": "https://github.com/coreyhaines31",
+    "codeRepository": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/seo-audit",
+    "downloadUrl": "https://agentskills.me/api/skills/seo-audit/download",
+    "rating": 5,
+    "ratingCount": 3776,
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/seo-audit"
+  },
+  "session-handoff": {
+    "slug": "session-handoff",
+    "name": "session-handoff",
+    "description": "Creates comprehensive handoff documents for seamless AI agent session transfers. Triggered when: (1) user requests handoff/memory/context save, (2) context window approaches capacity, (3) major task milestone completed, (4) work session ending, (5) user says 'save state', 'create handoff', 'I need to pause', 'context is getting full', (6) resuming work with 'load handoff', 'resume from', 'continue where we left off'. Proactively suggests handoffs after substantial work (multiple file edits, complex debugging, architecture decisions). Solves long-running agent context exhaustion by enabling fresh agents to continue with zero ambiguity.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/session-handoff",
+    "downloadUrl": "https://agentskills.me/api/skills/session-handoff/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/session-handoff"
+  },
+  "ship-learn-next": {
+    "slug": "ship-learn-next",
+    "name": "ship-learn-next",
+    "description": "Transform learning content (like YouTube transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework. Use when user wants to turn advice, lessons, or educational content into concrete action steps, reps, or a learning quest.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/ship-learn-next",
+    "downloadUrl": "https://agentskills.me/api/skills/ship-learn-next/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/ship-learn-next"
+  },
+  "signup-flow-cro": {
+    "slug": "signup-flow-cro",
+    "name": "signup-flow-cro",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "skill-creator": {
+    "slug": "skill-creator",
+    "name": "skill-creator",
+    "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+    "author": "anthropics",
+    "authorUrl": "https://github.com/anthropics",
+    "codeRepository": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
+    "downloadUrl": "https://agentskills.me/api/skills/skill-creator/download",
+    "rating": 5,
+    "ratingCount": 47756,
+    "sourceUrl": "https://github.com/anthropics/skills/tree/main/skills/skill-creator"
+  },
+  "skill-judge": {
+    "slug": "skill-judge",
+    "name": "skill-judge",
+    "description": "Evaluate Agent Skill design quality against official specifications and best practices. Use when reviewing, auditing, or improving SKILL.md files and skill packages. Provides multi-dimensional scoring and actionable improvement suggestions.",
+    "author": "softaworks",
+    "authorUrl": "https://github.com/softaworks",
+    "codeRepository": "https://github.com/softaworks/agent-toolkit/tree/main/skills/skill-judge",
+    "downloadUrl": "https://agentskills.me/api/skills/skill-judge/download",
+    "rating": 3.2,
+    "ratingCount": 109,
+    "sourceUrl": "https://github.com/softaworks/agent-toolkit/tree/main/skills/skill-judge"
+  },
+  "social-content": {
+    "slug": "social-content",
+    "name": "social-content",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "subagent-driven-development": {
+    "slug": "subagent-driven-development",
+    "name": "subagent-driven-development",
+    "description": "Use when executing implementation plans with independent tasks in the current session",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/subagent-driven-development",
+    "downloadUrl": "https://agentskills.me/api/skills/subagent-driven-development/download",
+    "rating": 5,
+    "ratingCount": 33781,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/subagent-driven-development"
+  },
+  "supabase-postgres-best-practices": {
+    "slug": "supabase-postgres-best-practices",
+    "name": "supabase-postgres-best-practices",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "systematic-debugging": {
+    "slug": "systematic-debugging",
+    "name": "systematic-debugging",
+    "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/systematic-debugging",
+    "downloadUrl": "https://agentskills.me/api/skills/systematic-debugging/download",
+    "rating": 5,
+    "ratingCount": 33805,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/systematic-debugging"
+  },
+  "test-driven-development": {
+    "slug": "test-driven-development",
+    "name": "test-driven-development",
+    "description": "Use when implementing any feature or bugfix, before writing implementation code",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
+    "downloadUrl": "https://agentskills.me/api/skills/test-driven-development/download",
+    "rating": 5,
+    "ratingCount": 33805,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development"
+  },
+  "ui-ux-pro-max": {
+    "slug": "ui-ux-pro-max",
+    "name": "ui-ux-pro-max",
+    "description": "UI/UX design intelligence for web and mobile. Searchable local database with 84 styles, 192 color palettes, 74 font pairings, 192 product types, 98 UX guidelines, 104 icon entries, 16 GSAP motion presets, and 25 chart types across 22 stacks (React, Next.js, Vue, Nuxt, Svelte, Astro, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel, JavaFX, WPF, WinUI, Avalonia, Uno Platform, UWP, Three.js, and HTML/CSS). Use when designing, building, or reviewing UI: pages, components, color schemes, typography, layout, accessibility, animation, or data visualization.",
+    "author": "nextlevelbuilder",
+    "authorUrl": "https://github.com/nextlevelbuilder",
+    "codeRepository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/ui-ux-pro-max",
+    "downloadUrl": "https://agentskills.me/api/skills/ui-ux-pro-max/download",
+    "rating": 5,
+    "ratingCount": 21329,
+    "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/ui-ux-pro-max"
+  },
+  "upgrading-expo": {
+    "slug": "upgrading-expo",
+    "name": "upgrading-expo",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "use-dom": {
+    "slug": "use-dom",
+    "name": "use-dom",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "vercel-react-best-practices": {
+    "slug": "vercel-react-best-practices",
+    "name": "vercel-react-best-practices",
+    "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+    "author": "vercel-labs",
+    "authorUrl": "https://github.com/vercel-labs",
+    "codeRepository": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
+    "downloadUrl": "https://agentskills.me/api/skills/vercel-react-best-practices/download",
+    "rating": 5,
+    "ratingCount": 15587,
+    "sourceUrl": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices"
+  },
+  "verification-before-completion": {
+    "slug": "verification-before-completion",
+    "name": "verification-before-completion",
+    "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion",
+    "downloadUrl": "https://agentskills.me/api/skills/verification-before-completion/download",
+    "rating": 5,
+    "ratingCount": 33781,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+  },
+  "vue-best-practices": {
+    "slug": "vue-best-practices",
+    "name": "vue-best-practices",
+    "description": "MUST be used for Vue.js tasks. Strongly recommends Composition API with `<script setup>` and TypeScript as the standard approach. Covers Vue 3, SSR, Volar, vue-tsc. Load for any Vue, .vue files, Vue Router, Pinia, or Vite with Vue work. ALWAYS use Composition API unless the project explicitly requires Options API.",
+    "author": "hyf0",
+    "authorUrl": "https://github.com/hyf0",
+    "codeRepository": "https://github.com/hyf0/vue-skills/tree/master/skills/vue-best-practices",
+    "downloadUrl": "https://agentskills.me/api/skills/vue-best-practices/download",
+    "rating": 3.9,
+    "ratingCount": 469,
+    "sourceUrl": "https://github.com/hyf0/vue-skills/tree/master/skills/vue-best-practices"
+  },
+  "web-design-guidelines": {
+    "slug": "web-design-guidelines",
+    "name": "web-design-guidelines",
+    "description": "",
+    "error": "no json-ld"
+  },
+  "writing-plans": {
+    "slug": "writing-plans",
+    "name": "writing-plans",
+    "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+    "author": "obra",
+    "authorUrl": "https://github.com/obra",
+    "codeRepository": "https://github.com/obra/superpowers/tree/main/skills/writing-plans",
+    "downloadUrl": "https://agentskills.me/api/skills/writing-plans/download",
+    "rating": 5,
+    "ratingCount": 33781,
+    "sourceUrl": "https://github.com/obra/superpowers/tree/main/skills/writing-plans"
+  }
+}
