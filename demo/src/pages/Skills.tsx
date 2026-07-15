@@ -178,7 +178,7 @@ export default function Skills() {
                     {searchResult.skills.map((skill, i) => (
                       <motion.div key={skill.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.15 }} className="flex items-center gap-4 relative">
                         <div className="w-12 h-12 rounded-full bg-brand-purple-surface flex items-center justify-center text-sm font-bold text-brand-purple z-10 border-2 border-white">{i + 1}</div>
-                        <div className="flex-1 p-4 bg-surface rounded-xl border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/30 transition-all cursor-pointer" onClick={() => navigate(`/skills/${skill.id}`)}>
+                        <div className="flex-1 p-4 bg-surface rounded-xl border border-border hover:border-brand-purple/30 hover:bg-brand-purple-surface/30 transition-all cursor-pointer" onClick={() => window.open(`/skills/${skill.id}`, '_blank')}>
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="text-[15px] font-bold text-text-primary">{skill.name}</span>
                             <span className="text-xs text-brand-purple bg-brand-purple-surface px-2 py-0.5 rounded-full font-medium">{skill.role}</span>
