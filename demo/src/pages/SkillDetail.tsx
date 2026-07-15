@@ -519,7 +519,8 @@ export default function SkillDetail() {
             <button
               className="w-full mb-3 flex items-center justify-center gap-2 font-medium px-5 py-3 rounded-btn bg-brand-purple text-white hover:bg-brand-purple/90 transition-all"
               onClick={() => {
-                const prompt = `请使用「${skill.name}」这个方法帮我执行任务。\n\n方法描述：${skill.description}\n${skill.steps ? '\n执行步骤：\n' + skill.steps.map((s, i) => `${i + 1}. ${s}`).join('\n') : ''}\n\n请开始执行，给我看结果。`
+                const sourceUrl = skill.sourceUrl || ''
+                const prompt = `请帮我执行「${skill.name}」这个技能。\n\n${sourceUrl ? `第一步：先安装这个技能：\n${sourceUrl}\n\n第二步：` : ''}使用这个技能的方法论帮我完成任务。\n\n技能描述：${skill.description}\n${skill.input ? `\n输入要求：${skill.input}` : ''}${skill.steps ? '\n\n执行步骤：\n' + skill.steps.map((s, i) => `${i + 1}. ${s}`).join('\n') : ''}\n\n请开始执行。`
                 setAgentPrompt(prompt)
                 setAgentOpen(true)
               }}

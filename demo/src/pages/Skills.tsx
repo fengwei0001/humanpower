@@ -197,7 +197,11 @@ export default function Skills() {
                     <button
                       className="text-sm px-4 py-2 rounded-btn bg-brand-purple text-white font-medium hover:bg-brand-purple/90 transition-all"
                       onClick={() => {
-                        const prompt = `我的需求是：${aiQuery}\n\n请根据以下方案帮我执行：\n${searchResult?.skills.map((s, i) => `${i + 1}. ${s.name}${s.why ? ' — ' + s.why : ''}`).join('\n')}`
+                        const skillLines = searchResult?.skills.map((s, i) => {
+                          const url = (s as any).source_url || (s as any).sourceUrl || ''
+                          return `${i + 1}. ${s.name}${url ? `\n   安装地址：${url}` : ''}`
+                        }).join('\n') || ''
+                        const prompt = `请帮我完成以下任务：${aiQuery}\n\n执行步骤：\n1. 先安装以下技能（如果有安装地址的话）：\n${skillLines}\n\n2. 安装完成后，按照这些技能的方法论，帮我执行任务并输出结果。\n\n请开始。`
                         setAgentPrompt(prompt)
                         setAgentOpen(true)
                       }}
