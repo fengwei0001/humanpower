@@ -246,16 +246,19 @@ export default function Skills() {
                     复制下面这段话发给你的 Agent（Claude Code / Hermes / OpenClaw 都行），它会帮你装好。
                   </p>
 
-                  {/* Natural language install instruction */}
+                  {/* Natural language install + execute instruction */}
                   <div className="bg-gray-900 rounded-xl p-5 text-sm leading-relaxed overflow-x-auto">
                     <div className="text-gray-200 whitespace-pre-wrap">{(() => {
-                      const lines = ['帮我安装以下技能：']
+                      const lines = ['帮我安装以下技能，然后执行我的任务。', '']
+                      lines.push('安装：')
                       searchResult.skills.forEach((skill, i) => {
                         lines.push(`${i + 1}. ${skill.name}`)
                         if ((skill as any).sourceUrl) {
                           lines.push(`   ${(skill as any).sourceUrl}`)
                         }
                       })
+                      lines.push('')
+                      lines.push(`我的任务：${aiQuery}`)
                       return lines.join('\n')
                     })()}</div>
                   </div>
@@ -264,9 +267,9 @@ export default function Skills() {
                   <button
                     className="w-full btn-primary mt-4 py-3"
                     onClick={async () => {
-                      // 从 search context 缓存中查找 sourceUrl
                       const context = await getSearchContext()
-                      const lines = ['帮我安装以下技能：']
+                      const lines = ['帮我安装以下技能，然后执行我的任务。', '']
+                      lines.push('安装：')
                       searchResult.skills.forEach((skill, i) => {
                         const dbId = parseInt(skill.id.replace('db-', ''))
                         const ctx = context.find(s => s.id === dbId)
@@ -274,6 +277,8 @@ export default function Skills() {
                         lines.push(`${i + 1}. ${skill.name}`)
                         if (url) lines.push(`   ${url}`)
                       })
+                      lines.push('')
+                      lines.push(`我的任务：${aiQuery}`)
                       navigator.clipboard.writeText(lines.join('\n'))
                       setCopied(true)
                       setTimeout(() => setCopied(false), 2000)
