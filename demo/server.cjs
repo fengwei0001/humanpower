@@ -225,8 +225,28 @@ ${shortList}
       }
 
       // 解析粗筛结果
-      const phase1Content = phase1Result.choices?.[0]?.message?.content || '';
+      let phase1Content = phase1Result.choices?.[0]?.message?.content || '';
       console.log(`[ai-recommend] Phase 1 content: "${phase1Content.slice(0, 200)}"`);
+
+      // Fallback：thinking 模式有时 content 为空，用普通模式重试
+      if (!phase1Content.trim()) {
+        console.log('[ai-recommend] Phase 1 thinking returned empty, retrying without thinking...');
+        try {
+          const fallbackResult = await callDeepSeek({
+            model: 'deepseek-chat',
+            messages: [
+              { role: 'system', content: phase1Prompt },
+              { role: 'user', content: query },
+            ],
+            max_tokens: 4096,
+            temperature: 0.3,
+          });
+          phase1Content = fallbackResult.choices?.[0]?.message?.content || '';
+          console.log(`[ai-recommend] Phase 1 fallback content: "${phase1Content.slice(0, 200)}"`);
+        } catch (err) {
+          console.error('[ai-recommend] Phase 1 fallback error:', err.message);
+        }
+      }
 
       let candidateIds = [];
       try {
@@ -312,8 +332,28 @@ ${detailContext}
       }
 
       // 解析精排结果
-      const phase2Content = phase2Result.choices?.[0]?.message?.content || '';
+      let phase2Content = phase2Result.choices?.[0]?.message?.content || '';
       console.log(`[ai-recommend] Phase 2 content: "${phase2Content.slice(0, 300)}"`);
+
+      // Fallback：thinking 模式 content 为空时，用普通模式重试
+      if (!phase2Content.trim()) {
+        console.log('[ai-recommend] Phase 2 thinking returned empty, retrying without thinking...');
+        try {
+          const fallbackResult = await callDeepSeek({
+            model: 'deepseek-chat',
+            messages: [
+              { role: 'system', content: phase2Prompt },
+              { role: 'user', content: query },
+            ],
+            max_tokens: 8192,
+            temperature: 0.3,
+          });
+          phase2Content = fallbackResult.choices?.[0]?.message?.content || '';
+          console.log(`[ai-recommend] Phase 2 fallback content: "${phase2Content.slice(0, 300)}"`);
+        } catch (err) {
+          console.error('[ai-recommend] Phase 2 fallback error:', err.message);
+        }
+      }
 
       let parsed = { description: '', skills: [] };
       try {
@@ -596,12 +636,13 @@ ${detailContext}
 
       try {
         const parsed = JSON.parse(body);
-        const profileId = parsed.profile || 'default';
+        // 用 sessionId 隔离对话，避免 Hermes 混串不同 session
+        const sessionKey = parsed.sessionId || parsed.profile || 'default';
         const payload = JSON.stringify({
           model: parsed.model || 'deepseek-chat',
           messages: parsed.messages || [],
           stream: parsed.stream !== false,
-          user: profileId,
+          user: sessionKey,
         });
 
         // 选择 http 或 https 模块
