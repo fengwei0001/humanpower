@@ -205,7 +205,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
                   {msg.role === 'user' ? (
                     <div className="whitespace-pre-wrap text-left">{msg.content}</div>
                   ) : (
-                    <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-sm [&_strong]:text-text-primary">
+                    <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_h1]:text-base [&_h2]:text-sm [&_h3]:text-sm [&_strong]:text-text-primary [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_table]:my-2 [&_table]:block [&_table]:overflow-x-auto [&_th]:bg-gray-50 [&_th]:px-2 [&_th]:py-1.5 [&_th]:border [&_th]:border-gray-200 [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_td]:px-2 [&_td]:py-1.5 [&_td]:border [&_td]:border-gray-200 [&_td]:whitespace-normal">
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                   )}
@@ -217,7 +217,7 @@ export default function AgentChat({ open, onClose, initialPrompt, title }: Agent
             {streamingContent && (
               <div className="flex justify-start">
                 <div className="max-w-[85%] px-4 py-3 rounded-2xl rounded-tl-sm bg-white border border-border text-sm text-text-primary shadow-sm">
-                  <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_strong]:text-text-primary">
+                  <div className="prose prose-sm prose-neutral max-w-none break-words overflow-hidden [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:my-1.5 [&_ul]:my-1.5 [&_ol]:my-1.5 [&_li]:my-0.5 [&_code]:text-brand-purple [&_code]:bg-brand-purple-surface [&_code]:px-1 [&_code]:rounded [&_code]:break-all [&_pre]:bg-gray-900 [&_pre]:text-gray-200 [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:whitespace-pre-wrap [&_pre]:break-words [&_strong]:text-text-primary [&_table]:w-full [&_table]:text-xs [&_table]:border-collapse [&_table]:my-2 [&_table]:block [&_table]:overflow-x-auto [&_th]:bg-gray-50 [&_th]:px-2 [&_th]:py-1.5 [&_th]:border [&_th]:border-gray-200 [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_td]:px-2 [&_td]:py-1.5 [&_td]:border [&_td]:border-gray-200 [&_td]:whitespace-normal">
                     <ReactMarkdown>{streamingContent}</ReactMarkdown>
                   </div>
                   <span className="inline-block w-1.5 h-4 bg-brand-green rounded-sm ml-0.5 animate-pulse align-middle" />
