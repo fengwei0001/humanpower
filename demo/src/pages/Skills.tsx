@@ -39,6 +39,7 @@ export default function Skills() {
   const [copied, setCopied] = useState(false)
   const [agentOpen, setAgentOpen] = useState(false)
   const [agentPrompt, setAgentPrompt] = useState('')
+  const [searchStep, setSearchStep] = useState(0)
 
   const filteredSkills = getFilteredSkills()
 
@@ -48,16 +49,25 @@ export default function Skills() {
 
     setSearchResult(null)
     setSearching(true)
+    setSearchStep(0)
+
+    // 模拟进度步骤
+    const stepTimers = [
+      setTimeout(() => setSearchStep(1), 1500),
+      setTimeout(() => setSearchStep(2), 4000),
+      setTimeout(() => setSearchStep(3), 7000),
+      setTimeout(() => setSearchStep(4), 10000),
+    ]
 
     try {
       const result = await aiSearchSkills(q)
       setSearchResult(result)
     } catch (err: unknown) {
-      // Fallback 到本地搜索（静默降级）
       console.warn('AI 搜索失败，使用本地匹配:', err instanceof Error ? err.message : err)
       const fallback = localSearchSkills(q)
       setSearchResult(fallback)
     } finally {
+      stepTimers.forEach(clearTimeout)
       setSearching(false)
     }
   }
@@ -122,23 +132,38 @@ export default function Skills() {
       <div className="max-w-[800px] mx-auto">
         <div className="min-w-0">
 
-          {/* Search Loading */}
+          {/* Search Loading — dynamic progress */}
           <AnimatePresence>
             {searching && (
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                className="bg-white rounded-card p-6 border border-brand-purple/20 shadow-card-hover mb-3"
+                className="bg-white rounded-card p-5 border border-brand-purple/20 shadow-card-hover mb-3"
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-8 h-8">
+                  <div className="relative w-8 h-8 shrink-0">
                     <div className="absolute inset-0 rounded-full border-2 border-brand-purple/20" />
                     <div className="absolute inset-0 rounded-full border-2 border-brand-purple border-t-transparent animate-spin" />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-text-primary">🧠 正在为你分析...</p>
-                    <p className="text-xs text-text-tertiary mt-0.5">从 {total} 个技能中匹配最佳方案</p>
+                  <div className="flex-1 min-w-0">
+                    <motion.p
+                      key={searchStep}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-sm font-medium text-text-primary"
+                    >
+                      {[
+                        '🧠 正在扫描 912 个技能...',
+                        '🔍 找到候选技能，正在深度分析匹配度...',
+                        '⚡ 对比候选方案的适用场景和执行逻辑...',
+                        '🧩 组合最优方案中...',
+                        '✨ 即将输出推荐结果...',
+                      ][searchStep] || '🧠 正在分析...'}
+                    </motion.p>
+                    <p className="text-xs text-text-tertiary mt-0.5">
+                      {searchStep < 1 ? `从 912 个技能中为你匹配` : searchStep < 3 ? '深度思考中，比普通搜索更精准' : '马上好...'}
+                    </p>
                   </div>
                 </div>
               </motion.div>
